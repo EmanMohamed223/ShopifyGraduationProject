@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0371FC9629A3F3E700608875 /* ThirdStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */; };
+		0371FC9829A3F48B00608875 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */; };
+		0371FC9A29A3F63A00608875 /* SeeMoreReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FC9929A3F63A00608875 /* SeeMoreReviewsViewController.swift */; };
+		0371FC9D29A3F6C500608875 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FC9B29A3F6C500608875 /* ReviewTableViewCell.swift */; };
+		0371FC9E29A3F6C500608875 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0371FC9C29A3F6C500608875 /* ReviewTableViewCell.xib */; };
+		0371FCA029A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */; };
 		8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEEF29A3E9B000519879 /* AppDelegate.swift */; };
 		8CE5EEF229A3E9B000519879 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEF129A3E9B000519879 /* SceneDelegate.swift */; };
 		8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEF329A3E9B000519879 /* ViewController.swift */; };
@@ -37,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThirdStoryBoard.storyboard; sourceTree = "<group>"; };
+		0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		0371FC9929A3F63A00608875 /* SeeMoreReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreReviewsViewController.swift; sourceTree = "<group>"; };
+		0371FC9B29A3F6C500608875 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		0371FC9C29A3F6C500608875 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsImgCollectionViewCell.swift; sourceTree = "<group>"; };
 		8CE5EEEC29A3E9B000519879 /* ShopfiyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopfiyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE5EEEF29A3E9B000519879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE5EEF129A3E9B000519879 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +121,12 @@
 				8CE5EEFD29A3E9B400519879 /* LaunchScreen.storyboard */,
 				8CE5EF0029A3E9B400519879 /* Info.plist */,
 				8CE5EEF829A3E9B000519879 /* ShopfiyProject.xcdatamodeld */,
+				0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */,
+				0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */,
+				0371FC9929A3F63A00608875 /* SeeMoreReviewsViewController.swift */,
+				0371FC9B29A3F6C500608875 /* ReviewTableViewCell.swift */,
+				0371FC9C29A3F6C500608875 /* ReviewTableViewCell.xib */,
+				0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */,
 			);
 			path = ShopfiyProject;
 			sourceTree = "<group>";
@@ -235,7 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CE5EEFF29A3E9B400519879 /* LaunchScreen.storyboard in Resources */,
+				0371FC9629A3F3E700608875 /* ThirdStoryBoard.storyboard in Resources */,
 				8CE5EEFC29A3E9B400519879 /* Assets.xcassets in Resources */,
+				0371FC9E29A3F6C500608875 /* ReviewTableViewCell.xib in Resources */,
 				8CE5EEF729A3E9B000519879 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +282,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CE5EEFA29A3E9B000519879 /* ShopfiyProject.xcdatamodeld in Sources */,
+				0371FC9A29A3F63A00608875 /* SeeMoreReviewsViewController.swift in Sources */,
 				8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */,
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
+				0371FC9829A3F48B00608875 /* ProductDetailsViewController.swift in Sources */,
+				0371FC9D29A3F6C500608875 /* ReviewTableViewCell.swift in Sources */,
 				8CE5EEF229A3E9B000519879 /* SceneDelegate.swift in Sources */,
+				0371FCA029A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
