@@ -9,11 +9,13 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    @IBOutlet weak var view: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+   
+    
 
 }

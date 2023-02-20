@@ -19,8 +19,6 @@
 		8CE5EF0A29A3E9B500519879 /* ShopfiyProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF0929A3E9B500519879 /* ShopfiyProjectTests.swift */; };
 		8CE5EF1429A3E9B500519879 /* ShopfiyProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF1329A3E9B500519879 /* ShopfiyProjectUITests.swift */; };
 		8CE5EF1629A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF1529A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift */; };
-		C9C261CF29A3ED360012D4C5 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CA29A3ED360012D4C5 /* SettingsTableViewController.swift */; };
-		C9C261D029A3ED360012D4C5 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CB29A3ED360012D4C5 /* SettingsTableViewCell.swift */; };
 		C9C261D129A3ED360012D4C5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */; };
 		C9C261D229A3ED360012D4C5 /* ShoppingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */; };
 		C9C261D329A3ED360012D4C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CE29A3ED360012D4C5 /* SettingsViewController.swift */; };
@@ -64,8 +62,6 @@
 		8CE5EF1329A3E9B500519879 /* ShopfiyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopfiyProjectUITests.swift; sourceTree = "<group>"; };
 		8CE5EF1529A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopfiyProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BBEF4AC92D6A7FB92112DD47 /* Pods_ShopfiyProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopfiyProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9C261CA29A3ED360012D4C5 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		C9C261CB29A3ED360012D4C5 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewCell.swift; sourceTree = "<group>"; };
 		C9C261CE29A3ED360012D4C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -171,15 +167,12 @@
 				F302989E6CD118D6C5AA10FF /* Pods-ShopfiyProjectTests.debug.xcconfig */,
 				5A04F03DA4404878E1733F06 /* Pods-ShopfiyProjectTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		C9C261D629A3ED660012D4C5 /* SettingControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C9C261CB29A3ED360012D4C5 /* SettingsTableViewCell.swift */,
-				C9C261CA29A3ED360012D4C5 /* SettingsTableViewController.swift */,
 				C9C261CE29A3ED360012D4C5 /* SettingsViewController.swift */,
 			);
 			path = SettingControllers;
@@ -455,8 +448,6 @@
 			files = (
 				8CE5EEFA29A3E9B000519879 /* ShopfiyProject.xcdatamodeld in Sources */,
 				C9C261D129A3ED360012D4C5 /* ShoppingCartViewController.swift in Sources */,
-				C9C261CF29A3ED360012D4C5 /* SettingsTableViewController.swift in Sources */,
-				C9C261D029A3ED360012D4C5 /* SettingsTableViewCell.swift in Sources */,
 				8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */,
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
 				8CE5EEF229A3E9B000519879 /* SceneDelegate.swift in Sources */,
