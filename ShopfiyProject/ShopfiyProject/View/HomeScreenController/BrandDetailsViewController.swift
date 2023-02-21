@@ -71,7 +71,7 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
-         let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "third") as! ProductDetailsViewController
+         let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
          self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
 }

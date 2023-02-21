@@ -50,11 +50,13 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func Tapfavourite(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func TapCart(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
         self.navigationController?.pushViewController(view, animated: true)
     }
 
