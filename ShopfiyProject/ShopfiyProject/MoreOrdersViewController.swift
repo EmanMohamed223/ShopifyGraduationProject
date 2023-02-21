@@ -12,6 +12,8 @@ class MoreOrdersViewController: UIViewController {
     @IBOutlet weak var ordersTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        ordersTable.delegate = self
+        ordersTable.dataSource = self
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
         
     }

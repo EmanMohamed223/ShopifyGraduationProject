@@ -15,24 +15,45 @@ class MeViewController: UIViewController {
     @IBOutlet weak var wishlistcollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        ordersTable.delegate = self
+        ordersTable.dataSource = self
+        wishlistcollection.delegate = self
+        wishlistcollection.dataSource = self
        wishlistcollection.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "categoryItem")
         
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
     }
     
+    @IBAction func cartNavigate(_ sender: UIButton) {
+        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    
+    @IBAction func settingNavigate(_ sender: UIButton) {
+        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard2") as! SettingsViewController
+        self.navigationController?.pushViewController(view, animated: true)
+        
+    }
+    
+        
+  
     @IBAction func moreOrderBtn(_ sender: UIButton) {
-        var seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
+        let seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
          
          self.present(seemoreOrders, animated: true)
         
     }
     @IBAction func MoreWishListBtn(_ sender:UIButton) {
-        var seemoreWishList = self.storyboard?.instantiateViewController(withIdentifier: "seemore") as! WishListViewController
+        let seemoreWishList = self.storyboard?.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
          
          self.present(seemoreWishList, animated: true)
     }
     
-   
+    
+
 
 }
 extension MeViewController: UITableViewDelegate, UITableViewDataSource {

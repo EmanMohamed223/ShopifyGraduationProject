@@ -12,7 +12,8 @@ class WishListViewController: UIViewController {
     @IBOutlet weak var wishlistcollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        wishlistcollection.delegate = self
+        wishlistcollection.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
     }
