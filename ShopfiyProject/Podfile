@@ -8,8 +8,8 @@ target 'ShopfiyProject' do
   pod 'Kingfisher', '~> 7.0'
   pod 'Alamofire'
   pod 'Reachability', '~> 3.2'
-  pod 'SwiftGifOrigin', '~> 1.7'
-  pod 'FloatingButton'
+  pod 'SwiftyGif', '~> 5.4'
+  pod 'Floaty'
 
   # Pods for ShopfiyProject
 
