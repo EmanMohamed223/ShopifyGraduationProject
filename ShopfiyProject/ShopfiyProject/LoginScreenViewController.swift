@@ -16,7 +16,7 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet weak var passtextField: UITextField!
     
     @IBOutlet weak var remembermecircle: UIButton!
-    
+    var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +24,15 @@ class LoginScreenViewController: UIViewController {
     }
     
     @IBAction func remembermebtm(_ sender: UIButton) {
+        if(select == 0){
         remembermecircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            select += 1
+        }
+        else
+        {
+            remembermecircle.setImage(UIImage(systemName: "circle"), for: .normal)
+            select = 0
+        }
     }
     
     @IBAction func forgetPassBtm(_ sender: UIButton) {

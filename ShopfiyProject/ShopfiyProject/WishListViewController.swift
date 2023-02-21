@@ -9,21 +9,39 @@ import UIKit
 
 class WishListViewController: UIViewController {
 
+    @IBOutlet weak var wishlistcollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+}
+extension WishListViewController: UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-    */
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+     //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
+     //   cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory]
+//)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  
+         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-42 , height: (UIScreen.main.bounds.size.height/4)-20 )
+            
 
+
+         }
 }
