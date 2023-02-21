@@ -7,8 +7,11 @@
 
 import UIKit
 import Floaty
-class CategoryViewController: UIViewController {
+class CategoryViewController: UIViewController  , NavigationBarProtocol{
 
+    @IBOutlet weak var favCategoryBtn: UIButton!
+    @IBOutlet weak var categoryCartBtn: UIButton!
+    @IBOutlet weak var categorySearch: UIButton!
     @IBOutlet weak var FloatButton: Floaty!
     @IBOutlet weak var CategoryCollectionView: UICollectionView!
     @IBOutlet weak var categorySegmented: UISegmentedControl!
@@ -25,6 +28,9 @@ class CategoryViewController: UIViewController {
         arr = ["Men", "WOMEN" , "Kid" , "SALE"]
         arrImg = ["brand.png" , "shirt" , "bag" , "shoes"]
         selectSubCategory()
+        categorySearch.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
+        categoryCartBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
+        favCategoryBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
     }
     
     @IBAction func selectedSegment(_ sender: Any) {
@@ -47,8 +53,22 @@ class CategoryViewController: UIViewController {
                  break
      
         }
-    }
     
+    }
+    @objc func TapSearch(){
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        view.searchArr = arr
+     //   view.SearchBar!.placeholder = "Search For You Favourite Product!"
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    @objc func Tapfavourite(){
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    @objc func TapCart(){
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
     /*
     // MARK: - Navigation
 
@@ -100,4 +120,10 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
 
 
          }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //product details
+       let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "third") as! ProductDetailsViewController
+        self.navigationController?.pushViewController(productDetailsView, animated: true)
+    }
 }

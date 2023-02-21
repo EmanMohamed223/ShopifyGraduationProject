@@ -40,6 +40,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="CategoryImage" destination="wn5-vZ-8Ir" id="Xef-UG-HHS"/>
                 <outlet property="categoryButton" destination="tpP-Y2-2e9" id="l4p-aU-WGk"/>

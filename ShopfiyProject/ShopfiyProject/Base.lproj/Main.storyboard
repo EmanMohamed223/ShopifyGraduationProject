@@ -8,42 +8,108 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Category View Controller-->
+        <!--Brand Details View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="category" id="BYZ-38-t0r" customClass="CategoryViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="brandDetails" id="BYZ-38-t0r" customClass="BrandDetailsViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQH-X2-eIF">
-                                <rect key="frame" x="40" y="324" width="240" height="128"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KXo-79-vqN">
+                                <rect key="frame" x="16" y="180" width="361" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PeF-VN-8Dd">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="C16-K2-b3Q"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dbq-IO-nwD"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-F5-m3s">
+                                <rect key="frame" x="-1" y="94" width="394" height="43"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <barButtonItem title="MEN" width="124.33333333333334" id="216-1o-puk">
+                                        <connections>
+                                            <action selector="selectMen:" destination="BYZ-38-t0r" id="3WS-AC-dmD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="WOMEN" width="179.66666666666663" id="IEk-jl-yr8">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="selectWomen:" destination="BYZ-38-t0r" id="dVg-vV-itR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="KIDS" width="240.33333333333334" id="KRP-gX-NcC">
+                                        <connections>
+                                            <action selector="selectKid:" destination="BYZ-38-t0r" id="K9d-yG-Zt6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="brandDetailsCollectionView" destination="KXo-79-vqN" id="cNu-0W-Q0a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965.64885496183206" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="542.74809160305347" y="21.83098591549296"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="AnD-7u-8cO">
             <objects>
-                <viewController storyboardIdentifier="detailsCategory" id="XgS-9g-2Bo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="search" id="XgS-9g-2Bo" customClass="SearchViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F0v-p2-QZi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search For" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-Hz-zYf">
+                                <rect key="frame" x="-1" y="83" width="394" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XgS-9g-2Bo" id="8qW-5F-nga"/>
+                                </connections>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2L3-tJ-dry">
+                                <rect key="frame" x="16" y="147" width="361" height="653"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d25-es-azx">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Zmb-K5-Dyd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="SearchBar" destination="Oxb-Hz-zYf" id="6TO-f8-q0e"/>
+                        <outlet property="searchCollectionView" destination="2L3-tJ-dry" id="kTx-x9-vzd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-D1-ShB" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1605.3435114503816" y="-720.42253521126759"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-675.35211267605632"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="19i-BZ-5re">
@@ -77,7 +143,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TaG-lM-MSP">
                                 <rect key="frame" x="16" y="130" width="361" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XNs-Ff-DqU">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -152,7 +218,10 @@
                     <connections>
                         <outlet property="OffersCollectionView" destination="TaG-lM-MSP" id="6ya-BY-9do"/>
                         <outlet property="brandCollectionView" destination="JZ8-VD-3F2" id="3eu-nQ-K8R"/>
+                        <outlet property="cartHomeBtn" destination="VAA-D9-6Ji" id="ZWs-NX-M8c"/>
+                        <outlet property="favHomeBtn" destination="CCR-wb-0mh" id="JSp-89-b1F"/>
                         <outlet property="offerCollectionView" destination="TaG-lM-MSP" id="uQC-Xy-fqq"/>
+                        <outlet property="searchButton" destination="aJB-0k-17Q" id="pc3-U3-RaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-uD-LPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -197,7 +266,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bek-fI-ONb" customClass="Floaty" customModule="Floaty">
-                                <rect key="frame" x="314" y="719" width="50" height="50"/>
+                                <rect key="frame" x="308" y="675" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -250,7 +319,10 @@
                     <connections>
                         <outlet property="CategoryCollectionView" destination="pR9-4k-YAx" id="nwo-mP-CNm"/>
                         <outlet property="FloatButton" destination="bek-fI-ONb" id="Ncg-JZ-AHh"/>
+                        <outlet property="categoryCartBtn" destination="Dg5-aA-1AV" id="DUw-WF-Slk"/>
+                        <outlet property="categorySearch" destination="eWk-Q7-ItS" id="d5U-cU-SNQ"/>
                         <outlet property="categorySegmented" destination="I2g-kE-MuW" id="KE0-1h-iFK"/>
+                        <outlet property="favCategoryBtn" destination="HrZ-5E-BIS" id="DF6-se-3Xd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBT-BR-xkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
