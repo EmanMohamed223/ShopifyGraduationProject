@@ -10,13 +10,13 @@
         <!--Settings View Controller-->
         <scene sceneID="uG5-yX-DX4">
             <objects>
-                <viewController id="l9N-bw-hIV" customClass="SettingsViewController" customModule="ShopifyProj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l9N-bw-hIV" customClass="SettingsViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ieo-OX-UKm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A9F-nJ-lbJ">
-                                <rect key="frame" x="18" y="138" width="358" height="508"/>
+                                <rect key="frame" x="17" y="136" width="359" height="510"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="h3R-Tw-rX1" kind="embed" id="CQo-9X-s45"/>
@@ -47,19 +47,19 @@
         <!--Settings Table View Controller-->
         <scene sceneID="R4L-4C-HCb">
             <objects>
-                <tableViewController id="h3R-Tw-rX1" customClass="SettingsTableViewController" customModule="ShopifyProj" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="h3R-Tw-rX1" customClass="SettingsTableViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="y0n-7I-etw">
-                        <rect key="frame" x="0.0" y="0.0" width="358" height="508"/>
+                        <rect key="frame" x="0.0" y="0.0" width="359" height="510"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.21870204809999999" green="0.1085439101" blue="0.1874395311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="j3N-hj-AjG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="7J0-EV-xkK" customClass="SettingsTableViewCell" customModule="ShopifyProj" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="358" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="7J0-EV-xkK" customClass="SettingsTableViewCell" customModule="ShopfiyProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="359" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7J0-EV-xkK" id="2V5-P6-lh8">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-PB-Mpr">
@@ -98,11 +98,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41169393059999998" green="0.32441645860000001" blue="0.38361951709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="jXo-6X-NM1" customClass="SettingsTableViewCell" customModule="ShopifyProj" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143" width="358" height="72"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="jXo-6X-NM1" customClass="SettingsTableViewCell" customModule="ShopfiyProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="143" width="359" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jXo-6X-NM1" id="oXi-eh-3Zs">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TY-da-Ksw">
@@ -123,11 +123,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41169393059999998" green="0.32441645860000001" blue="0.38361951709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="99m-e0-2aa" customClass="SettingsTableViewCell" customModule="ShopifyProj" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="215" width="358" height="75"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="99m-e0-2aa" customClass="SettingsTableViewCell" customModule="ShopfiyProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="215" width="359" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="99m-e0-2aa" id="PqJ-M2-z9O">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksw-RA-eLz">
@@ -164,7 +164,7 @@
         <!--Shopping Cart-->
         <scene sceneID="7r5-US-Hgc">
             <objects>
-                <viewController id="uJT-nd-5nV" customClass="ShoppingCartViewController" customModule="ShopifyProj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uJT-nd-5nV" customClass="ShoppingCartViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mZT-vN-K2r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,7 +174,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29869288589999998" green="0.1504789788" blue="0.25660603830000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="232" id="pgi-Ya-H3P" customClass="ShoppingCartTableViewCell" customModule="ShopifyProj" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="232" id="pgi-Ya-H3P" customClass="ShoppingCartTableViewCell" customModule="ShopfiyProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pgi-Ya-H3P" id="uqi-nc-7HT">
