@@ -27,7 +27,7 @@ class ProductDetailsViewController: UIViewController {
     var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        productimgs = ["2" , "3" , "4"]
+        productimgs = ["shirt" , "shoes" , "bag"]
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         
        
