@@ -46,6 +46,8 @@
 		8CE5EF1629A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF1529A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift */; };
 		C98BDB2229A5679500E83716 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2129A5679500E83716 /* PaymentViewController.swift */; };
 		C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2429A56C5100E83716 /* UIExtension.swift */; };
+		C98E310729A57A6B0034794C /* ShoppingCartNipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E310529A57A6B0034794C /* ShoppingCartNipTableViewCell.swift */; };
+		C98E310829A57A6B0034794C /* ShoppingCartNipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98E310629A57A6B0034794C /* ShoppingCartNipTableViewCell.xib */; };
 		C992FBA929A4E84100DBD419 /* AddressConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992FBA829A4E84100DBD419 /* AddressConfigurationViewController.swift */; };
 		C9C261D129A3ED360012D4C5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */; };
 		C9C261D229A3ED360012D4C5 /* ShoppingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */; };
@@ -118,6 +120,8 @@
 		BBEF4AC92D6A7FB92112DD47 /* Pods_ShopfiyProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopfiyProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98BDB2129A5679500E83716 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C98BDB2429A56C5100E83716 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		C98E310529A57A6B0034794C /* ShoppingCartNipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartNipTableViewCell.swift; sourceTree = "<group>"; };
+		C98E310629A57A6B0034794C /* ShoppingCartNipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartNipTableViewCell.xib; sourceTree = "<group>"; };
 		C992FBA829A4E84100DBD419 /* AddressConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressConfigurationViewController.swift; sourceTree = "<group>"; };
 		C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewCell.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 			children = (
 				C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */,
 				C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */,
+				C98E310529A57A6B0034794C /* ShoppingCartNipTableViewCell.swift */,
+				C98E310629A57A6B0034794C /* ShoppingCartNipTableViewCell.xib */,
 			);
 			path = ShoppingCartControllers;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98E310829A57A6B0034794C /* ShoppingCartNipTableViewCell.xib in Resources */,
 				8CE5EEFF29A3E9B400519879 /* LaunchScreen.storyboard in Resources */,
 				0371FC9629A3F3E700608875 /* ThirdStoryBoard.storyboard in Resources */,
 				8C93DFD129A4137C002665D4 /* BrandCollectionViewCell.xib in Resources */,
@@ -632,6 +639,7 @@
 				8C55131829A4DF920066B62E /* NavigationBarProtcol.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
+				C98E310729A57A6B0034794C /* ShoppingCartNipTableViewCell.swift in Sources */,
 				8C93DFD429A41709002665D4 /* CategoryViewController.swift in Sources */,
 				C9C261D329A3ED360012D4C5 /* SettingsViewController.swift in Sources */,
 			);
