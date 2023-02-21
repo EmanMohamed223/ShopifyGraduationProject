@@ -10,7 +10,7 @@ import UIKit
 class OffersCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var offerImage: UIImageView!
-    @IBOutlet weak var offerLabel: UILabel!
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
