@@ -42,6 +42,9 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.21870204809999999" green="0.1085439101" blue="0.1874395311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="s0u-7O-arC" kind="show" id="ufD-oD-meI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-zd-bpe">
                                 <rect key="frame" x="16" y="251" width="361" height="75"/>
@@ -68,14 +71,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LmJ-yq-LjA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948.85496183206101" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="892" y="-27"/>
         </scene>
         <!--Address View Controller-->
         <scene sceneID="Mpy-YU-pek">
             <objects>
                 <viewController id="s0u-7O-arC" customClass="AddressViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPF-ZS-in7">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWn-VO-IRP">
@@ -113,8 +116,17 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcd-ub-DP2">
+                                <rect key="frame" x="84" y="553" width="225" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Edit address" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.21870204809999999" green="0.1085439101" blue="0.1874395311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-ib-xcz">
-                                <rect key="frame" x="84" y="625" width="225" height="67"/>
+                                <rect key="frame" x="84" y="628" width="225" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Add new address" cornerStyle="capsule">
@@ -126,10 +138,11 @@
                         <viewLayoutGuide key="safeArea" id="9cn-Yf-90B"/>
                         <color key="backgroundColor" red="0.41169393059999998" green="0.32441645860000001" blue="0.38361951709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TX2-RS-yAo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UK-Vb-hES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658.7786259541983" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1785" y="-27"/>
         </scene>
         <!--Shopping Cart-->
         <scene sceneID="7r5-US-Hgc">
@@ -264,7 +277,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="checkoutBtn:" destination="uJT-nd-5nV" eventType="touchUpInside" id="1cl-xJ-egW"/>
-                                    <segue destination="Jk7-Q0-d6A" kind="show" id="j7k-Fw-lat"/>
                                 </connections>
                             </button>
                         </subviews>
