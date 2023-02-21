@@ -39,7 +39,7 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-        cell.CategoryImage.image = UIImage(named:"gradProg")
+        cell.CategoryImage.image = UIImage(named:"gradCap")
         cell.categoryLabel.text = searchArr?[indexPath.row] ?? ""
         return cell
     }
