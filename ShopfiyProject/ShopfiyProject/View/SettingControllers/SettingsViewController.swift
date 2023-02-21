@@ -10,14 +10,20 @@ import UIKit
 class SettingsViewController: UIViewController {
 
 
-    @IBOutlet weak var tableView: UITableView!
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-   
+    @IBAction func addressBtn(_ sender: Any) {
+    }
     
-
+    @IBAction func currencyBtn(_ sender: Any) {
+    }
+    
+    @IBAction func launguageBtn(_ sender: Any) {
+    }
+    
+    @IBAction func logoutBtn(_ sender: Any) {
+    }
+    
 }
