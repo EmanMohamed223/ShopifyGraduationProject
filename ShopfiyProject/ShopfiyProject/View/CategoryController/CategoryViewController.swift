@@ -62,11 +62,14 @@ class CategoryViewController: UIViewController  , NavigationBarProtocol{
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func Tapfavourite(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
+
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func TapCart(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
         self.navigationController?.pushViewController(view, animated: true)
     }
     /*
@@ -123,7 +126,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //product details
        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
-        let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "third") as! ProductDetailsViewController
+        let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
         self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
 }

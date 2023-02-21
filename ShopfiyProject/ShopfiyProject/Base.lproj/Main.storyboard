@@ -33,7 +33,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-F5-m3s">
-                                <rect key="frame" x="-2" y="93" width="395" height="42"/>
+                                <rect key="frame" x="-2" y="92" width="395" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -126,16 +126,27 @@
                     <connections>
                         <segue destination="pGF-Qn-Z9m" kind="relationship" relationship="viewControllers" id="v9N-NC-Yat"/>
                         <segue destination="D2B-Z3-gV2" kind="relationship" relationship="viewControllers" id="Bvt-ks-tvE"/>
+                        <segue destination="FZv-rT-Zqn" kind="relationship" relationship="viewControllers" id="9EJ-QJ-KEU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lnQ-iC-xPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3221" y="-489"/>
         </scene>
+        <!--Me-->
+        <scene sceneID="cu3-iV-M3S">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Me" storyboardName="ThirdStoryBoard" referencedIdentifier="Me" id="FZv-rT-Zqn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="WrC-WZ-r1J"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mfd-cL-C7h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3266" y="59"/>
+        </scene>
         <!--Home-->
         <scene sceneID="EvE-3a-NMK">
             <objects>
-                <viewController id="YhE-sK-mOO" customClass="HomeViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="YhE-sK-mOO" customClass="HomeViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozp-G5-9T4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,7 +242,7 @@
         <!--Category-->
         <scene sceneID="qcZ-Aa-pKu">
             <objects>
-                <viewController id="GJl-5u-7iT" customClass="CategoryViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="category" id="GJl-5u-7iT" customClass="CategoryViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DGZ-zh-VeH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
