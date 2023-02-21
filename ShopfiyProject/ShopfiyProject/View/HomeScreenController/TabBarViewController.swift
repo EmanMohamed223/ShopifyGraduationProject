@@ -28,7 +28,7 @@ class TabBarViewController: UITabBarController {
         if UIDevice().userInterfaceIdiom == .phone
         {
             var tabFrame = tabBar.frame
-            tabFrame.size.height = 100
+            tabFrame.size.height = 90
             tabFrame.origin.y = view.frame.size.height - 100
             tabBar.frame = tabFrame
         }
