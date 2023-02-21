@@ -24,6 +24,7 @@ class ProductDetailsViewController: UIViewController {
     var productimgs : [String]?
     var timer : Timer?
     var currentCellIndex = 0
+    var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         productimgs = ["2" , "3" , "4"]
@@ -57,14 +58,21 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func lovebtm(_ sender: UIButton) {
+        if(select == 0){
         loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            select += 1
+        }
+        else {
+            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+                select = 0
+        }
     }
     
     
     @IBAction func seeMoreBtm(_ sender: UIButton) {
         
         
-       var seemorescreen = self.storyboard?.instantiateViewController(withIdentifier: "seemore") as! SeeMoreReviewsViewController
+       var seemorescreen = self.storyboard?.instantiateViewController(withIdentifier: "seemoreReview") as! SeeMoreReviewsViewController
         
         self.present(seemorescreen, animated: true)
     }
@@ -74,7 +82,7 @@ class ProductDetailsViewController: UIViewController {
     
     
   
-    @IBAction func addToBagbtm(_ sender: Any) {
+    @IBAction func addToBagbtm(_ sender: UIButton) {
     }
     
 }

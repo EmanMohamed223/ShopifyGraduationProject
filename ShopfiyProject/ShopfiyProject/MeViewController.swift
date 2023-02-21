@@ -11,14 +11,17 @@ class MeViewController: UIViewController {
 
     @IBOutlet weak var welcomeOrAskingLabel: UILabel!
     @IBOutlet weak var ordersTable: UITableView!
+    
+    @IBOutlet weak var wishlistcollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       wishlistcollection.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "categoryItem")
+        
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
     }
     
     @IBAction func moreOrderBtn(_ sender: UIButton) {
-        var seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemore") as! MoreOrdersViewController
+        var seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
          
          self.present(seemoreOrders, animated: true)
         
@@ -51,4 +54,28 @@ extension MeViewController: UITableViewDelegate, UITableViewDataSource {
         return UIScreen.main.bounds.size.height/4-40
     }
     
+}
+extension MeViewController: UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+     //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
+     //   cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory]
+//)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  
+         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-42 , height: (UIScreen.main.bounds.size.height/4)-20 )
+            
+
+
+         }
 }

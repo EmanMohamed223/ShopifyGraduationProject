@@ -20,6 +20,7 @@ class SignUpScreenViewController: UIViewController {
     @IBOutlet weak var PassTextField: UITextField!
     
     @IBOutlet weak var agreecirclebtm: UIButton!
+    var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +28,15 @@ class SignUpScreenViewController: UIViewController {
     }
     
     @IBAction func agreecircleBtm(_ sender: UIButton) {
-        agreecirclebtm.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        if(select == 0){
+            agreecirclebtm.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            select += 1
+        }
+        else
+        {
+            agreecirclebtm.setImage(UIImage(systemName: "circle"), for: .normal)
+            select = 0
+        }
     }
     
     
