@@ -12,6 +12,7 @@
         <!--Settings View Controller-->
         <scene sceneID="hCo-1H-hGH">
             <objects>
+
                 <viewController storyboardIdentifier="secondStoryboard2" id="Jk7-Q0-d6A" customClass="SettingsViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3eh-WG-lyq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -43,6 +44,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.45516991620000002" green="0.18443724510000001" blue="0.212664187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+
                                 <connections>
                                     <segue destination="s0u-7O-arC" kind="show" id="ufD-oD-meI"/>
                                 </connections>
@@ -94,6 +96,7 @@
         <!--Address View Controller-->
         <scene sceneID="Mpy-YU-pek">
             <objects>
+
                 <viewController id="s0u-7O-arC" customClass="AddressViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPF-ZS-in7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -165,6 +168,7 @@
                     <navigationItem key="navigationItem" id="TX2-RS-yAo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UK-Vb-hES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+
             </objects>
             <point key="canvasLocation" x="2585.4961832061067" y="-27.464788732394368"/>
         </scene>
@@ -245,7 +249,9 @@
         <!--Shopping Cart-->
         <scene sceneID="7r5-US-Hgc">
             <objects>
+
                 <viewController storyboardIdentifier="secondStoryboard1" id="uJT-nd-5nV" customClass="ShoppingCartViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+
                     <view key="view" contentMode="scaleToFill" id="mZT-vN-K2r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
