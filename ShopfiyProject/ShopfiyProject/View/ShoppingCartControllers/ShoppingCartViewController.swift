@@ -12,6 +12,7 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subTotalLabel: UILabel!
     
+    var objects = ["A","B","C","D","E"]
     //var products : [Product]?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class ShoppingCartViewController: UIViewController {
 extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return objects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,6 +40,13 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 232
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            objects.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
 }

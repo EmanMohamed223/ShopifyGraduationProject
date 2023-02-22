@@ -12,8 +12,18 @@ class PaymentViewController: UIViewController {
     
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
+   
+    
+    @IBOutlet weak var countryLabel: UILabel!
+    
+    
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    
+    @IBOutlet weak var phoneLabel: UILabel!
     
     @IBOutlet weak var subTotalLabel: UILabel!
+    
     @IBOutlet weak var shippingFeesLabel: UILabel!
     @IBOutlet weak var couponTxtField: UITextField!
     @IBOutlet weak var discountLabel: UILabel!
