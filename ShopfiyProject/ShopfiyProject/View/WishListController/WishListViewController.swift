@@ -10,8 +10,10 @@ import UIKit
 class WishListViewController: UIViewController {
 
     @IBOutlet weak var wishlistcollection: UICollectionView!
+    var  productimgs = ["shirt" , "shoes" , "bag"]
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         wishlistcollection.delegate = self
         wishlistcollection.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
@@ -33,7 +35,7 @@ extension WishListViewController: UICollectionViewDelegate , UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
      //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
-     //   cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory]
+     cell.CategoryImage.image = UIImage(named: "shirt")
 //)
         return cell
     }
