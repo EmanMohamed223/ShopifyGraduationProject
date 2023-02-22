@@ -1,17 +1,20 @@
 //
-//  ReviewTableViewCell.swift
+//  ProductTableViewCell.swift
 //  ShopfiyProject
 //
-//  Created by Eman on 20/02/2023.
+//  Created by Eman on 22/02/2023.
 //
 
 import UIKit
 
-class ReviewTableViewCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var reviwerLabel: UILabel!
+    @IBOutlet weak var productNameLabel: UILabel!
     
-    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
+    
+    @IBOutlet weak var productRateLabel: UILabel!
+    
     
     
     
