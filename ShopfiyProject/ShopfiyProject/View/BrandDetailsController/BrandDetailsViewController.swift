@@ -9,32 +9,34 @@ import UIKit
 
 class BrandDetailsViewController: UIViewController {
 
+   
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
     var brandName : String?
     var arrImg : [String]?
     var flagCatgory : Int = 0
-   
+    var price : [String]?
+    var priceFilter : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        price = ["100 EGP" , "150 EGP" ]
         arrImg = [ "ma" , "wo" , "kid"]
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        subView.isHidden = true
     }
-    
-    @IBAction func selectKid(_ sender: Any) {
-        flagCatgory = 2
-        self.brandDetailsCollectionView.reloadData()
-    }
-    @IBAction func selectWomen(_ sender: Any) {
+ 
+    @IBAction func selectBestSelling(_ sender: Any) {
         flagCatgory = 1
         self.brandDetailsCollectionView.reloadData()
     }
     
-    @IBAction func selectMen(_ sender: Any) {
+    @IBAction func selectPrice(_ sender: Any) {
+        subView.isHidden = false
         flagCatgory = 0
+        priceFilter = 1
         self.brandDetailsCollectionView.reloadData()
     }
     /*
@@ -59,7 +61,7 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return   CGSize(width: (UIScreen.main.bounds.size.width/2)-42 , height: (UIScreen.main.bounds.size.height/4)-20 )
+        return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-20 )
         
     }
     
@@ -67,6 +69,7 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.categoryLabel.text = brandName ?? ""
         cell.CategoryImage.image = UIImage(named: arrImg?[flagCatgory]  ?? "brand")
+        cell.categoryPrice.text = price?[priceFilter] ?? "0"
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

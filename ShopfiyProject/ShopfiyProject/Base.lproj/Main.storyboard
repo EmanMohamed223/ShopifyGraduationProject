@@ -8,67 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Brand Details View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="brandDetails" id="BYZ-38-t0r" customClass="BrandDetailsViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KXo-79-vqN">
-                                <rect key="frame" x="16" y="180" width="361" height="600"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PeF-VN-8Dd">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="C16-K2-b3Q"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dbq-IO-nwD"/>
-                                </connections>
-                            </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-F5-m3s">
-                                <rect key="frame" x="-3" y="91" width="395" height="42"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <barButtonItem title="MEN" width="124.33333333333334" id="216-1o-puk">
-                                        <connections>
-                                            <action selector="selectMen:" destination="BYZ-38-t0r" id="3WS-AC-dmD"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="WOMEN" width="179.66666666666663" id="IEk-jl-yr8">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="selectWomen:" destination="BYZ-38-t0r" id="dVg-vV-itR"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="KIDS" width="240.33333333333334" id="KRP-gX-NcC">
-                                        <connections>
-                                            <action selector="selectKid:" destination="BYZ-38-t0r" id="K9d-yG-Zt6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </toolbar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <outlet property="brandDetailsCollectionView" destination="KXo-79-vqN" id="cNu-0W-Q0a"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="542.74809160305347" y="21.83098591549296"/>
-        </scene>
         <!--Search View Controller-->
         <scene sceneID="AnD-7u-8cO">
             <objects>
@@ -77,11 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search For" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-Hz-zYf">
-                                <rect key="frame" x="-3" y="83" width="392" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search For product!" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-Hz-zYf">
+                                <rect key="frame" x="-3" y="83" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <color key="barTintColor" red="0.8720940948" green="0.71464735270000002" blue="0.67561084029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99977213139999999" green="0.996296823" blue="0.99627655739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="XgS-9g-2Bo" id="8qW-5F-nga"/>
                                 </connections>
@@ -89,7 +33,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2L3-tJ-dry">
                                 <rect key="frame" x="16" y="147" width="361" height="653"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d25-es-azx">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -97,10 +41,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99977213139999999" green="0.996296823" blue="0.99627655739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zmb-K5-Dyd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="SearchBar" destination="Oxb-Hz-zYf" id="6TO-f8-q0e"/>
@@ -118,7 +67,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="edV-PD-00w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,9 +101,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TaG-lM-MSP">
-                                <rect key="frame" x="16" y="130" width="361" height="143"/>
+                                <rect key="frame" x="16" y="130" width="361" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XNs-Ff-DqU">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -162,6 +111,11 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="YhE-sK-mOO" id="eS0-4S-Yml"/>
                                     <outlet property="delegate" destination="YhE-sK-mOO" id="XJ3-Hv-KGS"/>
@@ -170,7 +124,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-VD-3F2">
                                 <rect key="frame" x="16" y="399" width="361" height="370"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UsX-YZ-hCa">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -178,21 +132,35 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="YhE-sK-mOO" id="aGe-vR-bdi"/>
                                     <outlet property="delegate" destination="YhE-sK-mOO" id="HBk-n5-297"/>
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ee-WI-Xln">
-                                <rect key="frame" x="115" y="302" width="162" height="58"/>
+                                <rect key="frame" x="16" y="302" width="361" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="wAf-Pt-x7y">
+                                <rect key="frame" x="138" y="254" width="116" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="pageController:" destination="YiM-QW-Mp3" eventType="valueChanged" id="xO2-MV-9eo"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="P0j-nt-gcx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="MY0-El-rJM">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="magnifyingglass" catalog="system" style="plain" id="gUR-qb-wk7">
@@ -201,7 +169,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system">
+                                    <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -211,7 +181,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                                        <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </buttonConfiguration>
                                 </button>
                                 <color key="tintColor" red="0.89192364879999997" green="0.19793281500000001" blue="0.1735606586" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
@@ -221,7 +193,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="cart.fill" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="cart.fill" catalog="system">
+                                        <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </buttonConfiguration>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -232,10 +206,12 @@
                         <outlet property="cartHomeBtn" destination="VAA-D9-6Ji" id="ZWs-NX-M8c"/>
                         <outlet property="favHomeBtn" destination="CCR-wb-0mh" id="JSp-89-b1F"/>
                         <outlet property="offerCollectionView" destination="TaG-lM-MSP" id="uQC-Xy-fqq"/>
+                        <outlet property="pageController" destination="wAf-Pt-x7y" id="Xxl-Fi-sBs"/>
                         <outlet property="searchButton" destination="aJB-0k-17Q" id="pc3-U3-RaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-uD-LPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="YiM-QW-Mp3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="138.1679389312977" y="-675.35211267605632"/>
         </scene>
@@ -250,12 +226,19 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I2g-kE-MuW">
                                 <rect key="frame" x="16" y="132" width="361" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="MEN"/>
                                     <segment title="WOMEN"/>
                                     <segment title="KID"/>
                                     <segment title="SALE"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99977213139999999" green="0.996296823" blue="0.99627655739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="selectedSegment:" destination="GJl-5u-7iT" eventType="valueChanged" id="Q1O-qK-k6o"/>
                                 </connections>
@@ -263,7 +246,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pR9-4k-YAx">
                                 <rect key="frame" x="16" y="187" width="361" height="582"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jIB-rL-Ooe">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -285,16 +268,16 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                        <color key="value" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="itemButtonColor">
-                                        <color key="value" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.52191680669999996" green="0.34015038609999998" blue="0.43059456350000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uxw-4A-Lfm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Category" id="2Rt-Kb-kAr">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="YJe-hI-sB1">
@@ -303,7 +286,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system">
+                                    <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -313,7 +298,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                                        <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </buttonConfiguration>
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="nFt-yg-6vn">
@@ -322,7 +309,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="cart.fill" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="cart.fill" catalog="system">
+                                        <color key="baseForegroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </buttonConfiguration>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -340,6 +329,85 @@
             </objects>
             <point key="canvasLocation" x="-400.76335877862596" y="-2.1126760563380285"/>
         </scene>
+        <!--Brand Details View Controller-->
+        <scene sceneID="oqC-97-bOa">
+            <objects>
+                <viewController storyboardIdentifier="brandDetails" id="pnI-uK-5fV" customClass="BrandDetailsViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m5s-C3-iLe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d7-Vn-sLZ">
+                                <rect key="frame" x="16" y="172" width="361" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0W-nk-7Il">
+                                        <rect key="frame" x="13" y="6" width="73" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XZN-pl-CaB">
+                                        <rect key="frame" x="121" y="9" width="242" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="minimumTrackTintColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="maximumTrackTintColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xgx-BM-o5f">
+                                <rect key="frame" x="16" y="228" width="361" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A7S-kz-P0m">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pnI-uK-5fV" id="Jxo-8q-t0y"/>
+                                    <outlet property="delegate" destination="pnI-uK-5fV" id="wdE-Ua-h5s"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kot-Et-OTn">
+                                <rect key="frame" x="0.0" y="105" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Price" width="230.66666666666669" id="re7-Y9-Fcg">
+                                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="selectPrice:" destination="pnI-uK-5fV" id="gBh-IG-AcQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Best Selling" id="U8P-1G-bu9">
+                                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="selectBestSelling:" destination="pnI-uK-5fV" id="6Xt-nJ-Ty5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="P7S-Ti-Ke3"/>
+                        <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="brandDetailsCollectionView" destination="Xgx-BM-o5f" id="NS1-id-8hf"/>
+                        <outlet property="subView" destination="8d7-Vn-sLZ" id="2yl-7o-2ZG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TEL-8e-Ttc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="429.7709923664122" y="6.3380281690140849"/>
+        </scene>
         <!--Home-->
         <scene sceneID="3Qx-LH-tv8">
             <objects>
@@ -349,13 +417,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OQk-6c-Qcv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <color key="textColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -376,13 +445,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="73Y-m2-WSp">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <color key="textColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -397,7 +467,6 @@
     </scenes>
     <resources>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
