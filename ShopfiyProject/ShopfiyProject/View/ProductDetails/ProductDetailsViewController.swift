@@ -16,9 +16,10 @@ class ProductDetailsViewController: UIViewController {
     
     
     
+    @IBOutlet weak var reviewtable: UITableView!
     
     @IBOutlet weak var productimgCollection: UICollectionView!
-    @IBOutlet weak var reviewTable: UITableView!
+    @IBOutlet weak var productTable: UITableView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var loveoutlet: UIButton!
     var productimgs : [String]?
@@ -33,12 +34,14 @@ class ProductDetailsViewController: UIViewController {
        
         pagecontrolleroutlet.numberOfPages = productimgs!.count
 //        pagecontrolleroutlet.currentPage = 0
-        reviewTable.delegate = self
-        reviewTable.dataSource = self
+        reviewtable.delegate = self
+        reviewtable.dataSource = self
+        productTable.delegate = self
+        productTable.dataSource = self
         productimgCollection.delegate = self
         productimgCollection.dataSource = self
-        reviewTable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewtablecell")
-  
+        productTable.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "productcell")
+        reviewtable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewtablecell")
         
     }
     @objc func slideToNext()
@@ -115,19 +118,24 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = reviewTable.dequeueReusableCell(withIdentifier: "reviewtablecell", for: indexPath) as! ReviewTableViewCell
-        return cell
+        if tableView == self.productTable
+        {
+            let cell = productTable.dequeueReusableCell(withIdentifier: "productcell", for: indexPath) as! ProductTableViewCell
+            return cell
+        }
+        else {
+            let cell = reviewtable.dequeueReusableCell(withIdentifier: "reviewtablecell", for: indexPath) as! ReviewTableViewCell
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height/4-40
+        return UIScreen.main.bounds.size.height/5-80
     }
     
 }
