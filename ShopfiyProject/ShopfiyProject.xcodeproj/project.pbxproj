@@ -163,6 +163,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0335682D29A60A08001DB97E /* SignUpController */ = {
+			isa = PBXGroup;
+			children = (
+				0371FCA529A419CF00608875 /* SignUpScreenViewController.swift */,
+			);
+			path = SignUpController;
+			sourceTree = "<group>";
+		};
+		0335682E29A60A17001DB97E /* SignInController */ = {
+			isa = PBXGroup;
+			children = (
+				0371FCA329A40FE000608875 /* LoginScreenViewController.swift */,
+			);
+			path = SignInController;
+			sourceTree = "<group>";
+		};
+		0335682F29A60A2A001DB97E /* ProductDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */,
+				0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */,
+			);
+			path = ProductDetails;
+			sourceTree = "<group>";
+		};
+		0335683029A60A5C001DB97E /* SeeMoreReview */ = {
+			isa = PBXGroup;
+			children = (
+				0371FC9C29A3F6C500608875 /* ReviewTableViewCell.xib */,
+				0371FC9B29A3F6C500608875 /* ReviewTableViewCell.swift */,
+				0371FC9929A3F63A00608875 /* SeeMoreReviewsViewController.swift */,
+			);
+			path = SeeMoreReview;
+			sourceTree = "<group>";
+		};
+		0335683129A60A7F001DB97E /* MeController */ = {
+			isa = PBXGroup;
+			children = (
+				0371FCA729A427AF00608875 /* MeViewController.swift */,
+			);
+			path = MeController;
+			sourceTree = "<group>";
+		};
+		0335683229A60A95001DB97E /* MoreOrder */ = {
+			isa = PBXGroup;
+			children = (
+				03714DAA29A4A932000A0528 /* OrderTableViewCell.swift */,
+				03714DAB29A4A932000A0528 /* OrderTableViewCell.xib */,
+				03714DAE29A4B6A4000A0528 /* MoreOrdersViewController.swift */,
+			);
+			path = MoreOrder;
+			sourceTree = "<group>";
+		};
+		0335683329A60BD9001DB97E /* WishListController */ = {
+			isa = PBXGroup;
+			children = (
+				0371FCA129A40DB700608875 /* WishListViewController.swift */,
+			);
+			path = WishListController;
+			sourceTree = "<group>";
+		};
 		8C93DFC529A41333002665D4 /* HomeScreenController */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,18 +286,6 @@
 				8CE5EF0029A3E9B400519879 /* Info.plist */,
 				8CE5EEF829A3E9B000519879 /* ShopfiyProject.xcdatamodeld */,
 				0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */,
-				0371FCA529A419CF00608875 /* SignUpScreenViewController.swift */,
-				0371FCA329A40FE000608875 /* LoginScreenViewController.swift */,
-				0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */,
-				0371FC9929A3F63A00608875 /* SeeMoreReviewsViewController.swift */,
-				0371FC9B29A3F6C500608875 /* ReviewTableViewCell.swift */,
-				0371FC9C29A3F6C500608875 /* ReviewTableViewCell.xib */,
-				0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */,
-				0371FCA129A40DB700608875 /* WishListViewController.swift */,
-				0371FCA729A427AF00608875 /* MeViewController.swift */,
-				03714DAE29A4B6A4000A0528 /* MoreOrdersViewController.swift */,
-				03714DAA29A4A932000A0528 /* OrderTableViewCell.swift */,
-				03714DAB29A4A932000A0528 /* OrderTableViewCell.xib */,
 			);
 			path = ShopfiyProject;
 			sourceTree = "<group>";
@@ -333,6 +382,10 @@
 		C9C261D829A3ED920012D4C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0335682D29A60A08001DB97E /* SignUpController */,
+				0335683029A60A5C001DB97E /* SeeMoreReview */,
+				0335682E29A60A17001DB97E /* SignInController */,
+				0335683129A60A7F001DB97E /* MeController */,
 				8C55131729A4DF920066B62E /* NavigationBarProtcol.swift */,
 				C9C261DB29A407D30012D4C5 /* AddressViewControllers */,
 				8C93DFD229A416F1002665D4 /* CategoryController */,
@@ -340,6 +393,9 @@
 				C9C261D629A3ED660012D4C5 /* SettingControllers */,
 				C9C261D729A3ED7F0012D4C5 /* ShoppingCartControllers */,
 				C98BDB2129A5679500E83716 /* PaymentViewController.swift */,
+				0335683329A60BD9001DB97E /* WishListController */,
+				0335682F29A60A2A001DB97E /* ProductDetails */,
+				0335683229A60A95001DB97E /* MoreOrder */,
 			);
 			path = View;
 			sourceTree = "<group>";

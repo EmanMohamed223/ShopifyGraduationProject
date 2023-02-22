@@ -47,6 +47,7 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" red="0.97989708190000002" green="0.9046789408" blue="0.89692980050000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="dateOfOrderlabel" destination="NW6-mh-WQ1" id="25B-vf-BSZ"/>
                 <outlet property="pricelabel" destination="naH-qw-9Dw" id="zl4-Zt-wEd"/>

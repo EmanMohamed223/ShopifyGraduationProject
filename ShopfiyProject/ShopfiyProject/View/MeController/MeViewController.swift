@@ -86,6 +86,7 @@ extension MeViewController: UICollectionViewDelegate , UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+        cell.CategoryImage.image = UIImage(named: "shirt")
      //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
      //   cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory]
 //)
