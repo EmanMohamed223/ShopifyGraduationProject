@@ -224,6 +224,22 @@
 			path = WishListController;
 			sourceTree = "<group>";
 		};
+		8C0B8F1729A6BB8C0059AF9E /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8C55131529A4CB530066B62E /* SearchViewController.swift */,
+			);
+			path = SearchViewController;
+			sourceTree = "<group>";
+		};
+		8C0B8F1829A6BBAD0059AF9E /* BrandDetailsController */ = {
+			isa = PBXGroup;
+			children = (
+				8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */,
+			);
+			path = BrandDetailsController;
+			sourceTree = "<group>";
+		};
 		8C93DFC529A41333002665D4 /* HomeScreenController */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +249,6 @@
 				8C93DFC929A41378002665D4 /* OffersCollectionViewCell.swift */,
 				8C93DFCA29A41379002665D4 /* OffersCollectionViewCell.xib */,
 				8C93DFC729A41375002665D4 /* TabBarViewController.swift */,
-				8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */,
-				8C55131529A4CB530066B62E /* SearchViewController.swift */,
 			);
 			path = HomeScreenController;
 			sourceTree = "<group>";
@@ -382,6 +396,8 @@
 		C9C261D829A3ED920012D4C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C0B8F1829A6BBAD0059AF9E /* BrandDetailsController */,
+				8C0B8F1729A6BB8C0059AF9E /* SearchViewController */,
 				0335682D29A60A08001DB97E /* SignUpController */,
 				0335683029A60A5C001DB97E /* SeeMoreReview */,
 				0335682E29A60A17001DB97E /* SignInController */,
