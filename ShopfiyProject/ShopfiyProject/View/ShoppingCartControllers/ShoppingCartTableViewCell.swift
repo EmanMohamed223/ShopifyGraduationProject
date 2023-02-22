@@ -29,6 +29,11 @@ class ShoppingCartTableViewCell: UITableViewCell {
             /*if numOfItems < product.numOfItems{
                 numOfItems--
         }*/
+        var num = Int(numOfItems.text ?? "")!
+        if num < 5{
+            num += 1
+            numOfItems.text = String(num)
+        }
     }
     
     @IBAction func decreaseBtn(_ sender: Any) {
@@ -45,6 +50,11 @@ class ShoppingCartTableViewCell: UITableViewCell {
                 self.present(alert, animated: true)
             }
         }*/
+        var num = Int(numOfItems.text ?? "")!
+        if num > 1{
+            num -= 1
+            numOfItems.text = String(num)
+        }
     }
     
 }
