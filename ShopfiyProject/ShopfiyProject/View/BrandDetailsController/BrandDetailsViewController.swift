@@ -31,6 +31,7 @@ class BrandDetailsViewController: UIViewController {
     @IBAction func selectBestSelling(_ sender: Any) {
         flagCatgory = 1
         self.brandDetailsCollectionView.reloadData()
+        subView.isHidden = false
     }
     
     @IBAction func selectPrice(_ sender: Any) {
@@ -61,7 +62,7 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-20 )
+        return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
         
     }
     

@@ -110,6 +110,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+        cell.cornerRadius = CGFloat(20)
         cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
         cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory])
         cell.categoryPrice.text = "150 EGP"
@@ -118,7 +119,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
   
-         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-20 )
+         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
             
 
 

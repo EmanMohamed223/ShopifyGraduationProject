@@ -17,13 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search For product!" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-Hz-zYf">
-                                <rect key="frame" x="-3" y="83" width="390" height="44"/>
+                                <rect key="frame" x="-3" y="83" width="388" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.8720940948" green="0.71464735270000002" blue="0.67561084029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.99977213139999999" green="0.996296823" blue="0.99627655739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.5899760127" green="0.43385618929999997" blue="0.50808703899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -31,7 +34,7 @@
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2L3-tJ-dry">
-                                <rect key="frame" x="16" y="147" width="361" height="653"/>
+                                <rect key="frame" x="11" y="249" width="361" height="539"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d25-es-azx">
@@ -47,6 +50,46 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-UD-sf6">
+                                <rect key="frame" x="16" y="192" width="356" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRs-cp-4zN">
+                                        <rect key="frame" x="8" y="3" width="102" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-hy-iLI">
+                                        <rect key="frame" x="136" y="8" width="214" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="minimumTrackTintColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="maximumTrackTintColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7h-hd-Z9M">
+                                <rect key="frame" x="0.0" y="148" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Price" width="208.66666666666666" id="j9M-ZC-9Jk">
+                                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="priceClicked:" destination="XgS-9g-2Bo" id="tce-e4-gcn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Best Selling" width="315.66666666666669" id="WKi-dP-HMr">
+                                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="BestSellingClicked:" destination="XgS-9g-2Bo" id="igF-lc-CQA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.5899760127" green="0.43385618929999997" blue="0.50808703899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zmb-K5-Dyd"/>
                         <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,6 +97,7 @@
                     <connections>
                         <outlet property="SearchBar" destination="Oxb-Hz-zYf" id="6TO-f8-q0e"/>
                         <outlet property="searchCollectionView" destination="2L3-tJ-dry" id="kTx-x9-vzd"/>
+                        <outlet property="viewSearch" destination="KuA-UD-sf6" id="33M-A8-GgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-D1-ShB" sceneMemberID="firstResponder"/>
@@ -375,7 +419,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kot-Et-OTn">
-                                <rect key="frame" x="0.0" y="105" width="393" height="44"/>
+                                <rect key="frame" x="-1" y="103" width="393" height="45"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Price" width="230.66666666666669" id="re7-Y9-Fcg">

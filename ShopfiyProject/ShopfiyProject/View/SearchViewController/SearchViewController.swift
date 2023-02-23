@@ -8,6 +8,8 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    
+    @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
     @IBOutlet weak var SearchBar: UISearchBar!
@@ -16,11 +18,18 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        viewSearch.isHidden = true
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.searchCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
     }
+    @IBAction func BestSellingClicked(_ sender: Any) {
+        viewSearch.isHidden = true
+    }
     
-
+    @IBAction func priceClicked(_ sender: Any) {
+        viewSearch.isHidden = false
+    }
+    
     /*
     // MARK: - Navigation
 
