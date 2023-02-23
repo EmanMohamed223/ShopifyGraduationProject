@@ -19,6 +19,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var OffersCollectionView: UICollectionView!
     var brands : [String]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         favHomeBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
         pageController.numberOfPages = 10
         startTimer()
+      
     }
     
     func startTimer(){
