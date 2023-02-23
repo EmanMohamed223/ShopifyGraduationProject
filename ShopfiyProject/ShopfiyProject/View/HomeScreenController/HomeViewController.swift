@@ -24,7 +24,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+      
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
         nib = UINib(nibName: "OffersCollectionViewCell", bundle: nil)
@@ -117,6 +117,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
   
       cell.offerImage.kf.setImage(with: URL(string:"BiKVkhFqK0KP+UxRB6G626fZj/WpGMMMVboXaQ5zGobh953n3XHiS9PVQDIXeRQhtQvY/wAQnQsqGCW+hOA3WUe++GIq3RYrwaT65zs6q8NrcjFedkN6RkGAEER8Xa/2xzfXrFMn1WyD4f0Ai88zgE269kCuH34cBUBkzpZvHhJbxY6aMg1Myb5oIrs1jyar0srFUO2vtLM6U7lUq8t281+2RIKwmMFR0lw9G7r8V2i5jPdXFH4jd9s1g5IuD615BM9ro95j6L6UImfaqDZfT2Dw4LZZMmxDF36ANXjLkYgbfNsJEevkue9Wvbudtt+Zvsjjto0m0P7kuJhz4l0EUHXsr15l4MXKZyEaDyXOc8C/HKBpcHNdBCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgyP8V/wF96J0P0GFc1AAAAABJRU5ErkJggg"), placeholder: UIImage(named: "brand.png"))
         return cell
+
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

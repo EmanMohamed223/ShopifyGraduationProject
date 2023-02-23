@@ -22,6 +22,7 @@ class CategoryViewController: UIViewController {
     var viewModel : ViewModelProduct?
     var CategoryProductsURL : String?
     var productArray : ResponseProducts?
+    var MenArray : [Products]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +46,7 @@ class CategoryViewController: UIViewController {
     }
     func renderView(){
         DispatchQueue.main.async {
-                        self.productArray = self.viewModel?.resultProducts
+            self.productArray = self.viewModel?.resultProducts
          //   self.searchedLeagues = self.productArray
             self.CategoryCollectionView.reloadData()
         }

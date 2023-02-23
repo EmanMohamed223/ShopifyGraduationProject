@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nKq-sQ-avH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHu-YX-p4d">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -72,7 +72,7 @@
                                 <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7h-hd-Z9M">
-                                <rect key="frame" x="0.0" y="148" width="393" height="44"/>
+                                <rect key="frame" x="-1" y="146" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Price" width="208.66666666666666" id="j9M-ZC-9Jk">
@@ -104,10 +104,36 @@
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="-675.35211267605632"/>
         </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="Vdc-38-d2d">
+            <objects>
+                <viewController id="wHu-YX-p4d" customClass="SplashViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="RYU-od-0Cu">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0go-uc-8RV">
+                                <rect key="frame" x="-12" y="0.0" width="405" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5f9-jc-OpG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="GIF" destination="0go-uc-8RV" id="2bB-4y-u2x"/>
+                        <segue destination="nKq-sQ-avH" kind="presentation" identifier="splash" modalPresentationStyle="fullScreen" id="lyC-VX-RCB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0s-is-hsb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4376.3358778625952" y="-501.4084507042254"/>
+        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="19i-BZ-5re">
             <objects>
-                <tabBarController id="nKq-sQ-avH" customClass="TabBarViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="nKq-sQ-avH" customClass="TabBarViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="n9r-lR-HoV"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="edV-PD-00w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -419,7 +445,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kot-Et-OTn">
-                                <rect key="frame" x="-1" y="103" width="393" height="45"/>
+                                <rect key="frame" x="-1" y="101" width="393" height="47"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Price" width="230.66666666666669" id="re7-Y9-Fcg">
