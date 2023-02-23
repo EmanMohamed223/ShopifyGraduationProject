@@ -21,4 +21,5 @@ class LineItem : Decodable{
     var taxable : Bool?
     var gift_card : Bool?
     var price : String?
+    var name : String?
 }

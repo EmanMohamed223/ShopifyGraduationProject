@@ -14,6 +14,8 @@ class AddressConfigurationViewController: UIViewController {
     @IBOutlet weak var countryTxtField: UITextField!
     @IBOutlet weak var addressTxtField: UITextField!
     
+    var coreLocationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
