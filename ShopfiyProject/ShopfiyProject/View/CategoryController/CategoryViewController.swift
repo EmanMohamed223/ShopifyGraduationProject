@@ -7,7 +7,7 @@
 
 import UIKit
 import Floaty
-class CategoryViewController: UIViewController  , NavigationBarProtocol{
+class CategoryViewController: UIViewController {
 
     @IBOutlet weak var favCategoryBtn: UIButton!
     @IBOutlet weak var categoryCartBtn: UIButton!
@@ -19,6 +19,9 @@ class CategoryViewController: UIViewController  , NavigationBarProtocol{
     var arrImg : [String] = []
     var flagMainCatgory : Int = 0
     var flagSubCatgory : Int = 0
+    var viewModel : ViewModelProduct?
+    var CategoryProductsURL : String?
+    var productArray : ResponseProducts?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +34,21 @@ class CategoryViewController: UIViewController  , NavigationBarProtocol{
         categorySearch.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         categoryCartBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
         favCategoryBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
+        CategoryProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/products.json"
+        viewModel = ViewModelProduct()
+        viewModel?.getProducts(url: CategoryProductsURL ?? "")
+        viewModel?.bindResultToViewController = { () in
+            
+            self.renderView()
+        }
+        self.CategoryCollectionView.reloadData()
+    }
+    func renderView(){
+        DispatchQueue.main.async {
+                        self.productArray = self.viewModel?.resultProducts
+         //   self.searchedLeagues = self.productArray
+            self.CategoryCollectionView.reloadData()
+        }
     }
     
     @IBAction func selectedSegment(_ sender: Any) {
@@ -72,6 +90,7 @@ class CategoryViewController: UIViewController  , NavigationBarProtocol{
         let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
         self.navigationController?.pushViewController(view, animated: true)
     }
+    
     /*
     // MARK: - Navigation
 
@@ -105,15 +124,15 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return productArray?.products.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.cornerRadius = CGFloat(20)
-        cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
-        cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory])
-        cell.categoryPrice.text = "150 EGP"
+        cell.categoryLabel.text = productArray?.products[indexPath.row].title
+        cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = productArray?.products[indexPath.row].variants![0].price
         return cell
     }
     

@@ -31,7 +31,10 @@
 		401590B656441CE7E5A02E3D /* Pods_ShopfiyProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEF4AC92D6A7FB92112DD47 /* Pods_ShopfiyProjectTests.framework */; };
 		8C55131429A4B6440066B62E /* BrandDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */; };
 		8C55131629A4CB530066B62E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131529A4CB530066B62E /* SearchViewController.swift */; };
-		8C55131829A4DF920066B62E /* NavigationBarProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131729A4DF920066B62E /* NavigationBarProtcol.swift */; };
+		8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */; };
+		8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */; };
+		8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */; };
+		8C88F90E29A7CD5A00CB9E33 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */; };
 		8C93DFCC29A4137C002665D4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFC629A41373002665D4 /* HomeViewController.swift */; };
 		8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFC729A41375002665D4 /* TabBarViewController.swift */; };
 		8C93DFCE29A4137C002665D4 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFC829A41376002665D4 /* BrandCollectionViewCell.swift */; };
@@ -108,7 +111,10 @@
 		705B8463452972E8C7BD71AE /* Pods-ShopfiyProject-ShopfiyProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopfiyProject-ShopfiyProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsViewController.swift; sourceTree = "<group>"; };
 		8C55131529A4CB530066B62E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		8C55131729A4DF920066B62E /* NavigationBarProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarProtcol.swift; sourceTree = "<group>"; };
+		8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarProtocol.swift; sourceTree = "<group>"; };
+		8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProduct.swift; sourceTree = "<group>"; };
+		8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		8C93DFC629A41373002665D4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C93DFC729A41375002665D4 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8C93DFC829A41376002665D4 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -323,6 +329,9 @@
 				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
 				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
 				0324771E29A6E04100DBAFC2 /* Navigationdelegate.swift */,
+				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
+				8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */,
+				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
 			);
 			path = ShopfiyProject;
 			sourceTree = "<group>";
@@ -434,7 +443,7 @@
 				0335683029A60A5C001DB97E /* SeeMoreReview */,
 				0335682E29A60A17001DB97E /* SignInController */,
 				0335683129A60A7F001DB97E /* MeController */,
-				8C55131729A4DF920066B62E /* NavigationBarProtcol.swift */,
+				8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */,
 				C9C261DB29A407D30012D4C5 /* AddressViewControllers */,
 				8C93DFD229A416F1002665D4 /* CategoryController */,
 				8C93DFC529A41333002665D4 /* HomeScreenController */,
@@ -746,13 +755,16 @@
 				0371FCA029A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift in Sources */,
 				8C55131629A4CB530066B62E /* SearchViewController.swift in Sources */,
 				C9C261D229A3ED360012D4C5 /* ShoppingCartTableViewCell.swift in Sources */,
-				8C55131829A4DF920066B62E /* NavigationBarProtcol.swift in Sources */,
+				8C88F90E29A7CD5A00CB9E33 /* ProductModel.swift in Sources */,
+				8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */,
+				8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */,
 				C9E85E8629A6B26800BAC6A3 /* AddressTableViewCell.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
 				C98E310729A57A6B0034794C /* ShoppingCartNipTableViewCell.swift in Sources */,
 				03408E2A29A69C14001FCE6D /* IfLogedView.swift in Sources */,
 				8C93DFD429A41709002665D4 /* CategoryViewController.swift in Sources */,
+				8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */,
 				C9C261D329A3ED360012D4C5 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
