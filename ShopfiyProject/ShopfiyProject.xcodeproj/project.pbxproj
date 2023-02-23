@@ -34,6 +34,8 @@
 		8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */; };
 		8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */; };
 		8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */; };
+		8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86437029A826A5006FC8F0 /* SplashViewController.swift */; };
+		8C86437329A82701006FC8F0 /* splashShop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8C86437229A82701006FC8F0 /* splashShop.gif */; };
 		8C88F90E29A7CD5A00CB9E33 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */; };
 		8C93DFCC29A4137C002665D4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFC629A41373002665D4 /* HomeViewController.swift */; };
 		8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFC729A41375002665D4 /* TabBarViewController.swift */; };
@@ -118,6 +120,8 @@
 		8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarProtocol.swift; sourceTree = "<group>"; };
 		8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProduct.swift; sourceTree = "<group>"; };
+		8C86437029A826A5006FC8F0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		8C86437229A82701006FC8F0 /* splashShop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splashShop.gif; sourceTree = "<group>"; };
 		8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		8C93DFC629A41373002665D4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C93DFC729A41375002665D4 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +274,15 @@
 			path = BrandDetailsController;
 			sourceTree = "<group>";
 		};
+		8C86436F29A8267E006FC8F0 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8C86437229A82701006FC8F0 /* splashShop.gif */,
+				8C86437029A826A5006FC8F0 /* SplashViewController.swift */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
 		8C93DFC529A41333002665D4 /* HomeScreenController */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +331,7 @@
 		8CE5EEEE29A3E9B000519879 /* ShopfiyProject */ = {
 			isa = PBXGroup;
 			children = (
+				8C86436F29A8267E006FC8F0 /* SplashScreen */,
 				C99ED6C629A7B8A30097C53E /* Model */,
 				C98BDB2329A56C3E00E83716 /* Utils */,
 				C98BDB2029A560DB00E83716 /* Contract */,
@@ -630,6 +644,7 @@
 				8CE5EEFC29A3E9B400519879 /* Assets.xcassets in Resources */,
 				03408E3029A6B00D001FCE6D /* ProductTableViewCell.xib in Resources */,
 				0371FC9E29A3F6C500608875 /* ReviewTableViewCell.xib in Resources */,
+				8C86437329A82701006FC8F0 /* splashShop.gif in Resources */,
 				8CE5EEF729A3E9B000519879 /* Main.storyboard in Resources */,
 				03714DAD29A4A932000A0528 /* OrderTableViewCell.xib in Resources */,
 				8C93DFD829A423E3002665D4 /* CategoryCollectionViewCell.xib in Resources */,
@@ -801,6 +816,7 @@
 				C9E85E8629A6B26800BAC6A3 /* AddressTableViewCell.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
+				8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */,
 				C98E310729A57A6B0034794C /* ShoppingCartNipTableViewCell.swift in Sources */,
 				03408E2A29A69C14001FCE6D /* IfLogedView.swift in Sources */,
 				8C93DFD429A41709002665D4 /* CategoryViewController.swift in Sources */,
