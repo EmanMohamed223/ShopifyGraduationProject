@@ -8,6 +8,10 @@
 import UIKit
 
 class MeViewController: UIViewController ,Navigationdelegate {
+   
+    
+    
+    
     
     
 
@@ -19,18 +23,13 @@ class MeViewController: UIViewController ,Navigationdelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      let abcView   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
-         var abcView2 = View()
-        abcView2.delegate = self
-        //let abcView = Bundle.main.loadNibNamed("View", owner: self, topLevelObjects: nil ) as! View
-        thisView.addSubview(abcView)
-//        ordersTable.delegate = self
-//        ordersTable.dataSource = self
-//        wishlistcollection.delegate = self
-//        wishlistcollection.dataSource = self
-//       wishlistcollection.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "categoryItem")
-//
-//        ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
+        var abcView   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
+       // abcView.delegate = self
+        //thisView.addSubview(abcView)
+        var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
+        IfLogedView.delegate = self
+        
+        thisView.addSubview(IfLogedView)
     }
     
     @IBAction func cartNavigate(_ sender: UIButton) {
@@ -47,74 +46,25 @@ class MeViewController: UIViewController ,Navigationdelegate {
         
     }
     func navigateToSignup() {
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "signup") as! SignUpScreenViewController
+        let view : SignUpScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "signup") as! SignUpScreenViewController
           self.navigationController?.pushViewController(view, animated: true)
     }
-    
-    func navigateToSignIn() {
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginScreenViewController
-              self.navigationController?.pushViewController(view, animated: true)
+    func Tapfavourite(){
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
+        self.navigationController?.pushViewController(view, animated: true)
     }
-//
-//
-//    @IBAction func moreOrderBtn(_ sender: UIButton) {
-//        let seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
-//
-//         self.present(seemoreOrders, animated: true)
-//
-//    }
-//    @IBAction func MoreWishListBtn(_ sender:UIButton) {
-//        let seemoreWishList = self.storyboard?.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
-//
-//         self.present(seemoreWishList, animated: true)
-//    }
-    
+    func navigateToSignIn() {
+        let loginview :LoginScreenViewController = self.storyboard?.instantiateViewController(withIdentifier:"login") as! LoginScreenViewController
+              self.navigationController?.pushViewController(loginview, animated: true)
+    }
+
+    func navigateToMoreOrders() {
+        let seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
+       
+           self.present(seemoreOrders, animated: true)
+    }
     
 
 
 }
-//extension MeViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 2
-//    }
-//
-//
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UIScreen.main.bounds.size.height/4-40
-//    }
-//
-//}
-//extension MeViewController: UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 2
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-//        cell.CategoryImage.image = UIImage(named: "shirt")
-//     //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
-//     //   cell.CategoryImage.image = UIImage(named: arrImg[flagSubCatgory]
-////)
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-42 , height: (UIScreen.main.bounds.size.height/4)-20 )
-//
-//
-//
-//         }
-//}

@@ -10,24 +10,15 @@ import UIKit
 class View: UIView {
     var delegate : Navigationdelegate?
     @IBOutlet weak var guestImg: UIImageView!
-    
-var me = MeViewController()
-    
+   
     @IBAction func signInBtm(_ sender: Any) {
-      //  me.navigateToSignIn()
+        delegate!.navigateToSignIn()
+       
     }
     
     
     @IBAction func signUpBtm(_ sender: UIButton) {
-       // me.navigateToSignup()
+        delegate!.navigateToSignup()
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }

@@ -10,4 +10,6 @@ protocol Navigationdelegate
 {
     func navigateToSignup()
     func navigateToSignIn()
+    func Tapfavourite()
+    func navigateToMoreOrders()
 }
