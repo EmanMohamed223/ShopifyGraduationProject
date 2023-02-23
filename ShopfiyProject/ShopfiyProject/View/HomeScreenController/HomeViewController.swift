@@ -93,7 +93,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        if(collectionView == brandCollectionView){
-         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-20 )
+         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
             
     }
         
@@ -111,7 +111,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
       let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
-     
+        cell.cornerRadius = CGFloat(20)
   
       cell.offerImage.kf.setImage(with: URL(string:"BiKVkhFqK0KP+UxRB6G626fZj/WpGMMMVboXaQ5zGobh953n3XHiS9PVQDIXeRQhtQvY/wAQnQsqGCW+hOA3WUe++GIq3RYrwaT65zs6q8NrcjFedkN6RkGAEER8Xa/2xzfXrFMn1WyD4f0Ai88zgE269kCuH34cBUBkzpZvHhJbxY6aMg1Myb5oIrs1jyar0srFUO2vtLM6U7lUq8t281+2RIKwmMFR0lw9G7r8V2i5jPdXFH4jd9s1g5IuD615BM9ro95j6L6UImfaqDZfT2Dw4LZZMmxDF36ANXjLkYgbfNsJEevkue9Wvbudtt+Zvsjjto0m0P7kuJhz4l0EUHXsr15l4MXKZyEaDyXOc8C/HKBpcHNdBCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgyP8V/wF96J0P0GFc1AAAAABJRU5ErkJggg"), placeholder: UIImage(named: "brand.png"))
         return cell
