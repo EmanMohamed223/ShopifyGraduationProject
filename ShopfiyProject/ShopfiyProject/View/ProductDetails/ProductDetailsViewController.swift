@@ -116,7 +116,15 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
 
 extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if tableView == self.productTable
+        {
+            return 1
+            
+        }
+        else {
+            return 3
+        }
+        
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

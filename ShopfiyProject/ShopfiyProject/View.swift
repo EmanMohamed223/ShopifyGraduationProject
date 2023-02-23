@@ -8,16 +8,18 @@
 import UIKit
 
 class View: UIView {
-
+    var delegate : Navigationdelegate?
     @IBOutlet weak var guestImg: UIImageView!
     
-
+var me = MeViewController()
     
     @IBAction func signInBtm(_ sender: Any) {
+      //  me.navigateToSignIn()
     }
     
     
     @IBAction func signUpBtm(_ sender: UIButton) {
+       // me.navigateToSignup()
     }
     
     /*
