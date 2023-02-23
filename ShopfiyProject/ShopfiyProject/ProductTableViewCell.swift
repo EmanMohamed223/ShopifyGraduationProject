@@ -16,6 +16,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productRateLabel: UILabel!
     
     
+    @IBOutlet weak var productSize: UILabel!
     
     
     override func awakeFromNib() {

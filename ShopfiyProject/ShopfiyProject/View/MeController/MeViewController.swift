@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MeViewController: UIViewController {
+class MeViewController: UIViewController ,Navigationdelegate {
+    
+    
 
     @IBOutlet weak var thisView: UIView!
     @IBOutlet weak var welcomeOrAskingLabel: UILabel!
@@ -16,7 +18,10 @@ class MeViewController: UIViewController {
     @IBOutlet weak var wishlistcollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
       let abcView   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
+         var abcView2 = View()
+        abcView2.delegate = self
         //let abcView = Bundle.main.loadNibNamed("View", owner: self, topLevelObjects: nil ) as! View
         thisView.addSubview(abcView)
 //        ordersTable.delegate = self
@@ -41,7 +46,15 @@ class MeViewController: UIViewController {
         self.navigationController?.pushViewController(view, animated: true)
         
     }
+    func navigateToSignup() {
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "signup") as! SignUpScreenViewController
+          self.navigationController?.pushViewController(view, animated: true)
+    }
     
+    func navigateToSignIn() {
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginScreenViewController
+              self.navigationController?.pushViewController(view, animated: true)
+    }
 //
 //
 //    @IBAction func moreOrderBtn(_ sender: UIButton) {
