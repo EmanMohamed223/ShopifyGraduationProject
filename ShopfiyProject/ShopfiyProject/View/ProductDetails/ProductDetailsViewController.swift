@@ -22,6 +22,7 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productTable: UITableView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var loveoutlet: UIButton!
+    var product : Products?
     var productimgs : [String]?
     var reviwerImg : [String]?
     var reviewrName : [String]?

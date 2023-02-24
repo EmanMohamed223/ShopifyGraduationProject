@@ -426,8 +426,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQD-z7-7dZ">
-                                <rect key="frame" x="76" y="125" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sQD-z7-7dZ">
+                                <rect key="frame" x="76" y="94" width="240" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ks-eF-DK4">
                                 <rect key="frame" x="31" y="444" width="193" height="39"/>
@@ -523,11 +525,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXz-RC-L5i"/>
                         <color key="backgroundColor" red="0.97374838590000001" green="0.92845404149999999" blue="0.81809145210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="sQD-z7-7dZ" firstAttribute="leading" secondItem="fXz-RC-L5i" secondAttribute="leading" constant="76" id="0dG-d4-xES"/>
-                            <constraint firstItem="fXz-RC-L5i" firstAttribute="trailing" secondItem="sQD-z7-7dZ" secondAttribute="trailing" constant="77" id="Jnc-2u-Doa"/>
-                            <constraint firstItem="sQD-z7-7dZ" firstAttribute="top" secondItem="fXz-RC-L5i" secondAttribute="top" constant="66" id="zCs-OG-VPg"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="emailTxtfield" destination="1sM-Tf-3ic" id="olZ-II-dMA"/>
@@ -538,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSb-5t-NeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576" y="-299"/>
+            <point key="canvasLocation" x="2574.8091603053435" y="-299.29577464788736"/>
         </scene>
         <!--Sign Up Screen View Controller-->
         <scene sceneID="VcU-sS-oWj">
@@ -660,9 +657,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zl0-oK-dtz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zl0-oK-dtz">
                                 <rect key="frame" x="76" y="83" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Cmf-Sl-XfD"/>
@@ -713,6 +711,7 @@
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

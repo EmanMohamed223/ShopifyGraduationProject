@@ -229,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */,
+				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
+				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
 				0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */,
 			);
 			path = ProductDetails;
@@ -247,6 +249,10 @@
 		0335683129A60A7F001DB97E /* MeController */ = {
 			isa = PBXGroup;
 			children = (
+				03408E1F29A68F95001FCE6D /* View.xib */,
+				03408E2529A69852001FCE6D /* View.swift */,
+				03408E2729A69B87001FCE6D /* IfLogedView.xib */,
+				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
 				0371FCA729A427AF00608875 /* MeViewController.swift */,
 			);
 			path = MeController;
@@ -355,13 +361,14 @@
 				8CE5EEF529A3E9B000519879 /* Main.storyboard */,
 				8CE5EF0029A3E9B400519879 /* Info.plist */,
 				8CE5EEF829A3E9B000519879 /* ShopfiyProject.xcdatamodeld */,
-				03408E2729A69B87001FCE6D /* IfLogedView.xib */,
 				0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */,
+
 				03408E1F29A68F95001FCE6D /* View.xib */,
 				03408E2529A69852001FCE6D /* View.swift */,
 				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
 				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
 				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
+
 				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
 				8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */,
 				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
@@ -448,6 +455,9 @@
 			isa = PBXGroup;
 			children = (
 				0324771E29A6E04100DBAFC2 /* Navigationdelegate.swift */,
+
+				8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */,
+
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -501,7 +511,6 @@
 				0335683029A60A5C001DB97E /* SeeMoreReview */,
 				0335682E29A60A17001DB97E /* SignInController */,
 				0335683129A60A7F001DB97E /* MeController */,
-				8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */,
 				C9C261DB29A407D30012D4C5 /* AddressViewControllers */,
 				8C93DFD229A416F1002665D4 /* CategoryController */,
 				8C93DFC529A41333002665D4 /* HomeScreenController */,
