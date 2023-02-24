@@ -15,8 +15,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var FloatButton: Floaty!
     @IBOutlet weak var CategoryCollectionView: UICollectionView!
     @IBOutlet weak var categorySegmented: UISegmentedControl!
-    var arr : [String]?
-    var arrImg : [String] = []
+ 
     var flagMainCatgory : Int = 0
     var flagSubCatgory : Int = 0
     var viewModel : ViewModelProduct?
@@ -29,8 +28,7 @@ class CategoryViewController: UIViewController {
         // Do any additional setup after loading the view.
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
-        arr = ["Men", "WOMEN" , "Kid" , "SALE"]
-        arrImg = ["brand.png" , "shirt" , "bag" , "shoes"]
+      
         selectSubCategory()
         categorySearch.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         categoryCartBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
@@ -76,7 +74,7 @@ class CategoryViewController: UIViewController {
     }
     @objc func TapSearch(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        view.searchArr = arr
+      //  view.searchArr = arr
      //   view.SearchBar!.placeholder = "Search For You Favourite Product!"
         self.navigationController?.pushViewController(view, animated: true)
     }

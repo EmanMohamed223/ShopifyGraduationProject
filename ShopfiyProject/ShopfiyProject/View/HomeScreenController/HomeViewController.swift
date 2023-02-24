@@ -15,11 +15,12 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var cartHomeBtn: UIButton!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var offerCollectionView: UICollectionView!
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var OffersCollectionView: UICollectionView!
     var brands : [String]?
-
+    var viewModel : ViewModelProduct?
+    var HomeProductsURL : String?
+    var brandArray : SmartCollection?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,16 +29,29 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
         nib = UINib(nibName: "OffersCollectionViewCell", bundle: nil)
-        self.offerCollectionView.register(nib, forCellWithReuseIdentifier: "offer")
+        self.OffersCollectionView.register(nib, forCellWithReuseIdentifier: "offer")
         brands = ["adidas" , "LC Wakiki" , "Defatco" , "Whats'pp" , "Pixi"]
         searchButton.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         cartHomeBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
         favHomeBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
         pageController.numberOfPages = 10
         startTimer()
-      
+        HomeProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json?since_id=482865238"
+        viewModel = ViewModelProduct()
+        viewModel?.getBrands(url: HomeProductsURL ?? "")
+        viewModel?.bindResultToHomeViewController = { () in
+            
+            self.renderView()
+        }
+        self.brandCollectionView.reloadData()
     }
-    
+    func renderView(){
+        DispatchQueue.main.async {
+            self.brandArray = self.viewModel?.resultBrands
+         //   self.searchedLeagues = self.productArray
+            self.brandCollectionView.reloadData()
+        }
+    }
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNext), userInfo: nil, repeats: true)
     }
@@ -83,7 +97,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == brandCollectionView){
            
-            return brands?.count ?? 0
+            return brandArray?.smart_collections.count ?? 0
         
 
         }
@@ -108,8 +122,8 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brand", for: indexPath) as! BrandCollectionViewCell
             cell.layer.cornerRadius = CGFloat(20)
         
-            cell.brandTitle.text = brands?[indexPath.row] ?? ""
-            cell.brandImage.kf.setImage(with: URL(string: "lgbeRMjbrxR+qmJomZCh/Y5rIvgtLRXK/jOHfSGivcItWPNCYSDL5dLKnoTTcrgPhZHgO2uDhZDVrvpB4bWcQ4ipyn5zo52pI4QPqaP1gVwxx1lzEGiFeh/YL8DSfZ6Uw30o7PPQcVE5Y6IMpz8o3LBiAUaicZvzbL7Pi3gECmXrA7FrBWgHwVD3oVw7BlJhKFwEroUBAbDapD8ohLHrSLHjjhVU7NbcsyvUOccSZzTj" ), placeholder: UIImage(named: "brand.png"))
+            cell.brandTitle.text = brandArray?.smart_collections[indexPath.row].title
+            cell.brandImage.kf.setImage(with: URL(string: brandArray?.smart_collections[indexPath.row].image.src ?? ""), placeholder: UIImage(named: "none.png"))
             return cell
         }
       let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell

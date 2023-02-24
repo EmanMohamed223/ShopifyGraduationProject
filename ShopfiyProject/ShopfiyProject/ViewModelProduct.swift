@@ -20,4 +20,16 @@ class ViewModelProduct{
    
         }
     }
+    var bindResultToHomeViewController : (() -> ()) = {}
+     var resultBrands : SmartCollection! {
+         didSet{
+             bindResultToHomeViewController()
+         }
+     }
+    func getBrands(url : String?){
+        NetworkService.fetchData(url: url) { result in
+            self.resultBrands = result
+   
+        }
+    }
 }
