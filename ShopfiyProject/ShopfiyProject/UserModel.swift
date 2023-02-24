@@ -6,9 +6,11 @@
 //
 
 import Foundation
+
 struct UserResponse: Codable {
     let user: User
 }
+
 struct User : Codable {
     var first_name, email: String?
     var id: Int?
