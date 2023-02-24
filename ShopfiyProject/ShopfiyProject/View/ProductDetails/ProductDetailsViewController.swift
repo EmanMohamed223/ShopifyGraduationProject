@@ -22,6 +22,7 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productTable: UITableView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var loveoutlet: UIButton!
+    var product : Products?
     var productimgs : [String]?
     var reviwerImg : [String]?
     var reviewrName : [String]?
@@ -31,13 +32,15 @@ class ProductDetailsViewController: UIViewController {
     var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        productimgs = ["shirt" , "shoes" , "bag"]
+        descriptionTextView.text = product?.body_html
+
+     //   productimgs = ["shirt" , "shoes" , "bag"]
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         reviwerImg = ["11","22","33"]
         reviewrName = ["sandy","Lara","Youseeif"]
         reviewrcomment = ["it was nice","Not Bad ","it eas awesome"]
        
-        pagecontrolleroutlet.numberOfPages = productimgs!.count
+        pagecontrolleroutlet.numberOfPages = product?.images.count ?? 1
 //        pagecontrolleroutlet.currentPage = 0
         reviewtable.delegate = self
         reviewtable.dataSource = self
@@ -51,7 +54,7 @@ class ProductDetailsViewController: UIViewController {
     }
     @objc func slideToNext()
     {
-        if currentCellIndex < productimgs!.count-1
+        if currentCellIndex < (product?.images.count)! - 1
         {
             currentCellIndex += 1
         }
@@ -98,12 +101,12 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
 {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = productimgCollection.dequeueReusableCell(withReuseIdentifier: "imagecollectioncell", for: indexPath) as! ProductDetailsImgCollectionViewCell
-              cell.productImg.image = UIImage(named: productimgs![indexPath.row])
+        cell.productImg.kf.setImage(with: URL(string: product!.images[indexPath.row].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return productimgs?.count ?? 0
+        return product?.images.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -138,6 +141,10 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         if tableView == self.productTable
         {
             let cell = productTable.dequeueReusableCell(withIdentifier: "productcell", for: indexPath) as! ProductTableViewCell
+            cell.productNameLabel.text = product?.title
+            cell.productPriceLabel.text = product!.variants![indexPath.row].price
+            
+            //cell.productSize
             return cell
         }
         else {

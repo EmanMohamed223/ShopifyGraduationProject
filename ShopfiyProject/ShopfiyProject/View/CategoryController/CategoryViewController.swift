@@ -146,7 +146,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
         //product details
        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
         let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
-        //    productDetailsView.product = productArray?.products[indexPath.row]
+          productDetailsView.product = productArray?.products[indexPath.row]
         self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
 }
