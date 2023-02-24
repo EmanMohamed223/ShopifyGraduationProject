@@ -77,8 +77,6 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     }
     @objc func TapSearch(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        view.searchArr = brands
-      //  view.SearchBar.placeholder = "Search For Your favourite Brands!"
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func Tapfavourite(){
