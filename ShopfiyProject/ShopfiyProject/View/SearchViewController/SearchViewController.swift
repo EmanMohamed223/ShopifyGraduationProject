@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController , UISearchBarDelegate {
     
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var searchCollectionView: UICollectionView!
@@ -25,7 +25,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
         // Do any additional setup after loading the view.
         viewSearch.isHidden = true
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
@@ -85,13 +86,15 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
         searchArr = []
         
         if searchText == "" {
-            searchArr = self.productArray?.products
+            searchArr = []
+            //self.productArray?.products
         }
         
         for product in self.productArray?.products ?? []
         {
             
-            if (product.title.uppercased().contains(searchText.uppercased())) ?? false
+            if product.title.hasPrefix(searchText.lowercased()) ||          product.title.hasPrefix(searchText.uppercased()) ||
+                product.title.contains(searchText.lowercased()) ||     product.title.contains(searchText.uppercased())
             {
                 searchArr?.append(product)
             }
