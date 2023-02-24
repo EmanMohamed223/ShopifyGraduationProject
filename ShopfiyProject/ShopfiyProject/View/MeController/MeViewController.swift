@@ -23,13 +23,13 @@ class MeViewController: UIViewController ,Navigationdelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var abcView   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
-       // abcView.delegate = self
-        //thisView.addSubview(abcView)
-        var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
-        IfLogedView.delegate = self
+        var ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
+       ifNotLogin.delegate = self
+      thisView.addSubview(ifNotLogin )
+       // var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
+      //  IfLogedView.delegate = self
         
-        thisView.addSubview(IfLogedView)
+       // thisView.addSubview(IfLogedView)
     }
     
     @IBAction func cartNavigate(_ sender: UIButton) {
