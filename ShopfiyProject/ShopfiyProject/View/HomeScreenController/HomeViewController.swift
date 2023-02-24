@@ -19,11 +19,13 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var OffersCollectionView: UICollectionView!
     
+    
     var brands : [String]?
     var ads : [AdsDetials]?
     var viewModel : ViewModelProduct?
     var HomeProductsURL : String?
     var brandArray : SmartCollection?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +136,6 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
   
         cell.offerImage.image = UIImage(named: ads?[indexPath.row].image ?? "")
         
-      //cell.offerImage.kf.setImage(with: URL(string:"BiKVkhFqK0KP+UxRB6G626fZj/WpGMMMVboXaQ5zGobh953n3XHiS9PVQDIXeRQhtQvY/wAQnQsqGCW+hOA3WUe++GIq3RYrwaT65zs6q8NrcjFedkN6RkGAEER8Xa/2xzfXrFMn1WyD4f0Ai88zgE269kCuH34cBUBkzpZvHhJbxY6aMg1Myb5oIrs1jyar0srFUO2vtLM6U7lUq8t281+2RIKwmMFR0lw9G7r8V2i5jPdXFH4jd9s1g5IuD615BM9ro95j6L6UImfaqDZfT2Dw4LZZMmxDF36ANXjLkYgbfNsJEevkue9Wvbudtt+Zvsjjto0m0P7kuJhz4l0EUHXsr15l4MXKZyEaDyXOc8C/HKBpcHNdBCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgyP8V/wF96J0P0GFc1AAAAABJRU5ErkJggg"), placeholder: UIImage(named: "brand.png"))
         return cell
 
     }
@@ -147,7 +148,11 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
             
             alert.addAction(UIAlertAction(title: "Okay, thanks", style: .default , handler: { _ in
                //save the coupon with a specific user
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let saveToCoreViewModel = SavetoCoreViewModel()
+                let userRelatedObj = UserRelatedStruct(userId: 10,offerCoupon: self.ads?[indexPath.row].code ?? "")
             }))
+            self.present(alert, animated: true)
         }
                         
         
