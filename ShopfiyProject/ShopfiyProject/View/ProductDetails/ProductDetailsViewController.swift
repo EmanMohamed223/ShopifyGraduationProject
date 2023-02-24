@@ -23,6 +23,9 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var loveoutlet: UIButton!
     var productimgs : [String]?
+    var reviwerImg : [String]?
+    var reviewrName : [String]?
+    var reviewrcomment : [String]?
     var timer : Timer?
     var currentCellIndex = 0
     var select: Int = 0
@@ -30,7 +33,9 @@ class ProductDetailsViewController: UIViewController {
         super.viewDidLoad()
         productimgs = ["shirt" , "shoes" , "bag"]
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
-        
+        reviwerImg = ["11","22","33"]
+        reviewrName = ["sandy","Lara","Youseeif"]
+        reviewrcomment = ["it was nice","Not Bad ","it eas awesome"]
        
         pagecontrolleroutlet.numberOfPages = productimgs!.count
 //        pagecontrolleroutlet.currentPage = 0
@@ -92,6 +97,7 @@ class ProductDetailsViewController: UIViewController {
 extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = productimgCollection.dequeueReusableCell(withReuseIdentifier: "imagecollectioncell", for: indexPath) as! ProductDetailsImgCollectionViewCell
               cell.productImg.image = UIImage(named: productimgs![indexPath.row])
             return cell
@@ -133,17 +139,21 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         if tableView == self.productTable
         {
             let cell = productTable.dequeueReusableCell(withIdentifier: "productcell", for: indexPath) as! ProductTableViewCell
+            
             return cell
         }
         else {
             let cell = reviewtable.dequeueReusableCell(withIdentifier: "reviewtablecell", for: indexPath) as! ReviewTableViewCell
+            cell.reviewLabel.text = reviewrcomment![indexPath.row]
+            cell.reviewerImg.image = UIImage(named: reviwerImg![indexPath.row])
+            cell.reviwerLabel.text = reviewrName![indexPath.row]
             return cell
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height/5-80
+        return UIScreen.main.bounds.size.height/5-70
     }
     
 }

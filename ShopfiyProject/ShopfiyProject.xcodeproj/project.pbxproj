@@ -224,6 +224,8 @@
 			children = (
 				0371FC9F29A3F7EB00608875 /* ProductDetailsImgCollectionViewCell.swift */,
 				0371FC9729A3F48B00608875 /* ProductDetailsViewController.swift */,
+				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
+				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
 			);
 			path = ProductDetails;
 			sourceTree = "<group>";
@@ -242,6 +244,10 @@
 			isa = PBXGroup;
 			children = (
 				0371FCA729A427AF00608875 /* MeViewController.swift */,
+				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
+				03408E2729A69B87001FCE6D /* IfLogedView.xib */,
+				03408E2529A69852001FCE6D /* View.swift */,
+				03408E1F29A68F95001FCE6D /* View.xib */,
 			);
 			path = MeController;
 			sourceTree = "<group>";
@@ -262,6 +268,38 @@
 				0371FCA129A40DB700608875 /* WishListViewController.swift */,
 			);
 			path = WishListController;
+			sourceTree = "<group>";
+		};
+		0387F2AF29A8C4C500917960 /* CustomerModel */ = {
+			isa = PBXGroup;
+			children = (
+				036F341829A8046100FB192A /* Customer.swift */,
+			);
+			path = CustomerModel;
+			sourceTree = "<group>";
+		};
+		0387F2B029A8C4CF00917960 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				036F341629A8043E00FB192A /* UserModel.swift */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		0387F2B129A8C4D800917960 /* ProductModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
+			);
+			path = ProductModel;
+			sourceTree = "<group>";
+		};
+		0387F2B229A8C5C300917960 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8C0B8F1729A6BB8C0059AF9E /* SearchViewController */ = {
@@ -337,6 +375,7 @@
 		8CE5EEEE29A3E9B000519879 /* ShopfiyProject */ = {
 			isa = PBXGroup;
 			children = (
+				0387F2B229A8C5C300917960 /* ViewModel */,
 				8C86436F29A8267E006FC8F0 /* SplashScreen */,
 				C99ED6C629A7B8A30097C53E /* Model */,
 				C98BDB2329A56C3E00E83716 /* Utils */,
@@ -349,19 +388,7 @@
 				8CE5EEF529A3E9B000519879 /* Main.storyboard */,
 				8CE5EF0029A3E9B400519879 /* Info.plist */,
 				8CE5EEF829A3E9B000519879 /* ShopfiyProject.xcdatamodeld */,
-				03408E2729A69B87001FCE6D /* IfLogedView.xib */,
 				0371FC9529A3F3E700608875 /* ThirdStoryBoard.storyboard */,
-				03408E1F29A68F95001FCE6D /* View.xib */,
-				03408E2529A69852001FCE6D /* View.swift */,
-				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
-				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
-				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
-				0324771E29A6E04100DBAFC2 /* Navigationdelegate.swift */,
-				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
-				8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */,
-				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
-				036F341629A8043E00FB192A /* UserModel.swift */,
-				036F341829A8046100FB192A /* Customer.swift */,
 			);
 			path = ShopfiyProject;
 			sourceTree = "<group>";
@@ -433,6 +460,8 @@
 		C98BDB2029A560DB00E83716 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				0324771E29A6E04100DBAFC2 /* Navigationdelegate.swift */,
+				8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */,
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -448,6 +477,10 @@
 		C99ED6C629A7B8A30097C53E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */,
+				0387F2B129A8C4D800917960 /* ProductModel */,
+				0387F2B029A8C4CF00917960 /* UserModel */,
+				0387F2AF29A8C4C500917960 /* CustomerModel */,
 				C9E9768629A82B8D001481C6 /* LocationManager */,
 				C9E9768529A7F439001481C6 /* ShoppingCartModels */,
 				C9E9768429A7F414001481C6 /* PaymentModels */,
@@ -484,7 +517,6 @@
 				0335683029A60A5C001DB97E /* SeeMoreReview */,
 				0335682E29A60A17001DB97E /* SignInController */,
 				0335683129A60A7F001DB97E /* MeController */,
-				8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */,
 				C9C261DB29A407D30012D4C5 /* AddressViewControllers */,
 				8C93DFD229A416F1002665D4 /* CategoryController */,
 				8C93DFC529A41333002665D4 /* HomeScreenController */,

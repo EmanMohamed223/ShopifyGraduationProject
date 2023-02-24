@@ -76,7 +76,7 @@ class CategoryViewController: UIViewController {
     }
     @objc func TapSearch(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        view.searchArr = arr
+     //   view.searchArr = arr
      //   view.SearchBar!.placeholder = "Search For You Favourite Product!"
         self.navigationController?.pushViewController(view, animated: true)
     }
