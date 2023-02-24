@@ -8,33 +8,39 @@
 import UIKit
 import Kingfisher
 class HomeViewController: UIViewController ,NavigationBarProtocol{
+    
     var timer : Timer?
     var currentIndex : Int = 0
+    
     @IBOutlet weak var favHomeBtn: UIButton!
-
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var cartHomeBtn: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var OffersCollectionView: UICollectionView!
+    
     var brands : [String]?
+    var ads : [AdsDetials]?
     var viewModel : ViewModelProduct?
     var HomeProductsURL : String?
     var brandArray : SmartCollection?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-      
+        ads = getAds()
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
         nib = UINib(nibName: "OffersCollectionViewCell", bundle: nil)
         self.OffersCollectionView.register(nib, forCellWithReuseIdentifier: "offer")
+        
         brands = ["adidas" , "LC Wakiki" , "Defatco" , "Whats'pp" , "Pixi"]
+        
         searchButton.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         cartHomeBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
         favHomeBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
-        pageController.numberOfPages = 10
+        
+        pageController.numberOfPages = ads?.count ?? 0
         startTimer()
         HomeProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json?since_id=482865238"
         viewModel = ViewModelProduct()
@@ -45,6 +51,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         }
         self.brandCollectionView.reloadData()
     }
+    
     func renderView(){
         DispatchQueue.main.async {
             self.brandArray = self.viewModel?.resultBrands
@@ -55,23 +62,16 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNext), userInfo: nil, repeats: true)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     @objc func moveToNext(){
-        if currentIndex  < 9
+        if currentIndex < (ads?.count ?? 0)-1
         {
             currentIndex += 1
         }
         else{
             currentIndex = 0
         }
+        
         OffersCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0) , at: .centeredHorizontally, animated: true)
         pageController.currentPage = currentIndex
     }
@@ -91,20 +91,24 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     }
 
 }
-extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (collectionView == brandCollectionView){
-           
-            return brandArray?.smart_collections.count ?? 0
-        
 
+extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if(collectionView == OffersCollectionView){
+            return ads?.count ?? 0
         }
         
+        if (collectionView == brandCollectionView){
+            return brandArray?.smart_collections.count ?? 0
+        }
         return 10
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        if(collectionView == brandCollectionView){
          return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
@@ -124,15 +128,29 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
             cell.brandImage.kf.setImage(with: URL(string: brandArray?.smart_collections[indexPath.row].image.src ?? ""), placeholder: UIImage(named: "none.png"))
             return cell
         }
-      let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
+        
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
         cell.cornerRadius = CGFloat(20)
   
-      cell.offerImage.kf.setImage(with: URL(string:"BiKVkhFqK0KP+UxRB6G626fZj/WpGMMMVboXaQ5zGobh953n3XHiS9PVQDIXeRQhtQvY/wAQnQsqGCW+hOA3WUe++GIq3RYrwaT65zs6q8NrcjFedkN6RkGAEER8Xa/2xzfXrFMn1WyD4f0Ai88zgE269kCuH34cBUBkzpZvHhJbxY6aMg1Myb5oIrs1jyar0srFUO2vtLM6U7lUq8t281+2RIKwmMFR0lw9G7r8V2i5jPdXFH4jd9s1g5IuD615BM9ro95j6L6UImfaqDZfT2Dw4LZZMmxDF36ANXjLkYgbfNsJEevkue9Wvbudtt+Zvsjjto0m0P7kuJhz4l0EUHXsr15l4MXKZyEaDyXOc8C/HKBpcHNdBCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgyP8V/wF96J0P0GFc1AAAAABJRU5ErkJggg"), placeholder: UIImage(named: "brand.png"))
+        cell.offerImage.image = UIImage(named: ads?[indexPath.row].image ?? "")
+        
+      //cell.offerImage.kf.setImage(with: URL(string:"BiKVkhFqK0KP+UxRB6G626fZj/WpGMMMVboXaQ5zGobh953n3XHiS9PVQDIXeRQhtQvY/wAQnQsqGCW+hOA3WUe++GIq3RYrwaT65zs6q8NrcjFedkN6RkGAEER8Xa/2xzfXrFMn1WyD4f0Ai88zgE269kCuH34cBUBkzpZvHhJbxY6aMg1Myb5oIrs1jyar0srFUO2vtLM6U7lUq8t281+2RIKwmMFR0lw9G7r8V2i5jPdXFH4jd9s1g5IuD615BM9ro95j6L6UImfaqDZfT2Dw4LZZMmxDF36ANXjLkYgbfNsJEevkue9Wvbudtt+Zvsjjto0m0P7kuJhz4l0EUHXsr15l4MXKZyEaDyXOc8C/HKBpcHNdBCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgyP8V/wF96J0P0GFc1AAAAABJRU5ErkJggg"), placeholder: UIImage(named: "brand.png"))
         return cell
 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if(collectionView == OffersCollectionView){
+            let alert = UIAlertController(title:"Get the coupon to enjoy the sale!" , message: "You can use the coupon in the payment!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Okay, thanks", style: .default , handler: { _ in
+               //save the coupon with a specific user
+            }))
+        }
+                        
+        
         if(collectionView == brandCollectionView){
             let brandDetailsController = self.storyboard?.instantiateViewController(withIdentifier: "brandDetails") as! BrandDetailsViewController
             brandDetailsController.brandName = brands?[indexPath.row] ?? ""
