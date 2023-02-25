@@ -35,6 +35,8 @@
 		8C55131429A4B6440066B62E /* BrandDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */; };
 		8C55131629A4CB530066B62E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131529A4CB530066B62E /* SearchViewController.swift */; };
 		8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */; };
+		8C636BFF29AA53FD00FB14E3 /* ViewPrice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C636BFE29AA53FD00FB14E3 /* ViewPrice.xib */; };
+		8C636C0129AA549400FB14E3 /* ViewPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C636C0029AA549400FB14E3 /* ViewPrice.swift */; };
 		8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */; };
 		8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */; };
 		8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86437029A826A5006FC8F0 /* SplashViewController.swift */; };
@@ -135,6 +137,8 @@
 		8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsViewController.swift; sourceTree = "<group>"; };
 		8C55131529A4CB530066B62E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarProtocol.swift; sourceTree = "<group>"; };
+		8C636BFE29AA53FD00FB14E3 /* ViewPrice.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPrice.xib; sourceTree = "<group>"; };
+		8C636C0029AA549400FB14E3 /* ViewPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPrice.swift; sourceTree = "<group>"; };
 		8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProduct.swift; sourceTree = "<group>"; };
 		8C86437029A826A5006FC8F0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +304,15 @@
 				8C55131329A4B6440066B62E /* BrandDetailsViewController.swift */,
 			);
 			path = BrandDetailsController;
+			sourceTree = "<group>";
+		};
+		8C636C0229AA54A700FB14E3 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				8C636C0029AA549400FB14E3 /* ViewPrice.swift */,
+				8C636BFE29AA53FD00FB14E3 /* ViewPrice.xib */,
+			);
+			path = FilterView;
 			sourceTree = "<group>";
 		};
 		8C86436F29A8267E006FC8F0 /* SplashScreen */ = {
@@ -559,6 +572,7 @@
 		C9C261D829A3ED920012D4C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C636C0229AA54A700FB14E3 /* FilterView */,
 				8C0B8F1829A6BBAD0059AF9E /* BrandDetailsController */,
 				8C0B8F1729A6BB8C0059AF9E /* SearchViewController */,
 				C982067429A69BDA000DAD5A /* PaymentViewController */,
@@ -745,6 +759,7 @@
 				8C86437329A82701006FC8F0 /* splashShop.gif in Resources */,
 				8CE5EEF729A3E9B000519879 /* Main.storyboard in Resources */,
 				03714DAD29A4A932000A0528 /* OrderTableViewCell.xib in Resources */,
+				8C636BFF29AA53FD00FB14E3 /* ViewPrice.xib in Resources */,
 				8C93DFD829A423E3002665D4 /* CategoryCollectionViewCell.xib in Resources */,
 				C9C261D529A3ED430012D4C5 /* SecondStoryboard.storyboard in Resources */,
 				8C93DFD029A4137C002665D4 /* OffersCollectionViewCell.xib in Resources */,
@@ -919,6 +934,7 @@
 				C94B306229A929E100777CAA /* AdsDetials.swift in Sources */,
 				8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */,
 				C9E85E8629A6B26800BAC6A3 /* AddressTableViewCell.swift in Sources */,
+				8C636C0129AA549400FB14E3 /* ViewPrice.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				C94B307329A9691E00777CAA /* UserRelatedStruct.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
