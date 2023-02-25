@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController , UISearchBarDelegate {
     
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var searchCollectionView: UICollectionView!
@@ -25,9 +25,10 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
         // Do any additional setup after loading the view.
-        viewSearch.isHidden = true
+        viewSearch.isHidden = false
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.searchCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         CategoryProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/products.json"
@@ -52,15 +53,27 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func priceClicked(_ sender: Any) {
-        viewSearch.isHidden = false
+        if(productArray!.products.count > 1){
+       
+            viewSearch.isHidden = false
+    
+        }
     }
     
-   
+    @IBAction func slider(_ sender: UISlider) {
+     
+        searchArr = productArray!.products.filter({ Products in
+            Double( Products.variants?[0].price ?? "0")! < Double(sender.value)
+          
+        })
+      
+                self.searchCollectionView.reloadData()
+    }
 
 }
 extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print( searchArr?.count )
+      //  print( searchArr!.count )
 
         return searchArr?.count ?? 0
     }
@@ -68,9 +81,9 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
        
-        cell.categoryLabel.text = productArray?.products[indexPath.row].title
-        cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-        cell.categoryPrice.text = productArray?.products[indexPath.row].variants![0].price
+        cell.categoryLabel.text = searchArr![indexPath.row].title
+        cell.CategoryImage.kf.setImage(with: URL(string: searchArr![indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = searchArr![indexPath.row].variants![0].price
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -81,7 +94,7 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
 
          }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      
+        
         searchArr = []
         
         if searchText == "" {
@@ -91,7 +104,7 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
         for product in self.productArray?.products ?? []
         {
             
-            if (product.title.uppercased().contains(searchText.uppercased())) ?? false
+            if ( product.title.hasPrefix(searchText.lowercased()) ||      product.title.hasPrefix(searchText.uppercased()) || product.title.contains(searchText.lowercased()) ||        product.title.contains(searchText.uppercased()))
             {
                 searchArr?.append(product)
             }
@@ -101,3 +114,8 @@ extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataS
     }
     
 }
+
+
+
+
+
