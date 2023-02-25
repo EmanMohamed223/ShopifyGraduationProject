@@ -332,6 +332,22 @@
 			path = CategoryController;
 			sourceTree = "<group>";
 		};
+		8C9DC2C029AA363300EFF522 /* ProductsModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
+			);
+			path = ProductsModel;
+			sourceTree = "<group>";
+		};
+		8C9DC2C129AA365600EFF522 /* BrandModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C88BF6A29A8F53000A96A5B /* SmartCollectionModel.swift */,
+			);
+			path = BrandModel;
+			sourceTree = "<group>";
+		};
 		8CE5EEE329A3E9B000519879 = {
 			isa = PBXGroup;
 			children = (
@@ -377,11 +393,9 @@
 				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
 				03408E2D29A6B00D001FCE6D /* ProductTableViewCell.swift */,
 				03408E2E29A6B00D001FCE6D /* ProductTableViewCell.xib */,
-				8C88F90D29A7CD5A00CB9E33 /* ProductModel.swift */,
 				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
 				036F341629A8043E00FB192A /* UserModel.swift */,
 				036F341829A8046100FB192A /* Customer.swift */,
-				8C88BF6A29A8F53000A96A5B /* SmartCollectionModel.swift */,
 				03911B5A29A963B300CBD770 /* RegisterViewModel.swift */,
 			);
 			path = ShopfiyProject;
@@ -508,6 +522,8 @@
 		C99ED6C629A7B8A30097C53E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8C9DC2C129AA365600EFF522 /* BrandModel */,
+				8C9DC2C029AA363300EFF522 /* ProductsModel */,
 				C94B307129A9677F00777CAA /* CoreDataServices */,
 				C94B306A29A9658C00777CAA /* NetworkServices */,
 				C94B305C29A926AF00777CAA /* AdsDetails */,

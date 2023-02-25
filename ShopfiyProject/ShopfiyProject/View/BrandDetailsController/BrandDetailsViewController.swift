@@ -6,40 +6,61 @@
 //
 
 import UIKit
-
+import Kingfisher
 class BrandDetailsViewController: UIViewController {
 
    
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
-    var brandName : String?
-    var arrImg : [String]?
+  
     var flagCatgory : Int = 0
-    var price : [String]?
     var priceFilter : Int = 0
+    var brandProducts : ResponseProducts?
+    var BrandDetailsURL : String?
+    var brandName : String?
+    var brandID : Int?
+    var viewModel : ViewModelProduct?
+    var productPriceArray : [Products]?
+    var productBSArray : [Products]?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        price = ["100 EGP" , "150 EGP" ]
-        arrImg = [ "ma" , "wo" , "kid"]
+        self.title = brandName ?? ""
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
-    }
- 
-    @IBAction func selectBestSelling(_ sender: Any) {
-        flagCatgory = 1
+        BrandDetailsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/products.json?collection_id=\(brandID ?? 0)"
+        viewModel = ViewModelProduct()
+        viewModel?.getProducts(url: BrandDetailsURL ?? "")
+        viewModel?.bindResultToViewController = {
+            self.renderView()
+        }
         self.brandDetailsCollectionView.reloadData()
-        subView.isHidden = false
+    }
+    func renderView(){
+        DispatchQueue.main.async {
+            self.brandProducts = self.viewModel?.resultProducts
+         //   self.searchedLeagues = self.productArray
+            self.brandDetailsCollectionView.reloadData()
+        }
+    }
+    @IBAction func selectBestSelling(_ sender: Any) {
+        if((brandProducts?.products.count)! > 1){
+            subView.isHidden = false
+         
+            self.brandDetailsCollectionView.reloadData()
+            
+        }
+       
     }
     
     @IBAction func selectPrice(_ sender: Any) {
-        subView.isHidden = false
-        flagCatgory = 0
-        priceFilter = 1
-        self.brandDetailsCollectionView.reloadData()
-    }
+        if(brandProducts!.products.count > 1){
+            subView.isHidden = false
+   
+            self.brandDetailsCollectionView.reloadData()
+        }
+      
+        }
     /*
     // MARK: - Navigation
 
@@ -58,24 +79,26 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return brandProducts?.products.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
+        return   CGSize(width: (collectionView.frame.size.width/2)-22 , height: (collectionView.frame.size.height/3)-20 )
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-        cell.categoryLabel.text = brandName ?? ""
-        cell.CategoryImage.image = UIImage(named: arrImg?[flagCatgory]  ?? "brand")
-        cell.categoryPrice.text = price?[priceFilter] ?? "0"
+        cell.categoryLabel.text = brandProducts?.products[indexPath.row].title
+        
+        cell.CategoryImage.kf.setImage(with: URL(string: brandProducts?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = brandProducts?.products[indexPath.row].variants?[0].price
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
          let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+        productDetailsView.product =  brandProducts?.products[indexPath.row]
          self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
 }
