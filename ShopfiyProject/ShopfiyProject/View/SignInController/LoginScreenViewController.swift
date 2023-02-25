@@ -39,6 +39,11 @@ class LoginScreenViewController: UIViewController {
         
     }
     @IBAction func LoginBtm(_ sender: UIButton) {
+        guard let email = emailTxtfield.text, !email.isEmpty
+            , let password = passtextField.text, !password.isEmpty else {
+            self.showAlertError(title: "Missing Information", message: "to login you must fill all the information below.")
+            return
+        }
     }
     
     @IBAction func GoToSignUpBtm(_ sender: UIButton) {

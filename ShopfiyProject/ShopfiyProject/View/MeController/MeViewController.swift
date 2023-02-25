@@ -20,9 +20,11 @@ class MeViewController: UIViewController ,Navigationdelegate {
     @IBOutlet weak var ordersTable: UITableView!
     
     @IBOutlet weak var wishlistcollection: UICollectionView!
+    
+    @IBOutlet weak var cardBtm: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        cardBtm.isHidden = true
         var ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
        ifNotLogin.delegate = self
       thisView.addSubview(ifNotLogin )

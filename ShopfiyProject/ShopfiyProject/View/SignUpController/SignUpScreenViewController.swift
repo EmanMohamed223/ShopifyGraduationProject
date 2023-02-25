@@ -20,7 +20,7 @@ class SignUpScreenViewController: UIViewController {
     @IBOutlet weak var PassTextField: UITextField!
     
     
-    @IBOutlet weak var conformPassTextField: UILabel!
+    @IBOutlet weak var conformPassTextField: UITextField!
     
     @IBOutlet weak var addressTxtfield: UITextField!
     
@@ -29,7 +29,7 @@ class SignUpScreenViewController: UIViewController {
     var select: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    registerViewModel = RegisterViewModel()
     }
     
     @IBAction func agreecircleBtm(_ sender: UIButton) {

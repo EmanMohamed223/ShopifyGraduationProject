@@ -65,6 +65,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cardBtm" destination="CMJ-hJ-U4d" id="xR3-5Z-As7"/>
                         <outlet property="thisView" destination="Eca-DO-qu0" id="SaH-Xm-1Af"/>
                     </connections>
                 </viewController>
@@ -483,24 +484,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Need an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfL-QS-qWw">
-                                <rect key="frame" x="52" y="749" width="153" height="23"/>
+                                <rect key="frame" x="60" y="699" width="153" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnG-gT-xXf">
-                                <rect key="frame" x="199" y="739" width="117" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="GoToSignUpBtm:" destination="b2N-4J-80P" eventType="touchUpInside" id="Lhf-WL-44k"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="please enter your Email " minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1sM-Tf-3ic">
                                 <rect key="frame" x="31" y="356" width="327" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -522,6 +511,18 @@
                                 <color key="textColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnG-gT-xXf">
+                                <rect key="frame" x="221" y="689" width="117" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="GoToSignUpBtm:" destination="b2N-4J-80P" eventType="touchUpInside" id="Lhf-WL-44k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXz-RC-L5i"/>
                         <color key="backgroundColor" red="0.97374838590000001" green="0.92845404149999999" blue="0.81809145210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -669,9 +670,9 @@
                     <navigationItem key="navigationItem" id="vTe-2B-1B0"/>
                     <connections>
                         <outlet property="PassTextField" destination="DkB-3d-svl" id="Qlv-1M-5V7"/>
-                        <outlet property="addressTxtfield" destination="Ys0-HY-Zd8" id="4Vu-q6-MVT"/>
+                        <outlet property="addressTxtfield" destination="Ys0-HY-Zd8" id="iZh-DW-mJ1"/>
                         <outlet property="agreecirclebtm" destination="gJ8-p9-BWZ" id="5Ol-pJ-BKy"/>
-                        <outlet property="conformPassTextField" destination="Rfu-Vw-2Rd" id="t7G-eC-qQB"/>
+                        <outlet property="conformPassTextField" destination="Ncz-DI-nj8" id="CGL-mq-avx"/>
                         <outlet property="emailTxtfield" destination="vWH-xD-bi7" id="YMX-YI-USM"/>
                         <outlet property="signupImg" destination="zl0-oK-dtz" id="ypR-8D-jxL"/>
                         <outlet property="usernameTxtfield" destination="8HP-SC-1nv" id="uUx-pS-DNB"/>
