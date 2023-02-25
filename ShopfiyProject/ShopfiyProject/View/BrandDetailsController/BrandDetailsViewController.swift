@@ -7,9 +7,11 @@
 
 import UIKit
 import Kingfisher
+//import MaterialComponents.MaterialSlider
 class BrandDetailsViewController: UIViewController {
 
    
+    
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
   
@@ -22,6 +24,7 @@ class BrandDetailsViewController: UIViewController {
     var viewModel : ViewModelProduct?
     var productPriceArray : [Products]?
     var productBSArray : [Products]?
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = brandName ?? ""
@@ -34,19 +37,20 @@ class BrandDetailsViewController: UIViewController {
         viewModel?.bindResultToViewController = {
             self.renderView()
         }
+        
         self.brandDetailsCollectionView.reloadData()
     }
     func renderView(){
         DispatchQueue.main.async {
             self.brandProducts = self.viewModel?.resultProducts
-         //   self.searchedLeagues = self.productArray
+            self.productPriceArray = self.brandProducts?.products
             self.brandDetailsCollectionView.reloadData()
         }
     }
     @IBAction func selectBestSelling(_ sender: Any) {
         if((brandProducts?.products.count)! > 1){
-            subView.isHidden = false
-         
+            subView.isHidden = true
+            productPriceArray = brandProducts?.products
             self.brandDetailsCollectionView.reloadData()
             
         }
@@ -55,12 +59,21 @@ class BrandDetailsViewController: UIViewController {
     
     @IBAction func selectPrice(_ sender: Any) {
         if(brandProducts!.products.count > 1){
+       
             subView.isHidden = false
-   
-            self.brandDetailsCollectionView.reloadData()
+    
         }
       
         }
+    @IBAction func slider(_ sender: UISlider) {
+     
+        productPriceArray = brandProducts!.products.filter({ Products in
+            Double( Products.variants?[0].price ?? "0")! < Double(sender.value)
+          
+        })
+      
+                self.brandDetailsCollectionView.reloadData()
+    }
     /*
     // MARK: - Navigation
 
@@ -79,7 +92,7 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return brandProducts?.products.count ?? 0
+        return productPriceArray?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -89,17 +102,29 @@ extension BrandDetailsViewController : UICollectionViewDataSource , UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-        cell.categoryLabel.text = brandProducts?.products[indexPath.row].title
+        cell.categoryLabel.text = productPriceArray?[indexPath.row].title
         
-        cell.CategoryImage.kf.setImage(with: URL(string: brandProducts?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-        cell.categoryPrice.text = brandProducts?.products[indexPath.row].variants?[0].price
+        cell.CategoryImage.kf.setImage(with: URL(string: productPriceArray?[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = productPriceArray?[indexPath.row].variants?[0].price
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
          let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
-        productDetailsView.product =  brandProducts?.products[indexPath.row]
+        productDetailsView.product =  productPriceArray?[indexPath.row]
          self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
 }
+extension BrandDetailsViewController : UISearchBarDelegate{
+   
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
+        productPriceArray = brandProducts!.products.filter({ Products in
+            Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
+            Products.title.uppercased().contains(searchText.uppercased())
+        })
+
+        
+        self.brandDetailsCollectionView.reloadData()
+    }
+}

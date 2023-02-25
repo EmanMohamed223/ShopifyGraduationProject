@@ -21,7 +21,9 @@ class CategoryViewController: UIViewController {
     var viewModel : ViewModelProduct?
     var CategoryProductsURL : String?
     var productArray : ResponseProducts?
-    var MenArray : [Products]?
+    var WomenArray : [Products]?
+    var KidArray : [Products]?
+    var SaleArray : [Products]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
