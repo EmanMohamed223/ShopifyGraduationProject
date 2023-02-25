@@ -102,6 +102,7 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = productimgCollection.dequeueReusableCell(withReuseIdentifier: "imagecollectioncell", for: indexPath) as! ProductDetailsImgCollectionViewCell
         cell.productImg.kf.setImage(with: URL(string: product!.images[indexPath.row].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        
             return cell
     }
     
@@ -143,6 +144,7 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
             let cell = productTable.dequeueReusableCell(withIdentifier: "productcell", for: indexPath) as! ProductTableViewCell
             cell.productNameLabel.text = product?.title
             cell.productPriceLabel.text = product!.variants![indexPath.row].price
+            cell.productSize.text = product!.variants?[indexPath.row].option2 ?? "white"
             
             //cell.productSize
             return cell
