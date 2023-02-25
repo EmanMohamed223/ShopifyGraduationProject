@@ -2,5 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="UserRelated" representedClassName="UserRelated" syncable="YES" codeGenerationType="class">
         <attribute name="offerCoupon" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
 </model>

@@ -113,7 +113,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        if(collectionView == brandCollectionView){
-         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-52 , height: (UIScreen.main.bounds.size.height/4)-50 )
+         return   CGSize(width: (collectionView.frame.size.width/2)-32 , height: (collectionView.frame.size.height/2)-20 )
             
     }
         
@@ -158,8 +158,9 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
         
         if(collectionView == brandCollectionView){
             let brandDetailsController = self.storyboard?.instantiateViewController(withIdentifier: "brandDetails") as! BrandDetailsViewController
-            brandDetailsController.brandName = brands?[indexPath.row] ?? ""
-            
+            brandDetailsController.brandName = brandArray?.smart_collections[indexPath.row].title
+            brandDetailsController.brandID = brandArray?.smart_collections[indexPath.row].id
+          //  brandDetailsController.
             self.navigationController?.pushViewController(brandDetailsController, animated: true)
         }}
     
