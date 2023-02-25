@@ -7,7 +7,7 @@
 
 import UIKit
 import Kingfisher
-import MaterialComponents.MaterialSlider
+//import MaterialComponents.MaterialSlider
 class BrandDetailsViewController: UIViewController {
 
    

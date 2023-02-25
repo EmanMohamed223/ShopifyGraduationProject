@@ -10,7 +10,7 @@ target 'ShopfiyProject' do
   pod 'Reachability', '~> 3.2'
   pod 'SwiftyGif', '~> 5.4'
   pod 'Floaty'
-  pod 'MaterialComponents/Slider'
+ 
   # Pods for ShopfiyProject
 
   target 'ShopfiyProjectTests' do

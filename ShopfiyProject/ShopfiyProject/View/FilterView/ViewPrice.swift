@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MaterialComponents.MaterialSlider
+//import MaterialComponents.MaterialSlider
 class ViewPrice: UIView {
    var slider : MDCSlider?
     /*
@@ -16,27 +16,27 @@ class ViewPrice: UIView {
         // Drawing code
     }
     */
-    func createSlider(){
-         slider? = MDCSlider(frame: CGRect(x:136, y:14, width: 242, height: 40))
-        slider?.minimumValue = 10
-        slider?.value = 10
-        slider?.maximumValue = 1000
-        slider?.isContinuous = true
-        slider?.isStatefulAPIEnabled = true
-        slider?.addTarget(self,
-                         action: #selector(didChangeSliderValue),
-                         for: .valueChanged)
-      
-       addSubview(slider!)
-        
-      }
-
-    @objc  func didChangeSliderValue(senderSlider:MDCSlider) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let brandDetailsController = storyboard.instantiateViewController(withIdentifier: "brandDetails") as! BrandDetailsViewController
-        brandDetailsController.priceFilter = Int(senderSlider.value)
-        slider?.accessibilityLabel = String(describing: senderSlider.value)
-        print ("************************")
-        print(senderSlider.value)
-    }
+//    func createSlider(){
+//         slider? = MDCSlider(frame: CGRect(x:136, y:14, width: 242, height: 40))
+//        slider?.minimumValue = 10
+//        slider?.value = 10
+//        slider?.maximumValue = 1000
+//        slider?.isContinuous = true
+//        slider?.isStatefulAPIEnabled = true
+//        slider?.addTarget(self,
+//                         action: #selector(didChangeSliderValue),
+//                         for: .valueChanged)
+//
+//       addSubview(slider!)
+//
+//      }
+//
+//    @objc  func didChangeSliderValue(senderSlider:MDCSlider) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let brandDetailsController = storyboard.instantiateViewController(withIdentifier: "brandDetails") as! BrandDetailsViewController
+//        brandDetailsController.priceFilter = Int(senderSlider.value)
+//        slider?.accessibilityLabel = String(describing: senderSlider.value)
+//        print ("************************")
+//        print(senderSlider.value)
+//    }
 }
