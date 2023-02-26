@@ -8,7 +8,7 @@
 import UIKit
 //import MaterialComponents.MaterialSlider
 class ViewPrice: UIView {
-   var slider : MDCSlider?
+  // var slider : MDCSlider?
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
