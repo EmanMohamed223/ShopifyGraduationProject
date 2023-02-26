@@ -12,10 +12,11 @@ struct UserResponse: Codable {
 }
 
 struct User : Codable {
-    var first_name, email: String?
-    var id: Int?
-    var currency : String?
-    var phone : String?
-    var locale : String
+    let customer: Customer
+//    var first_name, email: String?
+//    var id: Int?
+//    var currency : String?
+//    var phone : String?
+//    var locale : String
     
 }

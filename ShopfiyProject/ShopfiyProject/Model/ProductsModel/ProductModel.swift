@@ -44,7 +44,7 @@ class variant :Decodable {
 //    var fulfillment_service :String?
 //    var inventory_management : String?
    // var option1 : String?
-//    var option2 :String?
+    var option2 :String?
 //    var option3:String?
 //    var created_at :String?
 //    var updated_at :String?
