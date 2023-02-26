@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 class ConvertToUserRelated{
-    
     var userRelatedData : [NSManagedObject]!
     func convertToLeagueFormatter(nsManagedObject : [NSManagedObject]) -> [UserRelated]?{
         guard !nsManagedObject.isEmpty else{return nil}

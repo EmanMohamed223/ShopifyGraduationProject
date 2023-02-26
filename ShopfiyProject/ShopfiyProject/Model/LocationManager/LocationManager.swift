@@ -7,8 +7,9 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
-class LocationManager : NSObject, CLLocationManagerDelegate{
+class LocationManager : NSObject, CLLocationManagerDelegate, MKMapViewDelegate{
     
     static let shared = LocationManager()
     let manager = CLLocationManager()
@@ -24,7 +25,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate{
             }
             
             //the city associated with the placemark
-            guard let locality = place.locality else{ return }
+            guard let locality = place.country else{ return }
             let country = locality
             //the state or city associated with the placemark
             guard let locality = place.administrativeArea else{ return }
@@ -40,6 +41,8 @@ class LocationManager : NSObject, CLLocationManagerDelegate{
         manager.delegate = self
         manager.startUpdatingLocation()
     }
+    
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else{ return}
