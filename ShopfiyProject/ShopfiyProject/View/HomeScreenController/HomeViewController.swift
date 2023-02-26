@@ -19,7 +19,6 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var OffersCollectionView: UICollectionView!
     
-    
     var brands : [String]?
     var ads : [AdsDetials]?
     var viewModel : ViewModelProduct?
@@ -29,8 +28,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ads = getAds()
+       
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
         nib = UINib(nibName: "OffersCollectionViewCell", bundle: nil)
@@ -41,26 +39,24 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         searchButton.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         cartHomeBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
         favHomeBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
-        
-        pageController.numberOfPages = ads?.count ?? 0
+        ads = getAds()
         startTimer()
+        pageController.numberOfPages = ads?.count ?? 0
+     
         HomeProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json?since_id=482865238"
         viewModel = ViewModelProduct()
         viewModel?.getBrands(url: HomeProductsURL ?? "")
-        viewModel?.bindResultToHomeViewController = { () in
-            
-            self.renderView()
-        }
+
         self.brandCollectionView.reloadData()
     }
     
-    func renderView(){
-        DispatchQueue.main.async {
-            self.brandArray = self.viewModel?.resultBrands
-         //   self.searchedLeagues = self.productArray
-            self.brandCollectionView.reloadData()
-        }
-    }
+//    func renderView(){
+//        DispatchQueue.main.async {
+//            self.brandArray = self.viewModel?.resultBrands
+//            
+//           self.brandCollectionView.reloadData()
+//        }
+//    }
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNext), userInfo: nil, repeats: true)
     }
@@ -113,7 +109,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        if(collectionView == brandCollectionView){
-         return   CGSize(width: (collectionView.frame.size.width/2)-32 , height: (collectionView.frame.size.height/2)-20 )
+         return   CGSize(width: (collectionView.frame.size.width/2)-12 , height: (collectionView.frame.size.height/2)-20 )
             
     }
         
@@ -130,14 +126,29 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
             cell.brandImage.kf.setImage(with: URL(string: brandArray?.smart_collections[indexPath.row].image.src ?? ""), placeholder: UIImage(named: "none.png"))
             return cell
         }
-        
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
-        cell.cornerRadius = CGFloat(20)
-  
-        cell.offerImage.image = UIImage(named: ads?[indexPath.row].image ?? "")
-        
-        return cell
 
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
+       let semaphore = DispatchSemaphore(value: 2)
+        let queue = DispatchQueue(label: "" , attributes: .concurrent)
+        queue.async {
+            semaphore.wait()
+            self.viewModel?.bindResultToHomeViewController = { [self] () in
+              
+                self.brandArray = self.viewModel?.resultBrands
+               
+        
+            }
+            semaphore.signal()
+            DispatchQueue.main.async {
+                [weak self] in
+          
+                cell.cornerRadius = CGFloat(20)
+                cell.offerImage.image = UIImage(named: self!.ads?[indexPath.row].image ?? "")
+                self!.brandCollectionView.reloadData()
+            }
+        }
+
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

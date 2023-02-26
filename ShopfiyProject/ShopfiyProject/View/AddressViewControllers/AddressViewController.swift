@@ -18,7 +18,9 @@ class AddressViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     @IBAction func editAddressBtn(_ sender: Any) {
     }

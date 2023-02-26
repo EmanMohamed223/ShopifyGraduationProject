@@ -20,7 +20,9 @@ class ShoppingCartViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     @IBAction func checkoutBtn(_ sender: Any) {
     }
     

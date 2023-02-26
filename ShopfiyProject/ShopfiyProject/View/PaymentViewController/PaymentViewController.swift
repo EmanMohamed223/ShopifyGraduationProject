@@ -25,6 +25,7 @@ class PaymentViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+      
     }
     
     @IBAction func validateBtn(_ sender: Any) {
@@ -32,7 +33,11 @@ class PaymentViewController: UIViewController {
     
     @IBAction func placeOrderBtn(_ sender: Any) {
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+  
+
 }
 
 extension PaymentViewController : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{

@@ -14,28 +14,33 @@ class Products : Decodable {
     var title: String
     var body_html: String?
     var vendor :String?
-//    var product_type: String?
     var created_at:String?
+    var status:String?
+    var tags :String?
+    var variants:[variant]?
+    var images :[Image]
+//    var product_type: String?
+
 //    var handle:String?
  //  var updated_at :String?
 //     var published_at:String?
     
-     var status:String?
+  
     //var published_scope : String?
-    var tags :String?
- 
-    var variants:[variant]?
+
           
   //    var options:[option]
 
-       var images :[Image]
+    
 
 }
 class variant :Decodable {
+    var option2 :String?
+    var price : String?
 //    var id : Int?
 //    var product_id : Int?
 //    var title:String?
-    var price : String?
+    
 //    var sku : String?
 //    var position : String?
 //    var inventory_policy : String?
@@ -44,7 +49,7 @@ class variant :Decodable {
 //    var fulfillment_service :String?
 //    var inventory_management : String?
    // var option1 : String?
-    var option2 :String?
+    
 //    var option3:String?
 //    var created_at :String?
 //    var updated_at :String?
