@@ -145,7 +145,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="launguageBtn:" destination="Jk7-Q0-d6A" eventType="touchUpInside" id="IFG-pZ-ZyV"/>
+                                            <action selector="contactBtn:" destination="Jk7-Q0-d6A" eventType="touchUpInside" id="f8n-4f-TNC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6y-pm-xsz">
@@ -175,6 +175,9 @@
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="aboutBtn:" destination="Jk7-Q0-d6A" eventType="touchUpInside" id="VUd-8O-4o7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUb-81-k06">
                                         <rect key="frame" x="-3" y="376" width="361" height="79"/>
@@ -204,6 +207,9 @@
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="logoutBtn:" destination="Jk7-Q0-d6A" eventType="touchUpInside" id="9Nq-ZN-7qg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -475,7 +481,11 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmF-x4-vYC">
                                 <rect key="frame" x="16" y="112" width="361" height="378"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="gU3-Au-91a" appends="YES" id="aoP-eb-rXj"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSF-Mt-ote">
                                 <rect key="frame" x="84" y="667" width="225" height="67"/>
@@ -501,6 +511,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiG-M1-fWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gU3-Au-91a">
+                    <connections>
+                        <action selector="tabRecognizer:" destination="1NB-FA-v8i" id="adT-YC-v7L"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2758" y="689"/>
         </scene>
@@ -973,7 +988,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBI-cf-NOv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951.9083969465648" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1952" y="-27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VHc-41-YWB">
@@ -1014,7 +1029,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="qdx-IQ-uAZ"/>
-        <segue reference="tV7-wM-NBq"/>
+        <segue reference="ufD-oD-meI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applePay" width="750" height="375"/>

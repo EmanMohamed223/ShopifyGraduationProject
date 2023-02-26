@@ -9,7 +9,6 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,6 +20,13 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func launguageBtn(_ sender: Any) {
+    }
+    
+    @IBAction func contactBtn(_ sender: Any) {
+    }
+    
+    
+    @IBAction func aboutBtn(_ sender: Any) {
     }
     
     @IBAction func logoutBtn(_ sender: Any) {
