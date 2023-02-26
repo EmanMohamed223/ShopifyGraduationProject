@@ -9,6 +9,9 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    
+    @IBOutlet weak var currencyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -17,12 +20,21 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func currencyBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose Currency", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "EGP", style: .default, handler: { _ in
+            self.currencyLabel.text = "EGP"
+        }))
+        alert.addAction(UIAlertAction(title: "USD", style: .default, handler: {_ in
+            self.currencyLabel.text = "USD"
+        }))
+        self.present(alert, animated: true)
     }
     
     @IBAction func launguageBtn(_ sender: Any) {
     }
     
     @IBAction func contactBtn(_ sender: Any) {
+        
     }
     
     
