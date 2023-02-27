@@ -26,9 +26,7 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         mapViewModel.bindResultToTableViewController = {
             self.renderLocationInMap(location : self.mapViewModel.vmResult ?? CLLocation())
         }
-      
             self.tabBarController?.tabBar.isHidden = true
-    
     }
     
     

@@ -15,9 +15,9 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var FloatButton: Floaty!
     @IBOutlet weak var CategoryCollectionView: UICollectionView!
     @IBOutlet weak var categorySegmented: UISegmentedControl!
- 
-    var flagMainCatgory : Int = 0
-    var flagSubCatgory : Int = 0
+    var append : String?
+    var mainCategory : [String]?
+    var flag : Int = 0
     var viewModel : ViewModelProduct?
     var CategoryProductsURL : String?
     var productArray : ResponseProducts?
@@ -28,21 +28,27 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        mainCategory = ["?collection_id=437787230489" , "?collection_id=437787263257" , "?collection_id=437787296025" , "?collection_id=437787328793"]
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
-      
+        categorySegmented.selectedSegmentIndex = 0
         selectSubCategory()
         categorySearch.addTarget(self, action: #selector(TapSearch), for: .touchUpInside)
         categoryCartBtn.addTarget(self, action: #selector(TapCart), for: .touchUpInside)
         favCategoryBtn.addTarget(self, action: #selector(Tapfavourite), for: .touchUpInside)
         CategoryProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/products.json"
+
+        append  = mainCategory![0]
+         modelling(newUrl: append)
+        self.CategoryCollectionView.reloadData()
+    }
+    func modelling(newUrl : String?){
         viewModel = ViewModelProduct()
-        viewModel?.getProducts(url: CategoryProductsURL ?? "")
+        viewModel?.getProducts(url: CategoryProductsURL?.appending(newUrl ?? ""))
         viewModel?.bindResultToViewController = { () in
             
             self.renderView()
         }
-        self.CategoryCollectionView.reloadData()
     }
     func renderView(){
         DispatchQueue.main.async {
@@ -55,18 +61,24 @@ class CategoryViewController: UIViewController {
     @IBAction func selectedSegment(_ sender: Any) {
         switch categorySegmented.selectedSegmentIndex {
         case 0:
-      
-        flagMainCatgory = 0
+            append  = mainCategory![0]
+            modelling(newUrl: append)
+            flag = 0
             self.CategoryCollectionView.reloadData()
              case 1 :
-           
-           flagMainCatgory = 1
+            append  = mainCategory![1]
+             modelling(newUrl: append)
+            flag = 1
             self.CategoryCollectionView.reloadData()
              case 2:
-            flagMainCatgory = 2
+            append  = mainCategory![2]
+             modelling(newUrl: append)
+            flag = 2
             self.CategoryCollectionView.reloadData()
              case 3:
-            flagMainCatgory = 3
+            append  = mainCategory![3]
+             modelling(newUrl: append)
+            flag = 3
             self.CategoryCollectionView.reloadData()
              default:
                  break
@@ -102,20 +114,27 @@ class CategoryViewController: UIViewController {
     }
     */
     func selectSubCategory(){
-        FloatButton.addItem( icon: UIImage(systemName: "tshirt.fill")!) { FloatyItem in
-            self.flagSubCatgory = 1
+        
+        FloatButton.addItem( icon: UIImage(systemName: "tshirt.fill")!) {  FloatyItem in
+            self.append  = self.mainCategory![self.flag]+"&product_type=T-SHIRTS"
+            self.modelling(newUrl: self.append)
+           
             self.CategoryCollectionView.reloadData()
+            
       }
-        FloatButton.addItem( icon: UIImage(systemName: "handbag.fill")!) { FloatyItem in
-            self.flagSubCatgory = 2
+        FloatButton.addItem( icon: UIImage(systemName: "handbag.fill")!) { [self] FloatyItem in
+            self.append  = self.mainCategory![self.flag]+"&product_type=ACCESSORIES"
+            self.modelling(newUrl: self.append)
             self.CategoryCollectionView.reloadData()
         }
-        FloatButton.addItem( icon: UIImage(systemName: "shoeprints.fill")!) { FloatyItem in
-            self.flagSubCatgory = 3
+        FloatButton.addItem( icon: UIImage(systemName: "shoeprints.fill")!) { [self] FloatyItem in
+            self.append  = self.mainCategory![self.flag]+"&product_type=shoes"
+            self.modelling(newUrl: self.append)
             self.CategoryCollectionView.reloadData()
         }
         FloatButton.addItem( icon: UIImage(systemName: "cross")!) { FloatyItem in
-            self.flagSubCatgory = 0
+            self.append  = "?collection_id=437787230489"
+            self.modelling(newUrl: self.append)
             self.CategoryCollectionView.reloadData()
         }
     }
@@ -132,6 +151,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.cornerRadius = CGFloat(20)
         cell.categoryLabel.text = productArray?.products[indexPath.row].title
+        cell.categoryLabel.adjustsFontSizeToFitWidth = true
         cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         cell.categoryPrice.text = productArray?.products[indexPath.row].variants![0].price
         return cell
