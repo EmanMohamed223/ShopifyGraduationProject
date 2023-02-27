@@ -256,11 +256,11 @@
             <objects>
                 <viewController id="jwo-o4-Wcp" customClass="PaymentOperationViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zur-nQ-ean">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="z0A-S5-J9V">
-                                <rect key="frame" x="61.666666666666657" y="420.66666666666669" width="270" height="81"/>
+                                <rect key="frame" x="61.666666666666657" y="381" width="270" height="81"/>
                                 <color key="backgroundColor" red="0.67567294840000003" green="0.49093860389999999" blue="0.5332637429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="Nsm-DN-FJx"/>
@@ -524,7 +524,6 @@
                                         <connections>
                                             <outlet property="addressLabel" destination="dWx-2N-fFC" id="cIS-Ao-7Jv"/>
                                             <outlet property="countryLabel" destination="Mtd-DR-ttP" id="bJY-3L-xUL"/>
-                                            <segue destination="HhA-gG-gke" kind="show" id="g3N-uL-QY9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -540,21 +539,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcd-ub-DP2">
-                                <rect key="frame" x="84" y="553" width="225" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Edit address" cornerStyle="capsule">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" red="0.52072834970000004" green="0.34377360340000002" blue="0.43443751339999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="editAddressBtn:" destination="s0u-7O-arC" eventType="touchUpInside" id="Ckw-Mn-Ts2"/>
-                                    <segue destination="1NB-FA-v8i" kind="show" id="VvK-Px-KFq"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-ib-xcz">
-                                <rect key="frame" x="84" y="643" width="225" height="67"/>
+                                <rect key="frame" x="84" y="585" width="225" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Add new address" cornerStyle="capsule">
@@ -582,7 +568,7 @@
         <!--Address Configuration View Controller-->
         <scene sceneID="kaE-7u-SnS">
             <objects>
-                <viewController id="1NB-FA-v8i" customClass="AddressConfigurationViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addressConfig" id="1NB-FA-v8i" customClass="AddressConfigurationViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vbP-6b-dJQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -852,13 +838,13 @@
         <!--Payment-->
         <scene sceneID="9e9-ZA-TVx">
             <objects>
-                <viewController id="HhA-gG-gke" customClass="PaymentViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="payment" id="HhA-gG-gke" customClass="PaymentViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bnj-RC-ULT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzM-eW-Lcx">
-                                <rect key="frame" x="0.0" y="103" width="393" height="664"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="708"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McS-cO-Jut">
                                         <rect key="frame" x="8" y="0.0" width="377" height="950"/>
@@ -914,7 +900,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="placeOrderBtn:" destination="HhA-gG-gke" eventType="touchUpInside" id="tHg-iq-Z2i"/>
-                                                    <segue destination="jwo-o4-Wcp" kind="show" id="AMe-It-Zwq"/>
+                                                    <segue destination="jwo-o4-Wcp" kind="show" id="7jy-gV-5UQ"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQr-yN-FH7">
@@ -1181,7 +1167,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qdx-IQ-uAZ"/>
         <segue reference="ufD-oD-meI"/>
     </inferredMetricsTieBreakers>
     <resources>

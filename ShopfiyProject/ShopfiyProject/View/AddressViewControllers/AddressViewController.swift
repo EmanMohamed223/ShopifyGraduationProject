@@ -22,9 +22,7 @@ class AddressViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    @IBAction func editAddressBtn(_ sender: Any) {
-    }
-    
+
     
     @IBAction func addNewAddressBtn(_ sender: Any) {
     }
@@ -45,4 +43,25 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
         return 130
     }
     
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+            completionHandler(true)
+      }
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressConfig") as! AddressConfigurationViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+            completionHandler(true)
+      }
+        delete.backgroundColor = UIColor(named: "Blue")
+        edit.backgroundColor = UIColor(named: "Red")
+        let configuration = UISwipeActionsConfiguration(actions: [delete,edit])
+        return configuration
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
