@@ -66,7 +66,7 @@ class BrandDetailsViewController: UIViewController {
       
         }
     @IBAction func slider(_ sender: UISlider) {
-     
+      
         productPriceArray = brandProducts!.products.filter({ Products in
             Double( Products.variants?[0].price ?? "0")! < Double(sender.value)
           
