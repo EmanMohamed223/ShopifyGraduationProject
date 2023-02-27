@@ -13,8 +13,8 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var countryTxtField: UITextField!
-    @IBOutlet weak var addressTxtField: UITextField!
-    
+    @IBOutlet weak var cityTxtField: UITextField!
+    @IBOutlet weak var streetTxtField: UITextField!
     var mapViewModel : MapViewModel!
     var location : CLLocation?
     
@@ -56,9 +56,10 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         self.mapView.removeAnnotations(mapView.annotations)
         self.mapView.addAnnotation(pin)
         
-        LocationManager.shared.getLocationName(with: location) { country, city in
+        LocationManager.shared.getLocationName(with: location) { country, city, street in
             self.countryTxtField.text = country
-            self.addressTxtField.text = city
+            self.cityTxtField.text = city
+            self.streetTxtField.text = street
         }
         
     }
