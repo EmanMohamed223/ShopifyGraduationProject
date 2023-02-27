@@ -18,6 +18,7 @@ class PaymentOperationViewController: UIViewController {
     }
     
     @IBAction func payBtn(_ sender: UIButton) {
+        
     }
     
 
