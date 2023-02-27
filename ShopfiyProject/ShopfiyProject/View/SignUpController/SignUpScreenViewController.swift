@@ -72,11 +72,15 @@ extension SignUpScreenViewController {
                 
             case "ErrorPassword":
                 isSuccess = false
-                self.showAlertError(title: "Check Password", message: "please, enter password again.")
+                self.showAlertError(title: "Check Password", message: "password should be greater than 8 & password must be same as confirm pass")
                 
             case "ErrorEmail":
                 isSuccess = false
                 self.showAlertError(title: "Invalid Email", message: "please, enter correct email.")
+                
+            case "ErroruserName":
+                isSuccess = false
+                self.showAlertError(title: "Invalid Name", message: "please,enter correct name .name should be greater than 8 & begin with later ")
                 
             default:
                 isSuccess = true
@@ -85,36 +89,36 @@ extension SignUpScreenViewController {
         return isSuccess
     }
     
- //   func register(firstName: String, email: String, password: String, confirmPassword: String){
+    func register(firstName: String, email: String, password: String, confirmPassword: String){
         
-       // let customer = Customer(first_name: firstName, email: email, id: nil, tags: password, addresses: nil)
-       // let newCustomer = NewCustomer(customer: customer)
+        let customer = Customer(first_name: firstName, email: email, id: nil, tags: password, addresses: nil)
+        let newCustomer = User(customer: customer)
         
-       // self.registerViewModel?.createNewCustomer(newCustomer: newCustomer) { data, response, error in
+        self.registerViewModel?.createNewCustomer(newCustomer: newCustomer) { data, response, error in
             
-//           guard error == nil else {
-//                DispatchQueue.main.async {
-//                    self.showAlertError(title: "Couldnot register", message: "Please, try again later.")
-//                }
-//                return
-//            }
-//
-//            guard response?.statusCode != 422 else {
-//                DispatchQueue.main.async {
-//                    self.showAlertError(title: "Couldnot register", message: "Please, try another email.")
-//                }
-//                return
-//            }
-//
-//            print("registered successfully")
-//
-//            DispatchQueue.main.async {
-//                let login = self.storyboard?.instantiateViewController(withIdentifier: "login")
-//                self.navigationController?.pushViewController(login, animated: true)
-//            }
-//        }
+           guard error == nil else {
+                DispatchQueue.main.async {
+                    self.showAlertError(title: "Couldnot register", message: "Please, try again later.")
+                }
+                return
+            }
+
+            guard response?.statusCode != 422 else {
+                DispatchQueue.main.async {
+                    self.showAlertError(title: "Couldnot register", message: "Please, try another email.")
+                }
+                return
+            }
+
+            print("registered successfully")
+
+            DispatchQueue.main.async {
+                let login = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginScreenViewController
+                self.navigationController?.pushViewController(login, animated: true)
+            }
+        }
         
-   // }
+    }
 }
 extension UIViewController{
     func showAlertError(title: String, message: String) {
