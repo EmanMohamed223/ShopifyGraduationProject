@@ -52,7 +52,7 @@ class SignUpScreenViewController: UIViewController {
         guard let confirmPass = conformPassTextField.text else {return}
         if ValdiateCustomerInfomation(firstName: name, email: emailText, password: password, confirmPassword: confirmPass) {
             print("valid")
-           // register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass)
+          register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass)
         } else {
             showAlertError(title: "Couldnot register", message: "Please try again later.")
         }
