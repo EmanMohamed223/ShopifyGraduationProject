@@ -16,11 +16,11 @@ class LocationManager : NSObject, CLLocationManagerDelegate, MKMapViewDelegate{
     var completion : ((CLLocation) -> Void)?
     
     //compilation to send back the results
-    func getLocationName(with location:CLLocation, completion: @escaping((String?,String?) -> Void)){
+    func getLocationName(with location:CLLocation, completion: @escaping((String?,String?,String?) -> Void)){
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location, preferredLocale: .current) { placemarks, error in
             guard let place = placemarks?.first, error == nil else{
-                completion(nil,nil)
+                completion(nil,nil,nil)
                 return
             }
             
@@ -30,8 +30,9 @@ class LocationManager : NSObject, CLLocationManagerDelegate, MKMapViewDelegate{
             //the state or city associated with the placemark
             guard let locality = place.administrativeArea else{ return }
             let city = locality
-            
-            completion(country,city)
+            guard let locality = place.subThoroughfare else{ return }
+            let street = locality
+            completion(country,city,street)
         }
     }
     

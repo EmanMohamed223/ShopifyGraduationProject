@@ -66,6 +66,9 @@
 		8CE5EF0A29A3E9B500519879 /* ShopfiyProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF0929A3E9B500519879 /* ShopfiyProjectTests.swift */; };
 		8CE5EF1429A3E9B500519879 /* ShopfiyProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF1329A3E9B500519879 /* ShopfiyProjectUITests.swift */; };
 		8CE5EF1629A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EF1529A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift */; };
+		C90A4BC529AD291600BD0EF2 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */; };
+		C90A4BCC29AD2DB600BD0EF2 /* PriceRuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */; };
+		C90A4BCE29AD361C00BD0EF2 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */; };
 		C94B306029A9299A00777CAA /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B305F29A9299A00777CAA /* Ads.swift */; };
 		C94B306229A929E100777CAA /* AdsDetials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B306129A929E100777CAA /* AdsDetials.swift */; };
 		C94B306629A9631B00777CAA /* ConvertToUserRelated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */; };
@@ -178,6 +181,9 @@
 		8CE5EF1329A3E9B500519879 /* ShopfiyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopfiyProjectUITests.swift; sourceTree = "<group>"; };
 		8CE5EF1529A3E9B500519879 /* ShopfiyProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopfiyProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BBEF4AC92D6A7FB92112DD47 /* Pods_ShopfiyProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopfiyProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleViewModel.swift; sourceTree = "<group>"; };
+		C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
 		C94B305F29A9299A00777CAA /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
 		C94B306129A929E100777CAA /* AdsDetials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDetials.swift; sourceTree = "<group>"; };
 		C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToUserRelated.swift; sourceTree = "<group>"; };
@@ -486,6 +492,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C90A4BC229AD175800BD0EF2 /* PriceRuleModel */ = {
+			isa = PBXGroup;
+			children = (
+				C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */,
+			);
+			path = PriceRuleModel;
+			sourceTree = "<group>";
+		};
+		C90A4BC829AD2D8A00BD0EF2 /* PriceRulesVIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */,
+			);
+			path = PriceRulesVIewModel;
+			sourceTree = "<group>";
+		};
 		C94B305C29A926AF00777CAA /* AdsDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,12 +519,15 @@
 		C94B306729A9654100777CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C90A4BC829AD2D8A00BD0EF2 /* PriceRulesVIewModel */,
 				C97397E529AAB9D300051F6F /* MapViewModel */,
 				C97397E229AAB9A200051F6F /* CoreDataViewModel */,
 				03911B5A29A963B300CBD770 /* RegisterViewModel.swift */,
 				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
 				8CBCF3BB29ABB5F600D708E6 /* SaveToCoreViewModel.swift */,
+
 				0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */,
+
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -593,6 +618,7 @@
 				C94B305F29A9299A00777CAA /* Ads.swift */,
 				C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */,
 				C94B307229A9691E00777CAA /* UserRelatedStruct.swift */,
+				C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -600,6 +626,7 @@
 		C99ED6C629A7B8A30097C53E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C90A4BC229AD175800BD0EF2 /* PriceRuleModel */,
 				0334917129ABF7E300B1D7C5 /* UserDefaultForUser */,
 				03A3F62A29AA9540002BD9B7 /* UserModel */,
 				03A3F62929AA952B002BD9B7 /* CustomerModel */,
@@ -975,6 +1002,7 @@
 				8C93DFCC29A4137C002665D4 /* HomeViewController.swift in Sources */,
 				8C55131429A4B6440066B62E /* BrandDetailsViewController.swift in Sources */,
 				C9E9767F29A7EFE6001481C6 /* Payment.swift in Sources */,
+				C90A4BC529AD291600BD0EF2 /* HelperFunctions.swift in Sources */,
 				C94B306C29A9665000777CAA /* SaveToCoreProtocol.swift in Sources */,
 				8C93DFCE29A4137C002665D4 /* BrandCollectionViewCell.swift in Sources */,
 				C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */,
@@ -987,6 +1015,7 @@
 				0324771F29A6E04100DBAFC2 /* Navigationdelegate.swift in Sources */,
 				0371FCA429A40FE000608875 /* LoginScreenViewController.swift in Sources */,
 				0371FC9829A3F48B00608875 /* ProductDetailsViewController.swift in Sources */,
+				C90A4BCE29AD361C00BD0EF2 /* PriceRuleModel.swift in Sources */,
 				8C93DFD729A423E3002665D4 /* CategoryCollectionViewCell.swift in Sources */,
 				03408E2629A69852001FCE6D /* View.swift in Sources */,
 				C9E9768329A7F229001481C6 /* CreditCardDetails.swift in Sources */,
@@ -1006,6 +1035,7 @@
 				8C636C0129AA549400FB14E3 /* ViewPrice.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				C94B307329A9691E00777CAA /* UserRelatedStruct.swift in Sources */,
+				C90A4BCC29AD2DB600BD0EF2 /* PriceRuleViewModel.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
 				8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */,
 				0376FA9929AD447200294641 /* LoginViewModel.swift in Sources */,

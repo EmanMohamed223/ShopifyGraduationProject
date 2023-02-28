@@ -8,6 +8,8 @@
 import Foundation
 class ViewModelProduct{
    var bindResultToViewController : (() -> ()) = {}
+    
+    
     var resultProducts : ResponseProducts! {
         didSet{
             bindResultToViewController()
@@ -29,8 +31,11 @@ class ViewModelProduct{
     func getBrands(url : String?){
         NetworkService.fetchData(url: url) { result in
             self.resultBrands = result
-   
         }
+    }
+    
+    func getOffers(url : String){
+        
     }
   
 }
