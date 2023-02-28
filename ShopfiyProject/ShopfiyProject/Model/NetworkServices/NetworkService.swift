@@ -49,12 +49,12 @@ class NetworkService : Service {
         request.httpMethod = "POST"
         request.httpShouldHandleCookies = false
         
-//        do {
-//            request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer, options: .prettyPrinted)
-//            // print(try! newCustomer)
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
+        //        do {
+        //            request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer, options: .prettyPrinted)
+        //            // print(try! newCustomer)
+        //        } catch let error {
+        //            print(error.localizedDescription)
+        //        }
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer.asDictionary(), options: .prettyPrinted)
             print(try! newCustomer.asDictionary())
@@ -71,16 +71,16 @@ class NetworkService : Service {
         }.resume()
     }
     
-    
+
 //
 //
-//    func convertFromJson<T: Codable>(data: Data) -> T? {
-//        let jsonDecoder = JSONDecoder()
-//        let decodedjson = try? jsonDecoder.decode(T.self, from: data)
-//        return decodedjson
-//    }
+   func convertFromJson<T: Codable>(data: Data) -> T? {
+        let jsonDecoder = JSONDecoder()
+        let decodedjson = try? jsonDecoder.decode(T.self, from: data)
+       return decodedjson
+    }
 //
-//    func getCustomers(email: String, complition: @escaping ([Customer]?, Error?)->Void) {
+//    func getuUsers( complition: @escaping ([Customer]?, Error?)->Void) {
 //        let urlStr = ""
 //        guard let url = URL(string: urlStr) else { return }
 //
@@ -88,13 +88,15 @@ class NetworkService : Service {
 //            if let error = response.error {
 //                complition(nil, error)
 //            }
-//
+//            
 //            guard let urlResponse = response.response else {return}
 //            if !(200..<300).contains(urlResponse.statusCode) {
 //                print("error in status code")
 //            }
-//
+//            
 //            guard let data = response.data else { return }
+//
+//    
 //
 //            let decodedJson: CustomerResponse = convertFromJson(data: data) ?? CustomerResponse(customers: [Customer]())
 //            complition(decodedJson.customers, nil)
