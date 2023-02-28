@@ -52,7 +52,8 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     func addMapPin(with location: CLLocation){
         let pin = MKPointAnnotation()
         pin.coordinate = location.coordinate
-        self.mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 2.5, longitudeDelta: 2.5)), animated: true)
+        zoomToUserLocation(location : location)
+        //self.mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 2.5, longitudeDelta: 2.5)), animated: true)
         self.mapView.removeAnnotations(mapView.annotations)
         self.mapView.addAnnotation(pin)
         
@@ -62,6 +63,12 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
             self.streetTxtField.text = street
         }
         
+    }
+    
+    func zoomToUserLocation(location : CLLocation)
+    {
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 750, longitudinalMeters: 750)
+        mapView.setRegion(region, animated: true)
     }
 
 }
