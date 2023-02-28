@@ -37,9 +37,9 @@ class SearchViewController: UIViewController {
     }
    
     @IBAction func selectBestSelling(_ sender: Any) {
-        if((brandProducts?.products.count)! > 1 || productPriceArray!.count > 1 ){
+        if( productPriceArray!.count >= 1 || (brandProducts?.products.count)! >= 1 ){
             subView.isHidden = true
-            productPriceArray = brandProducts?.products
+        //    productPriceArray = brandProducts?.products
             self.brandDetailsCollectionView.reloadData()
             
         }
@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func selectPrice(_ sender: Any) {
-        if(productPriceArray!.count > 1 || (brandProducts?.products.count)! > 1){
+        if(productPriceArray!.count >= 1 || (brandProducts?.products.count)! >= 1){
        
             subView.isHidden = false
     
@@ -127,8 +127,8 @@ extension SearchViewController {
                 self.renderView()
             }
           
-      //  case 2 : // coming from category
-          //  productPriceArray = brandProducts?.products
+       case 2 : // coming from category
+           brandProducts?.products =  productPriceArray ?? []
         
         default:
             break

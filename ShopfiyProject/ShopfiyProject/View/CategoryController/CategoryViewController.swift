@@ -150,9 +150,10 @@ extension CategoryViewController {
     }
     @objc func TapSearch(){
         let view =  self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-    //    view.data(flag: 2)
       
-        view.productPriceArray = filterArray?.products
+      
+        view.productPriceArray = productArray?.products
+        view.data(flag: 2)
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func Tapfavourite(){
