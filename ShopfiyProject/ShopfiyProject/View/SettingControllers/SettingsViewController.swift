@@ -30,8 +30,6 @@ class SettingsViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    @IBAction func launguageBtn(_ sender: Any) {
-    }
     
     @IBAction func contactBtn(_ sender: Any) {
         
