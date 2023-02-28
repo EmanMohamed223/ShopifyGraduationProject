@@ -16,13 +16,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="150"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNq-AA-nCa">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" id="LNq-AA-nCa">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="98"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="LNq-AA-nCa" secondAttribute="height" multiplier="90:49" id="ie4-hw-w8N"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="adidas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-Lj-At1">
-                        <rect key="frame" x="4" y="95" width="176" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-Lj-At1">
+                        <rect key="frame" x="0.0" y="106" width="180" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="1kI-yO-3Cy"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" red="0.64604550599999999" green="0.46425849200000002" blue="0.50795173650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -31,6 +36,14 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" red="0.8720940948" green="0.71464735270000002" blue="0.67561084029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tKq-Lj-At1" secondAttribute="bottom" id="Jq3-oc-9Gc"/>
+                <constraint firstAttribute="trailing" secondItem="LNq-AA-nCa" secondAttribute="trailing" id="Mb7-wE-z5i"/>
+                <constraint firstItem="LNq-AA-nCa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Tq4-c1-dy2"/>
+                <constraint firstItem="tKq-Lj-At1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cak-08-cAO"/>
+                <constraint firstAttribute="trailing" secondItem="tKq-Lj-At1" secondAttribute="trailing" id="ink-Fb-UAj"/>
+                <constraint firstItem="LNq-AA-nCa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yC6-ab-U2i"/>
+            </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                     <color key="value" red="0.5899760127" green="0.43385618929999997" blue="0.50808703899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
