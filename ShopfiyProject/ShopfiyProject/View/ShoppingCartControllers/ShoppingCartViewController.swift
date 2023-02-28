@@ -13,7 +13,8 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var subTotalLabel: UILabel!
     
     var objects = ["A","B","C","D","E"]
-    //var products : [Product]?
+    var draftOrders : [LineItem]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -26,12 +27,22 @@ class ShoppingCartViewController: UIViewController {
     @IBAction func checkoutBtn(_ sender: Any) {
     }
     
+    func renderDraftOrders(shoppingCart : ShoppingCart?){
+        guard let shoppingCart = shoppingCart else { return}
+        self.draftOrders = shoppingCart.line_items
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
 }
 
 extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return draftOrders?.count ?? 0
+        //return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,6 +52,9 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
+        cell.productTitle.text = draftOrders?[indexPath.row].title
+        cell.productPrice.text = draftOrders?[indexPath.row].price
+        cell.numOfItems.text = String(draftOrders?[indexPath.row].quantity ?? 0)
         return cell
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

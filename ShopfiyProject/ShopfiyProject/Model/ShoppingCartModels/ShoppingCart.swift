@@ -7,6 +7,11 @@
 
 import Foundation
 
+
+class ShoppingCartResponse : Decodable{
+    var shoppingCart : ShoppingCart?
+}
+
 class ShoppingCart : Decodable{
     
     var id : Int?
