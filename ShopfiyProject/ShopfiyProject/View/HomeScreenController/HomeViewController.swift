@@ -51,57 +51,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         self.OffersCollectionView.reloadData()
         self.brandCollectionView.reloadData()
     }
-    func startTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNext), userInfo: nil, repeats: true)
-    }
-
-    @objc func moveToNext(){
-        if currentIndex < 1
-        {
-            currentIndex += 1
-        }
-        else{
-            currentIndex = 0
-        }
-        
-        OffersCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0) , at: .centeredHorizontally, animated: true)
-        pageController.currentPage = currentIndex
-        
-    }
     
-    @objc func TapSearch(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        self.navigationController?.pushViewController(view, animated: true)
-    }
-    @objc func Tapfavourite(){
-        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
-        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
-        self.navigationController?.pushViewController(view, animated: true)
-    }
-    @objc func TapCart(){
-        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
-        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
-        self.navigationController?.pushViewController(view, animated: true)
-    }
-    
-    func renderPriceRules(discountCodes : [DiscountCode]?){
-        guard let discountCodes = discountCodes else { return}
-        self.discountCodes = discountCodes
-        DispatchQueue.main.async {
-            self.OffersCollectionView.reloadData()
-            self.startTimer()
-        }
-        
-    }
-    
-    func renderBrands(brandArray : SmartCollection?){
-        guard let brandArray = brandArray else { return}
-        self.brandArray = brandArray
-        DispatchQueue.main.async {
-            self.brandCollectionView.reloadData()
-        }
-    }
-
 }
 
 extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
@@ -172,15 +122,70 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
         
         
         if(collectionView == brandCollectionView){
-            let brandDetailsController = self.storyboard?.instantiateViewController(withIdentifier: "brandDetails") as! BrandDetailsViewController
+            let brandDetailsController = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+            
             brandDetailsController.brandName = brandArray?.smart_collections[indexPath.row].title
             brandDetailsController.brandID = brandArray?.smart_collections[indexPath.row].id
-            //  brandDetailsController.
+            brandDetailsController.data(flag: 1)
             self.navigationController?.pushViewController(brandDetailsController, animated: true)
         }
         
     }
     
+  
+}
+extension HomeViewController {
+    func startTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNext), userInfo: nil, repeats: true)
+    }
+
+    @objc func moveToNext(){
+        if currentIndex < 1
+        {
+            currentIndex += 1
+        }
+        else{
+            currentIndex = 0
+        }
+        
+        OffersCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0) , at: .centeredHorizontally, animated: true)
+        pageController.currentPage = currentIndex
+        
+    }
+    
+    @objc func TapSearch(){
+        let view  =  self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        view.data(flag: 0)
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    @objc func Tapfavourite(){
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    @objc func TapCart(){
+        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    func renderPriceRules(discountCodes : [DiscountCode]?){
+        guard let discountCodes = discountCodes else { return}
+        self.discountCodes = discountCodes
+        DispatchQueue.main.async {
+            self.OffersCollectionView.reloadData()
+            self.startTimer()
+        }
+        
+    }
+    
+    func renderBrands(brandArray : SmartCollection?){
+        guard let brandArray = brandArray else { return}
+        self.brandArray = brandArray
+        DispatchQueue.main.async {
+            self.brandCollectionView.reloadData()
+        }
+    }
     func loadQueueOperations(){
         let queue = OperationQueue()
         

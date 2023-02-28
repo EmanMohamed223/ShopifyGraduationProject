@@ -1,121 +1,146 @@
 //
-//  SearchViewController.swift
+//  BrandDetailsViewController.swift
 //  ShopfiyProject
 //
 //  Created by Asmaa_Abdelfattah on 02/12/1401 AP.
 //
 
 import UIKit
+import Kingfisher
+//import MaterialComponents.MaterialSlider
+class SearchViewController: UIViewController {
 
-class SearchViewController: UIViewController , UISearchBarDelegate {
+   
     
-    @IBOutlet weak var viewSearch: UIView!
-    @IBOutlet weak var searchCollectionView: UICollectionView!
-    
-    @IBOutlet weak var SearchBar: UISearchBar!
-   // var searchArr :[String]?
-    var productArray : ResponseProducts?
-    var searchArr : [Products]?
+    @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
+  
+    var flagCatgory : Int = 0
+    var priceFilter : Int = 0
+    var brandProducts : ResponseProducts?
+    var BrandDetailsURL : String?
+    var brandName : String?
+    var brandID : Int?
     var viewModel : ViewModelProduct?
-    var CategoryProductsURL : String?
-    
-    
-    
-    
-    
+    var productPriceArray : [Products]?
+    var productBSArray : [Products]?
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchCollectionView.delegate = self
-        searchCollectionView.dataSource = self
-        // Do any additional setup after loading the view.
-        viewSearch.isHidden = false
+        self.title = brandName ?? ""
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-        self.searchCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
-        CategoryProductsURL = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/products.json"
-        viewModel = ViewModelProduct()
-        viewModel?.getProducts(url: CategoryProductsURL ?? "")
-        viewModel?.bindResultToViewController = { () in
-            
-            self.renderView()
-        }
-        self.searchCollectionView.reloadData()
-    }
-    func renderView(){
-        DispatchQueue.main.async {
-            self.productArray = self.viewModel?.resultProducts
-            self.searchArr = self.productArray?.products
-            self.searchCollectionView.reloadData()
-        }
+        self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        subView.isHidden = true
+ 
         
+        self.brandDetailsCollectionView.reloadData()
     }
-    @IBAction func BestSellingClicked(_ sender: Any) {
-        viewSearch.isHidden = true
+   
+    @IBAction func selectBestSelling(_ sender: Any) {
+        if((brandProducts?.products.count)! > 1 || productPriceArray!.count > 1 ){
+            subView.isHidden = true
+            productPriceArray = brandProducts?.products
+            self.brandDetailsCollectionView.reloadData()
+            
+        }
+       
     }
     
-    @IBAction func priceClicked(_ sender: Any) {
-        if(productArray!.products.count > 1){
+    @IBAction func selectPrice(_ sender: Any) {
+        if(productPriceArray!.count > 1 || (brandProducts?.products.count)! > 1){
        
-            viewSearch.isHidden = false
+            subView.isHidden = false
     
         }
-    }
-    
+      
+        }
     @IBAction func slider(_ sender: UISlider) {
-     
-        searchArr = productArray!.products.filter({ Products in
+      
+        productPriceArray = brandProducts!.products.filter({ Products in
             Double( Products.variants?[0].price ?? "0")! < Double(sender.value)
           
         })
       
-                self.searchCollectionView.reloadData()
+                self.brandDetailsCollectionView.reloadData()
     }
 
 }
-extension SearchViewController: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+extension SearchViewController : UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      //  print( searchArr!.count )
-
-        return searchArr?.count ?? 0
+        return productPriceArray?.count ?? 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return   CGSize(width: (collectionView.frame.size.width/2)-22 , height: (collectionView.frame.size.height/3)-20 )
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-       
-        cell.categoryLabel.text = searchArr![indexPath.row].title
-        cell.CategoryImage.kf.setImage(with: URL(string: searchArr![indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-        cell.categoryPrice.text = searchArr![indexPath.row].variants![0].price
+        cell.categoryLabel.text = productPriceArray?[indexPath.row].title
+        
+        cell.CategoryImage.kf.setImage(with: URL(string: productPriceArray?[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = productPriceArray?[indexPath.row].variants?[0].price
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-  
-         return   CGSize(width: (UIScreen.main.bounds.size.width/2)-42 , height: (UIScreen.main.bounds.size.height/4)-20 )
-            
-
-
-         }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        searchArr = []
-        
-        if searchText == "" {
-            searchArr = self.productArray?.products
-        }
-        
-        for product in self.productArray?.products ?? []
-        {
-            
-            if ( product.title.hasPrefix(searchText.lowercased()) ||      product.title.hasPrefix(searchText.uppercased()) || product.title.contains(searchText.lowercased()) ||        product.title.contains(searchText.uppercased()))
-            {
-                searchArr?.append(product)
-            }
-        }
-        
-        self.searchCollectionView.reloadData()
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+         let productDetailsView = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+        productDetailsView.product =  productPriceArray?[indexPath.row]
+         self.navigationController?.pushViewController(productDetailsView, animated: true)
     }
-    
 }
+extension SearchViewController : UISearchBarDelegate{
+   
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
+        productPriceArray = productPriceArray!.filter({ Products in
+            Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
+            Products.title.uppercased().contains(searchText.uppercased())
+        })
 
-
-
-
+        
+        self.brandDetailsCollectionView.reloadData()
+    }
+}
+extension SearchViewController {
+    func data(flag : Int){
+        switch flag {
+        case 0 : // Coming from Home
+            BrandDetailsURL = getURL(endPoint: "products.json")
+            viewModel = ViewModelProduct()
+            viewModel?.getProducts(url: BrandDetailsURL ?? "")
+            viewModel?.bindResultToViewController = {
+                self.renderView()
+            }
+           
+        case 1 : // going to brand details
+            BrandDetailsURL = getURL(endPoint: "products.json?collection_id=\(brandID ?? 0)") 
+            viewModel = ViewModelProduct()
+            viewModel?.getProducts(url: BrandDetailsURL ?? "")
+            viewModel?.bindResultToViewController = {
+                self.renderView()
+            }
+          
+      //  case 2 : // coming from category
+          //  productPriceArray = brandProducts?.products
+        
+        default:
+            break
+        }
+        
+    }
+    func renderView(){
+        DispatchQueue.main.async {
+            self.brandProducts = self.viewModel?.resultProducts
+      
+            self.productPriceArray = self.brandProducts?.products
+            self.brandDetailsCollectionView.reloadData()
+        }
+    }
+}
