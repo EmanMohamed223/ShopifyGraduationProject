@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol ShoppingCartDelegate{
-    func getItemNumbers()
+    func getItemNumbers() -> (Int)?
 }
