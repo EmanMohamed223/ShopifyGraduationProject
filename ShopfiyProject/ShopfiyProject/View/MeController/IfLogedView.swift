@@ -36,6 +36,7 @@ class IfLogedView: UIView {
     
     @IBOutlet weak var productname4: UILabel!
     
+    @IBOutlet weak var welcomMsg: UILabel!
     
     @IBAction func moreWishList(_ sender: UIButton) {
         delegate?.Tapfavourite()
@@ -44,6 +45,6 @@ class IfLogedView: UIView {
     @IBAction func moreOrders(_ sender: UIButton) {
         delegate?.navigateToMoreOrders()
     }
-    
+   
     
 }

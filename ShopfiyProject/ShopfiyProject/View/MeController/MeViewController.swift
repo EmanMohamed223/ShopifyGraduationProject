@@ -70,7 +70,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
         {
              var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
              IfLogedView.delegate = self
-             
+            IfLogedView.welcomMsg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
             thisView.addSubview(IfLogedView)
         }
         else {

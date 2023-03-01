@@ -49,12 +49,6 @@ class NetworkService : Service {
         request.httpMethod = "POST"
         request.httpShouldHandleCookies = false
         
-        //        do {
-        //            request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer, options: .prettyPrinted)
-        //            // print(try! newCustomer)
-        //        } catch let error {
-        //            print(error.localizedDescription)
-        //        }
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer.asDictionary(), options: .prettyPrinted)
             print(try! newCustomer.asDictionary())
@@ -114,7 +108,7 @@ class NetworkService : Service {
 //    }
     
     
-    func addToDraftOrder(newDraft: ShoppingCart, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    func addToDraftOrder(newDraft: ShoppingCartResponse, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json"
         guard let url = URL(string: urlStr) else { return }
         var request = URLRequest(url: url)
