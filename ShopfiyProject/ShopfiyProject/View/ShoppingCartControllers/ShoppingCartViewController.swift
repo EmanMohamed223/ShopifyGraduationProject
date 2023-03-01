@@ -12,8 +12,8 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subTotalLabel: UILabel!
     
-    var objects = ["A","B","C","D","E"]
     var draftOrders : [LineItem]?
+    var index : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,6 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return draftOrders?.count ?? 0
-        //return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,9 +71,18 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            draftOrders?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+}
+
+
+extension ShoppingCartViewController : ShoppingCartDelegate{
+    func getItemNumbers() -> (Int)?{
+        return 2
+    }
+    
     
 }

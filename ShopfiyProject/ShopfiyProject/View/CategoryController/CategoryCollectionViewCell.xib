@@ -16,13 +16,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="140"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wn5-vZ-8Ir">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wn5-vZ-8Ir">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="83"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wn5-vZ-8Ir" secondAttribute="height" multiplier="180:83" id="HV3-Zi-C2t"/>
+                        </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpP-Y2-2e9">
-                        <rect key="frame" x="119" y="86" width="34" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpP-Y2-2e9">
+                        <rect key="frame" x="135.66666666666666" y="99" width="36.333333333333343" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="tpP-Y2-2e9" secondAttribute="height" multiplier="51:35" id="tLo-58-s3b"/>
+                        </constraints>
                         <color key="tintColor" red="0.45416241880000002" green="0.18430474399999999" blue="0.2100801766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
@@ -32,17 +36,15 @@
                             <action selector="selectFavourie:" destination="gTV-IL-0wX" eventType="touchUpInside" id="X1Q-uj-OTp"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-Sw-481">
-                        <rect key="frame" x="6" y="111" width="128" height="29"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PC-vi-vHr">
+                        <rect key="frame" x="8" y="82" width="55" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PC-vi-vHr">
-                        <rect key="frame" x="0.0" y="86" width="125" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-Sw-481">
+                        <rect key="frame" x="8" y="100" width="44.333333333333336" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -50,6 +52,19 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" red="0.86444574590000001" green="0.71045053010000003" blue="0.67142343520000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8PC-vi-vHr" firstAttribute="top" secondItem="wn5-vZ-8Ir" secondAttribute="bottom" constant="-1" id="1Eb-Ec-yvw"/>
+                <constraint firstAttribute="trailing" secondItem="tpP-Y2-2e9" secondAttribute="trailing" constant="8" id="56F-mA-4h8"/>
+                <constraint firstAttribute="bottom" secondItem="CYI-Sw-481" secondAttribute="bottom" constant="16" id="59A-P2-G1h"/>
+                <constraint firstItem="tpP-Y2-2e9" firstAttribute="top" secondItem="wn5-vZ-8Ir" secondAttribute="bottom" constant="16" id="JnI-C0-Gm7"/>
+                <constraint firstItem="CYI-Sw-481" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="LXf-fv-Gmq"/>
+                <constraint firstAttribute="bottom" secondItem="tpP-Y2-2e9" secondAttribute="bottom" constant="16" id="UmE-cw-hka"/>
+                <constraint firstItem="wn5-vZ-8Ir" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bsy-cl-tPv"/>
+                <constraint firstItem="8PC-vi-vHr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dhg-YJ-TSs"/>
+                <constraint firstItem="CYI-Sw-481" firstAttribute="top" secondItem="8PC-vi-vHr" secondAttribute="bottom" constant="-6" id="pMU-Ui-gOg"/>
+                <constraint firstAttribute="trailing" secondItem="wn5-vZ-8Ir" secondAttribute="trailing" id="rdx-rc-XdG"/>
+                <constraint firstItem="wn5-vZ-8Ir" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xEm-1j-WUS"/>
+            </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                     <color key="value" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
