@@ -17,32 +17,17 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNq-AA-nCa">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="133"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="LNq-AA-nCa" secondAttribute="height" multiplier="250:133" id="d2O-VF-qxU"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="190"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-Lj-At1">
-                        <rect key="frame" x="8" y="157" width="234" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="1Mx-if-R7e"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                        <color key="textColor" red="0.64604550599999999" green="0.46425849200000002" blue="0.50795173650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" red="0.8720940948" green="0.71464735270000002" blue="0.67561084029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="tKq-Lj-At1" secondAttribute="trailing" constant="8" id="4H0-yS-jqt"/>
-                <constraint firstItem="tKq-Lj-At1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="G31-bU-VuM"/>
-                <constraint firstItem="tKq-Lj-At1" firstAttribute="top" secondItem="LNq-AA-nCa" secondAttribute="bottom" constant="24" id="c7X-P3-d7A"/>
-                <constraint firstItem="LNq-AA-nCa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cJg-da-19y"/>
-                <constraint firstAttribute="trailing" secondItem="LNq-AA-nCa" secondAttribute="trailing" id="kdN-rl-Rl8"/>
-                <constraint firstAttribute="bottom" secondItem="tKq-Lj-At1" secondAttribute="bottom" constant="8" id="qkG-Px-997"/>
-                <constraint firstItem="LNq-AA-nCa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xtc-Ia-4tY"/>
+                <constraint firstItem="LNq-AA-nCa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="b1c-AI-TfR"/>
+                <constraint firstAttribute="bottom" secondItem="LNq-AA-nCa" secondAttribute="bottom" id="ec0-Uc-R2n"/>
+                <constraint firstItem="LNq-AA-nCa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="umU-Om-4sg"/>
+                <constraint firstAttribute="trailing" secondItem="LNq-AA-nCa" secondAttribute="trailing" id="vhD-0l-31V"/>
             </constraints>
             <size key="customSize" width="250" height="190"/>
             <userDefinedRuntimeAttributes>
@@ -58,7 +43,6 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="brandImage" destination="LNq-AA-nCa" id="WIE-nj-7lE"/>
-                <outlet property="brandTitle" destination="tKq-Lj-At1" id="r9r-gl-taw"/>
             </connections>
             <point key="canvasLocation" x="83.969465648854964" y="34.507042253521128"/>
         </collectionViewCell>

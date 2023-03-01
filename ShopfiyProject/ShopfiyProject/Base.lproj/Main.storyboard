@@ -16,13 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0go-uc-8RV">
-                                <rect key="frame" x="-12" y="0.0" width="405" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0go-uc-8RV">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5f9-jc-OpG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0go-uc-8RV" firstAttribute="leading" secondItem="RYU-od-0Cu" secondAttribute="leading" id="IHY-lU-JGx"/>
+                            <constraint firstItem="0go-uc-8RV" firstAttribute="trailing" secondItem="5f9-jc-OpG" secondAttribute="trailing" id="Kiv-2u-Ogv"/>
+                            <constraint firstItem="0go-uc-8RV" firstAttribute="top" secondItem="RYU-od-0Cu" secondAttribute="top" id="VZK-gu-0DJ"/>
+                            <constraint firstAttribute="bottom" secondItem="0go-uc-8RV" secondAttribute="bottom" id="Xiz-dX-O49"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="GIF" destination="0go-uc-8RV" id="2bB-4y-u2x"/>
@@ -120,17 +125,6 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.8720940948" green="0.71464735270000002" blue="0.67561084029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="YhE-sK-mOO" id="aGe-vR-bdi"/>
                                     <outlet property="delegate" destination="YhE-sK-mOO" id="HBk-n5-297"/>
