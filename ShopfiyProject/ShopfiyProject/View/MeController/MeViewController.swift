@@ -22,16 +22,13 @@ class MeViewController: UIViewController ,Navigationdelegate {
     @IBOutlet weak var wishlistcollection: UICollectionView!
     
     @IBOutlet weak var cardBtm: UIBarButtonItem!
+    override func viewWillAppear(_ animated: Bool) {
+        updateView()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        cardBtm.isHidden = true
-        var ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
-       ifNotLogin.delegate = self
-      thisView.addSubview(ifNotLogin )
-       // var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
-      //  IfLogedView.delegate = self
-        
-       // thisView.addSubview(IfLogedView)
+        updateView()
+       
     }
     
     @IBAction func cartNavigate(_ sender: UIButton) {
@@ -67,6 +64,22 @@ class MeViewController: UIViewController ,Navigationdelegate {
            self.present(seemoreOrders, animated: true)
     }
     
-
+    func updateView ()
+    {
+        if  UserDefaultsManager.shared.getUserStatus()
+        {
+             var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
+             IfLogedView.delegate = self
+             
+            thisView.addSubview(IfLogedView)
+        }
+        else {
+            cardBtm.isHidden = true
+            var ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
+           ifNotLogin.delegate = self
+          thisView.addSubview(ifNotLogin )
+        }
+        
+    }
 
 }

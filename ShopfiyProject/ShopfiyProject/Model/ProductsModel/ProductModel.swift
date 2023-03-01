@@ -6,10 +6,10 @@
 //
 
 import Foundation
-class ResponseProducts : Decodable {
+class ResponseProducts : Codable {
     var products :[Products]
 }
-class Products : Decodable {
+class Products : Codable {
     var id:Int
     var title: String
     var body_html: String?
@@ -21,14 +21,16 @@ class Products : Decodable {
     var images :[Image]
     
 }
-class variant :Decodable {
+class variant :Codable {
     var option2 :String?
     var price : String?
 
 
 }
 
+
 class Image : Decodable{
+
     var src : String?
 
                 }

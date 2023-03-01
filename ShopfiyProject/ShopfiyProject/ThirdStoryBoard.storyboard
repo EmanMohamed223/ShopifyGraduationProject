@@ -299,6 +299,9 @@
                                 <buttonConfiguration key="configuration" style="gray" title="ADD TO BAG" cornerStyle="capsule">
                                     <color key="baseBackgroundColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addToBagbtm:" destination="Udl-Ht-nAg" eventType="touchUpInside" id="DDi-us-62f"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CkU-dC-NSk">
                                 <rect key="frame" x="0.0" y="444" width="393" height="118"/>
@@ -527,6 +530,7 @@
                         <viewLayoutGuide key="safeArea" id="fXz-RC-L5i"/>
                         <color key="backgroundColor" red="0.97374838590000001" green="0.92845404149999999" blue="0.81809145210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hX8-md-wZ3"/>
                     <connections>
                         <outlet property="emailTxtfield" destination="1sM-Tf-3ic" id="olZ-II-dMA"/>
                         <outlet property="loginimage" destination="sQD-z7-7dZ" id="1EN-H5-OgD"/>
@@ -536,7 +540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSb-5t-NeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2574.8091603053435" y="-299.29577464788736"/>
+            <point key="canvasLocation" x="3501.5267175572517" y="-299.29577464788736"/>
         </scene>
         <!--Sign Up Screen View Controller-->
         <scene sceneID="VcU-sS-oWj">
@@ -680,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QX-UK-EjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4339.6946564885493" y="-299.29577464788736"/>
+            <point key="canvasLocation" x="5266.4122137404574" y="-299.29577464788736"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MK8-R3-aBm">
@@ -724,7 +728,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajm-Vd-4Ly" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3414.5038167938928" y="-299.29577464788736"/>
+            <point key="canvasLocation" x="4341.221374045801" y="-299.29577464788736"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fxF-FY-Ivu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xCK-pt-1j1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C3g-pU-YYn">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="b2N-4J-80P" kind="relationship" relationship="rootViewController" id="Ph1-2O-vFS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V8p-kv-7c5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2574.8091603053435" y="-299.29577464788736"/>
         </scene>
     </scenes>
     <resources>

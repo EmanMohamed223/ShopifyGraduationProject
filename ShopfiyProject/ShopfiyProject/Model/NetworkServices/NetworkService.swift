@@ -79,29 +79,68 @@ class NetworkService : Service {
         let decodedjson = try? jsonDecoder.decode(T.self, from: data)
        return decodedjson
     }
+
+
+    
+//    func postMethod(shopingCard :ShoppingCart) {
+//        let params: Parameters =
 //
-//    func getuUsers( complition: @escaping ([Customer]?, Error?)->Void) {
-//        let urlStr = ""
-//        guard let url = URL(string: urlStr) else { return }
+//        AF.request("https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate(statusCode: 200 ..< 299).responseData { response in
+//            switch response.result {
+//                case .success(let data):
+//                    do {
+//                        guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+//                            print("Error: Cannot convert data to JSON object")
+//                            return
+//                        }
+//                        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+//                            print("Error: Cannot convert JSON object to Pretty JSON data")
+//                            return
+//                        }
+//                        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+//                            print("Error: Could print JSON in String")
+//                            return
+//                        }
 //
-//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { response in
-//            if let error = response.error {
-//                complition(nil, error)
+//                        print(prettyPrintedJson)
+//                    } catch {
+//                        print("Error: Trying to convert JSON data to string")
+//                        return
+//                    }
+//                case .failure(let error):
+//                    print(error)
 //            }
-//            
-//            guard let urlResponse = response.response else {return}
-//            if !(200..<300).contains(urlResponse.statusCode) {
-//                print("error in status code")
-//            }
-//            
-//            guard let data = response.data else { return }
-//
-//    
-//
-//            let decodedJson: CustomerResponse = convertFromJson(data: data) ?? CustomerResponse(customers: [Customer]())
-//            complition(decodedJson.customers, nil)
-//            print("customer retreived")
 //        }
 //    }
-
+    
+    
+    func addToDraftOrder(newDraft: ShoppingCart, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json"
+        guard let url = URL(string: urlStr) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpShouldHandleCookies = false
+        
+        //        do {
+        //            request.httpBody = try JSONSerialization.data(withJSONObject: newCustomer, options: .prettyPrinted)
+        //            // print(try! newCustomer)
+        //        } catch let error {
+        //            print(error.localizedDescription)
+        //        }
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: newDraft.asDictionary(), options: .prettyPrinted)
+            print(try! newDraft.asDictionary())
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+    
 }

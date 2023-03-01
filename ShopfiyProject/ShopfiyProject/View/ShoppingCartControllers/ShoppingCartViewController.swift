@@ -29,7 +29,7 @@ class ShoppingCartViewController: UIViewController {
     
     func renderDraftOrders(shoppingCart : ShoppingCart?){
         guard let shoppingCart = shoppingCart else { return}
-        self.draftOrders = shoppingCart.line_items
+      //  self.draftOrders = shoppingCart.line_items
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

@@ -18,7 +18,7 @@ class ShoppingCartViewModel{
     
     var shoppingCartResponse : ShoppingCartResponse! {
         didSet{
-            self.shoppingCart = shoppingCartResponse.shoppingCart
+            self.shoppingCart = shoppingCartResponse.draft_order
         }
     }
 
