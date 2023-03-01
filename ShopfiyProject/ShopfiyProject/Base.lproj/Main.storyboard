@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -457,7 +458,9 @@
         <scene sceneID="3Qx-LH-tv8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pGF-Qn-Z9m" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="MRd-B6-Y18"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="MRd-B6-Y18">
+                        <imageReference key="image" image="homekit" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OQk-6c-Qcv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

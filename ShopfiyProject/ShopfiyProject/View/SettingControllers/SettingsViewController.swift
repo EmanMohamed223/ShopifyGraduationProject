@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func logoutBtn(_ sender: Any) {
-//        UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
+      UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
 //        print ("logout")
     }
     
