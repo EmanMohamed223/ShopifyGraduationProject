@@ -8,24 +8,25 @@
 import Foundation
 
 
-class ShoppingCartResponse : Codable{
-    var draft_order : ShoppingCart?
+struct ShoppingCartResponse : Codable{
+    var draft_orders : [ShoppingCart]?
 }
 
-class ShoppingCart : Codable {
+struct ShoppingCart : Codable {
     
     var id : Int?
-    var note : String?
+    var name : String?
     var email : String?
-    var taxes_included : Bool
+    var line_items : [LineItem]?
+ //   var taxes_included : Bool
     var currency : String?
     var invoice_sent_at : String?
     var created_at : String?
     var updated_at : String?
     var tax_exempt : Bool?
     var completed_at : String?
-    var name : String?
+    var note : String?
     var status : String?
-    var line_items : [Products]?
+    //var line_items : [Products]?
 }
 

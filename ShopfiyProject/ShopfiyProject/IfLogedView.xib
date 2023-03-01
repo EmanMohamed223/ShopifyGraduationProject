@@ -149,7 +149,7 @@
                             <rect key="frame" x="243" y="144" width="129" height="81"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shoes" translatesAutoresizingMaskIntoConstraints="NO" id="UEX-PL-od5">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt" translatesAutoresizingMaskIntoConstraints="NO" id="UEX-PL-od5">
                             <rect key="frame" x="30" y="144" width="116" height="84"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -160,7 +160,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title=""/>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bag" translatesAutoresizingMaskIntoConstraints="NO" id="xch-va-oBg">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt" translatesAutoresizingMaskIntoConstraints="NO" id="xch-va-oBg">
                             <rect key="frame" x="30" y="8" width="124" height="96"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -236,15 +236,14 @@
                 <outlet property="productname2" destination="YvY-6s-QpZ" id="43w-Yg-nq8"/>
                 <outlet property="productname3" destination="jFM-Gd-n9H" id="OAx-ND-ICP"/>
                 <outlet property="productname4" destination="8iv-5D-pzK" id="bqK-Ol-C0g"/>
+                <outlet property="welcomMsg" destination="LPt-tg-D60" id="qGw-Mq-fe1"/>
             </connections>
             <point key="canvasLocation" x="283.96946564885496" y="28.169014084507044"/>
         </view>
     </objects>
     <resources>
-        <image name="bag" width="212" height="237"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="shirt" width="227" height="223"/>
-        <image name="shoes" width="274" height="184"/>
     </resources>
 </document>

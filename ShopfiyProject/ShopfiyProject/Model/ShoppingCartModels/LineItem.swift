@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LineItem : Decodable{
+class LineItem : Codable{
     
     var id : Int?
     var variant_id : Int?
@@ -15,7 +15,7 @@ class LineItem : Decodable{
     var title : String?
     var variant_title : String?
     var sku : String?
-    var vendor : String?
+    var vendor : String? //img
     var quantity : Int?
     var requires_shipping : Bool?
     var taxable : Bool?

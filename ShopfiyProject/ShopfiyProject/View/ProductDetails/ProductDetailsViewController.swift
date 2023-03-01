@@ -31,13 +31,16 @@ class ProductDetailsViewController: UIViewController {
     var currentCellIndex = 0
     var select: Int = 0
     var viewModel : ShoppingCartViewModel?
-    var LineItemToBe : [Products]?
+    var LineItemToBe : [LineItem]?
+    var LineItemObj : LineItem?
     var shopingCardObj : ShoppingCart?
+    var shopingCardResponse : ShoppingCartResponse?
     var drafOrderViewModel : DraftOrderViewModel?
+    var shopingCardResponseResult : ShoppingCartResponse?
     override func viewDidLoad() {
         super.viewDidLoad()
         drafOrderViewModel = DraftOrderViewModel()
-     
+       
         descriptionTextView.text = product?.body_html
         LineItemToBe = []
      //   productimgs = ["shirt" , "shoes" , "bag"]
@@ -58,7 +61,7 @@ class ProductDetailsViewController: UIViewController {
         reviewtable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewtablecell")
         
         
-       // modelling()
+       modelling()
         
         
         
@@ -115,38 +118,44 @@ class ProductDetailsViewController: UIViewController {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
+        if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
+            LineItemObj = LineItem()
+            LineItemObj?.name = self.product?.title
+            LineItemObj?.price = self.product?.variants![0].price
+            LineItemObj?.vendor = self.product?.images[0].src
+            LineItemToBe?.append(LineItemObj!)
+            shopingCardObj = ShoppingCart(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
+            var shopingcardarray : [ShoppingCart] = []
+            shopingcardarray.append(shopingCardObj!)
+            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
+                    drafOrderViewModel?.createNewDraft(newDraftOrder: shopingCardResponse!) { data, response, error in
+            
+                        guard error == nil else {
+                             DispatchQueue.main.async {
+                                 self.showAlertError(title: "Couldnot add this product", message: "Please, try again later.")
+                             }
+                             return
+                         }
+            
+                         guard response?.statusCode != 422 else {
+                             DispatchQueue.main.async {
+                                 self.showAlertError(title: "Couldnot add", message: "Please, try another time.")
+                             }
+                             return
+                         }
+            
+                         print("added successfully")
+            
+            
+                     }
+            
+        }
         
-        //        shopingCardObj?.id = UserDefaultsManager.shared.getUserID()!
-        //        shopingCardObj?.name = UserDefaultsManager.shared.getUserName()!
-        //        shopingCardObj?.email = UserDefaultsManager.shared.getUserEmail()!
-        //
-        //
-        //       // shopingCardObj?.line_items?.append(product!)
-        //        drafOrderViewModel?.createNewDraft(newDraftOrder: shopingCardObj!) { data, response, error in
-        //
-        //            guard error == nil else {
-        //                 DispatchQueue.main.async {
-        //                     self.showAlertError(title: "Couldnot add this product", message: "Please, try again later.")
-        //                 }
-        //                 return
-        //             }
-        //
-        //             guard response?.statusCode != 422 else {
-        //                 DispatchQueue.main.async {
-        //                     self.showAlertError(title: "Couldnot add", message: "Please, try another time.")
-        //                 }
-        //                 return
-        //             }
-        //
-        //             print("added successfully")
-        //
-        //
-        //         }
-        //     //   LineItemtobe?.append(self.product!)
-        //    //    print (LineItemtobe?.count ?? 20)
-        //
-        //
-        //    }
+             
+        
+            
+        
+            
     }
 }
 extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
@@ -217,20 +226,20 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     
 }
 extension ProductDetailsViewController {
-//    func modelling(){
-//        viewModel = ShoppingCartViewModel()
-//        viewModel?.getDraftOrder(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json")
-//        viewModel?.bindResultToViewController = { () in
-//
-//            self.renderView()
-//        }
-//    }
-//    func renderView(){
-//
-//            self.shopingCardObj = self.viewModel?.shoppingCartResponse
-////       self.LineItemtobe = (self.shopingCardArray?.shoppingCart?.line_items)!
-// //     print (LineItemtobe!.count)
-//
-//
-//    }
+    func modelling(){
+        viewModel = ShoppingCartViewModel()
+        viewModel?.getDraftOrder(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json")
+        viewModel?.bindResultToViewController = { () in
+
+            self.renderView()
+        }
+    }
+    func renderView(){
+
+            self.shopingCardResponseResult = self.viewModel?.shoppingCartResponse
+//       self.LineItemtobe = (self.shopingCardArray?.shoppingCart?.line_items)!
+ //     print (LineItemtobe!.count)
+
+
+    }
 }

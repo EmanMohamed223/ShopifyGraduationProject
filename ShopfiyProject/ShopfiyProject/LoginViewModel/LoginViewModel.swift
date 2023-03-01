@@ -34,12 +34,6 @@ class LoginViewModel {
             
             self.renderView()
         }
-//        networkservice.getuUsers(){ customers, error in
-//            guard error == nil else {return}
-//            guard let customers = customers else {return}
-//
-//        }
-        
         var currentCustomer: Customer?
         
         

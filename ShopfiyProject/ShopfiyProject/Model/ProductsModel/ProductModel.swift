@@ -29,7 +29,7 @@ class variant :Codable {
 }
 
 
-class Image : Decodable{
+class Image : Codable {
 
     var src : String?
 
