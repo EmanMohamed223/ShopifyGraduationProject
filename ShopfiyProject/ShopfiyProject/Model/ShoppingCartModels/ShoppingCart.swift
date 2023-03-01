@@ -8,11 +8,11 @@
 import Foundation
 
 
-class ShoppingCartResponse : Decodable{
-    var shoppingCart : ShoppingCart?
+class ShoppingCartResponse : Codable{
+    var draft_order : ShoppingCart?
 }
 
-class ShoppingCart : Decodable{
+class ShoppingCart : Codable {
     
     var id : Int?
     var note : String?
@@ -26,5 +26,6 @@ class ShoppingCart : Decodable{
     var completed_at : String?
     var name : String?
     var status : String?
-    var line_items : [LineItem]?
+    var line_items : [Products]?
 }
+

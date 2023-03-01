@@ -30,10 +30,16 @@ class ProductDetailsViewController: UIViewController {
     var timer : Timer?
     var currentCellIndex = 0
     var select: Int = 0
+    var viewModel : ShoppingCartViewModel?
+    var LineItemToBe : [Products]?
+    var shopingCardObj : ShoppingCart?
+    var drafOrderViewModel : DraftOrderViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        drafOrderViewModel = DraftOrderViewModel()
+     
         descriptionTextView.text = product?.body_html
-
+        LineItemToBe = []
      //   productimgs = ["shirt" , "shoes" , "bag"]
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         reviwerImg = ["11","22","33"]
@@ -51,7 +57,14 @@ class ProductDetailsViewController: UIViewController {
         productTable.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "productcell")
         reviewtable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewtablecell")
         
+        
+       // modelling()
+        
+        
+        
     }
+    
+    
     @objc func slideToNext()
     {
         if currentCellIndex < (product?.images.count)! - 1
@@ -69,6 +82,10 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func lovebtm(_ sender: UIButton) {
+        if !UserDefaultsManager.shared.getUserStatus() {
+            self.showAlertError(title: "Alert", message: "You must login")
+            return
+        }
         if(select == 0){
         loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             select += 1
@@ -94,8 +111,43 @@ class ProductDetailsViewController: UIViewController {
     
   
     @IBAction func addToBagbtm(_ sender: UIButton) {
+        if !UserDefaultsManager.shared.getUserStatus() {
+            self.showAlertError(title: "Alert", message: "You must login")
+            return
+        }
+        
+        //        shopingCardObj?.id = UserDefaultsManager.shared.getUserID()!
+        //        shopingCardObj?.name = UserDefaultsManager.shared.getUserName()!
+        //        shopingCardObj?.email = UserDefaultsManager.shared.getUserEmail()!
+        //
+        //
+        //       // shopingCardObj?.line_items?.append(product!)
+        //        drafOrderViewModel?.createNewDraft(newDraftOrder: shopingCardObj!) { data, response, error in
+        //
+        //            guard error == nil else {
+        //                 DispatchQueue.main.async {
+        //                     self.showAlertError(title: "Couldnot add this product", message: "Please, try again later.")
+        //                 }
+        //                 return
+        //             }
+        //
+        //             guard response?.statusCode != 422 else {
+        //                 DispatchQueue.main.async {
+        //                     self.showAlertError(title: "Couldnot add", message: "Please, try another time.")
+        //                 }
+        //                 return
+        //             }
+        //
+        //             print("added successfully")
+        //
+        //
+        //         }
+        //     //   LineItemtobe?.append(self.product!)
+        //    //    print (LineItemtobe?.count ?? 20)
+        //
+        //
+        //    }
     }
-    
 }
 extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
 {
@@ -163,4 +215,22 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         return UIScreen.main.bounds.size.height/5-70
     }
     
+}
+extension ProductDetailsViewController {
+//    func modelling(){
+//        viewModel = ShoppingCartViewModel()
+//        viewModel?.getDraftOrder(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json")
+//        viewModel?.bindResultToViewController = { () in
+//
+//            self.renderView()
+//        }
+//    }
+//    func renderView(){
+//
+//            self.shopingCardObj = self.viewModel?.shoppingCartResponse
+////       self.LineItemtobe = (self.shopingCardArray?.shoppingCart?.line_items)!
+// //     print (LineItemtobe!.count)
+//
+//
+//    }
 }

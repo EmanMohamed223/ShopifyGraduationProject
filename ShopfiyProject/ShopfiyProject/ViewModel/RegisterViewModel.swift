@@ -83,7 +83,7 @@ class RegisterViewModel {
         UserDefaultsManager.shared.setUserID(customerID: customerID)
         UserDefaultsManager.shared.setUserName(userName: customerFirstName)
         UserDefaultsManager.shared.setUserEmail(userEmail: customerEmail)
-        UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
+        UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
     }
     
 }

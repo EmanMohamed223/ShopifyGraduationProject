@@ -52,6 +52,8 @@ class LoginScreenViewController: UIViewController {
             if customerLogged != nil {
                 UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
                 print("customer logged in successfully")
+                var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+                self.navigationController?.pushViewController(me, animated: true)
                 //Navigation
                 //with second view
             }else{
