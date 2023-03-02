@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
   
     var flagCatgory : Int = 0
     var priceFilter : Int = 0
-    var brandProducts : ResponseProducts?
+    var brandProducts : [Products]?
     var BrandDetailsURL : String?
     var brandName : String?
     var brandID : Int?
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
     }
    
     @IBAction func selectBestSelling(_ sender: Any) {
-        if( productPriceArray!.count >= 1 || (brandProducts?.products.count)! >= 1 ){
+        if( productPriceArray!.count >= 1 || (brandProducts?.count)! >= 1 ){
             subView.isHidden = true
         //    productPriceArray = brandProducts?.products
             self.brandDetailsCollectionView.reloadData()
@@ -48,7 +48,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func selectPrice(_ sender: Any) {
-        if(productPriceArray!.count >= 1 || (brandProducts?.products.count)! >= 1){
+        if(productPriceArray!.count >= 1 || (brandProducts?.count)! >= 1){
        
             subView.isHidden = false
     
@@ -57,7 +57,7 @@ class SearchViewController: UIViewController {
         }
     @IBAction func slider(_ sender: UISlider) {
       
-        productPriceArray = brandProducts!.products.filter({ Products in
+        productPriceArray = brandProducts!.filter({ Products in
             Double( Products.variants?[0].price ?? "0")! < Double(sender.value)
           
         })
@@ -128,8 +128,8 @@ extension SearchViewController {
                 self.renderView()
             }
           
-       case 2 : // coming from category
-           brandProducts?.products =  productPriceArray ?? []
+      case 2 : // coming from category
+          brandProducts =  productPriceArray ?? []
         
         default:
             break
@@ -138,9 +138,9 @@ extension SearchViewController {
     }
     func renderView(){
         DispatchQueue.main.async {
-            self.brandProducts = self.viewModel?.resultProducts
+            self.brandProducts = self.viewModel?.resultProducts.products
       
-            self.productPriceArray = self.brandProducts?.products
+            self.productPriceArray = self.brandProducts
             self.brandDetailsCollectionView.reloadData()
         }
     }

@@ -73,7 +73,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(collectionView == brandCollectionView){
-            return   CGSize(width: (collectionView.frame.size.width/2)-12 , height: (collectionView.frame.size.height/2)-20 )
+            return   CGSize(width: (collectionView.frame.size.width/2)-32 , height: (collectionView.frame.size.height/2)-30 )
             
         }
         
@@ -85,8 +85,7 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
         if(collectionView == brandCollectionView){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brand", for: indexPath) as! BrandCollectionViewCell
             cell.layer.cornerRadius = CGFloat(20)
-            
-            cell.brandTitle.text = brandArray?.smart_collections[indexPath.row].title
+       
             cell.brandImage.kf.setImage(with: URL(string: brandArray?.smart_collections[indexPath.row].image.src ?? ""), placeholder: UIImage(named: "none.png"))
             return cell
         }
