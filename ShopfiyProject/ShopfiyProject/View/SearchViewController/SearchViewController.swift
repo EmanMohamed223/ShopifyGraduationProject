@@ -40,7 +40,7 @@ class SearchViewController: UIViewController {
     @IBAction func selectBestSelling(_ sender: Any) {
         if( productPriceArray!.count >= 1 || (brandProducts?.count)! >= 1 ){
             subView.isHidden = true
-        //    productPriceArray = brandProducts?.products
+            productPriceArray = brandProducts
             self.brandDetailsCollectionView.reloadData()
             
         }
@@ -76,7 +76,7 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
         return productPriceArray?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+       
         return   CGSize(width: (collectionView.frame.size.width/2)-22 , height: (collectionView.frame.size.height/3)-20 )
         
     }
@@ -99,13 +99,18 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
 extension SearchViewController : UISearchBarDelegate{
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        productPriceArray = productPriceArray!.filter({ Products in
-            Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
-            Products.title.uppercased().contains(searchText.uppercased())
-        })
-
+        if searchText.isEmpty {
+            productPriceArray = brandProducts
+        }
+        else{
+            productPriceArray = productPriceArray!.filter({ Products in
+                Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
+                Products.title.uppercased().contains(searchText.uppercased())
+         
+             
+            })
         
+        }
         self.brandDetailsCollectionView.reloadData()
     }
 }
