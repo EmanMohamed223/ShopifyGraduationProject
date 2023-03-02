@@ -442,7 +442,7 @@
                                 <rect key="frame" x="17.666666666666657" y="105" width="357.66666666666674" height="368"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbM-Ye-jf0">
-                                        <rect key="frame" x="18" y="0.0" width="321.66666666666669" height="165.66666666666666"/>
+                                        <rect key="frame" x="18" y="0.0" width="321.66666666666674" height="165.66666666666666"/>
                                         <string key="text">This Project is our graduation project,  it's a shopping app where you can find any brand you want and any category like man, women, kids ,etc..</string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -519,7 +519,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0N8-5p-0Qx">
                                 <rect key="frame" x="19.666666666666657" y="136.99999999999997" width="353.66666666666674" height="383.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.9799010158" green="0.93584263320000005" blue="0.85655504469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="172" id="rux-Sb-uEV" customClass="AddressTableViewCell" customModule="ShopfiyProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="353.66666666666674" height="172"/>
@@ -593,6 +593,17 @@
                                                 <constraint firstItem="dWx-2N-fFC" firstAttribute="leading" secondItem="eGb-Du-RrL" secondAttribute="trailing" constant="14" id="vvn-J0-woI"/>
                                                 <constraint firstItem="dWx-2N-fFC" firstAttribute="height" secondItem="Mtd-DR-ttP" secondAttribute="height" multiplier="0.933333" id="x7B-Zf-C6e"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.86892789599999998" green="0.71279925109999998" blue="0.66425716879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="7yy-Eo-RNP"/>
@@ -684,17 +695,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vwf-1c-tGj">
-                                        <rect key="frame" x="126.99999999999999" y="20" width="214.33333333333331" height="34"/>
+                                        <rect key="frame" x="126.99999999999999" y="20" width="214.33333333333326" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l3p-bC-DPk">
-                                        <rect key="frame" x="126.99999999999999" y="67.333333333333258" width="214.33333333333331" height="34.333333333333343"/>
+                                        <rect key="frame" x="126.99999999999999" y="67.333333333333258" width="214.33333333333326" height="34.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tDW-i0-hMu">
-                                        <rect key="frame" x="126.99999999999999" y="114.66666666666661" width="214.33333333333331" height="34.333333333333329"/>
+                                        <rect key="frame" x="126.99999999999999" y="114.66666666666661" width="214.33333333333326" height="34.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -794,7 +805,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3162.5954198473282" y="706.33802816901414"/>
+            <point key="canvasLocation" x="2430" y="712"/>
         </scene>
         <!--Shopping Cart-->
         <scene sceneID="7r5-US-Hgc">
@@ -975,7 +986,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-fA-u6A">
-                                        <rect key="frame" x="72.333333333333329" y="60.666666666666629" width="216.33333333333337" height="59.333333333333343"/>
+                                        <rect key="frame" x="72.333333333333329" y="60.666666666666629" width="216.33333333333343" height="59.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="PROCEED TO CHECKOUT" cornerStyle="capsule">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
