@@ -15,8 +15,11 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     @IBOutlet weak var countryTxtField: UITextField!
     @IBOutlet weak var cityTxtField: UITextField!
     @IBOutlet weak var streetTxtField: UITextField!
+    
     var mapViewModel : MapViewModel!
     var location : CLLocation?
+    var addressDelegate : AddressDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +40,13 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         }
     }
     
-  
+    func renderInTextFields(country : String?, city : String?, street : String?){
+        DispatchQueue.main.async{
+            self.countryTxtField.text = country
+            self.cityTxtField.text = city
+            self.streetTxtField.text = street
+        }
+    }
     
     @IBAction func tabRecognizer(_ sender: UITapGestureRecognizer) {
         let touchPoint : CGPoint = sender.location(in: mapView)
@@ -47,20 +56,24 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     }
     
     @IBAction func saveBtn(_ sender: Any) {
+        let country = countryTxtField.text
+        let city = cityTxtField.text
+        let street = streetTxtField.text
+        let address = AddressModel(country: country, city: city, street: street)
+        self.addressDelegate?.getAddress(address: address)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func addMapPin(with location: CLLocation){
         let pin = MKPointAnnotation()
         pin.coordinate = location.coordinate
         zoomToUserLocation(location : location)
-        //self.mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 2.5, longitudeDelta: 2.5)), animated: true)
         self.mapView.removeAnnotations(mapView.annotations)
         self.mapView.addAnnotation(pin)
         
-        LocationManager.shared.getLocationName(with: location) { country, city, street in
-            self.countryTxtField.text = country
-            self.cityTxtField.text = city
-            self.streetTxtField.text = street
+        mapViewModel.callLocationManagerToGetLocationName(location: location)
+        mapViewModel.bindResultToTableViewController = {
+            self.renderInTextFields(country: self.mapViewModel.country, city: self.mapViewModel.city, street: self.mapViewModel.street)
         }
         
     }
@@ -72,3 +85,5 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     }
 
 }
+
+

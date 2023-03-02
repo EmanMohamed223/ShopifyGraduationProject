@@ -30,7 +30,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate, MKMapViewDelegate{
             //the state or city associated with the placemark
             guard let locality = place.administrativeArea else{ return }
             let city = locality
-            guard let locality = place.subThoroughfare else{ return }
+            guard let locality = place.name else{ return }
             let street = locality
             completion(country,city,street)
         }

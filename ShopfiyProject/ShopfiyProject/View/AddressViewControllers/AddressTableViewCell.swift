@@ -11,11 +11,14 @@ class AddressTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
     
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    @IBOutlet weak var streetLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,3 +28,4 @@ class AddressTableViewCell: UITableViewCell {
     }
 
 }
+
