@@ -77,6 +77,7 @@
 		C97013C729B021B200C9BE15 /* AddressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97013C629B021B200C9BE15 /* AddressDelegate.swift */; };
 		C97013CC29B0287A00C9BE15 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97013CB29B0287A00C9BE15 /* PaymentService.swift */; };
 		C97013CF29B0299200C9BE15 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97013CE29B0299200C9BE15 /* PaymentViewModel.swift */; };
+		C97013D129B0541900C9BE15 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97013D029B0541900C9BE15 /* AddressModel.swift */; };
 		C97397E429AAB9C200051F6F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97397E329AAB9C200051F6F /* MapViewModel.swift */; };
 		C98BDB2229A5679500E83716 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2129A5679500E83716 /* PaymentViewController.swift */; };
 		C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2429A56C5100E83716 /* UIExtension.swift */; };
@@ -195,6 +196,7 @@
 		C97013C629B021B200C9BE15 /* AddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDelegate.swift; sourceTree = "<group>"; };
 		C97013CB29B0287A00C9BE15 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		C97013CE29B0299200C9BE15 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		C97013D029B0541900C9BE15 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		C97397E329AAB9C200051F6F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		C98BDB2129A5679500E83716 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C98BDB2429A56C5100E83716 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
@@ -563,6 +565,14 @@
 			path = PaymentViewModel;
 			sourceTree = "<group>";
 		};
+		C97013D229B0542700C9BE15 /* AddressModel */ = {
+			isa = PBXGroup;
+			children = (
+				C97013D029B0541900C9BE15 /* AddressModel.swift */,
+			);
+			path = AddressModel;
+			sourceTree = "<group>";
+		};
 		C97397E229AAB9A200051F6F /* CoreDataViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +660,7 @@
 		C99ED6C629A7B8A30097C53E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C97013D229B0542700C9BE15 /* AddressModel */,
 				C97013C829B0257700C9BE15 /* PaymentService */,
 				C90A4BC229AD175800BD0EF2 /* PriceRuleModel */,
 				0334917129ABF7E300B1D7C5 /* UserDefaultForUser */,
@@ -1031,6 +1042,7 @@
 				C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */,
 				C94B306029A9299A00777CAA /* Ads.swift in Sources */,
 				C9A13E4F29ABF15B008C3F30 /* PaymentOperationViewController.swift in Sources */,
+				C97013D129B0541900C9BE15 /* AddressModel.swift in Sources */,
 				C99ED6C829A7B8B40097C53E /* ShoppingCart.swift in Sources */,
 				8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */,
 				03714DAF29A4B6A4000A0528 /* MoreOrdersViewController.swift in Sources */,

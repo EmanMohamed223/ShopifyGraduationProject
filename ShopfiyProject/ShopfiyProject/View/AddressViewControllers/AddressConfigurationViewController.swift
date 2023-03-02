@@ -18,6 +18,8 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     
     var mapViewModel : MapViewModel!
     var location : CLLocation?
+    var addressDelegate : AddressDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +56,12 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     }
     
     @IBAction func saveBtn(_ sender: Any) {
-        
+        let country = countryTxtField.text
+        let city = cityTxtField.text
+        let street = streetTxtField.text
+        let address = AddressModel(country: country, city: city, street: street)
+        self.addressDelegate?.getAddress(address: address)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func addMapPin(with location: CLLocation){
@@ -78,3 +85,5 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     }
 
 }
+
+

@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol AddressDelegate{
-//    func returnAddress() -> (CLLocation)?
+    func getAddress(address : AddressModel?)
 }
