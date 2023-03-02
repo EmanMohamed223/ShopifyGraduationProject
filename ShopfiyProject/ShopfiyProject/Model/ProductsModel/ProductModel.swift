@@ -24,6 +24,7 @@ class Products : Decodable{
 class variant :Decodable{
     var option2 :String?
     var price : String?
+    var option1 : String?
 
 
 }

@@ -43,8 +43,8 @@ class NetworkService : Service {
     
     //eman
     func register(newCustomer: User, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/customers.json"
-        guard let url = URL(string: urlStr) else { return }
+        let urlStr =  getURL(endPoint: "customers.json")
+        guard let url = URL(string: urlStr!) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpShouldHandleCookies = false
