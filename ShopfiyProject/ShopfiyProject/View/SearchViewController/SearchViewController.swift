@@ -99,12 +99,12 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
 extension SearchViewController : UISearchBarDelegate{
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        productPriceArray = productPriceArray!.filter({ Products in
-            Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
-            Products.title.uppercased().contains(searchText.uppercased())
-        })
-
+        
+            productPriceArray = productPriceArray!.filter({ Products in
+                Products.title.uppercased().hasPrefix(searchText.uppercased()) ||
+                Products.title.uppercased().contains(searchText.uppercased())
+            })
+            
         
         self.brandDetailsCollectionView.reloadData()
     }
