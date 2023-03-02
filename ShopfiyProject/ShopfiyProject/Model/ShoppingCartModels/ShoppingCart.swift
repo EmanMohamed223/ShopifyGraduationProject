@@ -9,10 +9,10 @@ import Foundation
 
 
 struct ShoppingCartResponse : Codable{
-    var draft_orders : [ShoppingCart]?
+    var draft_orders : [ShoppingCartClass]?
 }
 
-struct ShoppingCart : Codable {
+struct ShoppingCartClass : Codable {
     
     var id : Int?
     var name : String?

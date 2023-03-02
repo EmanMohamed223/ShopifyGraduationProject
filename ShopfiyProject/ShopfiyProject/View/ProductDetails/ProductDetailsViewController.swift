@@ -13,44 +13,55 @@ class ProductDetailsViewController: UIViewController {
     
     
     @IBOutlet weak var pagecontrolleroutlet: UIPageControl!
-    
-    
-    
     @IBOutlet weak var reviewtable: UITableView!
-    
     @IBOutlet weak var productimgCollection: UICollectionView!
     @IBOutlet weak var productTable: UITableView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var loveoutlet: UIButton!
+    
+    
+    
     var product : Products?
     var productimgs : [String]?
     var reviwerImg : [String]?
     var reviewrName : [String]?
     var reviewrcomment : [String]?
+    
+    
     var timer : Timer?
     var currentCellIndex = 0
     var select: Int = 0
     var viewModel : ShoppingCartViewModel?
     var LineItemToBe : [LineItem]?
     var LineItemObj : LineItem?
-    var shopingCardObj : ShoppingCart?
+    var shopingCardObj : ShoppingCartClass?
     var shopingCardResponse : ShoppingCartResponse?
     var drafOrderViewModel : DraftOrderViewModel?
     var shopingCardResponseResult : ShoppingCartResponse?
+    
+    
+    
+    
+    var productDetailsViewModel : ProductDetailsViewModel?
+    var isFavourite: Bool?
+
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        productDetailsViewModel = ProductDetailsViewModel()
+     
         drafOrderViewModel = DraftOrderViewModel()
        
         descriptionTextView.text = product?.body_html
         LineItemToBe = []
-     //   productimgs = ["shirt" , "shoes" , "bag"]
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         reviwerImg = ["11","22","33"]
         reviewrName = ["sandy","Lara","Youseeif"]
         reviewrcomment = ["it was nice","Not Bad ","it eas awesome"]
        
         pagecontrolleroutlet.numberOfPages = product?.images.count ?? 1
-//        pagecontrolleroutlet.currentPage = 0
         reviewtable.delegate = self
         reviewtable.dataSource = self
         productTable.delegate = self
@@ -64,7 +75,7 @@ class ProductDetailsViewController: UIViewController {
        modelling()
         
         
-        
+       
     }
     
     
@@ -83,20 +94,39 @@ class ProductDetailsViewController: UIViewController {
                                           , animated: true)
         pagecontrolleroutlet.currentPage = currentCellIndex
     }
-    
+    func checkIsFavourite() {
+        if isFavourite! {
+            loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
     @IBAction func lovebtm(_ sender: UIButton) {
         if !UserDefaultsManager.shared.getUserStatus() {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
-        if(select == 0){
-        loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            select += 1
-        }
-        else {
-            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-                select = 0
-        }
+//        if(select == 0){
+//        loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//            select += 1
+//        }
+//        else {
+//            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+//                select = 0
+//        }
+//        if isFavourite! {
+//            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+//            productDetailsViewModel!.removeProductFromFavourites(appDelegate: appDelegate, product: product!)
+//        } else {
+//            loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//            product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
+//            productDetailsViewModel!.addProductToFavourites(appDelegate: appDelegate, product: product!)
+//        }
+//        isFavourite = !isFavourite!
+        
+        
+        
+        
     }
     
     
@@ -124,7 +154,7 @@ class ProductDetailsViewController: UIViewController {
             LineItemObj?.price = self.product?.variants![0].price
             LineItemObj?.vendor = self.product?.images[0].src
             LineItemToBe?.append(LineItemObj!)
-            shopingCardObj = ShoppingCart(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
+            shopingCardObj = ShoppingCartClass(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
             let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
 //            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
                     drafOrderViewModel?.createNewDraft(newDraftOrder: draftOrder) { data, response, error in
