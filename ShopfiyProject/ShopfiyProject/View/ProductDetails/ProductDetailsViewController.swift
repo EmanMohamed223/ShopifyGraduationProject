@@ -204,7 +204,8 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
             let cell = productTable.dequeueReusableCell(withIdentifier: "productcell", for: indexPath) as! ProductTableViewCell
             cell.productNameLabel.text = product?.title
             cell.productPriceLabel.text = product!.variants![indexPath.row].price
-            cell.productSize.text = product!.variants?[indexPath.row].option2 ?? "white"
+            cell.productColor.text = product!.variants?[indexPath.row].option2 ?? "white"
+            cell.productSize.text = product!.variants?[indexPath.row].option1 ?? "XL"
             
             //cell.productSize
             return cell
