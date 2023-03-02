@@ -76,7 +76,9 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
         return productPriceArray?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       
+        
+         
+                  
         return   CGSize(width: (collectionView.frame.size.width/2)-22 , height: (collectionView.frame.size.height/3)-20 )
         
     }
