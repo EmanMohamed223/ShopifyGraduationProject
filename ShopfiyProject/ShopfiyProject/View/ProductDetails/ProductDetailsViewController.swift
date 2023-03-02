@@ -125,10 +125,9 @@ class ProductDetailsViewController: UIViewController {
             LineItemObj?.vendor = self.product?.images[0].src
             LineItemToBe?.append(LineItemObj!)
             shopingCardObj = ShoppingCart(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
-            var shopingcardarray : [ShoppingCart] = []
-            shopingcardarray.append(shopingCardObj!)
-            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
-                    drafOrderViewModel?.createNewDraft(newDraftOrder: shopingCardResponse!) { data, response, error in
+            let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
+//            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
+                    drafOrderViewModel?.createNewDraft(newDraftOrder: draftOrder) { data, response, error in
             
                         guard error == nil else {
                              DispatchQueue.main.async {

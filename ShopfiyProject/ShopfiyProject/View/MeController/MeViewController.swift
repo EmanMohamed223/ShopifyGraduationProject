@@ -68,14 +68,14 @@ class MeViewController: UIViewController ,Navigationdelegate {
     {
         if  UserDefaultsManager.shared.getUserStatus()
         {
-             var IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
+            let IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
              IfLogedView.delegate = self
             IfLogedView.welcomMsg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
             thisView.addSubview(IfLogedView)
         }
         else {
             cardBtm.isHidden = true
-            var ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
+            let ifNotLogin   = Bundle.main.loadNibNamed("View", owner: self, options: nil)?.first as! View
            ifNotLogin.delegate = self
           thisView.addSubview(ifNotLogin )
         }

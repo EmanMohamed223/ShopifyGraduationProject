@@ -14,7 +14,7 @@ class DraftOrderViewModel
     
     
     
-    func createNewDraft(newDraftOrder: ShoppingCartResponse, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
+    func createNewDraft(newDraftOrder: DraftOrder, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
         //obg mn l protocol
         networkservice.addToDraftOrder(newDraft: newDraftOrder) { data, response, error in
             guard error == nil else {
@@ -29,6 +29,7 @@ class DraftOrderViewModel
             
             let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
             _ = json["draft_order"] as? Dictionary<String,Any>
+           
            
             completion(data, response as? HTTPURLResponse, nil)
             

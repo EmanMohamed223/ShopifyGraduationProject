@@ -24,7 +24,7 @@ class CategoryViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Do any additional setup after loading the view.
       
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)

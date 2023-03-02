@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LineItem : Codable{
+struct LineItem : Codable{
     
     var id : Int?
     var variant_id : Int?
