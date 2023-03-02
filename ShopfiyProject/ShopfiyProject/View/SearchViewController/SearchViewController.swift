@@ -27,6 +27,7 @@ class SearchViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = brandName ?? ""
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")

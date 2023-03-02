@@ -15,7 +15,7 @@ class CustomerViewModel{
         }
     }
     
-    func getProducts(url : String?){
+    func getcustomers(url : String?){
         NetworkService.fetchData(url: url) { result in
             self.Users = result
             

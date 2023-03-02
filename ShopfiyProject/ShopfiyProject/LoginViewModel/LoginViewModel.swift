@@ -29,12 +29,12 @@ class LoginViewModel {
     
     func Login(email: String, password: String, completion: @escaping (Customer?)-> Void){
       
-        viewModel.getProducts(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/customers.json")
+        viewModel.getcustomers(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/customers.json")
         viewModel.bindResultToViewController = { () in
             
             self.renderView()
         }
-        var currentCustomer: Customer?
+        var currentCustomer : Customer?
         
         
         for customer in customers {

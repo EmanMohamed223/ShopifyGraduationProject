@@ -33,6 +33,7 @@
 		0371FCA829A427AF00608875 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FCA729A427AF00608875 /* MeViewController.swift */; };
 		0376FA9929AD447200294641 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0376FA9829AD447200294641 /* LoginViewModel.swift */; };
 		0376FA9B29AD4F7F00294641 /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */; };
+		0381B9F229AFE58C002E8EC4 /* DraftOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0381B9F129AFE58C002E8EC4 /* DraftOrders.swift */; };
 		03911B5B29A963B300CBD770 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03911B5A29A963B300CBD770 /* RegisterViewModel.swift */; };
 		399A3D447ED7B579A4984C4E /* Pods_ShopfiyProject_ShopfiyProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AAFA5FFC1CC1A66E5FA6B4 /* Pods_ShopfiyProject_ShopfiyProjectUITests.framework */; };
 		401590B656441CE7E5A02E3D /* Pods_ShopfiyProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEF4AC92D6A7FB92112DD47 /* Pods_ShopfiyProjectTests.framework */; };
@@ -149,6 +150,7 @@
 		0371FCA729A427AF00608875 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0376FA9829AD447200294641 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
+		0381B9F129AFE58C002E8EC4 /* DraftOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrders.swift; sourceTree = "<group>"; };
 		03911B5A29A963B300CBD770 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		560362561849D188CFC007D0 /* Pods-ShopfiyProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopfiyProject.release.xcconfig"; path = "Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject.release.xcconfig"; sourceTree = "<group>"; };
 		5A04F03DA4404878E1733F06 /* Pods-ShopfiyProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopfiyProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ShopfiyProjectTests/Pods-ShopfiyProjectTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 			children = (
 				C99ED6C929A7BDE90097C53E /* LineItem.swift */,
 				C99ED6C729A7B8B40097C53E /* ShoppingCart.swift */,
+				0381B9F129AFE58C002E8EC4 /* DraftOrders.swift */,
 			);
 			path = ShoppingCartModels;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 				C90A4BC529AD291600BD0EF2 /* HelperFunctions.swift in Sources */,
 				C94B306C29A9665000777CAA /* SaveToCoreProtocol.swift in Sources */,
 				8C93DFCE29A4137C002665D4 /* BrandCollectionViewCell.swift in Sources */,
+				0381B9F229AFE58C002E8EC4 /* DraftOrders.swift in Sources */,
 				C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */,
 				C94B306029A9299A00777CAA /* Ads.swift in Sources */,
 				C9A13E4F29ABF15B008C3F30 /* PaymentOperationViewController.swift in Sources */,
