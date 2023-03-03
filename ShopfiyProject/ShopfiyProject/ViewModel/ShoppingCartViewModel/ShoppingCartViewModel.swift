@@ -24,7 +24,7 @@ class ShoppingCartViewModel{
     }
 
     func getDraftOrder(url : String?){
-        NetworkService.fetchData(url: url) { result in
+        NetworkService.shared.fetchData(url: url) { result in
             self.shoppingCartResponse = result
      //       self.shoppingCartResponse = ShoppingCartResponse()
             

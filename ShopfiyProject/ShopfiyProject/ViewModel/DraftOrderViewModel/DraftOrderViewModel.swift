@@ -9,14 +9,10 @@ import Foundation
 
 class DraftOrderViewModel
 {
-    var networkservice = NetworkService()
-    
-    
-    
     
     func createNewDraft(newDraftOrder: DraftOrder, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
         //obg mn l protocol
-        networkservice.addToDraftOrder(newDraft: newDraftOrder) { data, response, error in
+        NetworkService.shared.addToDraftOrder(newDraft: newDraftOrder) { data, response, error in
             guard error == nil else {
                 completion(nil, nil, error)
                 return

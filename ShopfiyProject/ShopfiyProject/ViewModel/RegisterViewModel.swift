@@ -6,7 +6,7 @@
 //
 
 import Foundation
-var networkservice = NetworkService()
+
 class RegisterViewModel {
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -55,7 +55,7 @@ class RegisterViewModel {
     
     func createNewCustomer(newCustomer: User, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
         //obg mn l protocol
-        networkservice.register(newCustomer: newCustomer) { data, response, error in
+        NetworkService.shared.register(newCustomer: newCustomer) { data, response, error in
             guard error == nil else {
                 completion(nil, nil, error)
                 return

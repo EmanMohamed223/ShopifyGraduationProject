@@ -8,22 +8,22 @@
 import Foundation
 import Alamofire
 protocol Service{
-    static func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
     
-    
-    
-    
-    
-    //eman
+    func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
-    
+    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
     //func getCustomers(email: String, complition: @escaping ([Customer]?, Error?)->Void)
     
     
 }
 
 class NetworkService : Service {
-    static func fetchData<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T : Decodable {
+    
+    static let shared = NetworkService()
+    
+    private init(){}
+    
+    func fetchData<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T : Decodable {
         
         let request = AF.request(url ?? "")
         
@@ -37,7 +37,7 @@ class NetworkService : Service {
         }
     }
     
-    static func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         
         let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
         guard let url = URL(string: urlStr!) else { return }
@@ -96,9 +96,6 @@ class NetworkService : Service {
 //        }
     }
     
-    
-    
-    //eman
     func register(newCustomer: User, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         let urlStr =  getURL(endPoint: "customers.json")
         guard let url = URL(string: urlStr!) else { return }
@@ -159,7 +156,7 @@ class NetworkService : Service {
     
     
     func addToDraftOrder(newDraft: DraftOrder, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json"
+        let urlStr = getURL(endPoint: "draft_orders.json") ?? ""
         guard let url = URL(string: urlStr) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

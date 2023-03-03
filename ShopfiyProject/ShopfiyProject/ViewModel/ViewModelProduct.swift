@@ -17,7 +17,7 @@ class ViewModelProduct{
     }
     
     func getProducts(url : String?){
-        NetworkService.fetchData(url: url) { result in
+        NetworkService.shared.fetchData(url: url) { result in
             self.resultProducts = result
    
         }
@@ -29,7 +29,7 @@ class ViewModelProduct{
          }
      }
     func getBrands(url : String?){
-        NetworkService.fetchData(url: url) { result in
+        NetworkService.shared.fetchData(url: url) { result in
             self.resultBrands = result
         }
     }
