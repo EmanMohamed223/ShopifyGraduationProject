@@ -33,6 +33,9 @@
 		0371FCA829A427AF00608875 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371FCA729A427AF00608875 /* MeViewController.swift */; };
 		0376FA9929AD447200294641 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0376FA9829AD447200294641 /* LoginViewModel.swift */; };
 		0376FA9B29AD4F7F00294641 /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */; };
+		038173EF29B0EF5800A5E3D1 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038173EE29B0EF5800A5E3D1 /* ProductDetailsViewModel.swift */; };
+		038173F229B0F08F00A5E3D1 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038173F129B0F08F00A5E3D1 /* DatabaseProtocol.swift */; };
+		038173F429B0F0A600A5E3D1 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038173F329B0F0A600A5E3D1 /* DatabaseManager.swift */; };
 		0381B9F229AFE58C002E8EC4 /* DraftOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0381B9F129AFE58C002E8EC4 /* DraftOrders.swift */; };
 		03911B5B29A963B300CBD770 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03911B5A29A963B300CBD770 /* RegisterViewModel.swift */; };
 		399A3D447ED7B579A4984C4E /* Pods_ShopfiyProject_ShopfiyProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AAFA5FFC1CC1A66E5FA6B4 /* Pods_ShopfiyProject_ShopfiyProjectUITests.framework */; };
@@ -150,6 +153,9 @@
 		0371FCA729A427AF00608875 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0376FA9829AD447200294641 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
+		038173EE29B0EF5800A5E3D1 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		038173F129B0F08F00A5E3D1 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		038173F329B0F0A600A5E3D1 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		0381B9F129AFE58C002E8EC4 /* DraftOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrders.swift; sourceTree = "<group>"; };
 		03911B5A29A963B300CBD770 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		560362561849D188CFC007D0 /* Pods-ShopfiyProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopfiyProject.release.xcconfig"; path = "Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -351,6 +357,39 @@
 			path = LoginViewModel;
 			sourceTree = "<group>";
 		};
+		038173EB29B0EE6E00A5E3D1 /* RegisterViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03911B5A29A963B300CBD770 /* RegisterViewModel.swift */,
+			);
+			path = RegisterViewModel;
+			sourceTree = "<group>";
+		};
+		038173EC29B0EE9C00A5E3D1 /* CustomerViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */,
+			);
+			path = CustomerViewModel;
+			sourceTree = "<group>";
+		};
+		038173ED29B0EF2700A5E3D1 /* ProductDetailsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				038173EE29B0EF5800A5E3D1 /* ProductDetailsViewModel.swift */,
+			);
+			path = ProductDetailsViewModel;
+			sourceTree = "<group>";
+		};
+		038173F029B0F06300A5E3D1 /* DatabaseService */ = {
+			isa = PBXGroup;
+			children = (
+				038173F129B0F08F00A5E3D1 /* DatabaseProtocol.swift */,
+				038173F329B0F0A600A5E3D1 /* DatabaseManager.swift */,
+			);
+			path = DatabaseService;
+			sourceTree = "<group>";
+		};
 		03A3F62929AA952B002BD9B7 /* CustomerModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,7 +487,7 @@
 		8CE5EEEE29A3E9B000519879 /* ShopfiyProject */ = {
 			isa = PBXGroup;
 			children = (
-				0376FA9729AD43F400294641 /* LoginViewModel */,
+				038173F029B0F06300A5E3D1 /* DatabaseService */,
 				C94B306729A9654100777CAA /* ViewModel */,
 				8C86436F29A8267E006FC8F0 /* SplashScreen */,
 				C99ED6C629A7B8A30097C53E /* Model */,
@@ -529,16 +568,18 @@
 		C94B306729A9654100777CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				038173ED29B0EF2700A5E3D1 /* ProductDetailsViewModel */,
+				038173EC29B0EE9C00A5E3D1 /* CustomerViewModel */,
+				0376FA9729AD43F400294641 /* LoginViewModel */,
+				038173EB29B0EE6E00A5E3D1 /* RegisterViewModel */,
 				C97013CD29B0297000C9BE15 /* PaymentViewModel */,
 				0325664929AEC7E200D62063 /* DraftOrderViewModel */,
 				C999B86429AD84A400CF8927 /* ShoppingCartViewModel */,
 				C90A4BC829AD2D8A00BD0EF2 /* PriceRulesVIewModel */,
 				C97397E529AAB9D300051F6F /* MapViewModel */,
 				C97397E229AAB9A200051F6F /* CoreDataViewModel */,
-				03911B5A29A963B300CBD770 /* RegisterViewModel.swift */,
 				8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */,
 				8CBCF3BB29ABB5F600D708E6 /* SaveToCoreViewModel.swift */,
-				0376FA9A29AD4F7F00294641 /* CustomerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1061,8 +1102,10 @@
 				03714DAF29A4B6A4000A0528 /* MoreOrdersViewController.swift in Sources */,
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
 				0324771F29A6E04100DBAFC2 /* Navigationdelegate.swift in Sources */,
+				038173F429B0F0A600A5E3D1 /* DatabaseManager.swift in Sources */,
 				0371FCA429A40FE000608875 /* LoginScreenViewController.swift in Sources */,
 				C97013C729B021B200C9BE15 /* AddressDelegate.swift in Sources */,
+				038173F229B0F08F00A5E3D1 /* DatabaseProtocol.swift in Sources */,
 				0371FC9829A3F48B00608875 /* ProductDetailsViewController.swift in Sources */,
 				C90A4BCE29AD361C00BD0EF2 /* PriceRuleModel.swift in Sources */,
 				8C93DFD729A423E3002665D4 /* CategoryCollectionViewCell.swift in Sources */,
@@ -1083,6 +1126,7 @@
 				C9E85E8629A6B26800BAC6A3 /* AddressTableViewCell.swift in Sources */,
 				8C93DFCD29A4137C002665D4 /* TabBarViewController.swift in Sources */,
 				C94B307329A9691E00777CAA /* UserRelatedStruct.swift in Sources */,
+				038173EF29B0EF5800A5E3D1 /* ProductDetailsViewModel.swift in Sources */,
 				C90A4BCC29AD2DB600BD0EF2 /* PriceRuleViewModel.swift in Sources */,
 				8C93DFCF29A4137C002665D4 /* OffersCollectionViewCell.swift in Sources */,
 				8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */,

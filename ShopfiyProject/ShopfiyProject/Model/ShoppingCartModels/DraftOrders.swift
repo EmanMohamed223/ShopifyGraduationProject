@@ -7,5 +7,5 @@
 
 import Foundation
 struct DraftOrder : Codable {
-    let draft_orders : ShoppingCart
+    let draft_orders : ShoppingCartClass
 }
