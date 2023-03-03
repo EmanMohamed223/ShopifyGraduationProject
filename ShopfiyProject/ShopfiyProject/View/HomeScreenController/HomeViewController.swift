@@ -29,7 +29,13 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     var discountCodes : [DiscountCode]?
     
     override func viewDidLoad() {
+        
+        let customerAddress = Customer_address(country: "Egypt", city: "Nasr City", address1: "Makram Abeid")
+        let customerResponseModel = Customer_addressResponseModel(customer_address: customerAddress)
         super.viewDidLoad()
+        NetworkService.postAddress(customer_addressResponseModel: customerResponseModel, completion: { data, response, error in
+            print(response ?? "")
+        })
         
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")

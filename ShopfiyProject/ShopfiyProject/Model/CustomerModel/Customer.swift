@@ -29,6 +29,7 @@ struct Address: Codable {
     var phone : String?
    // var `default` : Bool?
 }
+
 extension Encodable {
   func asDictionary() throws -> [String: Any] {
     let data = try JSONEncoder().encode(self)

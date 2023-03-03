@@ -37,7 +37,64 @@ class NetworkService : Service {
         }
     }
     
-    
+    static func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+        
+        let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
+        guard let url = URL(string: urlStr!) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpShouldHandleCookies = false
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: customer_addressResponseModel.asDictionary(), options: .prettyPrinted)
+            print(try! customer_addressResponseModel.asDictionary())
+        } catch let error {
+            print(error.localizedDescription)
+        }        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+        
+//        let params: Parameters = [
+//            //"customer_address.customer_id" : UserDefaultsManager.shared.getUserID() ?? 0,
+//            "customer_address.customer_id" : customerId,
+//            "customer_address.address1" : address.street ?? " ",
+//            "customer_address.city" : address.city ?? " ",
+//            "customer_address.country" : address.country ?? " "
+//        ]
+//        let url = "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/customers/\(customerId)/addresses.json"
+//        AF.request(url,method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate(statusCode: 200 ..< 299).responseData { response in
+//
+//            switch response.result{
+//            case .success():
+//                do{
+////                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+////                            print("Error: Cannot convert data to JSON object")
+////                            return
+////                        }
+//                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: address.asDictionary(), options: .prettyPrinted) else {
+//                            print("Error: Cannot convert JSON object to Pretty JSON data")
+//                            return
+//                        }
+//                        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+//                            print("Error: Could print JSON in String")
+//                            return
+//                        }
+//
+//                        print(prettyPrintedJson)
+//                }
+//                catch {
+//                            print("Error: Trying to convert JSON data to string")
+//                            return
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//            }
+//        }
+    }
     
     
     
