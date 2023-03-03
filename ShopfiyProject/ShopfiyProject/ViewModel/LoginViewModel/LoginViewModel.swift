@@ -7,7 +7,6 @@
 
 import Foundation
 class LoginViewModel {
-    var networkservice = NetworkService()
     var customers : [Customer] = []
     var ResultArray : CustomerResponse?
    // var viewModel : CustomerViewModel?

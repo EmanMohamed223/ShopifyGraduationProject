@@ -33,7 +33,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         let customerAddress = Customer_address(country: "Egypt", city: "Nasr City", address1: "Makram Abeid")
         let customerResponseModel = Customer_addressResponseModel(customer_address: customerAddress)
         super.viewDidLoad()
-        NetworkService.postAddress(customer_addressResponseModel: customerResponseModel, completion: { data, response, error in
+        NetworkService.shared.postAddress(customer_addressResponseModel: customerResponseModel, completion: { data, response, error in
             print(response ?? "")
         })
         

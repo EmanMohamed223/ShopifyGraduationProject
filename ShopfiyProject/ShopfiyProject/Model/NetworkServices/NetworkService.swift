@@ -7,23 +7,21 @@
 
 import Foundation
 import Alamofire
+
+
 protocol Service{
-    static func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
-    
-    
-    
-    
-    
-    //eman
+    func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
-    
-    //func getCustomers(email: String, complition: @escaping ([Customer]?, Error?)->Void)
-    
+    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
     
 }
 
-class NetworkService : Service {
-    static func fetchData<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T : Decodable {
+class NetworkService : Service{
+    
+    static let shared = NetworkService()
+    private init(){}
+    
+    func fetchData<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T : Decodable {
         
         let request = AF.request(url ?? "")
         
@@ -37,7 +35,7 @@ class NetworkService : Service {
         }
     }
     
-    static func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         
         let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
         guard let url = URL(string: urlStr!) else { return }

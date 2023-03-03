@@ -19,7 +19,7 @@ class DiscountCodeViewModel{
     }
 
     func getPriceRules(url : String?){
-        NetworkService.fetchData(url: url) { result in
+        NetworkService.shared.fetchData(url: url) { result in
             self.discountCodeResponse = result
         }
     }
