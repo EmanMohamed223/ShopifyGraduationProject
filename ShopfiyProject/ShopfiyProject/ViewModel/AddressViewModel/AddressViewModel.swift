@@ -25,11 +25,11 @@ class AddressViewModel{
         }
     }
     
-    func callNetworkServiceManagerForPost(customerAddressModel : CustomerAddressModel){
+    func callNetworkServiceManagerToPost(customerAddressModel : CustomerAddressModel){
         NetworkServiceManager.shared.callNetworkServiceToPostAddress(customerAddressModel : customerAddressModel)
     }
     
-    func callNetworkServiceManagerTorGetAddresses(url : String?){
+    func callNetworkServiceManagerToGetAddresses(url : String?){
 //        NetworkServiceManager.shared.callNetworkServiceToGetAddress(url: url) { _ in
 //            self.resultModel = NetworkServiceManager.addresses
 //        }
@@ -37,4 +37,9 @@ class AddressViewModel{
             self.resultModel = result
         }
     }
+    
+    func callNetworkServiceManagerToPut(customerAddressModel : CustomerAddressModel){
+        NetworkServiceManager.shared.callNetworkServiceToPutAddress(customerAddressModel : customerAddressModel)
+    }
+    
 }
