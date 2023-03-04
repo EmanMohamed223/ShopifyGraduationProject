@@ -12,12 +12,20 @@ class AddressViewController: UIViewController {
         
     @IBOutlet weak var tableView: UITableView!
 
-    var addressArr : [AddressModel] = []
+    var addressArr = CustomerAddressGetModel()
+    let addressViewModel = AddressViewModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        let userId = UserDefaultsManager.shared.getUserID()
+        let url = getURL(endPoint: "customers/\(userId ?? 0)/addresses.json?limit=10")
+        addressViewModel.callNetworkServiceManagerTorGetAddresses(url: url)
+        addressViewModel.bindResultToViewController = {
+            self.renderAddresses(addresses: self.addressViewModel.resultModel)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
@@ -35,14 +43,14 @@ class AddressViewController: UIViewController {
 
 extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addressArr.count
+        return addressArr.addresses?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : AddressTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AddressTableViewCell
-        cell.countryLabel.text = addressArr[indexPath.row].country
-        cell.cityLabel.text = addressArr[indexPath.row].city
-        cell.streetLabel.text = addressArr[indexPath.row].street
+        cell.countryLabel.text = addressArr.addresses?[indexPath.row].country
+        cell.cityLabel.text = addressArr.addresses?[indexPath.row].city
+        cell.streetLabel.text = addressArr.addresses?[indexPath.row].address1
         return cell
     }
     
@@ -53,7 +61,7 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
-            self.addressArr.remove(at: indexPath.row)
+            self.addressArr.addresses?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             completionHandler(true)
       }
@@ -76,9 +84,16 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
 }
 
 extension AddressViewController : AddressDelegate{
-    func getAddress(address: AddressModel?) {
-        addressArr.append(address ?? AddressModel())
+    func getAddress(address: Customer_address?) {
+        addressArr.addresses?.append(address ?? Customer_address())
         tableView.reloadData()
+    }
+    
+    func renderAddresses(addresses : CustomerAddressGetModel){
+        self.addressArr = addresses
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     

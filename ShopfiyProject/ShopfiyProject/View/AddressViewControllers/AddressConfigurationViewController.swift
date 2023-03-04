@@ -17,6 +17,7 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     @IBOutlet weak var streetTxtField: UITextField!
     
     var mapViewModel : MapViewModel!
+    var addressViewModel : AddressViewModel!
     var location : CLLocation?
     var addressDelegate : AddressDelegate?
     
@@ -25,7 +26,9 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         mapViewModel = MapViewModel()
+        addressViewModel = AddressViewModel()
         mapViewModel.callLocationManagerToGetUserAddress()
+        
         mapViewModel.bindResultToTableViewController = {
             self.renderLocationInMap(location : self.mapViewModel.vmResult ?? CLLocation())
         }
@@ -59,7 +62,10 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         let country = countryTxtField.text
         let city = cityTxtField.text
         let street = streetTxtField.text
-        let address = AddressModel(country: country, city: city, street: street)
+        
+        addressViewModel.callNetworkServiceManagerForPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+       
+        let address = Customer_address(country: country, city: city, address1: street)
         self.addressDelegate?.getAddress(address: address)
         self.navigationController?.popViewController(animated: true)
     }

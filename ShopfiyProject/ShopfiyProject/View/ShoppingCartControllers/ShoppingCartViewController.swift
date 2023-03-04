@@ -56,6 +56,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         cell.numOfItems.text = String(draftOrders?[indexPath.row].quantity ?? 0)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView : UIView = UIView()
         headerView.backgroundColor = UIColor.clear

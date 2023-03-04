@@ -101,6 +101,8 @@
 		C99ED6C829A7B8B40097C53E /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99ED6C729A7B8B40097C53E /* ShoppingCart.swift */; };
 		C99ED6CA29A7BDE90097C53E /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99ED6C929A7BDE90097C53E /* LineItem.swift */; };
 		C9A13E4F29ABF15B008C3F30 /* PaymentOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A13E4E29ABF15B008C3F30 /* PaymentOperationViewController.swift */; };
+		C9AA810E29B2B811001BBF34 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AA810D29B2B811001BBF34 /* AddressViewModel.swift */; };
+		C9AA811129B2B893001BBF34 /* NetworkServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AA811029B2B893001BBF34 /* NetworkServiceManager.swift */; };
 		C9C261D129A3ED360012D4C5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */; };
 		C9C261D229A3ED360012D4C5 /* ShoppingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */; };
 		C9C261D329A3ED360012D4C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C261CE29A3ED360012D4C5 /* SettingsViewController.swift */; };
@@ -232,6 +234,8 @@
 		C99ED6C729A7B8B40097C53E /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C99ED6C929A7BDE90097C53E /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		C9A13E4E29ABF15B008C3F30 /* PaymentOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOperationViewController.swift; sourceTree = "<group>"; };
+		C9AA810D29B2B811001BBF34 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
+		C9AA811029B2B893001BBF34 /* NetworkServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceManager.swift; sourceTree = "<group>"; };
 		C9C261CC29A3ED360012D4C5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C9C261CD29A3ED360012D4C5 /* ShoppingCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewCell.swift; sourceTree = "<group>"; };
 		C9C261CE29A3ED360012D4C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -594,8 +598,12 @@
 		C94B306729A9654100777CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+
+				C9AA810F29B2B815001BBF34 /* AddressViewModel */,
+
 				037838F529B335DA0004902E /* ProductFavViewModel */,
 				037838EE29B315700004902E /* FavoriteViewModel */,
+
 				038173ED29B0EF2700A5E3D1 /* ProductDetailsViewModel */,
 				038173EC29B0EE9C00A5E3D1 /* CustomerViewModel */,
 				0376FA9729AD43F400294641 /* LoginViewModel */,
@@ -616,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */,
+				C9AA811029B2B893001BBF34 /* NetworkServiceManager.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -759,6 +768,14 @@
 				C9E9768429A7F414001481C6 /* PaymentModels */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C9AA810F29B2B815001BBF34 /* AddressViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9AA810D29B2B811001BBF34 /* AddressViewModel.swift */,
+			);
+			path = AddressViewModel;
 			sourceTree = "<group>";
 		};
 		C9C261D629A3ED660012D4C5 /* SettingControllers */ = {
@@ -1130,6 +1147,7 @@
 				C94B306029A9299A00777CAA /* Ads.swift in Sources */,
 				C9A13E4F29ABF15B008C3F30 /* PaymentOperationViewController.swift in Sources */,
 				C97013D129B0541900C9BE15 /* AddressModel.swift in Sources */,
+				C9AA810E29B2B811001BBF34 /* AddressViewModel.swift in Sources */,
 				C99ED6C829A7B8B40097C53E /* ShoppingCart.swift in Sources */,
 				8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */,
 				03714DAF29A4B6A4000A0528 /* MoreOrdersViewController.swift in Sources */,
@@ -1137,6 +1155,7 @@
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
 				0324771F29A6E04100DBAFC2 /* Navigationdelegate.swift in Sources */,
 				038173F429B0F0A600A5E3D1 /* DatabaseManager.swift in Sources */,
+				C9AA811129B2B893001BBF34 /* NetworkServiceManager.swift in Sources */,
 				0371FCA429A40FE000608875 /* LoginScreenViewController.swift in Sources */,
 				C97013C729B021B200C9BE15 /* AddressDelegate.swift in Sources */,
 				038173F229B0F08F00A5E3D1 /* DatabaseProtocol.swift in Sources */,

@@ -30,12 +30,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     
     override func viewDidLoad() {
         
-        let customerAddress = Customer_address(country: "Egypt", city: "Nasr City", address1: "Makram Abeid")
-        let customerResponseModel = Customer_addressResponseModel(customer_address: customerAddress)
-        super.viewDidLoad()
-        NetworkService.shared.postAddress(customer_addressResponseModel: customerResponseModel, completion: { data, response, error in
-            print(response ?? "")
-        })
+        
         
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
@@ -191,6 +186,7 @@ extension HomeViewController {
             self.brandCollectionView.reloadData()
         }
     }
+    
     func loadQueueOperations(){
         let queue = OperationQueue()
         
