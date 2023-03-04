@@ -14,6 +14,7 @@ protocol Service{
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
     func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
     
+     func postDataToApi(url : String ,newOrder: [String : Any])
 }
 
 class NetworkService : Service{
@@ -34,7 +35,31 @@ class NetworkService : Service{
             compiletionHandler(APIResult)
         }
     }
-    
+     func postDataToApi(url : String ,newOrder: [String:Any]) {
+      
+        guard let url = URL(string: url) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpShouldHandleCookies = false
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: newOrder, options: .prettyPrinted)
+            print(newOrder)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+            let dataJson = try! JSONSerialization.jsonObject(with: data! , options: .allowFragments)
+            print(dataJson)
+         
+        }.resume()
+    }
     func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         
         let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
