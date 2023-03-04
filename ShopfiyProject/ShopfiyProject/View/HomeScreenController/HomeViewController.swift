@@ -112,10 +112,12 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
                 
                 alert.addAction(UIAlertAction(title: "Okay, thanks", style: .default , handler: { _ in
                     //save the coupon with a specific user
-                    print(self.discountCodes?[indexPath.row].id ?? 0)
+                    print(indexPath.row)
+                    //print(self.discountCodes?[indexPath.row].id ?? 0)
                     let _ = UIApplication.shared.delegate as! AppDelegate
                     let _ = SavetoCoreViewModel()
-                    let _ = UserRelatedStruct(userId: 10,offerCoupon: String(self.discountCodes?[indexPath.row].code ?? ""))
+                    let _ = UserRelatedStruct(userId: 10,offerCoupon: String(self.discountCodes?[indexPath.row-1].code ?? ""))
+                    UIPasteboard.general.string = self.discountCodes?[indexPath.row-1].code
                 }))
                 self.present(alert, animated: true)
             }

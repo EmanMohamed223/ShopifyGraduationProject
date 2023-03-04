@@ -25,7 +25,7 @@ class PaymentViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-      
+        couponTxtField.text = UIPasteboard.general.string
     }
     
     @IBAction func validateBtn(_ sender: Any) {

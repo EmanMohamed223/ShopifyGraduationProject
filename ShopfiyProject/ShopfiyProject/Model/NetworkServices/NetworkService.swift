@@ -142,8 +142,6 @@ class NetworkService : Service{
         request.httpShouldHandleCookies = false
 
         do{
-            let data = try JSONSerialization.data(withJSONObject: customerAddressModel.asDictionary(), options: .prettyPrinted)
-            
             URLSession.shared.dataTask(with: request) { data, response, error in
                         guard error == nil else {
                             print("Error: error calling DELETE")
