@@ -21,6 +21,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     
     var brands : [String]?
     var viewModel : ViewModelProduct?
+    var brandViewModel : BrandViewModel?
     var HomeProductsURL : String?
     var brandArray : SmartCollection?
     
@@ -200,10 +201,10 @@ extension HomeViewController {
         
         let operation2 = BlockOperation{
             self.HomeProductsURL = getURL(endPoint: "smart_collections.json?since_id=482865238")
-            self.viewModel = ViewModelProduct()
-            self.viewModel?.getBrands(url: self.HomeProductsURL ?? "")
-            self.viewModel?.bindResultToHomeViewController = {
-                self.renderBrands(brandArray: self.viewModel?.resultBrands)
+            self.brandViewModel = BrandViewModel()
+            self.brandViewModel?.getBrands(url: self.HomeProductsURL ?? "")
+            self.brandViewModel?.bindResultToHomeViewController = {
+                self.renderBrands(brandArray: self.brandViewModel?.resultBrands)
                 //[self] () in
                 //self.brandArray = self.viewModel?.resultBrands
             }

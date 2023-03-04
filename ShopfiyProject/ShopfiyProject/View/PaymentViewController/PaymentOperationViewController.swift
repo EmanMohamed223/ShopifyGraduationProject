@@ -14,7 +14,9 @@ class PaymentOperationViewController: UIViewController {
     
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
-    
+    var orderVm : orderViewModel?
+  
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,13 +38,40 @@ class PaymentOperationViewController: UIViewController {
         default:
             print("Cash")
         }
+        postOrder()
     }
     
     func renderPaymentRequest(request : PKPaymentRequest?){
         self.paymentRequest = request ?? PKPaymentRequest()
     }
     
-
+    func postOrder(){
+     
+        let newOrder  : [String : Any] = [
+            "order" : [
+                "confirmed" : true ,
+                "contact_email" : "@mmm",
+                "currency": "EGP",
+                "created_at" : "20-2-2015",
+                "number" : 2 ,
+                "order_number" : 123 ,
+                "order_status_url" : "",
+                "current_subtotal_price": "15.0",
+                "current_total_discounts": "0.2",
+                "current_total_price": "15.0",
+                "line_items" : [[
+                 "fulfillable_quantity" : 5,
+                 "name":"Egypt",
+                 "price":"0.10",
+                 "quantity" : 3,
+                 "sku" : "asmaa",
+                 "title" : "Shooes"
+                ]]
+            ]
+        ]
+        orderVm = orderViewModel()
+        orderVm?.postOrder(order: newOrder)
+    }
 }
 
 extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerDelegate{
