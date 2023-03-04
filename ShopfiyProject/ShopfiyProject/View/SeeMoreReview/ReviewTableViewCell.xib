@@ -35,8 +35,15 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qvg-Xn-oOn">
                         <rect key="frame" x="293" y="6" width="100" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" red="0.8690543771" green="0.71348446610000005" blue="0.67135649919999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="eqk-44-jP5" firstAttribute="leading" secondItem="zq6-YA-Gfv" secondAttribute="leading" id="GSI-XE-rsy"/>
                     <constraint firstItem="Qvg-Xn-oOn" firstAttribute="leading" secondItem="eqk-44-jP5" secondAttribute="trailing" constant="8" symbolic="YES" id="Ixo-2S-qze"/>
