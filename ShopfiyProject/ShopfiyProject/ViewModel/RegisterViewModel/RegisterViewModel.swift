@@ -26,10 +26,15 @@ class RegisterViewModel {
         
         
     }
-    
-    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String, compeltion: @escaping (String?) ->Void){
+    func isValidphone(phoneNumber: String) -> Bool{
+        return phoneNumber.count == 11
         
-        if firstName.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+        
+    }
+    
+    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String,phone : String, compeltion: @escaping (String?) ->Void){
+        
+        if firstName.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty||phone.isEmpty{
             compeltion("ErrorAllInfoIsNotFound")
             return
         }
@@ -46,6 +51,10 @@ class RegisterViewModel {
         if !isValidPassword(password: password, confirmPassword: confirmPassword) {
             compeltion("ErrorPassword")
             return
+        }
+        if !isValidphone(phoneNumber: phone) {
+                compeltion("ErrorPassword")
+                return
         }
     }
     
