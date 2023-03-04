@@ -272,13 +272,16 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
                                         <color key="value" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="itemButtonColor">
                                         <color key="value" red="0.52191680669999996" green="0.34015038609999998" blue="0.43059456350000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                        <color key="value" red="0.99977213139999999" green="0.996296823" blue="0.99627655739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -400,16 +403,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUj-u7-9NY">
                                 <rect key="frame" x="16" y="183" width="361" height="41"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMn-ZL-hLe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMn-ZL-hLe">
                                         <rect key="frame" x="25" y="5" width="46" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="8pb-qM-LnC">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="8pb-qM-LnC">
                                         <rect key="frame" x="136.33333333333337" y="5" width="201.66666666666663" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="minimumTrackTintColor" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="maximumTrackTintColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -420,7 +421,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="CMn-ZL-hLe" firstAttribute="leading" secondItem="HUj-u7-9NY" secondAttribute="leading" constant="25" id="5dm-xu-8Eo"/>
                                     <constraint firstAttribute="height" constant="41" id="Gkd-W1-3hL"/>
+                                    <constraint firstItem="CMn-ZL-hLe" firstAttribute="centerY" secondItem="8pb-qM-LnC" secondAttribute="centerY" id="Pyt-sO-rUQ"/>
+                                    <constraint firstItem="8pb-qM-LnC" firstAttribute="leading" secondItem="CMn-ZL-hLe" secondAttribute="trailing" constant="67.333333333333371" id="XrZ-3T-IRP"/>
+                                    <constraint firstItem="CMn-ZL-hLe" firstAttribute="centerY" secondItem="HUj-u7-9NY" secondAttribute="centerY" id="YHV-NO-mol"/>
+                                    <constraint firstAttribute="trailing" secondItem="8pb-qM-LnC" secondAttribute="trailing" constant="25" id="c0t-rL-epD"/>
+                                    <constraint firstItem="CMn-ZL-hLe" firstAttribute="top" secondItem="8pb-qM-LnC" secondAttribute="top" id="m8L-2s-GkK"/>
+                                    <constraint firstItem="CMn-ZL-hLe" firstAttribute="top" secondItem="HUj-u7-9NY" secondAttribute="top" constant="5" id="tuf-JV-EnP"/>
                                     <constraint firstAttribute="width" constant="361" id="xrk-7i-ilX"/>
                                 </constraints>
                             </view>
