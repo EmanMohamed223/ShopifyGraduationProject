@@ -13,9 +13,8 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var addressArr = CustomerAddressGetModel()
-    
     let addressViewModel = AddressViewModel()
-    
+    var addressModelToBeDeleted : CustomerAddressModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +62,8 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+            self.addressModelToBeDeleted = CustomerAddressModel(customer_address: self.addressArr.addresses?[indexPath.row])
+            self.addressViewModel.callNetworkServiceManagerToDelete(customerAddressModel: self.addressModelToBeDeleted ?? CustomerAddressModel())
             self.addressArr.addresses?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             completionHandler(true)

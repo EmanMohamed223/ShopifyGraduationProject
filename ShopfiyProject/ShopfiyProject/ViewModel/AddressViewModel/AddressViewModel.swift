@@ -42,4 +42,8 @@ class AddressViewModel{
         NetworkServiceManager.shared.callNetworkServiceToPutAddress(customerAddressModel : customerAddressModel)
     }
     
+    func callNetworkServiceManagerToDelete(customerAddressModel : CustomerAddressModel){
+        NetworkServiceManager.shared.callNetworkServiceToDeleteAddress(customerAddressModel : customerAddressModel)
+    }
+    
 }
