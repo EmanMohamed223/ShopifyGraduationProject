@@ -13,6 +13,10 @@ func getURL(endPoint : String?)->(String?){
 }
 
 func chooseMainCategory (index : Int) -> String{
-    var mainCategory = ["?collection_id=437787230489" , "?collection_id=437787263257" , "?collection_id=437787296025" , "?collection_id=437787328793"]
+    let mainCategory = ["?collection_id=437787230489" , "?collection_id=437787263257" , "?collection_id=437787296025" , "?collection_id=437787328793"]
     return mainCategory[index]
+}
+func chooseSubCategory (index : Int) -> String{
+    let subCategory = ["&product_type=T-SHIRTS" ,"&product_type=ACCESSORIES", "&product_type=shoes" ]
+    return subCategory[index]
 }

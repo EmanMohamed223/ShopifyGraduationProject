@@ -24,28 +24,40 @@ class MoreOrdersViewController: UIViewController {
 
 }
 extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         print("**********")
         print(orderArray?.orders.count ?? 0)
         return orderArray?.orders.count ?? 0
     }
-    
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return CGFloat(1)
+        }
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView : UIView = UIView()
+            headerView.backgroundColor = UIColor.clear
+            return headerView
+        }
+    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
+        cell.layer.cornerRadius = cell.frame.height/3
         cell.pricelabel.text = orderArray?.orders[indexPath.row].current_subtotal_price
         cell.dateOfOrderlabel.text =  orderArray?.orders[indexPath.row].created_at
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UIScreen.main.bounds.size.height/4-40
+//    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height/4-40
+        return 100
     }
-    
 }
 extension MoreOrdersViewController {
     func modelling(newUrl : String?){

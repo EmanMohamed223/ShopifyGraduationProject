@@ -15,13 +15,13 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var FloatButton: Floaty!
     @IBOutlet weak var CategoryCollectionView: UICollectionView!
     @IBOutlet weak var categorySegmented: UISegmentedControl!
- 
-    var flag : Int = 0
+    var subFlag : String = ""
+    var mainFlag : Int = 0
     var viewModel : ViewModelProduct?
     var CategoryProductsURL : String?
     var productArray : ResponseProducts?
     var filterArray : ResponseProducts?
-    
+    var flag : Bool = false
     var isFav : Bool?
     
     var productFavViewModel = ProductFavViewModel()
@@ -48,27 +48,48 @@ class CategoryViewController: UIViewController {
         switch categorySegmented.selectedSegmentIndex {
        
         case 0:
-         
-            modelling(newUrl: chooseMainCategory (index : 0))
-            flag = 0
+            if (flag){
+                modelling(newUrl: chooseMainCategory (index :  0) + subFlag)
+            }
+            else{
+                modelling(newUrl: chooseMainCategory (index :  0))
+            }
+            mainFlag = 0
             self.CategoryCollectionView.reloadData()
           
         case 1 :
-     
-             modelling(newUrl: chooseMainCategory (index : 1))
-            flag = 1
+            if (flag){
+                modelling(newUrl: chooseMainCategory (index :  1) + subFlag)
+            }
+            else{
+                
+                modelling(newUrl: chooseMainCategory (index :  1))
+            }
+            mainFlag = 1
           
             self.CategoryCollectionView.reloadData()
             
         case 2:
-             modelling(newUrl:chooseMainCategory (index : 2))
-            flag = 2
+            if (flag){
+                modelling(newUrl: chooseMainCategory (index :  2) + subFlag)
+            }
+            else{
+                
+                modelling(newUrl:chooseMainCategory (index : 2))
+            }
+            mainFlag = 2
     
             self.CategoryCollectionView.reloadData()
              
         case 3:
-             modelling(newUrl:chooseMainCategory (index : 3))
-            flag = 3
+            if (flag){
+                modelling(newUrl: chooseMainCategory (index :  3) + subFlag)
+            }
+            else{
+                
+                modelling(newUrl:chooseMainCategory (index : 3))
+            }
+            mainFlag = 3
           
             self.CategoryCollectionView.reloadData()
              default:
@@ -134,24 +155,31 @@ extension CategoryViewController {
         
         FloatButton.addItem( icon: UIImage(systemName: "tshirt.fill")!) {  FloatyItem in
         
-            self.modelling(newUrl: chooseMainCategory (index : self.flag)+"&product_type=T-SHIRTS")
-           
+            self.modelling(newUrl: chooseMainCategory (index : self.mainFlag) + chooseSubCategory(index: 0))
+            self.subFlag = chooseSubCategory(index: 0)
+            self.flag = true
             self.CategoryCollectionView.reloadData()
             
       }
-        FloatButton.addItem( icon: UIImage(systemName: "eyeglasses")! ) { [self] FloatyItem in
+        FloatButton.addItem( icon: UIImage(named: "access")! ) { [self] FloatyItem in
             
-            self.modelling(newUrl: chooseMainCategory (index : flag)+"&product_type=ACCESSORIES")
+            self.modelling(newUrl: chooseMainCategory (index : mainFlag) + chooseSubCategory(index: 1))
+            self.subFlag = chooseSubCategory(index: 1)
+            self.flag = true
             self.CategoryCollectionView.reloadData()
         }
         FloatButton.addItem( icon: UIImage(systemName: "shoeprints.fill")!) { [self] FloatyItem in
        
-            self.modelling(newUrl: chooseMainCategory (index : flag)+"&product_type=shoes")
+            self.modelling(newUrl: chooseMainCategory (index : mainFlag) + chooseSubCategory(index: 2))
+            self.subFlag = chooseSubCategory(index: 2)
+            self.flag = true
             self.CategoryCollectionView.reloadData()
         }
-        FloatButton.addItem( icon: UIImage(systemName: "cross")!) { FloatyItem in
+        FloatButton.addItem( icon: UIImage(named: "cro")!) { FloatyItem in
             
             self.modelling(newUrl: chooseMainCategory (index : 0))
+            self.subFlag = ""
+            self.flag = true
             self.CategoryCollectionView.reloadData()
         }
     }
