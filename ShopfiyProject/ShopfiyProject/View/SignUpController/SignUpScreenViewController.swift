@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpScreenViewController: UIViewController {
     
+    @IBOutlet weak var phoneNumbTxt: UITextField!
     
     @IBOutlet weak var signupImg: UIImageView!
     
@@ -50,9 +51,12 @@ class SignUpScreenViewController: UIViewController {
         guard let emailText = emailTxtfield.text else {return}
         guard let password = PassTextField.text else {return}
         guard let confirmPass = conformPassTextField.text else {return}
-        if ValdiateCustomerInfomation(firstName: name, email: emailText, password: password, confirmPassword: confirmPass) {
+        guard let phoneNumber = phoneNumbTxt.text else {return}
+        guard let address = addressTxtfield.text else {return}
+        let defaultAddress = Address(id: nil, customer_id: nil, address1: address, address2: nil, city: nil, country: nil, phone: nil)
+        if ValdiateCustomerInfomation(firstName: name, email: emailText, password: password, confirmPassword: confirmPass ,phone: phoneNumber , address : defaultAddress) {
             print("valid")
-          register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass)
+            register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass , phone: phoneNumber, address : defaultAddress)
         } else {
             showAlertError(title: "Couldnot register", message: "Please try again later.")
         }
@@ -60,10 +64,10 @@ class SignUpScreenViewController: UIViewController {
     }
 }
 extension SignUpScreenViewController {
-    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String) -> Bool{
+    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String ,phone : String , address : Address) -> Bool{
         
         var isSuccess = true
-        self.registerViewModel?.ValdiateCustomerInfomation(firstName: firstName, email: email, password: password, confirmPassword: confirmPassword) { message in
+        self.registerViewModel?.ValdiateCustomerInfomation(firstName: firstName, email: email, password: password, confirmPassword: confirmPassword , phone: phone) { message in
             
             switch message {
             case "ErrorAllInfoIsNotFound":
@@ -82,6 +86,9 @@ extension SignUpScreenViewController {
                 isSuccess = false
                 self.showAlertError(title: "Invalid Name", message: "please,enter correct name .name should be greater than 8 & begin with later ")
                 
+            case "ErrorPhone":
+                isSuccess = false
+                self.showAlertError(title: "Invalid Number", message: "please,enter correct Number ")
             default:
                 isSuccess = true
             }
@@ -89,9 +96,10 @@ extension SignUpScreenViewController {
         return isSuccess
     }
     
-    func register(firstName: String, email: String, password: String, confirmPassword: String){
+    func register(firstName: String, email: String, password: String, confirmPassword: String , phone : String , address : Address){
         
-        let customer = Customer(first_name: firstName, email: email, id: nil, tags: password, addresses: nil)
+        let customer = Customer(first_name: firstName, email: email, id: nil,phone: phone, tags: password, addresses: [address])
+       
         let newCustomer = User(customer: customer)
         
         self.registerViewModel?.createNewCustomer(newCustomer: newCustomer) { data, response, error in
