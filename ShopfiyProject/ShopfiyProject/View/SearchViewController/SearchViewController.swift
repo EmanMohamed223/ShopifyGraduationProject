@@ -24,7 +24,8 @@ class SearchViewController: UIViewController {
     var viewModel : ViewModelProduct?
     var productPriceArray : [Products]?
     var productBSArray : [Products]?
- 
+    var productFavViewModel = ProductFavViewModel()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +33,8 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
- 
-        
         self.brandDetailsCollectionView.reloadData()
+     
     }
    
     @IBAction func selectBestSelling(_ sender: Any) {
@@ -86,9 +86,12 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.categoryLabel.text = productPriceArray?[indexPath.row].title
-        
+        cell.productDelegate = self
+
         cell.CategoryImage.kf.setImage(with: URL(string: productPriceArray?[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         cell.categoryPrice.text = productPriceArray?[indexPath.row].variants?[0].price
+        cell.checkFavourite(isFav: false, product: (productPriceArray?[indexPath.row])!)
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -151,4 +154,27 @@ extension SearchViewController {
             self.brandDetailsCollectionView.reloadData()
         }
     }
+}
+extension SearchViewController : FireActionInCategoryCellProtocol
+{
+    func addFavourite(appDelegate: AppDelegate, product: Products) {
+        productFavViewModel.addFavourite(appDelegate: appDelegate, product: product)
+
+    }
+    
+    func deleteFavourite(appDelegate: AppDelegate, product: Products) {
+        productFavViewModel.deleteFavourite(appDelegate: appDelegate, product: product)
+
+    }
+    
+    func showAlert(title: String, message: String) {
+        func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let Action = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+            alert.addAction(Action)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
 }

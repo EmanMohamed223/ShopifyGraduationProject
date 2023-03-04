@@ -14,17 +14,17 @@ class DatabaseManager : DatabaseProtocol
         
         let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: managedContext)
             
-        let productCD = NSManagedObject(entity: entity!, insertInto: managedContext)
-        productCD.setValue(product.id , forKey: "id")
-        productCD.setValue(product.variants![0].id , forKey: "userID")
-        productCD.setValue(product.variants?[0].price ?? "0.0", forKey: "price")
-        productCD.setValue(product.title, forKey: "title")
-        productCD.setValue(product.images[0].src, forKey: "imgUrl")
+        let coreDataProduct = NSManagedObject(entity: entity!, insertInto: managedContext)
+        coreDataProduct.setValue(product.id , forKey: "id")
+        coreDataProduct.setValue(product.variants![0].id , forKey: "userID")
+        coreDataProduct.setValue(product.variants?[0].price ?? "0.0", forKey: "price")
+        coreDataProduct.setValue(product.title, forKey: "title")
+        coreDataProduct.setValue(product.images[0].src, forKey: "imgUrl")
         do{
             try managedContext.save()
-            print("favourite saved successfully")
+            print(" saved ")
         }catch let error as NSError{
-            print("failed to add favourite to core data \(error.localizedDescription)")
+            print("failed to save  \(error.localizedDescription)")
         }
     }
     
@@ -35,7 +35,7 @@ class DatabaseManager : DatabaseProtocol
         fetchRequest.predicate = NSPredicate(format: "userID = \(userId)")
         do{
             let productArray = try managedContext.fetch(fetchRequest)
-            print("get products from favourites successfully")
+            print("fetching done")
             for product in productArray{
                 let id = product.value(forKey: "id") as! Int
                 let userID = product.value(forKey: "userID") as! Int
@@ -49,7 +49,7 @@ class DatabaseManager : DatabaseProtocol
             }
             complition(favouriteList, nil)
         }catch{
-            print("failed to load favourites from core data \(error.localizedDescription)")
+            print("failed to fetch  \(error.localizedDescription)")
             complition(nil, error)
         }
     }
@@ -58,7 +58,7 @@ class DatabaseManager : DatabaseProtocol
         var favouriteList = [Products]()
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favourite")
-        fetchRequest.predicate = NSPredicate(format: "userID = \(product.variants![0].id) AND id = \(product.id)")
+        fetchRequest.predicate = NSPredicate(format: "userID = \(product.variants![0].id ?? 0) AND id = \(product.id)")
         do{
             let productArray = try managedContext.fetch(fetchRequest)
       
@@ -76,7 +76,7 @@ class DatabaseManager : DatabaseProtocol
             }
             complition(favouriteList, nil)
         }catch{
-            print("failed to load one product from favourites from core data \(error.localizedDescription)")
+            print("failed fetching   \(error.localizedDescription)")
             complition(nil, error)
         }
     }
@@ -84,16 +84,16 @@ class DatabaseManager : DatabaseProtocol
    func deleteFavourite(appDelegate: AppDelegate, product: Products) {
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favourite")
-        fetchRequest.predicate = NSPredicate(format: "id = \(product.id) AND userID = \(product.variants![0].id)")
+       fetchRequest.predicate = NSPredicate(format: "id = \(product.id) AND userID = \(product.variants![0].id ?? 1)")
       do{
            let productsArray = try managedContext.fetch(fetchRequest)
            for product in productsArray {
              managedContext.delete(product)
           }
             try managedContext.save()
-            print("product deleted successfully")
+            print("deleted ")
         }catch{
-            print("failed to delete favourite from core data \(error)")
+            print("failed delete  \(error)")
         }
     }
     
