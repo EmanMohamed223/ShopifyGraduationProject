@@ -12,7 +12,7 @@ import Alamofire
 protocol Service{
     func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
-    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
+    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
     
 }
 
@@ -35,7 +35,7 @@ class NetworkService : Service{
         }
     }
     
-    func postAddress(customer_addressResponseModel : Customer_addressResponseModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         
         let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
         guard let url = URL(string: urlStr!) else { return }
@@ -44,8 +44,8 @@ class NetworkService : Service{
         request.httpShouldHandleCookies = false
         
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: customer_addressResponseModel.asDictionary(), options: .prettyPrinted)
-            print(try! customer_addressResponseModel.asDictionary())
+            request.httpBody = try JSONSerialization.data(withJSONObject: customerAddressModel.asDictionary(), options: .prettyPrinted)
+            print(try! customerAddressModel.asDictionary())
         } catch let error {
             print(error.localizedDescription)
         }        

@@ -9,5 +9,5 @@ import Foundation
 import CoreLocation
 
 protocol AddressDelegate{
-    func getAddress(address : AddressModel?)
+    func getAddress(address : Customer_address?)
 }

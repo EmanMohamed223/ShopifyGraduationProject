@@ -10,8 +10,8 @@ import CoreLocation
 import MapKit
 
 class LocationManager : NSObject, CLLocationManagerDelegate, MKMapViewDelegate{
-    
     static let shared = LocationManager()
+    private override init(){}
     let manager = CLLocationManager()
     var completion : ((CLLocation) -> Void)?
     
