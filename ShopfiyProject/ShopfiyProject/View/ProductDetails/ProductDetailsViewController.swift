@@ -43,15 +43,19 @@ class ProductDetailsViewController: UIViewController {
     
     
     var productDetailsViewModel : ProductDetailsViewModel?
-    var isFavourite: Bool?
+    var isFav: Bool?
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productDetailsViewModel = ProductDetailsViewModel()
-     
+    productDetailsViewModel = ProductDetailsViewModel()
+       
+        
+        
+        self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(self.product!))
+
         drafOrderViewModel = DraftOrderViewModel()
        
         descriptionTextView.text = product?.body_html
@@ -74,6 +78,13 @@ class ProductDetailsViewController: UIViewController {
         
        modelling()
         
+        checkIsFavourite()
+        
+        
+        
+        
+        
+        
         
        
     }
@@ -95,7 +106,7 @@ class ProductDetailsViewController: UIViewController {
         pagecontrolleroutlet.currentPage = currentCellIndex
     }
     func checkIsFavourite() {
-        if isFavourite! {
+        if isFav! {
             loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -106,23 +117,19 @@ class ProductDetailsViewController: UIViewController {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
-//        if(select == 0){
-//        loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//            select += 1
-//        }
-//        else {
-//            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-//                select = 0
-//        }
-//        if isFavourite! {
-//            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-//            productDetailsViewModel!.removeProductFromFavourites(appDelegate: appDelegate, product: product!)
-//        } else {
-//            loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//            product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
-//            productDetailsViewModel!.addProductToFavourites(appDelegate: appDelegate, product: product!)
-//        }
-//        isFavourite = !isFavourite!
+
+        if isFav! {
+            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+            productDetailsViewModel!.removeProductFromFavourites(appDelegate: appDelegate, product: product!)
+        } else {
+            loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            print( UserDefaultsManager.shared.getUserID()!)
+            product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
+            print(  product?.variants![0].id! ?? 20)
+
+            productDetailsViewModel!.addProductToFavourites(appDelegate: appDelegate, product: product!)
+        }
+        isFav = !isFav!
         
         
         

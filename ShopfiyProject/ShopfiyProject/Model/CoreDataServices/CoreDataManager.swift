@@ -24,4 +24,6 @@ class CoreDataManager : SavetoCoreProtocol{
         let saveCoreData = SaveCoreData()
         saveCoreData.saveToCore(userRelated: userRelated, appDelegate: appDelegate)
     }
+
+    
 }

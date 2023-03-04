@@ -47,7 +47,7 @@
                             <color key="baseForegroundColor" red="0.67675262690000004" green="0.48557621239999998" blue="0.53197747470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="selectFavourie:" destination="gTV-IL-0wX" eventType="touchUpInside" id="X1Q-uj-OTp"/>
+                            <action selector="selectFavourie:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8ud-0W-lo2"/>
                         </connections>
                     </button>
                 </subviews>

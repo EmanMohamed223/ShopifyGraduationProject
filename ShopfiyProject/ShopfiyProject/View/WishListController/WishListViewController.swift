@@ -8,9 +8,12 @@
 import UIKit
 
 class WishListViewController: UIViewController {
-
+    var favoritesArray = [Products]()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var favoritesViewModel: FavoritesViewModel?
+    
     @IBOutlet weak var wishlistcollection: UICollectionView!
-    var  productimgs = ["shirt" , "shoes" , "bag"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -18,25 +21,49 @@ class WishListViewController: UIViewController {
         wishlistcollection.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        
+        
+        favoritesViewModel = FavoritesViewModel()
+
+        
+        favoritesViewModel?.bindingData = { favourites, error in
+            if let favourites = favourites {
+                self.favoritesArray = favourites
+                DispatchQueue.main.async {
+                    self.wishlistcollection.reloadData()
+                    
+                }
+            }
+            
+            if let error = error {
+                print(error.localizedDescription)
+                
+            }
+        }
+        favoritesViewModel?.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
+    }
+    
     }
     
 
 
 
-}
+
 extension WishListViewController: UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+         return favoritesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
-     //   cell.categoryLabel.text = arr?[flagMainCatgory] ?? ""
-     cell.CategoryImage.image = UIImage(named: "shirt")
-//)
+        cell.favouriteDelegate = self 
+        cell.categoryLabel.text = favoritesArray[indexPath.row].title
+        cell.CategoryImage.kf.setImage(with: URL(string: favoritesArray[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = favoritesArray[indexPath.row].variants![0].price
+        cell.checkFavourite(isFav: true, product: favoritesArray[indexPath.row], isInFavController: true)
         return cell
     }
     
@@ -47,4 +74,23 @@ extension WishListViewController: UICollectionViewDelegate , UICollectionViewDat
 
 
          }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
+       
+        let productDetailsView = self.storyboard!.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+        productDetailsView.product = favoritesArray[indexPath.row]
+        self.navigationController?.pushViewController(productDetailsView, animated: true)
+    }
 }
+extension WishListViewController : FireActionInCategoryCellFavourite
+{
+  
+        func deleteFavourite(appDelegate: AppDelegate, product: Products) {
+            favoritesViewModel?.deleteFavourite(appDelegate: appDelegate, product: product)
+            favoritesArray = favoritesArray.filter { $0.id != product.id }
+            wishlistcollection.reloadData()
+        }
+    }
+    
+    
+

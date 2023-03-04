@@ -19,7 +19,7 @@ struct Products : Decodable{
     var tags :String?
     var variants:[variant]?
     var images :[Image]
-  //  var userID: Int = 0
+ 
     
 }
 struct variant :Decodable{
