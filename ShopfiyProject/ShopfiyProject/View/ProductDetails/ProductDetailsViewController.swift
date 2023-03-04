@@ -50,6 +50,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     productDetailsViewModel = ProductDetailsViewModel()
        
         
@@ -260,6 +261,13 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height/5-70
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (tableView == reviewtable ) {
+            return " Reviews"
+        }
+        return ""
+    }
+
     
 }
 extension ProductDetailsViewController {

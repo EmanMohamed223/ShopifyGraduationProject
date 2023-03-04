@@ -14,7 +14,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
-  
+
+    
     var flagCatgory : Int = 0
     var priceFilter : Int = 0
     var brandProducts : [Products]?
