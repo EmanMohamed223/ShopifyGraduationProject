@@ -16,6 +16,7 @@ struct CustomerAddressModel : Codable{ //response model
 }
 
 struct Customer_address : Codable{
+    var id : Int64?
     var country : String?
     var city : String?
     var address1 : String?

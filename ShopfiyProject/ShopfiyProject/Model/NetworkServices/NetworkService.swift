@@ -38,7 +38,8 @@ class NetworkService : Service{
     func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
 
         let userID = UserDefaultsManager.shared.getUserID()
-        let url = getURL(endPoint: "customers/\(userID ?? 0)/addresses/9152196149529.json")
+        let addressId = customerAddressModel.customer_address?.id
+        let url = getURL(endPoint: "customers/\(userID ?? 0)/addresses/\(addressId ?? 0).json")
         guard let baseURL = URL(string : url ?? "") else { return }
         var request = URLRequest(url: baseURL)
         request.httpMethod = "PUT"

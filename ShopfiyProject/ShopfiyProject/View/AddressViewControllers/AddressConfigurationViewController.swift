@@ -72,15 +72,15 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         let street = streetTxtField.text
         
         if address != nil{
-            addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+            addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(id : address?.id, country: country, city: city, address1: street)))
         }
         else{
             addressViewModel.callNetworkServiceManagerToPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
         }
         
        
-        let address = Customer_address(country: country, city: city, address1: street)
-        self.addressDelegate?.getAddress(address: address)
+        //let address = Customer_address(country: country, city: city, address1: street)
+        //self.addressDelegate?.getAddress(address: address)
         self.navigationController?.popViewController(animated: true)
     }
     
