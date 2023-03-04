@@ -35,9 +35,50 @@ class NetworkService : Service{
         }
     }
     
+    func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+
+        let userID = UserDefaultsManager.shared.getUserID()
+        let url = getURL(endPoint: "customers/\(userID ?? 0)/addresses/9152196149529.json")
+        guard let baseURL = URL(string : url ?? "") else { return }
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "PUT"
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        request.httpShouldHandleCookies = false
+
+        do{
+            let data = try JSONSerialization.data(withJSONObject: customerAddressModel.asDictionary(), options: .prettyPrinted)
+            
+            URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+                if let error = error {
+                        print("Error making PUT request: \(error.localizedDescription)")
+                        return
+                    }
+
+                if let responseCode = (response as? HTTPURLResponse)?.statusCode, let data = data {
+                    guard responseCode == 200 else {
+                        print("Invalid response code: \(responseCode)")
+                        return
+                    }
+
+                    if let responseJSONData = try? JSONSerialization.jsonObject(with: data , options: .allowFragments) {
+                        print("Response JSON data = \(responseJSONData)")
+                    }
+                }
+            }.resume()
+            print(try! customerAddressModel.asDictionary())
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+
+    }
+    
     func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
-        
-        let urlStr =  getURL(endPoint: "customers/6858983276825/addresses.json")
+        let userId = UserDefaultsManager.shared.getUserID()
+        let urlStr =  getURL(endPoint: "customers/\(userId ?? 0)/addresses.json")
         guard let url = URL(string: urlStr!) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

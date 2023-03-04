@@ -13,6 +13,7 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var addressArr = CustomerAddressGetModel()
+    
     let addressViewModel = AddressViewModel()
     
     
@@ -22,13 +23,14 @@ class AddressViewController: UIViewController {
         tableView.dataSource = self
         let userId = UserDefaultsManager.shared.getUserID()
         let url = getURL(endPoint: "customers/\(userId ?? 0)/addresses.json?limit=10")
-        addressViewModel.callNetworkServiceManagerTorGetAddresses(url: url)
+        addressViewModel.callNetworkServiceManagerToGetAddresses(url: url)
         addressViewModel.bindResultToViewController = {
             self.renderAddresses(addresses: self.addressViewModel.resultModel)
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        tableView.reloadData()
     }
     
 
@@ -67,6 +69,8 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
       }
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressConfig") as! AddressConfigurationViewController
+            vc.address = Customer_address()
+            vc.address = self.addressArr.addresses?[indexPath.row] ?? Customer_address()
             self.navigationController?.pushViewController(vc, animated: true)
             completionHandler(true)
       }

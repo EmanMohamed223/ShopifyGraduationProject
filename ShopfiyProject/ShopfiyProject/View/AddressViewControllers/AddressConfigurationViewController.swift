@@ -20,6 +20,7 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
     var addressViewModel : AddressViewModel!
     var location : CLLocation?
     var addressDelegate : AddressDelegate?
+    var address : Customer_address?
     
     
     override func viewDidLoad() {
@@ -27,10 +28,17 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         mapView.delegate = self
         mapViewModel = MapViewModel()
         addressViewModel = AddressViewModel()
-        mapViewModel.callLocationManagerToGetUserAddress()
         
-        mapViewModel.bindResultToTableViewController = {
-            self.renderLocationInMap(location : self.mapViewModel.vmResult ?? CLLocation())
+        if(address != nil){
+            countryTxtField.text = address?.country
+            cityTxtField.text = address?.city
+            streetTxtField.text = address?.address1
+        }
+        else{
+            mapViewModel.callLocationManagerToGetUserAddress()
+            mapViewModel.bindResultToTableViewController = {
+                self.renderLocationInMap(location : self.mapViewModel.vmResult ?? CLLocation())
+            }
         }
             self.tabBarController?.tabBar.isHidden = true
     }
@@ -63,7 +71,13 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         let city = cityTxtField.text
         let street = streetTxtField.text
         
-        addressViewModel.callNetworkServiceManagerForPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+        if address != nil{
+            addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+        }
+        else{
+            addressViewModel.callNetworkServiceManagerToPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+        }
+        
        
         let address = Customer_address(country: country, city: city, address1: street)
         self.addressDelegate?.getAddress(address: address)

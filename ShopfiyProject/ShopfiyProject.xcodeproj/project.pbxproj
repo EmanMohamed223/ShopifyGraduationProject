@@ -598,12 +598,9 @@
 		C94B306729A9654100777CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-
 				C9AA810F29B2B815001BBF34 /* AddressViewModel */,
-
 				037838F529B335DA0004902E /* ProductFavViewModel */,
 				037838EE29B315700004902E /* FavoriteViewModel */,
-
 				038173ED29B0EF2700A5E3D1 /* ProductDetailsViewModel */,
 				038173EC29B0EE9C00A5E3D1 /* CustomerViewModel */,
 				0376FA9729AD43F400294641 /* LoginViewModel */,
@@ -877,6 +874,7 @@
 				8CE5EEE929A3E9B000519879 /* Frameworks */,
 				8CE5EEEA29A3E9B000519879 /* Resources */,
 				AAB35E640880160A777D1382 /* [CP] Embed Pods Frameworks */,
+				23A81F92EA9CE2FE97041A00 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -915,6 +913,7 @@
 				8CE5EF0C29A3E9B500519879 /* Frameworks */,
 				8CE5EF0D29A3E9B500519879 /* Resources */,
 				91C85971B4D8D3602DC56206 /* [CP] Embed Pods Frameworks */,
+				F561A3E98161D48DAFA39459 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1009,6 +1008,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23A81F92EA9CE2FE97041A00 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		51EE92E6D64B8924C18C4191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1085,6 +1101,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F561A3E98161D48DAFA39459 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5D94F175F6CAD98EAE2359D /* [CP] Check Pods Manifest.lock */ = {

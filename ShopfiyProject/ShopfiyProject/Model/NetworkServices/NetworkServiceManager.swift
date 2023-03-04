@@ -19,6 +19,12 @@ class NetworkServiceManager{
         })
     }
     
+    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel){
+        NetworkService.shared.putAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
+            print(response ?? "")
+        })
+    }
+    
     func callNetworkServiceToGetAddress(url : String?,compilation : @escaping (CustomerAddressGetModel)->()){
         NetworkService.shared.fetchData(url: url) { result in
             NetworkServiceManager.addresses = result
