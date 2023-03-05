@@ -22,9 +22,14 @@ class AddressViewController: UIViewController {
         tableView.dataSource = self
         let userId = UserDefaultsManager.shared.getUserID()
         let url = getURL(endPoint: "customers/\(userId ?? 0)/addresses.json?limit=10")
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
         addressViewModel.callNetworkServiceManagerToGetAddresses(url: url)
         addressViewModel.bindResultToViewController = {
             self.renderAddresses(addresses: self.addressViewModel.resultModel)
+            indicator.stopAnimating()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +89,7 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
+        vc.address = addressArr.addresses?[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

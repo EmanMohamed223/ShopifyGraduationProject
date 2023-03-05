@@ -1214,7 +1214,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Coupon" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-tI-UER">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-tI-UER">
                                                 <rect key="frame" x="16" y="550" width="154" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1407,6 +1407,7 @@
                         <outlet property="paymentSegment" destination="z0A-S5-J9V" id="mUV-rQ-ctM"/>
                         <outlet property="phoneLabel" destination="3Us-Ol-LOa" id="wyk-5o-TkD"/>
                         <outlet property="shippingFeesLabel" destination="tXB-Fy-TTe" id="d7a-3w-cOp"/>
+                        <outlet property="streetLabel" destination="4ji-GW-BTl" id="fey-7F-rU2"/>
                         <outlet property="subTotalLabel" destination="Me5-yG-MJ9" id="wKy-by-Po1"/>
                     </connections>
                 </viewController>

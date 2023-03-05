@@ -11,13 +11,14 @@ class PaymentViewController: UIViewController {
 
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var streetLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var subTotalLabel: UILabel!
     @IBOutlet weak var shippingFeesLabel: UILabel!
     @IBOutlet weak var couponTxtField: UITextField!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var grandTotalLabel: UILabel!
-    
+    var address : Customer_address?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -25,7 +26,10 @@ class PaymentViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        couponTxtField.text = UIPasteboard.general.string
+        //couponTxtField.text = UIPasteboard.general.string
+        countryLabel.text = address?.country
+        cityLabel.text = address?.city
+        streetLabel.text = address?.address1
     }
     
     @IBAction func validateBtn(_ sender: Any) {
