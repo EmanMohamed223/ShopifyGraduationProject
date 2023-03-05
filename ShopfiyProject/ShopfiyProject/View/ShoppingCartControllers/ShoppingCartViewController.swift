@@ -12,7 +12,7 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subTotalLabel: UILabel!
     
-    var draftOrders : [LineItem]?
+    var lineItems : [LineItem]?
     var shoppingCart : ShoppingCartResponse?
     var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
@@ -25,7 +25,9 @@ class ShoppingCartViewController: UIViewController {
         indicator.center = view.center
         view.addSubview(indicator)
         indicator.startAnimating()
-        shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: "draft_orders.json"))
+        let userEmail = UserDefaultsManager.shared.getUserEmail()
+        let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
+        shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
         shoppingCartViewModel.bindResultToViewController = {
             self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
             indicator.stopAnimating()
@@ -39,8 +41,8 @@ class ShoppingCartViewController: UIViewController {
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
-        self.shoppingCart?.draft_orders = shoppingCart?.draft_orders
-        
+        self.shoppingCart?.draftOrder = shoppingCart?.draftOrder
+        self.lineItems = shoppingCart?.draftOrder?.line_items
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -52,7 +54,7 @@ class ShoppingCartViewController: UIViewController {
 extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return draftOrders?.count ?? 0
+        return lineItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,9 +64,9 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
-        cell.productTitle.text = draftOrders?[indexPath.row].title
-        cell.productPrice.text = draftOrders?[indexPath.row].price
-        cell.numOfItems.text = String(draftOrders?[indexPath.row].quantity ?? 0)
+        cell.productTitle.text = lineItems?[indexPath.row].title
+        cell.productPrice.text = lineItems?[indexPath.row].price
+        cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
         return cell
     }
     
@@ -83,7 +85,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            draftOrders?.remove(at: indexPath.row)
+            lineItems?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

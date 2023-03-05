@@ -50,7 +50,7 @@ class PaymentViewController: UIViewController {
             SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
         }
         else{
-            validate.backgroundColor = UIColor(named: "gray")
+            //validate.backgroundColor = UIColor(named: "gray")
         }
     }
     

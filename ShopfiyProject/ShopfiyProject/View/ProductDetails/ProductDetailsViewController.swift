@@ -156,7 +156,7 @@ class ProductDetailsViewController: UIViewController {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
-        if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
+       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
             LineItemObj = LineItem()
             LineItemObj?.name = self.product?.title
             LineItemObj?.price = self.product?.variants![0].price
@@ -186,7 +186,7 @@ class ProductDetailsViewController: UIViewController {
             
                      }
             
-        }
+        //}
         
              
         
