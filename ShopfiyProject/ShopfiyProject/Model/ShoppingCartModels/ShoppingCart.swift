@@ -9,7 +9,7 @@ import Foundation
 
 
 struct ShoppingCartResponse : Codable{
-    var draft_orders : [ShoppingCartClass]?
+    var draftOrder : ShoppingCartClass?
 }
 
 struct ShoppingCartClass : Codable {
