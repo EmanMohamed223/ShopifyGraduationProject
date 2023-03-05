@@ -23,11 +23,14 @@ class CategoryViewController: UIViewController {
     var filterArray : ResponseProducts?
     var flag : Bool = false
     var isFav : Bool?
-    
+    var productDetailsViewModel : ProductDetailsViewModel?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     var productFavViewModel = ProductFavViewModel()
-   
     override func viewDidLoad() {
         super.viewDidLoad()
+        productDetailsViewModel = ProductDetailsViewModel()
+
        
         // Do any additional setup after loading the view.
       
@@ -110,13 +113,14 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.productDelegate = self
-        
+        var productToPass  = self.productArray?.products[indexPath.row]
+        self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
         cell.cornerRadius = CGFloat(20)
         cell.categoryLabel.text = productArray?.products[indexPath.row].title
         cell.categoryLabel.adjustsFontSizeToFitWidth = true
         cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         cell.categoryPrice.text = productArray?.products[indexPath.row].variants![0].price
-        cell.checkFavourite(isFav: false, product: (productArray?.products[indexPath.row])!)
+        cell.checkFavourite(isFav: self.isFav!, product: (productArray?.products[indexPath.row])!)
         return cell
     }
     

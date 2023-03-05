@@ -26,10 +26,13 @@ class SearchViewController: UIViewController {
     var productPriceArray : [Products]?
     var productBSArray : [Products]?
     var productFavViewModel = ProductFavViewModel()
-   
+    var isFav : Bool?
+    var productDetailsViewModel : ProductDetailsViewModel?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        productDetailsViewModel = ProductDetailsViewModel()
+
         self.title = brandName ?? ""
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
@@ -88,10 +91,11 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
         cell.categoryLabel.text = productPriceArray?[indexPath.row].title
         cell.productDelegate = self
-
+        var productToPass  = self.productPriceArray?[indexPath.row]
+        self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
         cell.CategoryImage.kf.setImage(with: URL(string: productPriceArray?[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         cell.categoryPrice.text = productPriceArray?[indexPath.row].variants?[0].price
-        cell.checkFavourite(isFav: false, product: (productPriceArray?[indexPath.row])!)
+        cell.checkFavourite(isFav: self.isFav!, product: (productPriceArray?[indexPath.row])!)
 
         return cell
     }
