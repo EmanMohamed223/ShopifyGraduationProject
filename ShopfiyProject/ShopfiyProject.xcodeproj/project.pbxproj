@@ -53,6 +53,13 @@
 		8C40A1D529AFFDFE0065865F /* ResponseProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C40A1D329AFFDFE0065865F /* ResponseProducts.swift */; };
 		8C55131429A4B6440066B62E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131329A4B6440066B62E /* SearchViewController.swift */; };
 		8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */; };
+		8C554BE929B52B13001EC6BB /* ResponseSubCategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BE829B52B13001EC6BB /* ResponseSubCategoryApi.swift */; };
+		8C554BED29B52D4C001EC6BB /* ResponseSubCategoryAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BEC29B52D4C001EC6BB /* ResponseSubCategoryAccessory.swift */; };
+		8C554BEF29B52F1E001EC6BB /* ResponseSubCategoryShoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BEE29B52F1E001EC6BB /* ResponseSubCategoryShoes.swift */; };
+		8C554BF129B53272001EC6BB /* MockManagerBrandApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BF029B53272001EC6BB /* MockManagerBrandApi.swift */; };
+		8C554BF329B53582001EC6BB /* MockNTBrandsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BF229B53582001EC6BB /* MockNTBrandsApi.swift */; };
+		8C554BF629B5471D001EC6BB /* MockManageMen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BF529B5471D001EC6BB /* MockManageMen.swift */; };
+		8C554BF929B5480D001EC6BB /* MockNTMenCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C554BF829B5480D001EC6BB /* MockNTMenCategory.swift */; };
 		8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */; };
 		8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */; };
 		8C86437129A826A5006FC8F0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86437029A826A5006FC8F0 /* SplashViewController.swift */; };
@@ -187,6 +194,13 @@
 		8C40A1D329AFFDFE0065865F /* ResponseProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseProducts.swift; sourceTree = "<group>"; };
 		8C55131329A4B6440066B62E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8C55131729A4DF920066B62E /* NavigationBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarProtocol.swift; sourceTree = "<group>"; };
+		8C554BE829B52B13001EC6BB /* ResponseSubCategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSubCategoryApi.swift; sourceTree = "<group>"; };
+		8C554BEC29B52D4C001EC6BB /* ResponseSubCategoryAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSubCategoryAccessory.swift; sourceTree = "<group>"; };
+		8C554BEE29B52F1E001EC6BB /* ResponseSubCategoryShoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSubCategoryShoes.swift; sourceTree = "<group>"; };
+		8C554BF029B53272001EC6BB /* MockManagerBrandApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerBrandApi.swift; sourceTree = "<group>"; };
+		8C554BF229B53582001EC6BB /* MockNTBrandsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNTBrandsApi.swift; sourceTree = "<group>"; };
+		8C554BF529B5471D001EC6BB /* MockManageMen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManageMen.swift; sourceTree = "<group>"; };
+		8C554BF829B5480D001EC6BB /* MockNTMenCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNTMenCategory.swift; sourceTree = "<group>"; };
 		8C86436B29A7DA8B006FC8F0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8C86436D29A7DCD6006FC8F0 /* ViewModelProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProduct.swift; sourceTree = "<group>"; };
 		8C86437029A826A5006FC8F0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -488,6 +502,44 @@
 			path = OrderModel;
 			sourceTree = "<group>";
 		};
+		8C554BEA29B52B17001EC6BB /* CategoryApi */ = {
+			isa = PBXGroup;
+			children = (
+				8C40A1D229AFFDFD0065865F /* ResponseMainCategory.swift */,
+				8C554BE829B52B13001EC6BB /* ResponseSubCategoryApi.swift */,
+				8C554BEC29B52D4C001EC6BB /* ResponseSubCategoryAccessory.swift */,
+				8C554BEE29B52F1E001EC6BB /* ResponseSubCategoryShoes.swift */,
+			);
+			path = CategoryApi;
+			sourceTree = "<group>";
+		};
+		8C554BEB29B52B67001EC6BB /* BrandApi */ = {
+			isa = PBXGroup;
+			children = (
+				8C40A1D029AFFDF10065865F /* ResponseBrands.swift */,
+				8C40A1D329AFFDFE0065865F /* ResponseProducts.swift */,
+			);
+			path = BrandApi;
+			sourceTree = "<group>";
+		};
+		8C554BF429B54700001EC6BB /* MockingCategoryTest */ = {
+			isa = PBXGroup;
+			children = (
+				8C554BF529B5471D001EC6BB /* MockManageMen.swift */,
+				8C554BF829B5480D001EC6BB /* MockNTMenCategory.swift */,
+			);
+			path = MockingCategoryTest;
+			sourceTree = "<group>";
+		};
+		8C554BF729B5472E001EC6BB /* MockingBrandTest */ = {
+			isa = PBXGroup;
+			children = (
+				8C554BF029B53272001EC6BB /* MockManagerBrandApi.swift */,
+				8C554BF229B53582001EC6BB /* MockNTBrandsApi.swift */,
+			);
+			path = MockingBrandTest;
+			sourceTree = "<group>";
+		};
 		8C86436F29A8267E006FC8F0 /* SplashScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,9 +637,10 @@
 		8CE5EF0829A3E9B500519879 /* ShopfiyProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C40A1D229AFFDFD0065865F /* ResponseMainCategory.swift */,
-				8C40A1D329AFFDFE0065865F /* ResponseProducts.swift */,
-				8C40A1D029AFFDF10065865F /* ResponseBrands.swift */,
+				8C554BF429B54700001EC6BB /* MockingCategoryTest */,
+				8C554BF729B5472E001EC6BB /* MockingBrandTest */,
+				8C554BEB29B52B67001EC6BB /* BrandApi */,
+				8C554BEA29B52B17001EC6BB /* CategoryApi */,
 				8CE5EF0929A3E9B500519879 /* ShopfiyProjectTests.swift */,
 			);
 			path = ShopfiyProjectTests;
@@ -1260,9 +1313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C554BED29B52D4C001EC6BB /* ResponseSubCategoryAccessory.swift in Sources */,
+				8C554BE929B52B13001EC6BB /* ResponseSubCategoryApi.swift in Sources */,
+				8C554BF129B53272001EC6BB /* MockManagerBrandApi.swift in Sources */,
 				8C40A1D529AFFDFE0065865F /* ResponseProducts.swift in Sources */,
 				8C40A1D129AFFDF10065865F /* ResponseBrands.swift in Sources */,
+				8C554BF629B5471D001EC6BB /* MockManageMen.swift in Sources */,
+				8C554BF329B53582001EC6BB /* MockNTBrandsApi.swift in Sources */,
 				8CE5EF0A29A3E9B500519879 /* ShopfiyProjectTests.swift in Sources */,
+				8C554BF929B5480D001EC6BB /* MockNTMenCategory.swift in Sources */,
+				8C554BEF29B52F1E001EC6BB /* ResponseSubCategoryShoes.swift in Sources */,
 				8C40A1D429AFFDFE0065865F /* ResponseMainCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
