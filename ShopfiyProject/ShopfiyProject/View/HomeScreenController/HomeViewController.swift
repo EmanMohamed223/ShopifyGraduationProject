@@ -31,7 +31,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     
     override func viewDidLoad() {
         
-        
+        UIPasteboard.general.string = ""
         
         var nib = UINib(nibName: "BrandCollectionViewCell", bundle: nil)
         self.brandCollectionView.register(nib, forCellWithReuseIdentifier: "brand")
