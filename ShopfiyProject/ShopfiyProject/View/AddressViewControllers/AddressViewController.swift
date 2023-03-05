@@ -13,9 +13,8 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var addressArr = CustomerAddressGetModel()
-    
     let addressViewModel = AddressViewModel()
-    
+    var addressModelToBeDeleted : CustomerAddressModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +22,14 @@ class AddressViewController: UIViewController {
         tableView.dataSource = self
         let userId = UserDefaultsManager.shared.getUserID()
         let url = getURL(endPoint: "customers/\(userId ?? 0)/addresses.json?limit=10")
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
         addressViewModel.callNetworkServiceManagerToGetAddresses(url: url)
         addressViewModel.bindResultToViewController = {
             self.renderAddresses(addresses: self.addressViewModel.resultModel)
+            indicator.stopAnimating()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +67,8 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+            self.addressModelToBeDeleted = CustomerAddressModel(customer_address: self.addressArr.addresses?[indexPath.row])
+            self.addressViewModel.callNetworkServiceManagerToDelete(customerAddressModel: self.addressModelToBeDeleted ?? CustomerAddressModel())
             self.addressArr.addresses?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             completionHandler(true)
@@ -83,6 +89,7 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
+        vc.address = addressArr.addresses?[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

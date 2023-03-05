@@ -13,12 +13,23 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var subTotalLabel: UILabel!
     
     var draftOrders : [LineItem]?
+    var shoppingCart : ShoppingCartResponse?
+    var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: "draft_orders.json"))
+        shoppingCartViewModel.bindResultToViewController = {
+            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
+            indicator.stopAnimating()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,9 +38,9 @@ class ShoppingCartViewController: UIViewController {
     @IBAction func checkoutBtn(_ sender: Any) {
     }
     
-    func renderDraftOrders(shoppingCart : ShoppingCart?){
-        guard let shoppingCart = shoppingCart else { return}
-      //  self.draftOrders = shoppingCart.line_items
+    func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
+        self.shoppingCart?.draft_orders = shoppingCart?.draft_orders
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

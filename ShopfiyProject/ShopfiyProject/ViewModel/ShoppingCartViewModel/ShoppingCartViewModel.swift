@@ -8,17 +8,11 @@
 import Foundation
 
 class ShoppingCartViewModel{
-    var bindResultToViewController : (() -> ()) = {}
     
-    var shoppingCart : ShoppingCartResponse?{
-        didSet{
-         //   bindResultToViewController()
-        }
-    }
+    var bindResultToViewController : (() -> ()) = {}
     
     var shoppingCartResponse : ShoppingCartResponse! {
         didSet{
-            //self.shoppingCart = shoppingCartResponse
             bindResultToViewController()
         }
     }
@@ -26,8 +20,6 @@ class ShoppingCartViewModel{
     func getDraftOrder(url : String?){
         NetworkService.shared.fetchData(url: url) { result in
             self.shoppingCartResponse = result
-     //       self.shoppingCartResponse = ShoppingCartResponse()
-            
         }
     }
     

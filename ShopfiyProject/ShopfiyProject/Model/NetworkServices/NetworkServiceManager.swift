@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkServiceManager{
+class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAddressProtocol{
     
     static let shared = NetworkServiceManager()
     static var addresses : CustomerAddressGetModel!
@@ -21,6 +21,12 @@ class NetworkServiceManager{
     
     func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel){
         NetworkService.shared.putAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
+            print(response ?? "")
+        })
+    }
+    
+    func callNetworkServiceToDeleteAddress(customerAddressModel : CustomerAddressModel){
+        NetworkService.shared.deleteAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
             print(response ?? "")
         })
     }

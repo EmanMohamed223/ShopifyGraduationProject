@@ -82,6 +82,9 @@
 		C90A4BC529AD291600BD0EF2 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */; };
 		C90A4BCC29AD2DB600BD0EF2 /* PriceRuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */; };
 		C90A4BCE29AD361C00BD0EF2 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */; };
+		C93C942829B3E79E0095A03B /* PostAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */; };
+		C93C942A29B3E7CE0095A03B /* EditAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */; };
+		C93C942C29B3E7E00095A03B /* DeleteAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */; };
 		C94B306029A9299A00777CAA /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B305F29A9299A00777CAA /* Ads.swift */; };
 		C94B306229A929E100777CAA /* AdsDetials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B306129A929E100777CAA /* AdsDetials.swift */; };
 		C94B306629A9631B00777CAA /* ConvertToUserRelated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */; };
@@ -218,6 +221,9 @@
 		C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleViewModel.swift; sourceTree = "<group>"; };
 		C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
+		C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAddressProtocol.swift; sourceTree = "<group>"; };
+		C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressProtocol.swift; sourceTree = "<group>"; };
+		C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAddressProtocol.swift; sourceTree = "<group>"; };
 		C94B305F29A9299A00777CAA /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
 		C94B306129A929E100777CAA /* AdsDetials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDetials.swift; sourceTree = "<group>"; };
 		C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToUserRelated.swift; sourceTree = "<group>"; };
@@ -636,11 +642,9 @@
 		C94B306729A9654100777CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-
 				8C1454E229B3A6FD00B38AE2 /* BrandViewModel */,
 				8C1454DF29B3A6D400B38AE2 /* ProductViewModel */,
 				8C1454DC29B3A69F00B38AE2 /* OrderViewModel */,
-
 				C9AA810F29B2B815001BBF34 /* AddressViewModel */,
 				037838F529B335DA0004902E /* ProductFavViewModel */,
 				037838EE29B315700004902E /* FavoriteViewModel */,
@@ -764,6 +768,9 @@
 				037838E829B303060004902E /* ConvertToProductDetailsProtocol.swift */,
 				037838F129B32B410004902E /* FireActionInCategoryCellProtocol.swift */,
 				037838F329B32CA40004902E /* FireActionInCategoryCellFavourite.swift */,
+				C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */,
+				C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */,
+				C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */,
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -917,7 +924,6 @@
 				8CE5EEE929A3E9B000519879 /* Frameworks */,
 				8CE5EEEA29A3E9B000519879 /* Resources */,
 				AAB35E640880160A777D1382 /* [CP] Embed Pods Frameworks */,
-				23A81F92EA9CE2FE97041A00 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -956,7 +962,6 @@
 				8CE5EF0C29A3E9B500519879 /* Frameworks */,
 				8CE5EF0D29A3E9B500519879 /* Resources */,
 				91C85971B4D8D3602DC56206 /* [CP] Embed Pods Frameworks */,
-				F561A3E98161D48DAFA39459 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1051,23 +1056,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		23A81F92EA9CE2FE97041A00 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		51EE92E6D64B8924C18C4191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1146,23 +1134,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F561A3E98161D48DAFA39459 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopfiyProject-ShopfiyProjectUITests/Pods-ShopfiyProject-ShopfiyProjectUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F5D94F175F6CAD98EAE2359D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1230,6 +1201,7 @@
 				8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */,
 				03714DAF29A4B6A4000A0528 /* MoreOrdersViewController.swift in Sources */,
 				037838F429B32CA40004902E /* FireActionInCategoryCellFavourite.swift in Sources */,
+				C93C942A29B3E7CE0095A03B /* EditAddressProtocol.swift in Sources */,
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
 				0324771F29A6E04100DBAFC2 /* Navigationdelegate.swift in Sources */,
 				038173F429B0F0A600A5E3D1 /* DatabaseManager.swift in Sources */,
@@ -1250,6 +1222,7 @@
 				C94B306629A9631B00777CAA /* ConvertToUserRelated.swift in Sources */,
 				0376FA9B29AD4F7F00294641 /* CustomerViewModel.swift in Sources */,
 				C9C261D229A3ED360012D4C5 /* ShoppingCartTableViewCell.swift in Sources */,
+				C93C942829B3E79E0095A03B /* PostAddressProtocol.swift in Sources */,
 				8C88F90E29A7CD5A00CB9E33 /* ProductModel.swift in Sources */,
 				8C86436E29A7DCD6006FC8F0 /* ViewModelProduct.swift in Sources */,
 				037838F029B3162B0004902E /* FavoritesViewModel.swift in Sources */,
@@ -1273,6 +1246,7 @@
 				03911B5B29A963B300CBD770 /* RegisterViewModel.swift in Sources */,
 				C9DB27F929AA3B8900870605 /* PaymentCollectionViewCell.swift in Sources */,
 				8C93DFD429A41709002665D4 /* CategoryViewController.swift in Sources */,
+				C93C942C29B3E7E00095A03B /* DeleteAddressProtocol.swift in Sources */,
 				8C86436C29A7DA8B006FC8F0 /* NetworkService.swift in Sources */,
 				C97013CF29B0299200C9BE15 /* PaymentViewModel.swift in Sources */,
 				036F341729A8043E00FB192A /* UserModel.swift in Sources */,
