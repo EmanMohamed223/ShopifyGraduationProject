@@ -20,6 +20,9 @@ class AddressViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         let userId = UserDefaultsManager.shared.getUserID()
         let url = getURL(endPoint: "customers/\(userId ?? 0)/addresses.json?limit=10")
         let indicator = UIActivityIndicatorView(style: .large)
@@ -31,9 +34,6 @@ class AddressViewController: UIViewController {
             self.renderAddresses(addresses: self.addressViewModel.resultModel)
             indicator.stopAnimating()
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
         tableView.reloadData()
     }
     
