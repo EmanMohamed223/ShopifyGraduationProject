@@ -20,7 +20,7 @@ class ResponseBrands : XCTestCase{
     func testGetBrandsApi(){
         let expectation = expectation(description: "Waiting for API")
         
-        NetworkService.fetchData (url: getURL(endPoint: "smart_collections.json?since_id=482865238"),
+        NetworkService.shared.fetchData (url: getURL(endPoint: "smart_collections.json?since_id=482865238"),
               compiletionHandler: { data in
             guard let response : SmartCollection = data
             else
