@@ -156,43 +156,47 @@ class ProductDetailsViewController: UIViewController {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
-       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
-            LineItemObj = LineItem()
-            LineItemObj?.name = self.product?.title
-            LineItemObj?.price = self.product?.variants![0].price
-            LineItemObj?.vendor = self.product?.images[0].src
-            LineItemToBe?.append(LineItemObj!)
-            shopingCardObj = ShoppingCartClass(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
-            let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
-//            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
-                    drafOrderViewModel?.createNewDraft(newDraftOrder: draftOrder) { data, response, error in
-            
-                        guard error == nil else {
-                             DispatchQueue.main.async {
-                                 self.showAlertError(title: "Couldnot add this product", message: "Please, try again later.")
-                             }
-                             return
-                         }
-            
-                         guard response?.statusCode != 422 else {
-                             DispatchQueue.main.async {
-                                 self.showAlertError(title: "Couldnot add", message: "Please, try another time.")
-                             }
-                             return
-                         }
-            
-                         print("added successfully")
-            
-            
-                     }
-            
-        //}
-        
-             
-        
-            
-        
-            
+        else {
+           postOrder()
+        }
+        //       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
+        //            LineItemObj = LineItem()
+        //            LineItemObj?.name = self.product?.title
+        //            LineItemObj?.price = self.product?.variants![0].price
+        //            LineItemObj?.vendor = self.product?.images[0].src
+        //            LineItemToBe?.append(LineItemObj!)
+        //            shopingCardObj = ShoppingCartClass(id : UserDefaultsManager.shared.getUserID()! , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
+        //            let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
+        ////            shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
+        //                    drafOrderViewModel?.createNewDraft(newDraftOrder: draftOrder) { data, response, error in
+        //
+        //                        guard error == nil else {
+        //                             DispatchQueue.main.async {
+        //                                 self.showAlertError(title: "Couldnot add this product", message: "Please, try again later.")
+        //                             }
+        //                             return
+        //                         }
+        //
+        //                         guard response?.statusCode != 422 else {
+        //                             DispatchQueue.main.async {
+        //                                 self.showAlertError(title: "Couldnot add", message: "Please, try another time.")
+        //                             }
+        //                             return
+        //                         }
+        //
+        //                         print("added successfully")
+        //
+        //
+        //                     }
+        //
+        //        //}
+        //
+        //
+        //
+        //
+        //
+        //
+        //    }
     }
 }
 extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
@@ -287,4 +291,53 @@ extension ProductDetailsViewController {
 
 
     }
+    func postOrder(){
+    ///admin/api/2023-01/draft_orders/\(UserDefaultsManager.shared.getUserID()?? "")json
+            let user_id = UserDefaultsManager.shared.getUserID()!
+            let user_email = UserDefaultsManager.shared.getUserEmail()!
+            let newdraft  : [String : Any] =
+           [ "draft_order" :
+                [
+                  "id": user_id  ,
+                  "note": "rush order",
+                  "email": user_email ,
+                  "taxes_included": true,
+                  "currency": "USD",
+                 
+                  "created_at": "2023-02-13T10:18:48-05:00",
+                  "updated_at": "2023-02-13T10:18:48-05:00",
+                  "tax_exempt": false,
+               
+                  "name": "#D4",
+                  "status": "completed",
+                  "line_items": [
+                    [
+                      "id": 498266019,
+     //                 "variant_id": 39072856,
+                      "product_id": 632910392,
+                      "title":  self.product?.title ?? "" ,
+                      "variant_title": "green",
+                      "sku": "IPOD2008GREEN",
+                      "vendor":  self.product?.images[0].src ?? "" ,
+                      "quantity": 2,
+                      "requires_shipping": true,
+                      "taxable": true,
+                      "gift_card": false,
+                      "fulfillment_service": "manual",
+                      "grams": 567,
+                      "tax_lines": [],
+                 
+                      "name": "IPod Nano - 8gb - green",
+                      "properties": [],
+                      "custom": false,
+                      "price": self.product?.variants![0].price ?? "",
+                      "admin_graphql_api_id": "gid://shopify/DraftOrderLineItem/498266019"
+                   ]
+                  ]
+                ]
+            ]
+
+            NetworkService.shared.postDataToApi(url: getURL(endPoint: "draft_orders.json")!, newOrder: newdraft)
+
+        }
 }
