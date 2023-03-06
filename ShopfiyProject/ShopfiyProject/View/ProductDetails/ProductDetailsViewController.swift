@@ -152,12 +152,13 @@ class ProductDetailsViewController: UIViewController {
     
   
     @IBAction func addToBagbtm(_ sender: UIButton) {
-        addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
         if !UserDefaultsManager.shared.getUserStatus() {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
         else {
+            
+            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
            postOrder()
         }
         //       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {

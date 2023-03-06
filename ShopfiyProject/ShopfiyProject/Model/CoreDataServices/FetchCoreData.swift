@@ -10,14 +10,16 @@ import CoreData
 
 class FetchCoreData{
     func fetchFromCore(appDelegate: AppDelegate, userID : Int) -> [Products]?{
-        var formatter = ConvertToProductFormatter()
+        let formatter = ConvertToProductFormatter()
+        print(UserDefaultsManager.shared.getUserID()!)
         var productsNSManagedObject : [NSManagedObject] = []
         //2
         let managedContext = appDelegate.persistentContainer.viewContext
         //3
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:"ShoppingCart")
         //4
-        let predicate = NSPredicate(format: "userID == %@", userID)
+        let myPredicate = NSPredicate(format: "userID == %@", "\(userID)")
+        fetchRequest.predicate = myPredicate
         do{
             productsNSManagedObject = try managedContext.fetch(fetchRequest)
         }catch let error as NSError{

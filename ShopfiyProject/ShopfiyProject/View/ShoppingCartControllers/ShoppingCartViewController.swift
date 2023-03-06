@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class ShoppingCartViewController: UIViewController {
     
@@ -17,30 +18,27 @@ class ShoppingCartViewController: UIViewController {
     var shoppingCart : ShoppingCartResponse?
     var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
+    var network : Reachability!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.center = view.center
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        let userEmail = UserDefaultsManager.shared.getUserEmail()
-        //let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
-        let endPoint = "draft_orders/1110846079257.json?email=\(userEmail ?? "")"
-        shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
-        shoppingCartViewModel.bindResultToViewController = {
-            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
-            indicator.stopAnimating()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        let viewModel = CoreDataViewModel()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
+        network = Reachability.forInternetConnection()
+        if network.isReachable(){
+            let viewModel = CoreDataViewModel()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
+        }
+        else{
+            getDraftOrders()
+        }
+        
     }
     
     
@@ -61,6 +59,9 @@ class ShoppingCartViewController: UIViewController {
 extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if network.isReachable(){
+            return products?.count ?? 0
+        }
         return lineItems?.count ?? 0
     }
     
@@ -71,9 +72,18 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
-        cell.productTitle.text = lineItems?[indexPath.row].title
-        cell.productPrice.text = lineItems?[indexPath.row].price
-        cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
+        if network.isReachable(){
+            cell.productTitle.text = products?[indexPath.row].title
+            cell.productPrice.text = products?[indexPath.row].variants?[0].price
+            cell.numOfItems.text = String(products?[indexPath.row].variants?[0].inventory_quantity ?? 0)
+            //cell.productImg.image = UIImage(named: products?[indexPath.row].images[0].src ?? "load")
+            cell.productImg.kf.setImage(with: URL(string: products?[indexPath.row].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
+        }
+        else{
+            cell.productTitle.text = lineItems?[indexPath.row].title
+            cell.productPrice.text = lineItems?[indexPath.row].price
+            cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
+        }
         return cell
     }
     
@@ -105,5 +115,19 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
         return 2
     }
     
-    
+    func getDraftOrders(){
+            let indicator = UIActivityIndicatorView(style: .large)
+            indicator.center = view.center
+            view.addSubview(indicator)
+            indicator.startAnimating()
+            let userEmail = UserDefaultsManager.shared.getUserEmail()
+            //let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
+            let endPoint = "draft_orders/1110846079257.json?email=\(userEmail ?? "")"
+            shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
+            shoppingCartViewModel.bindResultToViewController = {
+                self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
+                indicator.stopAnimating()
+            }
+
+    }
 }
