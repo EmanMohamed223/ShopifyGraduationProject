@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CoreDataManager : SavetoCoreProtocol{
+class CoreDataManager : SavetoCoreProtocol, FetchFromCoreProtocol, DeleteFromCoreProtocol{
     
     private static var coreDataManager : CoreDataManager?
     public static func getCoreObj() -> CoreDataManager{
@@ -28,5 +28,10 @@ class CoreDataManager : SavetoCoreProtocol{
     func fetchCoreData(appDelegate: AppDelegate, userID : Int) -> [Products]?{
         let fetchCoreData = FetchCoreData()
         return fetchCoreData.fetchFromCore(appDelegate: appDelegate,userID: userID)
+    }
+    
+    func deleteFromCoreData(appDelegate: AppDelegate,productID : Int ,userID : Int){
+        let deleteCoreData = DeleteCoreData()
+        deleteCoreData.deleteFromCoreData(appDelegate: appDelegate, productID : productID, userID: userID)
     }
 }

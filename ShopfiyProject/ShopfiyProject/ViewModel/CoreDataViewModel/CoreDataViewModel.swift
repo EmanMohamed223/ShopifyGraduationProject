@@ -15,4 +15,8 @@ class CoreDataViewModel{
     func callManagerToFetch(appDelegate : AppDelegate,userID : Int) -> [Products]?{
         return CoreDataManager.getCoreObj().fetchCoreData(appDelegate: appDelegate, userID: userID)
     }
+    
+    func callManagerToDelete(appDelegate : AppDelegate,productID : Int, userID : Int){
+        CoreDataManager.getCoreObj().deleteFromCoreData(appDelegate: appDelegate, productID: productID, userID: userID)
+    }
 }

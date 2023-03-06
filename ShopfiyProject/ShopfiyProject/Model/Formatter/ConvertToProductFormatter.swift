@@ -15,8 +15,8 @@ class ConvertToProductFormatter : ConvertToProductDetailsProtocol{
         var productsArray : [Products] = []
         for objectIndex in 0...nsManagedObject.count-1{
             var product = Products()
-            //print(product.variants?[objectIndex].id ?? 10)
             product.id = nsManagedObject[objectIndex].value(forKey: "productID") as? Int ?? 0
+            print("product ID: ",product.id)
             product.title = nsManagedObject[objectIndex].value(forKey: "title") as? String ?? " "
             //product.vendor = nsManagedObject[objectIndex].value(forKey: "img") as? String ?? " "
             product.images[0].src = nsManagedObject[objectIndex].value(forKey: "img") as? String ?? " "
