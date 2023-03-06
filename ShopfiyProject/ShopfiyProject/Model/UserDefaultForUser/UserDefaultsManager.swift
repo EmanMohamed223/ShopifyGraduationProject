@@ -21,6 +21,13 @@ class UserDefaultsManager{
     func getUserID()-> Int?{
         return UserDefaults.standard.integer(forKey: "User_ID")
     }
+    func setDraftOrderID(draftOrderID: Int?){
+        UserDefaults.standard.set(draftOrderID, forKey: "DraftOrder_ID")
+    }
+    
+    func getDraftOrderID()-> Int?{
+        return UserDefaults.standard.integer(forKey: "DraftOrder_ID")
+    }
     
     func setUserName(userName: String?){
         UserDefaults.standard.set(userName, forKey: "User_Name")

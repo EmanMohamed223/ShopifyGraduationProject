@@ -80,7 +80,48 @@ class NetworkService : Service{
 
     }
     
+    func putDraft(draftOrderModel : DraftOrder,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
 
+        let draftOrder_id = UserDefaultsManager.shared.getDraftOrderID()! 
+        let draftOrderId = draftOrderModel.draft_orders.id
+        let url = getURL(endPoint: "draft_orders/\(draftOrder_id).json")
+        guard let baseURL = URL(string : url ?? "") else { return }
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "PUT"
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        request.httpShouldHandleCookies = false
+
+        do{
+            let data = try JSONSerialization.data(withJSONObject: draftOrderModel.asDictionary(), options: .prettyPrinted)
+            
+            URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+                if let error = error {
+                        print("Error making PUT request: \(error.localizedDescription)")
+                        return
+                    }
+
+                if let responseCode = (response as? HTTPURLResponse)?.statusCode, let data = data {
+                    guard responseCode == 200 else {
+                        print("Invalid response code: \(responseCode)")
+                        return
+                    }
+
+                    if let responseJSONData = try? JSONSerialization.jsonObject(with: data , options: .allowFragments) {
+                        print("Response JSON data = \(responseJSONData)")
+                    }
+                }
+                completion(data, response as? HTTPURLResponse, error)
+            }.resume()
+            print(try! draftOrderModel.asDictionary())
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+
+    }
      func postDataToApi(url : String ,newOrder: [String:Any]) {
       
         guard let url = URL(string: url) else { return }
