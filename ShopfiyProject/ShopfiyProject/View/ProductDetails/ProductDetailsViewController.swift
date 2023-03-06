@@ -141,7 +141,7 @@ class ProductDetailsViewController: UIViewController {
     @IBAction func seeMoreBtm(_ sender: UIButton) {
         
         
-       var seemorescreen = self.storyboard?.instantiateViewController(withIdentifier: "seemoreReview") as! SeeMoreReviewsViewController
+        let seemorescreen = self.storyboard?.instantiateViewController(withIdentifier: "seemoreReview") as! SeeMoreReviewsViewController
         
         self.present(seemorescreen, animated: true)
     }
@@ -157,6 +157,8 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         else {
+            
+            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
            postOrder()
         }
         //       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
@@ -340,4 +342,31 @@ extension ProductDetailsViewController {
             NetworkService.shared.postDataToApi(url: getURL(endPoint: "draft_orders.json")!, newOrder: newdraft)
 
         }
+    
+    func addToCoreData(product : Products,userID : Int){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let saveToCoreViewModel = CoreDataViewModel()
+        saveToCoreViewModel.callManagerToSave(product : product, userID : userID, appDelegate : appDelegate)
+        showToastMessage(message: "Item added to shopping cart", color: .darkText)
+    }
+    
+    func showToastMessage(message: String, color: UIColor) {
+            let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
+
+            toastLabel.textAlignment = .center
+            toastLabel.backgroundColor = color
+            toastLabel.textColor = .white
+            toastLabel.alpha = 1.0
+            toastLabel.layer.cornerRadius = 10
+            toastLabel.clipsToBounds = true
+            toastLabel.text = message
+            view.addSubview(toastLabel)
+
+            UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
+                toastLabel.alpha = 0.0
+            }) { _ in
+                toastLabel.removeFromSuperview()
+            }
+    }
 }
+

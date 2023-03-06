@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SavetoCoreProtocol{
-    func saveItems(userRelated : UserRelatedStruct, appDelegate : AppDelegate)
+    func saveItems(product : Products, userID: Int, appDelegate : AppDelegate)
 }

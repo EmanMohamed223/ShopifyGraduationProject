@@ -7,8 +7,3 @@
 
 import Foundation
 
-class SavetoCoreViewModel{
-    func callManagerToSave(userRelated: UserRelatedStruct, appDelegate: AppDelegate){
-        CoreDataManager.getCoreObj().saveItems(userRelated: userRelated, appDelegate: appDelegate)
-    }
-}

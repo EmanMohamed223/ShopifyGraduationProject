@@ -20,10 +20,13 @@ class CoreDataManager : SavetoCoreProtocol{
         }
     }
     
-    func saveItems(userRelated: UserRelatedStruct, appDelegate: AppDelegate) {
+    func saveItems(product : Products, userID : Int, appDelegate: AppDelegate) {
         let saveCoreData = SaveCoreData()
-        saveCoreData.saveToCore(userRelated: userRelated, appDelegate: appDelegate)
+        saveCoreData.saveToCore(product: product, userID: userID, appDelegate: appDelegate)
     }
 
-    
+    func fetchCoreData(appDelegate: AppDelegate, userID : Int) -> [Products]?{
+        let fetchCoreData = FetchCoreData()
+        return fetchCoreData.fetchFromCore(appDelegate: appDelegate,userID: userID)
+    }
 }
