@@ -13,6 +13,7 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var subTotalLabel: UILabel!
     
     var lineItems : [LineItem]?
+    var products : [Products]?
     var shoppingCart : ShoppingCartResponse?
     var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
@@ -37,7 +38,12 @@ class ShoppingCartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        let viewModel = CoreDataViewModel()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
     }
+    
+    
     @IBAction func checkoutBtn(_ sender: Any) {
     }
     

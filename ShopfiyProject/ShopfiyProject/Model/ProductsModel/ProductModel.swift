@@ -8,7 +8,10 @@
 import Foundation
 class ResponseProducts : Decodable {
     var products :[Products]
+    
+    
 }
+
 struct Products : Decodable{
     var id:Int
     var title: String
@@ -19,16 +22,19 @@ struct Products : Decodable{
     var tags :String?
     var variants:[variant]?
     var images :[Image]
- 
+    
+    
     
 }
 struct variant :Decodable{
     //userID
-     var id : Int?
+    var id : Int?
     var option2 :String?
     var price : String?
     var option1 : String?
-
+    
+    var inventory_quantity : Int?
+    var old_inventory_quantity : Int?
 
 }
 
@@ -36,5 +42,4 @@ struct variant :Decodable{
 struct Image : Decodable{
 
     var src : String?
-
-                }
+}

@@ -9,16 +9,19 @@ import Foundation
 import CoreData
 
 class SaveCoreData{
-    func saveToCore(userRelated : UserRelatedStruct, appDelegate : AppDelegate){
+    func saveToCore(product : Products, userID : Int, appDelegate : AppDelegate){
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "UserRelated", in: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "ShoppingCart", in: managedContext)
 
-        let userRelatedArray = NSManagedObject(entity: entity!, insertInto: managedContext)
+        let lineItemsArray = NSManagedObject(entity: entity!, insertInto: managedContext)
         
-        userRelatedArray.setValue(userRelated.offerCoupon, forKey: "offerCoupon")
-        userRelatedArray.setValue(userRelated.userId, forKey: "userId")
+        lineItemsArray.setValue(product.id, forKey: "productID")
+        lineItemsArray.setValue(product.title, forKey: "title")
+        lineItemsArray.setValue(product.variants?[0].price, forKey: "price")
+        lineItemsArray.setValue(1, forKey: "quantity")
+        lineItemsArray.setValue(product.vendor, forKey: "img")
         
         do{
             try managedContext.save()
