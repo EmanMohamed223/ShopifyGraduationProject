@@ -10,7 +10,7 @@ import Foundation
 class AddressViewModel{
     
     var bindResultToViewController : (()->()) = {}
-    
+    var flag : Bool?
     var resultArray : [Customer_address]! {
         didSet{
             bindResultToViewController()
@@ -25,8 +25,15 @@ class AddressViewModel{
         }
     }
     
-    func callNetworkServiceManagerToPost(customerAddressModel : CustomerAddressModel){
-        NetworkServiceManager.shared.callNetworkServiceToPostAddress(customerAddressModel : customerAddressModel)
+    func callNetworkServiceManagerToPost(customerAddressModel : CustomerAddressModel, completion: @escaping (HTTPURLResponse) -> ()){
+        NetworkServiceManager.shared.callNetworkServiceToPostAddress(customerAddressModel : customerAddressModel) { response in
+//            if response != nil{
+//                DispatchQueue.main.async {
+//                    self.flag? = true
+//                }
+//            }
+            completion(response ?? HTTPURLResponse())
+        }
     }
     
     func callNetworkServiceManagerToGetAddresses(url : String?){

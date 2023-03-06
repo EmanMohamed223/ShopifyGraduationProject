@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PostAddressProtocol{
-    func callNetworkServiceToPostAddress(customerAddressModel : CustomerAddressModel)    
+    func callNetworkServiceToPostAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (HTTPURLResponse?)->())    
 }

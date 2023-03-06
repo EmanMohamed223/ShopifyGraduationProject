@@ -75,13 +75,18 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
             addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(id : address?.id, country: country, city: city, address1: street)))
         }
         else{
-            addressViewModel.callNetworkServiceManagerToPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street)))
+            addressViewModel.callNetworkServiceManagerToPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street))) { response in
+                if response.statusCode >= 200 && response.statusCode <= 299{
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         }
         
        
         //let address = Customer_address(country: country, city: city, address1: street)
         //self.addressDelegate?.getAddress(address: address)
-        self.navigationController?.popViewController(animated: true)
     }
     
     func addMapPin(with location: CLLocation){
