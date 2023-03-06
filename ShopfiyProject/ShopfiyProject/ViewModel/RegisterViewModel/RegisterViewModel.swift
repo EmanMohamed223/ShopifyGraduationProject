@@ -53,7 +53,7 @@ class RegisterViewModel {
             return
         }
         if !isValidphone(phoneNumber: phone) {
-                compeltion("ErrorPassword")
+                compeltion("ErrorPhone")
                 return
         }
     }
