@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EditAddressProtocol{
-    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel)
+    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel, completion: @escaping (HTTPURLResponse?)->())
 }

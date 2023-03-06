@@ -21,9 +21,10 @@ class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAd
         })
     }
     
-    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel){
+    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (HTTPURLResponse?)->()){
         NetworkService.shared.putAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
             print(response ?? "")
+            completion(response)
         })
     }
     

@@ -37,7 +37,7 @@ class NetworkService : Service{
     }
 
     
-    func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
 
         let userID = UserDefaultsManager.shared.getUserID()
         let addressId = customerAddressModel.customer_address?.id
@@ -70,6 +70,7 @@ class NetworkService : Service{
                         print("Response JSON data = \(responseJSONData)")
                     }
                 }
+                completion(data, response as? HTTPURLResponse, error)
             }.resume()
             print(try! customerAddressModel.asDictionary())
         } catch let error {

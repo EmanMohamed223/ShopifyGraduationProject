@@ -72,7 +72,13 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         let street = streetTxtField.text
         
         if address != nil{
-            addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(id : address?.id, country: country, city: city, address1: street)))
+            addressViewModel.callNetworkServiceManagerToPut(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(id : address?.id, country: country, city: city, address1: street))) { response in
+                if response.statusCode >= 200 && response.statusCode <= 299{
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         }
         else{
             addressViewModel.callNetworkServiceManagerToPost(customerAddressModel:CustomerAddressModel(customer_address: Customer_address(country: country, city: city, address1: street))) { response in
