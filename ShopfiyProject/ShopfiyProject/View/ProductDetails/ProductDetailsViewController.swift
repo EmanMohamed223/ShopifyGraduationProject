@@ -298,7 +298,7 @@ extension ProductDetailsViewController {
             let newdraft  : [String : Any] =
            [ "draft_order" :
                 [
-                  "id": user_id  ,
+                  //"id": user_id  ,//
                   "note": "rush order",
                   "email": user_email ,
                   "taxes_included": true,
@@ -314,7 +314,7 @@ extension ProductDetailsViewController {
                     [
                       "id": 498266019,
      //                 "variant_id": 39072856,
-                      "product_id": 632910392,
+                      "product_id": self.product?.id ?? 0,
                       "title":  self.product?.title ?? "" ,
                       "variant_title": "green",
                       "sku": "IPOD2008GREEN",

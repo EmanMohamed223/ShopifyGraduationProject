@@ -12,7 +12,7 @@ import Alamofire
 protocol Service{
     func fetchData <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
-    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ())
+    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ())
     
      func postDataToApi(url : String ,newOrder: [String : Any])
 }
@@ -37,7 +37,7 @@ class NetworkService : Service{
     }
 
     
-    func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    func putAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
 
         let userID = UserDefaultsManager.shared.getUserID()
         let addressId = customerAddressModel.customer_address?.id
@@ -70,6 +70,7 @@ class NetworkService : Service{
                         print("Response JSON data = \(responseJSONData)")
                     }
                 }
+                completion(data, response as? HTTPURLResponse, error)
             }.resume()
             print(try! customerAddressModel.asDictionary())
         } catch let error {
@@ -106,7 +107,7 @@ class NetworkService : Service{
         }.resume()
     }
 
-    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+    func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()){
         let userId = UserDefaultsManager.shared.getUserID()
         let urlStr =  getURL(endPoint: "customers/\(userId ?? 0)/addresses.json")
         guard let url = URL(string: urlStr!) else { return }
@@ -124,7 +125,7 @@ class NetworkService : Service{
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            completion(data, response, error)
+            completion(data, response as? HTTPURLResponse, error)
         }.resume()
     }
     

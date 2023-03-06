@@ -26,7 +26,8 @@ class ShoppingCartViewController: UIViewController {
         view.addSubview(indicator)
         indicator.startAnimating()
         let userEmail = UserDefaultsManager.shared.getUserEmail()
-        let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
+        //let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
+        let endPoint = "draft_orders/1110846079257.json?email=\(userEmail ?? "")"
         shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
         shoppingCartViewModel.bindResultToViewController = {
             self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)

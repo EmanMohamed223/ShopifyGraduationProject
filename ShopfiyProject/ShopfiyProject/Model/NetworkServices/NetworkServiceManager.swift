@@ -11,17 +11,20 @@ class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAd
     
     static let shared = NetworkServiceManager()
     static var addresses : CustomerAddressGetModel!
+    static var response = HTTPURLResponse()
     private init(){}
     
-    func callNetworkServiceToPostAddress(customerAddressModel : CustomerAddressModel){
+    func callNetworkServiceToPostAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (HTTPURLResponse?)->()){
         NetworkService.shared.postAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
-            print(response ?? "")
+            print(response ?? "") //200...299
+            completion(response)
         })
     }
     
-    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel){
+    func callNetworkServiceToPutAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (HTTPURLResponse?)->()){
         NetworkService.shared.putAddress(customerAddressModel: customerAddressModel, completion: { data, response, error in
             print(response ?? "")
+            completion(response)
         })
     }
     
