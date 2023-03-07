@@ -378,16 +378,22 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kot-Et-OTn">
                                 <rect key="frame" x="0.0" y="67" width="393" height="44"/>
                                 <items>
-                                    <barButtonItem title="Price" width="237.66666666666669" id="re7-Y9-Fcg">
+                                    <barButtonItem title="Price" width="171.66666666666669" id="re7-Y9-Fcg">
                                         <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="selectPrice:" destination="pnI-uK-5fV" id="gBh-IG-AcQ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Best Selling" id="U8P-1G-bu9">
+                                    <barButtonItem title="sort(Z-A)" width="171.66666666666666" id="U8P-1G-bu9">
                                         <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="selectBestSelling:" destination="pnI-uK-5fV" id="6Xt-nJ-Ty5"/>
+                                            <action selector="selectZtoA:" destination="pnI-uK-5fV" id="lDb-CY-e1C"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Cancel" width="150" id="yJ9-3X-URa">
+                                        <color key="tintColor" red="0.97121483090000005" green="0.92788153890000002" blue="0.8197695613" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="cancelbtn:" destination="pnI-uK-5fV" id="3EA-6I-9O2"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
