@@ -16,10 +16,16 @@ class ShoppingCartViewModel{
             bindResultToViewController()
         }
     }
+    
+    var shoppingCartResponseArray : ShoppingCartResponseArray! {
+        didSet{
+            bindResultToViewController()
+        }
+    }
 
     func getDraftOrder(url : String?){
         NetworkService.shared.fetchData(url: url) { result in
-            self.shoppingCartResponse = result
+            self.shoppingCartResponseArray = result
         }
     }
     

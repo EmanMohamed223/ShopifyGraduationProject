@@ -38,7 +38,7 @@ class ProductDetailsViewController: UIViewController {
     var draftOrder : DraftOrder?
     var drafOrderViewModel : DraftOrderViewModel?
     var shopingCardResponseResult : ShoppingCartResponse?
-    
+    var shoppingCartResponseArray = ShoppingCartResponseArray()
     var viewModelProduct = ViewModelProduct()
     
     
@@ -301,7 +301,7 @@ extension ProductDetailsViewController {
         viewModel = ShoppingCartViewModel()
         let userEmail = UserDefaultsManager.shared.getUserEmail()
         
-        let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
+        let endPoint = "draft_orders.json"
         viewModel?.getDraftOrder(url:getURL(endPoint: endPoint))
         viewModel?.bindResultToViewController = { () in
 
@@ -310,7 +310,10 @@ extension ProductDetailsViewController {
     }
     func renderView(){
 
-            self.shopingCardResponseResult = self.viewModel?.shoppingCartResponse
+            //self.shopingCardResponseResult = self.viewModel?.shoppingCartResponse
+        DispatchQueue.main.async {
+            self.shoppingCartResponseArray = (self.viewModel?.shoppingCartResponseArray)!
+        }
 //       self.LineItemtobe = (self.shopingCardArray?.shoppingCart?.line_items)!
  //     print (LineItemtobe!.count)
 
@@ -344,12 +347,12 @@ extension ProductDetailsViewController {
                       "variant_title": "green",
                       "sku": self.product?.images[0].src ?? "",
                       "vender" : "",
-                      "quantity": 2,
+                      "quantity": 1,
                       "requires_shipping": true,
                       "taxable": true,
                       "gift_card": false,
                       "fulfillment_service": "manual",
-                      "grams": 567,
+                      "grams": self.product?.variants?[0].inventory_quantity!,
                       "tax_lines": [],
                  
                       "name": "IPod Nano - 8gb - green",

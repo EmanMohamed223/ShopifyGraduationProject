@@ -8,6 +8,11 @@
 import Foundation
 
 
+struct ShoppingCartResponseArray : Codable{
+    var draft_orders : [ShoppingCartClass]?
+}
+
+
 struct ShoppingCartResponse : Codable{
     var draft_order : ShoppingCartClass?
 }

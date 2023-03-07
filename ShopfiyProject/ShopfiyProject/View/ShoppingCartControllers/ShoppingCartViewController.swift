@@ -80,6 +80,8 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
             cell.productImg.kf.setImage(with: URL(string: products?[indexPath.section].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
+            cell.lineItem = LineItem()
+            cell.lineItem = lineItems?[indexPath.section]
             cell.productTitle.text = lineItems?[indexPath.section].title
             cell.productPrice.text = lineItems?[indexPath.section].price
             cell.numOfItems.text = String(lineItems?[indexPath.section].quantity ?? 0)
@@ -119,6 +121,14 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
 
 
 extension ShoppingCartViewController : ShoppingCartDelegate{
+    func increaseNumberOfItems() -> (Int)? {
+        return 2
+    }
+    
+    func decreaseNumberOfItems() -> (Int)? {
+        return 2
+    }
+    
     func getItemNumbers() -> (Int)?{
         return 2
     }
