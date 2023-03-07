@@ -17,7 +17,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        productTitle.adjustsFontSizeToFitWidth = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

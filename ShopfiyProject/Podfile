@@ -11,7 +11,8 @@ target 'ShopfiyProject' do
   pod 'SwiftyGif', '~> 5.4'
   pod 'Floaty'
   pod 'SnackBar.swift', '~> 0.1'
- 
+  pod 'BraintreeDropIn', '~> 9.8'
+
   # Pods for ShopfiyProject
 
   target 'ShopfiyProjectTests' do

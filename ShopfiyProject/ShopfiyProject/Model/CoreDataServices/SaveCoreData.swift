@@ -10,7 +10,7 @@ import CoreData
 
 class SaveCoreData{
     func saveToCore(product : Products, userID : Int, appDelegate : AppDelegate){
-        print(UserDefaultsManager.shared.getUserID())
+
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "ShoppingCart", in: managedContext)
@@ -18,6 +18,7 @@ class SaveCoreData{
         let lineItemsArray = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         lineItemsArray.setValue(product.id, forKey: "productID")
+        print("product ID: ", product.id)
         lineItemsArray.setValue(product.variants?[0].id, forKey: "userID")
         lineItemsArray.setValue(product.title, forKey: "title")
         lineItemsArray.setValue(product.variants?[0].price, forKey: "price")

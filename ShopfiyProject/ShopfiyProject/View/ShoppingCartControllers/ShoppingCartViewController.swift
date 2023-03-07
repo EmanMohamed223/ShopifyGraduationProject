@@ -19,21 +19,22 @@ class ShoppingCartViewController: UIViewController {
     var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
     var network : Reachability!
-    
+    var viewModel : CoreDataViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        network = Reachability.forInternetConnection()
+        viewModel = CoreDataViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        network = Reachability.forInternetConnection()
         if network.isReachable(){
-            let viewModel = CoreDataViewModel()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
+            tableView.reloadData()
         }
         else{
             getDraftOrders()
@@ -73,11 +74,10 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
         if network.isReachable(){
-            cell.productTitle.text = products?[indexPath.row].title
-            cell.productPrice.text = products?[indexPath.row].variants?[0].price
-            cell.numOfItems.text = String(products?[indexPath.row].variants?[0].inventory_quantity ?? 0)
-            //cell.productImg.image = UIImage(named: products?[indexPath.row].images[0].src ?? "load")
-            cell.productImg.kf.setImage(with: URL(string: products?[indexPath.row].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
+            cell.productTitle.text = products?[indexPath.section].title
+            cell.productPrice.text = products?[indexPath.section].variants?[0].price
+            cell.numOfItems.text = String(1)
+            cell.productImg.kf.setImage(with: URL(string: products?[indexPath.section].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
             cell.productTitle.text = lineItems?[indexPath.row].title
@@ -102,8 +102,14 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            lineItems?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if network.isReachable(){
+                deleteItem(indexPath: indexPath)
+            }
+            else{
+                lineItems?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadData()
+            }
         }
     }
     
@@ -113,6 +119,16 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
 extension ShoppingCartViewController : ShoppingCartDelegate{
     func getItemNumbers() -> (Int)?{
         return 2
+    }
+    
+    func deleteItem(indexPath : IndexPath){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        viewModel.callManagerToDelete(appDelegate: appDelegate,productID: (products?[indexPath.section].id)!, userID: UserDefaultsManager.shared.getUserID()!)
+            products?.remove(at: indexPath.section)
+            let indexSet = NSMutableIndexSet()
+            indexSet.add(indexPath.section)
+            tableView.deleteSections(indexSet as IndexSet, with: .fade)
+            tableView.reloadData()
     }
     
     func getDraftOrders(){
