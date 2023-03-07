@@ -22,4 +22,11 @@ struct LineItem : Codable{
     var gift_card : Bool?
     var price : String?
     var name : String?
+    var fulfillment_service : String?
+    var grams : Int?
+    //var tax_lines": [],
+    
+    //var properties : [],
+    var custom : Bool?
+    var admin_graphql_api_id : String?
 }

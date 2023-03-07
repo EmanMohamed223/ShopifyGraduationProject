@@ -31,7 +31,7 @@ class ShoppingCartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        if network.isReachable(){
+        if !network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
             tableView.reloadData()
@@ -47,8 +47,8 @@ class ShoppingCartViewController: UIViewController {
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
-        self.shoppingCart?.draftOrder = shoppingCart?.draftOrder
-        self.lineItems = shoppingCart?.draftOrder?.line_items
+        self.shoppingCart?.draft_order = shoppingCart?.draft_order
+        self.lineItems = shoppingCart?.draft_order?.line_items
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -60,7 +60,7 @@ class ShoppingCartViewController: UIViewController {
 extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if network.isReachable(){
+        if !network.isReachable(){
             return products?.count ?? 0
         }
         return lineItems?.count ?? 0
@@ -73,16 +73,18 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
-        if network.isReachable(){
+        if !network.isReachable(){
             cell.productTitle.text = products?[indexPath.section].title
             cell.productPrice.text = products?[indexPath.section].variants?[0].price
             cell.numOfItems.text = String(1)
             cell.productImg.kf.setImage(with: URL(string: products?[indexPath.section].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
-            cell.productTitle.text = lineItems?[indexPath.row].title
-            cell.productPrice.text = lineItems?[indexPath.row].price
-            cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
+            cell.productTitle.text = lineItems?[indexPath.section].title
+            cell.productPrice.text = lineItems?[indexPath.section].price
+            cell.numOfItems.text = String(lineItems?[indexPath.section].quantity ?? 0)
+            print(lineItems?[indexPath.section].sku ?? "")
+            cell.productImg.kf.setImage(with: URL(string: lineItems?[indexPath.section].sku ?? "load"),placeholder: UIImage(named: "load"))
         }
         return cell
     }
@@ -102,7 +104,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if network.isReachable(){
+            if !network.isReachable(){
                 deleteItem(indexPath: indexPath)
             }
             else{
@@ -137,8 +139,7 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
             view.addSubview(indicator)
             indicator.startAnimating()
             let userEmail = UserDefaultsManager.shared.getUserEmail()
-            //let endPoint = "draft_orders.json?email=\(userEmail ?? "")"
-            let endPoint = "draft_orders/1110846079257.json?email=\(userEmail ?? "")"
+            let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
             shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
             shoppingCartViewModel.bindResultToViewController = {
                 self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
