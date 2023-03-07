@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SnackBar_swift
 //import MaterialComponents.MaterialSlider
 class SearchViewController: UIViewController {
 
@@ -41,23 +42,36 @@ class SearchViewController: UIViewController {
      
     }
    
-    @IBAction func selectBestSelling(_ sender: Any) {
-        if( productPriceArray!.count >= 1 || (brandProducts?.count)! >= 1 ){
+    @IBAction func cancelbtn(_ sender: Any) {
+        subView.isHidden = true
+       productPriceArray = brandProducts
+        self.brandDetailsCollectionView.reloadData()
+        
+    }
+    @IBAction func selectZtoA(_ sender: Any) {
+        if( productPriceArray!.count > 1 || (brandProducts?.count)! > 1 ){
             subView.isHidden = true
-            productPriceArray = brandProducts
+            productPriceArray = productPriceArray!.sorted { $0.title > $1.title }
+            //  productPriceArray = brandProducts
             self.brandDetailsCollectionView.reloadData()
             
         }
-       
+        else{
+            
+            SnackBar.make(in: self.view, message: "You Have one Item !", duration: .lengthLong ).show()
+        }
     }
     
     @IBAction func selectPrice(_ sender: Any) {
-        if(productPriceArray!.count >= 1 || (brandProducts?.count)! >= 1){
+        if(productPriceArray!.count > 1 || (brandProducts?.count)! > 1){
        
             subView.isHidden = false
     
         }
-      
+        else{
+            
+            SnackBar.make(in: self.view, message: "You Have one Item !", duration: .lengthLong ).show()
+        }
         }
     @IBAction func slider(_ sender: UISlider) {
       

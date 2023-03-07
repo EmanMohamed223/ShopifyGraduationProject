@@ -380,7 +380,6 @@
 			children = (
 				03408E2929A69C14001FCE6D /* IfLogedView.swift */,
 				0371FCA729A427AF00608875 /* MeViewController.swift */,
-				03408E2529A69852001FCE6D /* View.swift */,
 			);
 			path = MeController;
 			sourceTree = "<group>";
@@ -840,12 +839,9 @@
 				C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */,
 				C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */,
 				C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */,
-
 				C9846DFC29B67D4D00668909 /* FetchFromCoreProtocol.swift */,
 				C9846E0029B68E4400668909 /* DeleteFromCoreProtocol.swift */,
-
 				036AF3D329B69ADA00062E31 /* EditDraftOrderProtocol.swift */,
-
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -956,6 +952,7 @@
 				C9C261D929A407CF0012D4C5 /* AddressViewController.swift */,
 				C992FBA829A4E84100DBD419 /* AddressConfigurationViewController.swift */,
 				C9E85E8529A6B26800BAC6A3 /* AddressTableViewCell.swift */,
+				03408E2529A69852001FCE6D /* View.swift */,
 			);
 			path = AddressViewControllers;
 			sourceTree = "<group>";
