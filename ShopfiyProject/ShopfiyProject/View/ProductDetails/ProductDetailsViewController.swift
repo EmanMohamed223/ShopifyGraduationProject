@@ -78,7 +78,7 @@ class ProductDetailsViewController: UIViewController {
         
         
        modelling()
-        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: shopingCardResponseResult?.draftOrder?.id )
+        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: shopingCardResponseResult?.draft_order?.id )
         
         checkIsFavourite()
         
@@ -158,18 +158,20 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         else {
-            if ((draftOrder?.draft_orders.line_items) != nil) {
+            if(shopingCardResponseResult?.draft_order != nil)
+            //if ((draftOrder?.draft_orders.line_items) != nil) {
+            {
                 LineItemObj = LineItem()
                 LineItemObj?.name = self.product?.title
                 LineItemObj?.price = self.product?.variants![0].price
                 LineItemObj?.vendor = self.product?.images[0].src
                 LineItemToBe?.append(LineItemObj!)
-                shopingCardObj = ShoppingCartClass(id : draftOrder?.draft_orders.id , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
+                //shopingCardObj = ShoppingCartClass(id : draftOrder?.draft_orders.id , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
                 let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
                // shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
                 viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
                     if response.statusCode >= 200 && response.statusCode <= 299{
-                        
+
                     }
                 }
             }
@@ -297,7 +299,10 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
 extension ProductDetailsViewController {
     func modelling(){
         viewModel = ShoppingCartViewModel()
-        viewModel?.getDraftOrder(url: "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json")
+        let userEmail = UserDefaultsManager.shared.getUserEmail()
+        
+        let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
+        viewModel?.getDraftOrder(url:getURL(endPoint: endPoint))
         viewModel?.bindResultToViewController = { () in
 
             self.renderView()
@@ -337,8 +342,8 @@ extension ProductDetailsViewController {
                       "product_id": self.product?.id ?? 0,
                       "title":  self.product?.title ?? "" ,
                       "variant_title": "green",
-                      "sku": "IPOD2008GREEN",
-                      "vendor":  self.product?.images[0].src ?? "" ,
+                      "sku": self.product?.images[0].src ?? "",
+                      "vender" : "",
                       "quantity": 2,
                       "requires_shipping": true,
                       "taxable": true,
