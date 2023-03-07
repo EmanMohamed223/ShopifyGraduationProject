@@ -7,6 +7,7 @@
 
 import UIKit
 import Floaty
+import SnackBar_swift
 class CategoryViewController: UIViewController {
 
     @IBOutlet weak var favCategoryBtn: UIButton!
@@ -48,6 +49,7 @@ class CategoryViewController: UIViewController {
 
     
     @IBAction func selectedSegment(_ sender: Any) {
+       
         switch categorySegmented.selectedSegmentIndex {
        
         case 0:
@@ -153,6 +155,10 @@ extension CategoryViewController {
             self.productArray = self.viewModel?.resultProducts
           self.filterArray = self.productArray
             self.CategoryCollectionView.reloadData()
+         
+            if(self.productArray?.products.count ?? 0 < 1){
+                SnackBar.make(in: self.view, message: "No Items Available Now !", duration: .lengthLong ).show()
+            }
         }
     }
     func selectSubCategory(){

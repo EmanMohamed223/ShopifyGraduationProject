@@ -51,10 +51,7 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dateOfOrderlabel.text =  orderArray?.orders[indexPath.row].created_at
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UIScreen.main.bounds.size.height/4-40
-//    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -62,7 +59,8 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
 extension MoreOrdersViewController {
     func modelling(newUrl : String?){
         orderVM  = orderViewModel()
-        orderVM?.getOrders(url: orderURL ?? "")
+        orderVM?.getOrders(url: (orderURL ?? "" + "?id=\(String(describing: UserDefaultsManager.shared.getUserID()))"))
+
         orderVM?.bindResultToOrderViewController  = { () in
             
             self.renderView()
