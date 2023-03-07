@@ -15,6 +15,8 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var numOfItems: UILabel!
     
+    var lineItem : LineItem?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         productTitle.adjustsFontSizeToFitWidth = true
@@ -27,14 +29,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
     
     @IBAction func increaseBtn(_ sender: Any) {
-            /*if numOfItems < product.numOfItems{
-                numOfItems--
-        }*/
-        var num = Int(numOfItems.text ?? "")!
-        if num < 5{
-            num += 1
-            numOfItems.text = String(num)
-        }
+        guard var num = numOfItems.text else {return}
+//        if num < lineItem?.quantity ?? 0{
+//            num += 1
+//        }
     }
     
     @IBAction func decreaseBtn(_ sender: Any) {
@@ -57,5 +55,17 @@ class ShoppingCartTableViewCell: UITableViewCell {
             numOfItems.text = String(num)
         }
     }
+    
+}
+
+extension ShoppingCartTableViewCell : ShoppingCartDelegate{
+    func increaseNumberOfItems() -> (Int)? {
+        return 5
+    }
+    
+    func decreaseNumberOfItems() -> (Int)? {
+        return 5
+    }
+    
     
 }
