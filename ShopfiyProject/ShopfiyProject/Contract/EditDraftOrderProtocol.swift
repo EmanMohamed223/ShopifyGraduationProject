@@ -7,5 +7,5 @@
 
 import Foundation
 protocol EditDraftOrderProtocol{
-    func callNetworkServiceToPutDraftOrder(draftOrder : DraftOrder, completion: @escaping (HTTPURLResponse?)->())
+    func callNetworkServiceToPutDraftOrder(draftOrder : ShoppingCartResponse, completion: @escaping (HTTPURLResponse?)->())
 }

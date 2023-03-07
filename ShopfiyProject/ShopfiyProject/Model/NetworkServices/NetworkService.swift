@@ -80,10 +80,10 @@ class NetworkService : Service{
 
     }
     
-    func putDraft(draftOrderModel : DraftOrder,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
+    func putDraft(draftOrderModel : ShoppingCartResponse,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
 
         let draftOrder_id = UserDefaultsManager.shared.getDraftOrderID()! 
-        let draftOrderId = draftOrderModel.draft_orders.id
+       // let draftOrderId = draftOrderModel.draft_order.id
         let url = getURL(endPoint: "draft_orders/\(draftOrder_id).json")
         guard let baseURL = URL(string : url ?? "") else { return }
         var request = URLRequest(url: baseURL)
