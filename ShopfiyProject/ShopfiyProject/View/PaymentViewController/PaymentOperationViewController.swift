@@ -7,11 +7,14 @@
 
 import UIKit
 import PassKit
+import Braintree
+import BraintreeDropIn
 
 class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
+    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
     var orderVm : orderViewModel?
@@ -20,8 +23,29 @@ class PaymentOperationViewController: UIViewController {
         
     }
     
+    func showDropIn(clientTokenOrTokenizationKey: String) {
+        let request =  BTDropInRequest()
+        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
+        { (controller, result, error) in
+            if (error != nil) {
+                print("ERROR")
+            } else if (result?.isCanceled == true) {
+                print("CANCELED")
+            } else if let result = result {
+                 //Use the BTDropInResult properties to update your UI
+//                result.paymentMethodType
+//                 result.paymentMethod
+//                 result.paymentIcon
+//                 result.paymentDescription
+            }
+            controller.dismiss(animated: true, completion: nil)
+        }
+        self.present(dropIn!, animated: true, completion: nil)
+    }
+    
     @IBAction func payBtn(_ sender: UIButton) {
-        switch paymentSegment.selectedSegmentIndex{
+        showDropIn(clientTokenOrTokenizationKey: authorization)
+        /*switch paymentSegment.selectedSegmentIndex{
         case 1:
             paymentViewModel.getPaymentRequest()
             paymentViewModel.bindPaymentRequestToViewController = { () in
@@ -35,7 +59,7 @@ class PaymentOperationViewController: UIViewController {
             print("AppleBay")
         default:
             print("Cash")
-        }
+        }*/
         postOrder()
     }
     
