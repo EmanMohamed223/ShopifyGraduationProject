@@ -27,5 +27,20 @@ class ViewModelProduct{
      func getOffers(url : String){
          
      }
+    func callNetworkServiceManagerToPut(draftOrder : DraftOrder, completion: @escaping (HTTPURLResponse) -> ()){
+        NetworkServiceManager.shared.callNetworkServiceToPutDraftOrder(draftOrder: draftOrder) { response in
+            completion(response ?? HTTPURLResponse())
+        }
+    }
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
    
  }

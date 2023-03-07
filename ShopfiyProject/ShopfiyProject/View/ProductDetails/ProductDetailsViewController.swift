@@ -35,11 +35,11 @@ class ProductDetailsViewController: UIViewController {
     var LineItemToBe : [LineItem]?
     var LineItemObj : LineItem?
     var shopingCardObj : ShoppingCartClass?
-    var shopingCardResponse : ShoppingCartResponse?
+    var draftOrder : DraftOrder?
     var drafOrderViewModel : DraftOrderViewModel?
     var shopingCardResponseResult : ShoppingCartResponse?
     
-    
+    var viewModelProduct = ViewModelProduct()
     
     
     var productDetailsViewModel : ProductDetailsViewModel?
@@ -78,6 +78,7 @@ class ProductDetailsViewController: UIViewController {
         
         
        modelling()
+        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: shopingCardResponseResult?.draftOrder?.id )
         
         checkIsFavourite()
         
@@ -157,9 +158,26 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         else {
-            
-            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
-           postOrder()
+            if ((draftOrder?.draft_orders.line_items) != nil) {
+                LineItemObj = LineItem()
+                LineItemObj?.name = self.product?.title
+                LineItemObj?.price = self.product?.variants![0].price
+                LineItemObj?.vendor = self.product?.images[0].src
+                LineItemToBe?.append(LineItemObj!)
+                shopingCardObj = ShoppingCartClass(id : draftOrder?.draft_orders.id , name : UserDefaultsManager.shared.getUserName()! , email : UserDefaultsManager.shared.getUserEmail()! , line_items: LineItemToBe)
+                let draftOrder = DraftOrder(draft_orders: shopingCardObj!)
+               // shopingCardResponse = ShoppingCartResponse(draft_orders: shopingcardarray )
+                viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                    if response.statusCode >= 200 && response.statusCode <= 299{
+                        
+                    }
+                }
+            }
+            else {
+                           addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
+                         postOrder()
+                       
+            }
         }
         //       // if ((shopingCardResponseResult?.draft_orders?.isEmpty) != nil) {
         //            LineItemObj = LineItem()

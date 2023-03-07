@@ -7,7 +7,9 @@
 
 import Foundation
 
-class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAddressProtocol{
+class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAddressProtocol , EditDraftOrderProtocol{
+   
+    
     
     static let shared = NetworkServiceManager()
     static var addresses : CustomerAddressGetModel!
@@ -38,5 +40,11 @@ class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAd
         NetworkService.shared.fetchData(url: url) { result in
             NetworkServiceManager.addresses = result
         }
+    }
+    func callNetworkServiceToPutDraftOrder(draftOrder: DraftOrder, completion: @escaping (HTTPURLResponse?) -> ()) {
+        NetworkService.shared.putDraft(draftOrderModel: draftOrder, completion: { data, response, error in
+            print(response ?? "")
+            completion(response)
+        })
     }
 }
