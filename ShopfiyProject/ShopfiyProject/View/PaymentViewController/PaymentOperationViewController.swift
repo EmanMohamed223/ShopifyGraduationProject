@@ -73,6 +73,7 @@ class PaymentOperationViewController: UIViewController {
             "order" : [
                 "confirmed" : true ,
                 "contact_email" : "@mmm",
+                "email" : UserDefaultsManager.shared.getUserEmail()! ,
                 "currency": "EGP",
                 "created_at" : "20-2-2015",
                 "number" : 2 ,
