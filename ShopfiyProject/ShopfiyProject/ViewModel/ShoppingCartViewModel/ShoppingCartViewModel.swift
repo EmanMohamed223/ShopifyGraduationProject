@@ -29,4 +29,10 @@ class ShoppingCartViewModel{
         }
     }
     
+    func getOneDraftOrder(url : String?){
+        NetworkService.shared.fetchData(url: url) { result in
+            self.shoppingCartResponse = result
+        }
+    }
+    
 }

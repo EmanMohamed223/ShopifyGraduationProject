@@ -22,6 +22,7 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var validate : UIButton!
     
     var address : Customer_address?
+    var lineItems : [LineItem]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -33,6 +34,7 @@ class PaymentViewController: UIViewController {
         countryLabel.text = address?.country
         cityLabel.text = address?.city
         streetLabel.text = address?.address1
+        //phoneLabel.text = UserDefaultsManager.shared.getUserPhoneNumber()
     }
     
     @IBAction func validateBtn(_ sender: Any) {
@@ -76,12 +78,14 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return lineItems?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PaymentCollectionViewCell
-        
+        cell.itemName.text = lineItems?[indexPath.row].title
+        cell.itemPrice.text = lineItems?[indexPath.row].price
+        cell.numOfItemsPerProduct.text = lineItems?[indexPath.row].quantity as? String
         return cell
     }
     

@@ -14,13 +14,45 @@ class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
-    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
+    //let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
+    var braintreeClient: BTAPIClient!
+    
     var orderVm : orderViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    func startCheckout(){
+        braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
+        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+               // payPalDriver.viewControllerPresentingDelegate = self
+               // payPalDriver.appSwitchDelegate = self // Optional
+        
+        let request = BTPayPalCheckoutRequest(amount: "2.32")
+        request.currencyCode = "USD" // Optional; see BTPayPalRequest.h for more options
+
+        payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+
+                // Access additional information
+                let email = tokenizedPayPalAccount.email
+                let firstName = tokenizedPayPalAccount.firstName
+                let lastName = tokenizedPayPalAccount.lastName
+                let phone = tokenizedPayPalAccount.phone
+
+                // See BTPostalAddress.h for details
+                let billingAddress = tokenizedPayPalAccount.billingAddress
+                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+            } else if let error = error {
+                // Handle error here...
+            } else {
+                // Buyer canceled payment approval
+            }
+        }
     }
     
     func showDropIn(clientTokenOrTokenizationKey: String) {
@@ -44,22 +76,8 @@ class PaymentOperationViewController: UIViewController {
     }
     
     @IBAction func payBtn(_ sender: UIButton) {
-        showDropIn(clientTokenOrTokenizationKey: authorization)
-        /*switch paymentSegment.selectedSegmentIndex{
-        case 1:
-            paymentViewModel.getPaymentRequest()
-            paymentViewModel.bindPaymentRequestToViewController = { () in
-                self.renderPaymentRequest(request: self.paymentViewModel.paymentRequest)
-            }
-            let paymentController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
-            if paymentController != nil{
-                paymentController!.delegate = self
-                present(paymentController!, animated: true)
-            }
-            print("AppleBay")
-        default:
-            print("Cash")
-        }*/
+        //showDropIn(clientTokenOrTokenizationKey: authorization)
+        startCheckout()
         postOrder()
     }
     
@@ -106,4 +124,15 @@ extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerD
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
     
+}
+
+extension PaymentOperationViewController : BTViewControllerPresentingDelegate{
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
 }
