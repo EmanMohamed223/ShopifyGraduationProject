@@ -98,7 +98,7 @@ extension SignUpScreenViewController {
     
     func register(firstName: String, email: String, password: String, confirmPassword: String , phone : String , address : Address){
         
-        let customer = Customer(first_name: firstName, email: email, id: nil,phone: phone, tags: password, addresses: [address])
+        let customer = Customer(first_name: firstName, email: email, id: nil,phone: nil, tags: password, addresses: [address])
        
         let newCustomer = User(customer: customer)
         
