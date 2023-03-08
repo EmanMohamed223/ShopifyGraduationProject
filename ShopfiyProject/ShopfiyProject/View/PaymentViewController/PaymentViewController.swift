@@ -85,7 +85,7 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PaymentCollectionViewCell
         cell.itemName.text = lineItems?[indexPath.row].title
         cell.itemPrice.text = lineItems?[indexPath.row].price
-        cell.numOfItemsPerProduct.text = lineItems?[indexPath.row].quantity as? String
+        //cell.numOfItemsPerProduct.text = lineItems?[indexPath.row].quantity as? String
         return cell
     }
     
