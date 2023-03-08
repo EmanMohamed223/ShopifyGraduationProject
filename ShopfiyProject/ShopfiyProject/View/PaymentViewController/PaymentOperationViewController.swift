@@ -18,13 +18,13 @@ class PaymentOperationViewController: UIViewController {
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
     var braintreeClient: BTAPIClient!
-    
+    var arrayOrders : Orders?
     var orderVm : orderViewModel?
     var lineItems : [LineItem]?
     var prices : Price?
     var address : Customer_address?
-    
-    override func viewDidLoad() {
+    var newOrder : [String : Any]?
+     override func viewDidLoad() {
         super.viewDidLoad()
         lineItems = PaymentViewController.lineItems
     }
@@ -44,9 +44,11 @@ class PaymentOperationViewController: UIViewController {
         }
     }
     
-
+    
     @IBAction func payBtn(_ sender: UIButton) {
+       
         startCheckout()
+        
     }
     
     func renderPaymentRequest(request : PKPaymentRequest?){
@@ -54,35 +56,43 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func postOrder(){
-     
-        let newOrder  : [String : Any] = [
-            "order" : [
-                "confirmed" : true ,
-                "contact_email" : "@mmm",
-                "email" : UserDefaultsManager.shared.getUserEmail()! ,
-                "currency": "EGP",
-                "created_at" : "20-2-2015",
-                "number" : 2 ,
-                "order_number" : 123 ,
-                "order_status_url" : "",
-                "current_subtotal_price": "15.0",
-                "current_total_discounts": "0.2",
-                "current_total_price": "15.0",
-                "line_items" : [[
-                 "fulfillable_quantity" : 5,
-                 "name":"Egypt",
-                 "price":"0.10",
-                 "quantity" : 3,
-                 "sku" : "asmaa",
-                 "title" : "Shooes"
-                ]]
-            ]
-        ]
-        orderVm = orderViewModel()
-        orderVm?.postOrder(order: newOrder)
-    }
+        
+//        orderVm = orderViewModel()
+//        orderVm?.getOrders(url: getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")!)
+//        arrayOrders = orderVm?.resultOrders
+//        if(arrayOrders?.orders.count ?? 0 == 0){
+//            if(lineItems!.count  == 1){
+        for item in lineItems ?? [] {
+        newOrder = [
+                    "order" : [
+                        "confirmed" : true ,
+                        "contact_email" :  UserDefaultsManager.shared.getUserEmail()!,
+                        "email" : UserDefaultsManager.shared.getUserEmail()! ,
+                        "currency": "EGP",
+                        "created_at" : "20-2-2015",
+                        "number" : 2 ,
+                        "order_number" : 123 ,
+                        "order_status_url" : "",
+                        "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
+                        "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
+                        "current_total_price": prices?.current_total_price ?? "0.0",
+                        "line_items" : [[
+                            "fulfillable_quantity" : 5,
+                            "name":item.name ?? "NAME",
+                            "price": "0.10",
+                            "quantity" : 3,
+                            "sku" : item.sku ?? "SKU",
+                            "title" : item.title ?? "TITLE"
+                        ]],
+                        
+                    ]
+                ]
+                orderVm?.postOrder(order: newOrder!)
+            }}
 
+   
 }
+
 
 extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerDelegate{
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {

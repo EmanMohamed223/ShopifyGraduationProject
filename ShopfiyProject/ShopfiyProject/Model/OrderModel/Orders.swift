@@ -23,4 +23,5 @@ struct Order : Decodable {
    var number : Int
    var order_number : Int?
    var order_status_url: String?
+    var line_items : [LineItem]?
 }

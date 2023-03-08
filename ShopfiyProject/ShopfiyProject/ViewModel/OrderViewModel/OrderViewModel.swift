@@ -24,8 +24,10 @@ class orderViewModel{
         }
     }
     func postOrder( order: [String : Any]){
-
-        NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: order)
-       
+        print("*************")
+        print(UserDefaultsManager.shared.getUserID() ?? 0)
+      //  NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: order)
+        NetworkService.shared.postDataToApi(url:getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")!, newOrder: order)
+     
     }
 }
