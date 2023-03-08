@@ -44,9 +44,8 @@ class ShoppingCartViewController: UIViewController {
     
     
     @IBAction func checkoutBtn(_ sender: Any) {
-        let paymentController = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
-        paymentController.lineItems = []
-        paymentController.lineItems = lineItems
+        PaymentViewController.lineItems = []
+        PaymentViewController.lineItems = lineItems
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
