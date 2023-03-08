@@ -13,19 +13,8 @@ class WishListViewController: UIViewController {
     var favoritesViewModel: FavoritesViewModel?
     
     @IBOutlet weak var wishlistcollection: UICollectionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-        wishlistcollection.delegate = self
-        wishlistcollection.dataSource = self
-        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-        self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
-        
-        
+    override func viewWillAppear(_ animated: Bool) {
         favoritesViewModel = FavoritesViewModel()
-
-        
         favoritesViewModel?.bindingData = { favourites, error in
             if let favourites = favourites {
                 self.favoritesArray = favourites
@@ -41,6 +30,21 @@ class WishListViewController: UIViewController {
             }
         }
         favoritesViewModel?.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
+    
+        self.wishlistcollection.reloadData()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        wishlistcollection.delegate = self
+        wishlistcollection.dataSource = self
+        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        
+        
+       
+        
+        
     }
     
     }
@@ -84,7 +88,16 @@ extension WishListViewController: UICollectionViewDelegate , UICollectionViewDat
 }
 extension WishListViewController : FireActionInCategoryCellFavourite
 {
-  
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .destructive) { _ in
+            complition()
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
         func deleteFavourite(appDelegate: AppDelegate, product: Products) {
             favoritesViewModel?.deleteFavourite(appDelegate: appDelegate, product: product)
             favoritesArray = favoritesArray.filter { $0.id != product.id }

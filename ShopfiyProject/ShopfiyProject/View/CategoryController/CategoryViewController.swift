@@ -28,6 +28,11 @@ class CategoryViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     var productFavViewModel = ProductFavViewModel()
+    override func viewWillAppear(_ animated: Bool) {
+//        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+//        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        self.CategoryCollectionView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         productDetailsViewModel = ProductDetailsViewModel()
@@ -215,7 +220,16 @@ extension CategoryViewController {
 }
 extension CategoryViewController : FireActionInCategoryCellProtocol
 {
-    
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .destructive) { _ in
+            complition()
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
     func addFavourite(appDelegate: AppDelegate, product: Products) {
         productFavViewModel.addFavourite(appDelegate: appDelegate, product: product)
     }

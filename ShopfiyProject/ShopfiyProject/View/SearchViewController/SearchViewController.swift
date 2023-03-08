@@ -30,6 +30,12 @@ class SearchViewController: UIViewController {
     var isFav : Bool?
     var productDetailsViewModel : ProductDetailsViewModel?
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    override func viewWillAppear(_ animated: Bool) {
+//        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+//        self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+//        subView.isHidden = true
+        self.brandDetailsCollectionView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         productDetailsViewModel = ProductDetailsViewModel()
@@ -194,6 +200,15 @@ extension SearchViewController : FireActionInCategoryCellProtocol
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .destructive) { _ in
+            complition()
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

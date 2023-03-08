@@ -55,8 +55,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         }
         
         if isFav! {
-            productDelegate!.deleteFavourite(appDelegate: appDelegate, product: product!)
-            categoryButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            productDelegate!.showAlertdelet(title: "deleting !!" , message: "do you want to delete this from favorite ?"){
+                self.productDelegate!.deleteFavourite(appDelegate: self.appDelegate, product: self.product!)
+                self.categoryButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
         } else {
             product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
             productDelegate!.addFavourite(appDelegate: appDelegate, product: product!)
@@ -66,7 +68,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func actionTakenInFavouritesController() {
-        favouriteDelegate?.deleteFavourite(appDelegate: appDelegate, product: product!)
+        favouriteDelegate!.showAlertdelet(title: "deleting !!" , message: "do you want to delete this from favorite ?"){
+            self.favouriteDelegate?.deleteFavourite(appDelegate: self.appDelegate, product: self.product!)
+        }
     }
     
 }
