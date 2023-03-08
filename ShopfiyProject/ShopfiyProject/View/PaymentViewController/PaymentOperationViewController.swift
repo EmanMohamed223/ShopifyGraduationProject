@@ -14,7 +14,7 @@ class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
-    //let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
+   let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
     var braintreeClient: BTAPIClient!

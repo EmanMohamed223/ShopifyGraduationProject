@@ -153,6 +153,7 @@ class ProductDetailsViewController: UIViewController {
     
     
     @IBAction func addToBagbtm(_ sender: UIButton) {
+        var existDraftOrder : ShoppingCartClass?
         if !UserDefaultsManager.shared.getUserStatus() {
             self.showAlertError(title: "Alert", message: "You must login")
             return
@@ -162,28 +163,36 @@ class ProductDetailsViewController: UIViewController {
                     {
                       if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
                         {
+                          existDraftOrder = draftorder
                          LineItemToBe  = draftorder.line_items
                           UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
                           LineItemObj = LineItem()
                           LineItemObj?.name = self.product?.title
                           LineItemObj?.price = self.product?.variants![0].price
-                          LineItemObj?.vendor = self.product?.images[0].src
+                       //   LineItemObj?.sku = self.product?.images[0].src
+                 //         LineItemObj?.admin_graphql_api_id = ""
+                          LineItemObj?.title = self.product?.title
+                       //   LineItemObj?.product_id = product?.id
+                          LineItemObj?.admin_graphql_api_id = ""
+                          LineItemObj?.grams = 2
+                          LineItemObj?.quantity = 3
                           LineItemToBe?.append(LineItemObj!)
                           shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
                           let draftOrder  : ShoppingCartResponse = ShoppingCartResponse(draft_order: shopingCardObj)
                           viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
                               if response.statusCode >= 200 && response.statusCode <= 299{
-        
+        print ("Done")
                               }
                           }
                       }
         
                       }
-        
-                                   addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
-                                 postOrder()
-                    print("Post")
-        
+        if existDraftOrder  == nil
+                    {
+            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
+            postOrder()
+            print("Post")
+        }
         
                     }
         
