@@ -14,53 +14,39 @@ class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
-    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
+    //let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
+    var braintreeClient: BTAPIClient!
+    
     var orderVm : orderViewModel?
+    var lineItems : [LineItem]?
+    var prices : Price?
+    var address : Customer_address?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        lineItems = PaymentViewController.lineItems
     }
     
-    func showDropIn(clientTokenOrTokenizationKey: String) {
-        let request =  BTDropInRequest()
-        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-        { (controller, result, error) in
-            if (error != nil) {
-                print("ERROR")
-            } else if (result?.isCanceled == true) {
-                print("CANCELED")
-            } else if let result = result {
-                 //Use the BTDropInResult properties to update your UI
-//                result.paymentMethodType
-//                 result.paymentMethod
-//                 result.paymentIcon
-//                 result.paymentDescription
+    func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
+        braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
+        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+        let request = BTPayPalCheckoutRequest(amount: "2.32")
+        request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
+        payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
+            if responseNonce != nil {
+                self.postOrder()
             }
-            controller.dismiss(animated: true, completion: nil)
+            else if error != nil{
+                print("Error :\(error!)")
+            }
         }
-        self.present(dropIn!, animated: true, completion: nil)
     }
     
+
     @IBAction func payBtn(_ sender: UIButton) {
-        showDropIn(clientTokenOrTokenizationKey: authorization)
-        /*switch paymentSegment.selectedSegmentIndex{
-        case 1:
-            paymentViewModel.getPaymentRequest()
-            paymentViewModel.bindPaymentRequestToViewController = { () in
-                self.renderPaymentRequest(request: self.paymentViewModel.paymentRequest)
-            }
-            let paymentController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
-            if paymentController != nil{
-                paymentController!.delegate = self
-                present(paymentController!, animated: true)
-            }
-            print("AppleBay")
-        default:
-            print("Cash")
-        }*/
-        postOrder()
+        startCheckout()
     }
     
     func renderPaymentRequest(request : PKPaymentRequest?){
@@ -107,4 +93,15 @@ extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerD
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
     
+}
+
+extension PaymentOperationViewController : BTViewControllerPresentingDelegate{
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
 }

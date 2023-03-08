@@ -22,6 +22,9 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var validate : UIButton!
     
     var address : Customer_address?
+    var price = 0
+    var subTotal = 0
+    static var lineItems : [LineItem]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -33,6 +36,10 @@ class PaymentViewController: UIViewController {
         countryLabel.text = address?.country
         cityLabel.text = address?.city
         streetLabel.text = address?.address1
+        shippingFeesLabel.text = String(15)
+        
+        //phoneLabel.text = UserDefaultsManager.shared.getUserPhoneNumber()
+        
     }
     
     @IBAction func validateBtn(_ sender: Any) {
@@ -55,7 +62,10 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {
-//        let view = self.storyboard?.instantiateViewController(withIdentifier: "") as? PaymentOperationViewController
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "paymentOperation") as? PaymentOperationViewController
+        view?.prices = Price()
+        view?.prices = getPrices()
+        view?.address = getCustomerAddress()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
@@ -76,14 +86,27 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return PaymentViewController.lineItems?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PaymentCollectionViewCell
+        cell.itemName.adjustsFontSizeToFitWidth = true
+        cell.itemName.text = PaymentViewController.lineItems?[indexPath.row].title
+        cell.itemPrice.text = PaymentViewController.lineItems?[indexPath.row].price
+        price = Int(cell.itemPrice.text ?? "") ?? 0
+        subTotal += price
+        subTotalLabel.text = (subTotal).formatted()
+        cell.numOfItemsPerProduct.text = (PaymentViewController.lineItems?[indexPath.row].quantity)?.formatted()
         
         return cell
     }
     
+    func getPrices() -> Price?{
+        return Price(current_subtotal_price: subTotalLabel.text, current_total_discounts: discountLabel.text, current_total_price: grandTotalLabel.text)
+    }
     
+    func getCustomerAddress() -> Customer_address?{
+        return address
+    }
 }

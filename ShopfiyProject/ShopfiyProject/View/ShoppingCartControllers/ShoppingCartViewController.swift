@@ -44,6 +44,10 @@ class ShoppingCartViewController: UIViewController {
     
     
     @IBAction func checkoutBtn(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressViewController
+        vc.flag = true
+        PaymentViewController.lineItems = []
+        PaymentViewController.lineItems = lineItems
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
@@ -73,6 +77,8 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
+        cell.view = self.view
+        cell.viewVC = self
         if !network.isReachable(){
             cell.productTitle.text = products?[indexPath.section].title
             cell.productPrice.text = products?[indexPath.section].variants?[0].price
@@ -120,18 +126,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
 }
 
 
-extension ShoppingCartViewController : ShoppingCartDelegate{
-    func increaseNumberOfItems() -> (Int)? {
-        return 2
-    }
-    
-    func decreaseNumberOfItems() -> (Int)? {
-        return 2
-    }
-    
-    func getItemNumbers() -> (Int)?{
-        return 2
-    }
+extension ShoppingCartViewController{
     
     func deleteItem(indexPath : IndexPath){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -149,8 +144,9 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
             view.addSubview(indicator)
             indicator.startAnimating()
             let userEmail = UserDefaultsManager.shared.getUserEmail()
-            let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
-            shoppingCartViewModel.getDraftOrder(url: getURL(endPoint: endPoint))
+            //let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
+        let endPoint = "draft_orders/1110846079257.json"
+            shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
             shoppingCartViewModel.bindResultToViewController = {
                 self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
                 indicator.stopAnimating()
