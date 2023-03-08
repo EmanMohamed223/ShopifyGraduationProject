@@ -10,15 +10,17 @@ import UIKit
 class MoreOrdersViewController: UIViewController {
     var orderVM : orderViewModel?
     var orderURL : String?
-    var orderArray : Orders?
+    var orderArray : [Order]?
+  
     @IBOutlet weak var ordersTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         ordersTable.delegate = self
         ordersTable.dataSource = self
+       
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
         orderURL = getURL(endPoint: "orders.json")
-        modelling(newUrl : orderURL)
+        modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
         self.ordersTable.reloadData()
     }
 
@@ -28,8 +30,8 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         print("**********")
-        print(orderArray?.orders.count ?? 0)
-        return orderArray?.orders.count ?? 0
+        print(orderArray?.count ?? 0)
+        return orderArray?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -47,8 +49,8 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
         cell.layer.cornerRadius = cell.frame.height/3
-        cell.pricelabel.text = orderArray?.orders[indexPath.row].current_subtotal_price
-        cell.dateOfOrderlabel.text =  orderArray?.orders[indexPath.row].created_at
+        cell.pricelabel.text = orderArray?[indexPath.row].current_subtotal_price
+        cell.dateOfOrderlabel.text =  orderArray?[indexPath.row].created_at
         return cell
     }
 
@@ -59,8 +61,8 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
 extension MoreOrdersViewController {
     func modelling(newUrl : String?){
         orderVM  = orderViewModel()
-        orderVM?.getOrders(url: (orderURL ?? "" + "?id=\(String(describing: UserDefaultsManager.shared.getUserID()))"))
-
+        orderVM?.getOrders(url: newUrl ?? "" )
+      
         orderVM?.bindResultToOrderViewController  = { () in
             
             self.renderView()
@@ -68,8 +70,8 @@ extension MoreOrdersViewController {
     }
     func renderView(){
         DispatchQueue.main.async {
-            self.orderArray  = self.orderVM?.resultOrders
-          
+            self.orderArray  = self.orderVM?.resultOrders.orders ?? []
+
             self.ordersTable.reloadData()
         }
     }

@@ -41,7 +41,7 @@ class NetworkServiceManager : PostAddressProtocol, EditAddressProtocol, DeleteAd
             NetworkServiceManager.addresses = result
         }
     }
-    func callNetworkServiceToPutDraftOrder(draftOrder: DraftOrder, completion: @escaping (HTTPURLResponse?) -> ()) {
+    func callNetworkServiceToPutDraftOrder(draftOrder: ShoppingCartResponse, completion: @escaping (HTTPURLResponse?) -> ()) {
         NetworkService.shared.putDraft(draftOrderModel: draftOrder, completion: { data, response, error in
             print(response ?? "")
             completion(response)
