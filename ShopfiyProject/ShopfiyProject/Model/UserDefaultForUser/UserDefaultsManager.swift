@@ -14,6 +14,14 @@ class UserDefaultsManager{
         
     }
     
+    func setCurrency(currency : String?){
+        UserDefaults.standard.set(currency, forKey: "currency")
+    }
+    
+    func getCurrency() -> String?{
+        return UserDefaults.standard.string(forKey: "currency")
+    }
+    
     func setUserID(customerID: Int?){
         UserDefaults.standard.set(customerID, forKey: "User_ID")
     }

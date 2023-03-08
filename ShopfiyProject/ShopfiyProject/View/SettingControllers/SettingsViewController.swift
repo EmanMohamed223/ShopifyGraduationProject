@@ -23,9 +23,11 @@ class SettingsViewController: UIViewController {
         let alert = UIAlertController(title: "Choose Currency", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "EGP", style: .default, handler: { _ in
             self.currencyLabel.text = "EGP"
+            UserDefaultsManager.shared.setCurrency(currency: "EGP")
         }))
         alert.addAction(UIAlertAction(title: "USD", style: .default, handler: {_ in
             self.currencyLabel.text = "USD"
+            UserDefaultsManager.shared.setCurrency(currency: "USD")
         }))
         self.present(alert, animated: true)
     }

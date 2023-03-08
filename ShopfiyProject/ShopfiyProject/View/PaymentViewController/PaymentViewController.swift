@@ -62,7 +62,10 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {
-//        let view = self.storyboard?.instantiateViewController(withIdentifier: "") as? PaymentOperationViewController
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "paymentOperation") as? PaymentOperationViewController
+        view?.prices = Price()
+        view?.prices = getPrices()
+        view?.address = getCustomerAddress()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
@@ -99,5 +102,11 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
+    func getPrices() -> Price?{
+        return Price(current_subtotal_price: subTotalLabel.text, current_total_discounts: discountLabel.text, current_total_price: grandTotalLabel.text)
+    }
     
+    func getCustomerAddress() -> Customer_address?{
+        return address
+    }
 }

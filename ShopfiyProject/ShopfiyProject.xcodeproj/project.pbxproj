@@ -89,6 +89,7 @@
 		C90A4BC529AD291600BD0EF2 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */; };
 		C90A4BCC29AD2DB600BD0EF2 /* PriceRuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */; };
 		C90A4BCE29AD361C00BD0EF2 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */; };
+		C92F1DB429B8567F005CB7B8 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92F1DB329B8567F005CB7B8 /* Price.swift */; };
 		C93C942829B3E79E0095A03B /* PostAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */; };
 		C93C942A29B3E7CE0095A03B /* EditAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */; };
 		C93C942C29B3E7E00095A03B /* DeleteAddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */; };
@@ -242,6 +243,7 @@
 		C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C90A4BCB29AD2DB600BD0EF2 /* PriceRuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleViewModel.swift; sourceTree = "<group>"; };
 		C90A4BCD29AD361C00BD0EF2 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
+		C92F1DB329B8567F005CB7B8 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		C93C942729B3E79E0095A03B /* PostAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAddressProtocol.swift; sourceTree = "<group>"; };
 		C93C942929B3E7CE0095A03B /* EditAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressProtocol.swift; sourceTree = "<group>"; };
 		C93C942B29B3E7E00095A03B /* DeleteAddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAddressProtocol.swift; sourceTree = "<group>"; };
@@ -697,6 +699,14 @@
 			path = PriceRulesVIewModel;
 			sourceTree = "<group>";
 		};
+		C92F1DB229B8562A005CB7B8 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				C92F1DB329B8567F005CB7B8 /* Price.swift */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
 		C94B305C29A926AF00777CAA /* AdsDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +880,7 @@
 		C99ED6C629A7B8A30097C53E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C92F1DB229B8562A005CB7B8 /* Price */,
 				C9A1D19D29B5F7F4002193C4 /* Formatter */,
 				8C1454E529B3A75600B38AE2 /* OrderModel */,
 				C97013D229B0542700C9BE15 /* AddressModel */,
@@ -1246,6 +1257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99ED6CA29A7BDE90097C53E /* LineItem.swift in Sources */,
+				C92F1DB429B8567F005CB7B8 /* Price.swift in Sources */,
 				0371FCA829A427AF00608875 /* MeViewController.swift in Sources */,
 				0371FCA629A419CF00608875 /* SignUpScreenViewController.swift in Sources */,
 				03408E2F29A6B00D001FCE6D /* ProductTableViewCell.swift in Sources */,

@@ -260,7 +260,7 @@
         <!--Payment Operation View Controller-->
         <scene sceneID="Coc-n2-uqF">
             <objects>
-                <viewController id="jwo-o4-Wcp" customClass="PaymentOperationViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paymentOperation" id="jwo-o4-Wcp" customClass="PaymentOperationViewController" customModule="ShopfiyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zur-nQ-ean">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

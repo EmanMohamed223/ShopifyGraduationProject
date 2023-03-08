@@ -15,12 +15,17 @@ class AddressViewController: UIViewController {
     var addressArr = CustomerAddressGetModel()
     let addressViewModel = AddressViewModel()
     var addressModelToBeDeleted : CustomerAddressModel?
+    var flag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         let userId = UserDefaultsManager.shared.getUserID()
@@ -88,9 +93,13 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
-        vc.address = addressArr.addresses?[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        //if flag{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
+            vc.address = addressArr.addresses?[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        //}
+        //flag = false
+        //self.navigationController?.popViewController(animated: true)
     }
 }
 

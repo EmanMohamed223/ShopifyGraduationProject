@@ -44,6 +44,8 @@ class ShoppingCartViewController: UIViewController {
     
     
     @IBAction func checkoutBtn(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressViewController
+        vc.flag = true
         PaymentViewController.lineItems = []
         PaymentViewController.lineItems = lineItems
     }
