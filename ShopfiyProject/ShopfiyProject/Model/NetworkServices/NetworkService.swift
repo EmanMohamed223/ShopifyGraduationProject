@@ -181,10 +181,12 @@ class NetworkService : Service{
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-            let dataJson = try! JSONSerialization.jsonObject(with: data! , options: .allowFragments)
-            print(dataJson)
-         
+            do{
+                let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
+                print(dataJson)
+            }catch{
+                print(error.localizedDescription)
+            }
         }.resume()
     }
 
