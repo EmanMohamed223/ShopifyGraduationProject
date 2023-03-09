@@ -195,6 +195,7 @@ class NetworkService : Service{
                             return
                         }
                         guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                            print(response)
                             print("Error: HTTP request failed")
                             return
                         }
