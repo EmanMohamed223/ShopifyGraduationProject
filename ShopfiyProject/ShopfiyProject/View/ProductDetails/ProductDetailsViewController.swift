@@ -163,6 +163,7 @@ class ProductDetailsViewController: UIViewController {
             return
         }
                 else {
+                    addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
                     for draftorder in self.shoppingCartResponseArray.draft_orders!
                     {
                       if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
@@ -173,12 +174,12 @@ class ProductDetailsViewController: UIViewController {
                           LineItemObj = LineItem()
                           LineItemObj?.name = self.product?.title
                           LineItemObj?.price = self.product?.variants![0].price
-                       //   LineItemObj?.sku = self.product?.images[0].src
+                          LineItemObj?.sku = self.product?.images[0].src
                  //         LineItemObj?.admin_graphql_api_id = ""
                           LineItemObj?.title = self.product?.title
                        //   LineItemObj?.product_id = product?.id
                           LineItemObj?.admin_graphql_api_id = ""
-                          LineItemObj?.grams = 2
+                          LineItemObj?.grams = self.product?.variants![0].inventory_quantity! ?? 0
                           LineItemObj?.quantity = 3
                           LineItemToBe?.append(LineItemObj!)
                           shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
@@ -193,7 +194,6 @@ class ProductDetailsViewController: UIViewController {
                       }
         if existDraftOrder  == nil
                     {
-            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
             postOrder()
             print("Post")
         }
@@ -329,14 +329,19 @@ extension ProductDetailsViewController {
                       "product_id": 632910392,
                           "title":  self.product?.title ?? "" ,
                         "variant_title": "green",
-                          "sku": "IPOD2008GREEN",
-                       "vendor":  self.product?.images[0].src ?? "" ,
+                      //MARIAM
+                        //  "sku": "IPOD2008GREEN",
+                      "sku": self.product?.images[0].src ?? "",
+                       //"vendor":  self.product?.images[0].src ?? "" ,
+                      "vendor":  "" ,
+                      //MARIAM
                           "quantity": 2,
                           "requires_shipping": true,
                           "taxable": true,
                           "gift_card": false,
                           "fulfillment_service": "manual",
-                          "grams": 567,
+//                          "grams": 567,
+                      "grams": self.product?.variants![0].inventory_quantity! ?? 0,
                           "tax_lines": [],
                      
                           "name": "IPod Nano - 8gb - green",

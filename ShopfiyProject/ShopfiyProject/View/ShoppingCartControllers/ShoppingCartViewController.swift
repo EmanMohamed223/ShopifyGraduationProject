@@ -20,17 +20,25 @@ class ShoppingCartViewController: UIViewController {
     var index : Int?
     var network : Reachability!
     var viewModel : CoreDataViewModel!
+    var viewModelProduct = ViewModelProduct()
+    var subTotal : Float!
+    var price : String!
+    var counter = 0
+    //var quantityArr : Int = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        self.tabBarController?.tabBar.isHidden = false
         network = Reachability.forInternetConnection()
         viewModel = CoreDataViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        subTotal = 0
+        price = "0"
         if !network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
@@ -39,7 +47,7 @@ class ShoppingCartViewController: UIViewController {
         else{
             getDraftOrders()
         }
-        
+        tableView.reloadData()
     }
     
     
@@ -48,6 +56,8 @@ class ShoppingCartViewController: UIViewController {
         vc.flag = true
         PaymentViewController.lineItems = []
         PaymentViewController.lineItems = lineItems
+        PaymentViewController.subTotal = 0.0
+        PaymentViewController.subTotal = subTotal
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
@@ -55,6 +65,10 @@ class ShoppingCartViewController: UIViewController {
         self.lineItems = shoppingCart?.draft_order?.line_items
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            for index in 0...(self.lineItems?.count ?? 0) - 1{
+                self.calcSubTotalInc(price: self.lineItems?[index].price ?? "")
+            }
+            self.subTotalLabel.text = String(format: "%.2f", self.subTotal)
         }
         
     }
@@ -77,25 +91,30 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShoppingCartTableViewCell
+        
         cell.view = self.view
         cell.viewVC = self
-        if !network.isReachable(){
+        cell.delegate = self
+        
+        if !network.isReachable(){      //get from coreData
             cell.productTitle.text = products?[indexPath.section].title
             cell.productPrice.text = products?[indexPath.section].variants?[0].price
             cell.numOfItems.text = String(1)
+            cell.num = Int(cell.numOfItems.text ?? "") ?? 0
             cell.productImg.kf.setImage(with: URL(string: products?[indexPath.section].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
             cell.lineItem = LineItem()
             cell.lineItem = lineItems?[indexPath.section]
+            
             cell.productTitle.text = lineItems?[indexPath.section].title
             cell.productPrice.text = lineItems?[indexPath.section].price
-            cell.numOfItems.text = String(lineItems?[indexPath.section].quantity ?? 0)
-            print(lineItems?[indexPath.section].sku ?? "")
+            cell.numOfItems.text = String(1)
             cell.productImg.kf.setImage(with: URL(string: lineItems?[indexPath.section].sku ?? "load"),placeholder: UIImage(named: "load"))
         }
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView : UIView = UIView()
@@ -116,12 +135,28 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
                 deleteItem(indexPath: indexPath)
             }
             else{
-                lineItems?.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.reloadData()
+                lineItems?.remove(at: indexPath.section)
+                let updatedLineItems = ShoppingCartClass(line_items: lineItems)
+                let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
+                viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                    if response.statusCode >= 200 && response.statusCode <= 299{
+                        DispatchQueue.main.async {
+                            let indexSet = NSMutableIndexSet()
+                            indexSet.add(indexPath.section)
+                            self.tableView.deleteSections(indexSet as IndexSet, with: .fade)
+                            self.tableView.reloadData()
+                            for index in 0...(self.lineItems?.count ?? 0) - 1{
+                                self.subTotal = 0
+                                self.calcSubTotalInc(price: self.lineItems?[index].price ?? "")
+                            }
+                            self.subTotalLabel.text = String(format: "%.2f", self.subTotal)
+                        }
+                    }
+                }
             }
         }
     }
+    
     
 }
 
@@ -134,7 +169,7 @@ extension ShoppingCartViewController{
             products?.remove(at: indexPath.section)
             let indexSet = NSMutableIndexSet()
             indexSet.add(indexPath.section)
-            tableView.deleteSections(indexSet as IndexSet, with: .fade)
+            tableView.deleteSections(indexSet as IndexSet, with: .automatic)
             tableView.reloadData()
     }
     
@@ -143,14 +178,37 @@ extension ShoppingCartViewController{
             indicator.center = view.center
             view.addSubview(indicator)
             indicator.startAnimating()
-            let userEmail = UserDefaultsManager.shared.getUserEmail()
-            //let endPoint = "draft_orders/1110937436441.json?email=\(userEmail ?? "")"
-        let endPoint = "draft_orders/1110846079257.json"
+            let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
+            let endPoint = "draft_orders/\(draftOrder ?? 0).json"
             shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
             shoppingCartViewModel.bindResultToViewController = {
                 self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
                 indicator.stopAnimating()
             }
-
     }
+    
+    func calcSubTotalAgain(price : String, quantity : String?){
+        let price1 = Float(price) ?? 0.0
+        subTotal += price1
+        subTotalLabel.text = String(format: "%.2f", subTotal)
+    }
+}
+
+extension ShoppingCartViewController : ShoppingCartDelegate{
+    func calcSubTotalInc(price : String){
+        let price1 = Float(price) ?? 0.0
+        subTotal += price1
+        subTotalLabel.text = String(format: "%.2f", subTotal)
+    }
+    
+    func calcSubTotalDec(price: String) {
+        let price1 = Float(price) ?? 0.0
+        subTotal -= price1
+        subTotalLabel.text = String(format: "%.2f", subTotal)
+    }
+    
+    func editInDraftOrder(){
+        
+    }
+    
 }

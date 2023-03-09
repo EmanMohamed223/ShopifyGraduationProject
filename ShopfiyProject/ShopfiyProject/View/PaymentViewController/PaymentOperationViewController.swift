@@ -30,17 +30,27 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
-       
-        braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
-        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        let request = BTPayPalCheckoutRequest(amount: "2.32")
-        request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
-        payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
-            if responseNonce != nil {
-                self.postOrder()
-            }
-            else if error != nil{
-                print("Error :\(error!)")
+
+        if paymentSegment.selectedSegmentIndex == 0{
+            postOrder()
+            let alert = UIAlertController(title: "Ordered Successfully", message: "The order will be arrived soon!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default){_ in
+            })
+            self.present(alert, animated: true)
+        }
+        else{
+            braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+            let request = BTPayPalCheckoutRequest(amount: "2.32")
+            request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
+            payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
+                if responseNonce != nil {
+                    self.postOrder()
+                }
+                else if error != nil{
+                    print("Error :\(error!)")
+                }
+
             }
         }
     }
