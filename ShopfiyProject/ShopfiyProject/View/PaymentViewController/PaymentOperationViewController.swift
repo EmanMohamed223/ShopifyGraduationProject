@@ -17,7 +17,8 @@ class PaymentOperationViewController: UIViewController {
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
-    var braintreeClient: BTAPIClient!
+    
+ var braintreeClient: BTAPIClient!
     var arrayOrders : Orders?
     var orderVm : orderViewModel?
     var lineItems : [LineItem]?
