@@ -46,7 +46,8 @@ class SearchViewController: UIViewController {
    
     @IBAction func cancelbtn(_ sender: Any) {
         subView.isHidden = true
-       productPriceArray = brandProducts
+ 
+        productPriceArray = productPriceArray!.sorted { $0.title < $1.title }
         self.brandDetailsCollectionView.reloadData()
         
     }
