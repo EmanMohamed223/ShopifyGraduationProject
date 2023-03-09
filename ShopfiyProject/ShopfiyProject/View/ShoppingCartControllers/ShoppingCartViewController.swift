@@ -24,6 +24,7 @@ class ShoppingCartViewController: UIViewController {
     var subTotal : Float!
     var price : String!
     var counter = 0
+    //var quantityArr : Int = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +146,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
                             self.tableView.deleteSections(indexSet as IndexSet, with: .fade)
                             self.tableView.reloadData()
                             for index in 0...(self.lineItems?.count ?? 0) - 1{
+                                self.subTotal = 0
                                 self.calcSubTotalInc(price: self.lineItems?[index].price ?? "")
                             }
                             self.subTotalLabel.text = String(format: "%.2f", self.subTotal)
@@ -185,7 +187,11 @@ extension ShoppingCartViewController{
             }
     }
     
-    
+    func calcSubTotalAgain(price : String, quantity : String?){
+        let price1 = Float(price) ?? 0.0
+        subTotal += price1
+        subTotalLabel.text = String(format: "%.2f", subTotal)
+    }
 }
 
 extension ShoppingCartViewController : ShoppingCartDelegate{

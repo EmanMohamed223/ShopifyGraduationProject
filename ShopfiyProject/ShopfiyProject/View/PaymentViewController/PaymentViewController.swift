@@ -78,13 +78,14 @@ class PaymentViewController: UIViewController {
                     validate.backgroundColor = UIColor(named: "gray")
                     validate.setTitle("validated", for: .selected)
                     validationLabel.text = ""
+                    discountLabel.text = String("30 \(currency)")
                     SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
                     discountLabel.text = String("-30 \(currency)")
                     grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
                 }
             }
         }
-        else if couponTxtField.text == nil{
+        else if couponTxtField.text == ""{
             validationLabel.text = "Enter the coupon code"
         }
         else{
