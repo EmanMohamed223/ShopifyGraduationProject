@@ -121,8 +121,12 @@ class ProductDetailsViewController: UIViewController {
         }
         
         if isFav! {
-            loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-            productDetailsViewModel!.removeProductFromFavourites(appDelegate: appDelegate, product: product!)
+           
+            self.showAlert(title: "deleting !!" , message: "do you want to delete this from favorite ?"){
+                self.productDetailsViewModel!.removeProductFromFavourites(appDelegate: self.appDelegate, product: self.product!)
+                self.loveoutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            
         } else {
             loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             print( UserDefaultsManager.shared.getUserID()!)

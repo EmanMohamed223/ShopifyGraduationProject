@@ -7,6 +7,8 @@
 
 import Foundation
 protocol FireActionInCategoryCellFavourite {
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) 
     func deleteFavourite(appDelegate: AppDelegate, product: Products) -> Void
+ 
 
 }

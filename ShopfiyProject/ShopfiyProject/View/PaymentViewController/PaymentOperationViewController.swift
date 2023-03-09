@@ -30,6 +30,7 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
+       
         braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         let request = BTPayPalCheckoutRequest(amount: "2.32")
