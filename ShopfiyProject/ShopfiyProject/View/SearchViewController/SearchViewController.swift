@@ -38,6 +38,8 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+   
         self.brandDetailsCollectionView.reloadData()
      
     }

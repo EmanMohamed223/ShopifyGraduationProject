@@ -66,6 +66,7 @@ class PaymentViewController: UIViewController {
         view?.prices = Price()
         view?.prices = getPrices()
         view?.address = getCustomerAddress()
+        view?.lineItems = PaymentViewController.lineItems
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true

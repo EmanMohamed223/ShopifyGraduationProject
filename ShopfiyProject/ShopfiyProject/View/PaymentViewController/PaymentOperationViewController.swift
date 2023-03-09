@@ -46,8 +46,8 @@ class PaymentOperationViewController: UIViewController {
     
     
     @IBAction func payBtn(_ sender: UIButton) {
-       
-        startCheckout()
+        postOrder()
+       // startCheckout()
         
     }
     
@@ -57,40 +57,46 @@ class PaymentOperationViewController: UIViewController {
     
     func postOrder(){
         
-//        orderVm = orderViewModel()
-//        orderVm?.getOrders(url: getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")!)
-//        arrayOrders = orderVm?.resultOrders
-//        if(arrayOrders?.orders.count ?? 0 == 0){
-//            if(lineItems!.count  == 1){
-        for item in lineItems ?? [] {
-        newOrder = [
-                    "order" : [
-                        "confirmed" : true ,
-                        "contact_email" :  UserDefaultsManager.shared.getUserEmail()!,
-                        "email" : UserDefaultsManager.shared.getUserEmail()! ,
-                        "currency": "EGP",
-                        "created_at" : "20-2-2015",
-                        "number" : 2 ,
-                        "order_number" : 123 ,
-                        "order_status_url" : "",
-                        "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
-                        "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
-                        "current_total_price": prices?.current_total_price ?? "0.0",
-                        "line_items" : [[
-                            "fulfillable_quantity" : 5,
-                            "name":item.name ?? "NAME",
-                            "price": "0.10",
-                            "quantity" : 3,
-                            "sku" : item.sku ?? "SKU",
-                            "title" : item.title ?? "TITLE"
-                        ]],
-                        
-                    ]
-                ]
-                orderVm?.postOrder(order: newOrder!)
-            }}
-
-   
+      orderVm = orderViewModel()
+      
+//        newOrder = [
+//                    "order" : [
+//                        "confirmed" : true ,
+//                        "contact_email" :  UserDefaultsManager.shared.getUserEmail()!,
+//                        "email" : UserDefaultsManager.shared.getUserEmail()! ,
+//                        "currency": "EGP",
+//                        "created_at" : "20-2-2015",
+//                        "number" : 2 ,
+//                        "order_number" : 123 ,
+//                        "order_status_url" : "",
+//                        "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
+//                        "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
+//                        "current_total_price": prices?.current_total_price ?? "0.0",
+//                        "line_items" : [[
+//                            "fulfillable_quantity" : 5,
+//                            "name": item.name ?? "NAME",
+//                            "price": "0.10",
+//                            "quantity" : 3,
+//                            "sku" : item.sku ?? "SKU",
+//                            "title" : item.title ?? "TITLE"
+//                        ]],
+//
+//                    ]
+//                ]
+//                orderVm?.postOrder(order: newOrder!)
+        for item in lineItems ?? []{
+            print(item.id ?? 0)
+        }
+        var order  : Order = Order( confirmed: true, contact_email:  UserDefaultsManager.shared.getUserEmail(),
+                                    email: UserDefaultsManager.shared.getUserEmail(), created_at: "",
+                                    currency: UserDefaultsManager.shared.getCurrency() ?? "EGP",
+                                    current_subtotal_price: prices?.current_subtotal_price ?? "0.0",
+                                    current_total_discounts: prices?.current_total_discounts ?? "0.0" ,
+                                    current_total_price: prices?.current_total_price ?? "0.0",  line_items : lineItems ?? [] )
+//        order.number = 1
+//        order.order_number = 240
+        orderVm?.putOrder(newOrder: order)
+            }
 }
 
 

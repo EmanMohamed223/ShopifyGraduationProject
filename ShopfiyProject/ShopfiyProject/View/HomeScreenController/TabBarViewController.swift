@@ -30,7 +30,7 @@ class TabBarViewController: UITabBarController {
             var tabFrame = tabBar.frame
             tabFrame.size.height = 70
         
-            tabFrame.origin.y = view.frame.size.height - 100
+            tabFrame.origin.y = view.frame.size.height - 70
             tabBar.frame = tabFrame
         }
     }

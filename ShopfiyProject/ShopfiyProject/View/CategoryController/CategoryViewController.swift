@@ -46,7 +46,9 @@ class CategoryViewController: UIViewController {
         modelling(newUrl: chooseMainCategory (index : 0))
         self.CategoryCollectionView.reloadData()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     @IBAction func selectedSegment(_ sender: Any) {
        
