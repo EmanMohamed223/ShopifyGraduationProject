@@ -49,7 +49,7 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
         cell.layer.cornerRadius = cell.frame.height/3
-        cell.pricelabel.text = orderArray?[indexPath.row].current_subtotal_price
+        cell.pricelabel.text = orderArray?[indexPath.row].current_total_price
         cell.dateOfOrderlabel.text =  orderArray?[indexPath.row].created_at
         return cell
     }

@@ -44,13 +44,16 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+   
         self.brandDetailsCollectionView.reloadData()
      
     }
    
     @IBAction func cancelbtn(_ sender: Any) {
         subView.isHidden = true
-       productPriceArray = brandProducts
+ 
+        productPriceArray = productPriceArray!.sorted { $0.title < $1.title }
         self.brandDetailsCollectionView.reloadData()
         
     }
