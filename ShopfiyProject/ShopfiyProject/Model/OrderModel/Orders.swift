@@ -6,21 +6,25 @@
 //
 
 import Foundation
-struct Orders : Decodable{
+struct Orders : Codable{
     var orders : [Order]
 }
-struct Order : Decodable {
-   var id :Int
+struct Order : Codable {
+   var id :Int?
 
-   var confirmed: Bool
+   var confirmed: Bool?
    var contact_email:String?
-   var created_at:String
-   var currency:String?
-   var current_subtotal_price:String
     var email : String?
-   var current_total_discounts:String
-   var current_total_price :String
-   var number : Int
+   var created_at:String?
+   var currency:String?
+   var current_subtotal_price:String?
+    var current_total_discounts:String?
+    var current_total_price :String?
+
+    var number : Int?
    var order_number : Int?
+
    var order_status_url: String?
+    var line_items : [LineItem]?
+    var  customer : Customer_address?
 }

@@ -30,6 +30,12 @@ class SearchViewController: UIViewController {
     var isFav : Bool?
     var productDetailsViewModel : ProductDetailsViewModel?
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    override func viewWillAppear(_ animated: Bool) {
+//        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+//        self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+//        subView.isHidden = true
+        self.brandDetailsCollectionView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         productDetailsViewModel = ProductDetailsViewModel()
@@ -38,13 +44,16 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+   
         self.brandDetailsCollectionView.reloadData()
      
     }
    
     @IBAction func cancelbtn(_ sender: Any) {
         subView.isHidden = true
-       productPriceArray = brandProducts
+ 
+        productPriceArray = productPriceArray!.sorted { $0.title < $1.title }
         self.brandDetailsCollectionView.reloadData()
         
     }
@@ -194,6 +203,15 @@ extension SearchViewController : FireActionInCategoryCellProtocol
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .destructive) { _ in
+            complition()
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

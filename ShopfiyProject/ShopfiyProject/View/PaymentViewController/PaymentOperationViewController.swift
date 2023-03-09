@@ -18,18 +18,19 @@ class PaymentOperationViewController: UIViewController {
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
     var braintreeClient: BTAPIClient!
-    
+    var arrayOrders : Orders?
     var orderVm : orderViewModel?
     var lineItems : [LineItem]?
     var prices : Price?
     var address : Customer_address?
-    
-    override func viewDidLoad() {
+    var newOrder : [String : Any]?
+     override func viewDidLoad() {
         super.viewDidLoad()
         lineItems = PaymentViewController.lineItems
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
+
         if paymentSegment.selectedSegmentIndex == 0{
             postOrder()
             let alert = UIAlertController(title: "Ordered Successfully", message: "The order will be arrived soon!", preferredStyle: .alert)
@@ -49,13 +50,16 @@ class PaymentOperationViewController: UIViewController {
                 else if error != nil{
                     print("Error :\(error!)")
                 }
+
             }
         }
     }
     
-
+    
     @IBAction func payBtn(_ sender: UIButton) {
-        startCheckout()
+        postOrder()
+       // startCheckout()
+        
     }
     
     func renderPaymentRequest(request : PKPaymentRequest?){
@@ -63,35 +67,45 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func postOrder(){
-     
-        let newOrder  : [String : Any] = [
-            "order" : [
-                "confirmed" : true ,
-                "contact_email" : "@mmm",
-                "email" : UserDefaultsManager.shared.getUserEmail()! ,
-                "currency": "EGP",
-                "created_at" : "20-2-2015",
-                "number" : 2 ,
-                "order_number" : 123 ,
-                "order_status_url" : "",
-                "current_subtotal_price": "15.0",
-                "current_total_discounts": "0.2",
-                "current_total_price": "15.0",
-                "line_items" : [[
-                 "fulfillable_quantity" : 5,
-                 "name":"Egypt",
-                 "price":"0.10",
-                 "quantity" : 3,
-                 "sku" : "asmaa",
-                 "title" : "Shooes"
-                ]]
-            ]
-        ]
-        orderVm = orderViewModel()
-        orderVm?.postOrder(order: newOrder)
-    }
+   
+      orderVm = orderViewModel()
+        newOrder = [
+     "order" : [
+            "confirmed" : true ,
+            "contact_email" :  UserDefaultsManager.shared.getUserEmail() ?? "",
+            "currency": "EGP",
+            "number" : 2 ,
+            "order_number" : 123 ,
+            "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
+            "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
+            "current_total_price": prices?.current_total_price ?? "0.0",
+            "email" : UserDefaultsManager.shared.getUserEmail() ?? "" ,
+            "line_items" : [[
+            "fulfillable_quantity" : 5,
+            "name": "NAME",
+            "price": "0.10",
+            "quantity" : 3,
+            "sku" :  "SKU",
+            "title" :  "TITLE"
+                ]],
+                ]
+                        ]
 
+                orderVm?.postOrder(order: newOrder!)
+//        for item in lineItems ?? []{
+//            print(item.id ?? 0)
+//        }
+        var order  : Order = Order( confirmed: true, contact_email:  UserDefaultsManager.shared.getUserEmail(),
+                                    email: UserDefaultsManager.shared.getUserEmail(), created_at: "",
+                                    currency: UserDefaultsManager.shared.getCurrency() ?? "EGP",
+                                    current_subtotal_price: prices?.current_subtotal_price ?? "0.0",
+                                    current_total_discounts: prices?.current_total_discounts ?? "0.0" ,
+                                    current_total_price: prices?.current_total_price ?? "0.0",  line_items : lineItems ?? [] )
+
+        orderVm?.putOrder(newOrder: order)
+            }
 }
+
 
 extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerDelegate{
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {

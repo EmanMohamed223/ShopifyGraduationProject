@@ -94,6 +94,7 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {
+
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "paymentOperation") as? PaymentOperationViewController
         vc?.prices = Price()
         vc?.prices = getPrices()

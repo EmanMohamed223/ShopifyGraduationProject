@@ -52,6 +52,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
     override func viewWillAppear(_ animated: Bool) {
         self.OffersCollectionView.reloadData()
         self.brandCollectionView.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
 }
