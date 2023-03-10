@@ -31,16 +31,27 @@ class RegisterViewModel {
         
         
     }
-    
-    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String,phone : String, compeltion: @escaping (String?) ->Void){
+    func isValidAddress(address add: String) -> Bool{
+        let addRegEx = "[A-Za-z]+,[A-Za-z]+,[A-Za-z]"
+        let addPred = NSPredicate(format:"SELF MATCHES %@", addRegEx)
+        return addPred.evaluate(with: add)
         
-        if firstName.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty||phone.isEmpty{
+        
+    }
+    
+    func ValdiateCustomerInfomation(firstName: String, email: String, password: String, confirmPassword: String,phone : String, address : String, compeltion: @escaping (String?) ->Void){
+        
+        if firstName.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty||phone.isEmpty || address.isEmpty {
             compeltion("ErrorAllInfoIsNotFound")
             return
         }
         
         if !isValidEmail(email) {
             compeltion("ErrorEmail")
+            return
+        }
+        if !isValidAddress(address: address) {
+            compeltion("ErrorAddress")
             return
         }
         if !isValidname(name: firstName) {

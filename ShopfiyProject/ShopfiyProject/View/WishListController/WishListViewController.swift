@@ -96,7 +96,7 @@ extension WishListViewController : FireActionInCategoryCellFavourite
         }
         alert.addAction(cancelButton)
         alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
+      self.present(alert, animated: true, completion: nil)
     }
         func deleteFavourite(appDelegate: AppDelegate, product: Products) {
             favoritesViewModel?.deleteFavourite(appDelegate: appDelegate, product: product)

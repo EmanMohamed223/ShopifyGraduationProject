@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import UIKit
 protocol Navigationdelegate
 {
     func navigateToSignup()
     func navigateToSignIn()
     func Tapfavourite()
     func navigateToMoreOrders()
+    func TapproductDetails()
+    func present(alert: UIAlertController)
 }

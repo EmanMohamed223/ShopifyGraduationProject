@@ -9,34 +9,16 @@ import UIKit
 
 class IfLogedView: UIView {
     var delegate : Navigationdelegate?
-    @IBOutlet weak var orderOnePrice: UILabel!
+ 
+    @IBOutlet weak var welcomMssg: UILabel!
     
-    @IBOutlet weak var orderOneDate: UILabel!
+    @IBOutlet weak var ordersTable: UITableView!
+    @IBOutlet weak var wishlistCollection: UICollectionView!
+    var favoritesArray = [Products]()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var favoritesViewModel: FavoritesViewModel?
     
-    @IBOutlet weak var orderTwoPricce: UILabel!
-    
-    
-    @IBOutlet weak var orderTwoDate: UILabel!
-    
-    
-    
-    @IBOutlet weak var favImg1: UIImageView!
-    
-    @IBOutlet weak var productname1: UILabel!
-    
-    @IBOutlet weak var favImg2: UIImageView!
-    
-    @IBOutlet weak var productname2: UILabel!
-    
-    @IBOutlet weak var favImg3: UIImageView!
-    
-    @IBOutlet weak var productname3: UILabel!
-    
-    @IBOutlet weak var favImg4: UIImageView!
-    
-    @IBOutlet weak var productname4: UILabel!
-    
-    @IBOutlet weak var welcomMsg: UILabel!
+   
     
     @IBAction func moreWishList(_ sender: UIButton) {
         delegate?.Tapfavourite()
@@ -45,14 +27,20 @@ class IfLogedView: UIView {
     @IBAction func moreOrders(_ sender: UIButton) {
         delegate?.navigateToMoreOrders()
     }
-    var favoritesArray = [Products]()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var favoritesViewModel = FavoritesViewModel()
+  
     
     override public func awakeFromNib() {
         super.awakeFromNib()
+        wishlistCollection.delegate = self
+        wishlistCollection.dataSource = self
+        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        self.wishlistCollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
+    
+       
+        ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
         
-        favoritesViewModel.bindingData = { favourites, error in
+        favoritesViewModel = FavoritesViewModel()
+        favoritesViewModel!.bindingData = { favourites, error in
             if let favourites = favourites {
                 self.favoritesArray = favourites
             }
@@ -62,51 +50,63 @@ class IfLogedView: UIView {
                 
             }
         }
-        favoritesViewModel.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
+        favoritesViewModel!.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
+        self.wishlistCollection.reloadData()
+ 
+
         
-        switch (favoritesArray.count)
-        {
-        case 1 :
-            self.configure_wishlistView (favName : productname1 , favImg : favImg1 , favNum : 0)
-        case 2 :
-            self.configure_wishlistView (favName : productname1 , favImg : favImg1 , favNum : 0)
-            self.configure_wishlistView (favName : productname2 , favImg : favImg2 , favNum : 1)
-        case 3 :
-            self.configure_wishlistView (favName : productname1 , favImg : favImg1 , favNum : 0)
-            self.configure_wishlistView (favName : productname2 , favImg : favImg2 , favNum : 1)
-            self.configure_wishlistView (favName : productname3 , favImg : favImg3 , favNum : 2)
-        case 4 :
-            self.configure_wishlistView (favName : productname1 , favImg : favImg1 , favNum : 0)
-            self.configure_wishlistView (favName : productname2 , favImg : favImg2 , favNum : 1)
-            self.configure_wishlistView (favName : productname3 , favImg : favImg3 , favNum : 2)
-            self.configure_wishlistView (favName : productname4 , favImg : favImg4 , favNum : 3)
-        case 0 :
-            break
-        default:
-            self.configure_wishlistView (favName : productname1 , favImg : favImg1 , favNum : 0)
-            self.configure_wishlistView (favName : productname2 , favImg : favImg2 , favNum : 1)
-            self.configure_wishlistView (favName : productname3 , favImg : favImg3 , favNum : 2)
-            self.configure_wishlistView (favName : productname4 , favImg : favImg4 , favNum : 3)
-        }
+    }
+    
+    }
+extension IfLogedView: UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return favoritesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+        cell.favouriteDelegate = self
+        cell.categoryLabel.text = favoritesArray[indexPath.row].title
+        cell.CategoryImage.kf.setImage(with: URL(string: favoritesArray[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.categoryPrice.text = favoritesArray[indexPath.row].variants![0].price
+        cell.checkFavourite(isFav: true, product: favoritesArray[indexPath.row], isInFavController: true)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  
+        return   CGSize(width: (collectionView.bounds.size.width/2)-22 , height: (collectionView.bounds.size.height/1.2)-20 )
             
-        
-        
-        
-        
+
+
+         }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
+       
+      //  delegate?.TapproductDetails()
     }
-    func configure_wishlistView (favName : UILabel , favImg : UIImageView , favNum : Int) {
-        
-        favName.text = favoritesArray[favNum].title
-        favImg.kf.setImage(with: URL(string: favoritesArray[favNum].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+}
+extension IfLogedView : FireActionInCategoryCellFavourite
+{
+    func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .destructive) { _ in
+            complition()
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        delegate?.present(alert: alert)
+    }
+        func deleteFavourite(appDelegate: AppDelegate, product: Products) {
+            favoritesViewModel?.deleteFavourite(appDelegate: appDelegate, product: product)
+            favoritesArray = favoritesArray.filter { $0.id != product.id }
+            wishlistCollection.reloadData()
+        }
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+
