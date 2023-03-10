@@ -17,11 +17,16 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var numOfItems: UILabel!
     
     var delegate : ShoppingCartDelegate?
+    var viewModelProduct = ViewModelProduct()
     
-    var lineItem : LineItem?
     var view : UIView = UIView()
     var viewVC : UIViewController = UIViewController()
+    var tableVC : UITableView = UITableView()
+    
+    var lineItems : [LineItem] = []
     var num = 1
+    var indexPath : IndexPath  = IndexPath(row: 0, section: 0)
+    var priceQ : [Int : Int] = [:]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +44,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
         if num < 5{ //Replace the static with lineItem?.grams  <<<<<<<<<<<<<<<<
             num += 1
             numOfItems.text = String(num)
-            delegate?.calcSubTotalInc(price: productPrice.text ?? "")
+            lineItems[indexPath.row].quantity = num
+            //delegate?.calcSubTotalInc(price: productPrice.text ?? "")
+            delegate?.setLineItems(lineItem: lineItems[indexPath.row], index : indexPath.row )
+            delegate?.calcSubTotalInc()
         }
         else{
             SnackBar.make(in: self.view, message: "Maximum items in the store", duration: .lengthLong).setAction(with: "Close", action: nil).show()
@@ -50,26 +58,39 @@ class ShoppingCartTableViewCell: UITableViewCell {
         if num >= 2{
             num -= 1
             numOfItems.text = String(num)
+            lineItems[indexPath.row].quantity = num
+            delegate?.setLineItems(lineItem: lineItems[indexPath.row], index : indexPath.row)
             delegate?.calcSubTotalDec(price: productPrice.text ?? "")
         }
         else{
-            let alert = UIAlertController(title: "Remove Product", message: "If you want to delete this item just swipe it!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Remove Product", message: "If you want to delete this item click on the trash icon or just swipe it!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default){_ in
             })
             self.viewVC.present(alert, animated: true)
         }
     }
     
+    
+    
+    @IBAction func trashBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
+            self.lineItems.remove(at: self.indexPath.row)
+            let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
+            let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
+            self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                if response.statusCode >= 200 && response.statusCode <= 299{
+                    DispatchQueue.main.async {
+                        
+                        self.tableVC.deleteRows(at: [self.indexPath], with: UITableView.RowAnimation.automatic)
+                        self.delegate?.calcSubTotalInc()
+                    }
+                }
+            }
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
+        })
+        self.viewVC.present(alert, animated: true)
+    }
+    
 }
-
-//extension ShoppingCartTableViewCell : ShoppingCartDelegate{
-//    func increaseNumberOfItems() -> (Int)? {
-//        return 5
-//    }
-//    
-//    func decreaseNumberOfItems() -> (Int)? {
-//        return 5
-//    }
-//    
-//    
-//}

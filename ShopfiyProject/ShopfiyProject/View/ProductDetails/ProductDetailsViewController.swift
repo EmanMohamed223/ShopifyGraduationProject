@@ -180,7 +180,7 @@ class ProductDetailsViewController: UIViewController {
                        //   LineItemObj?.product_id = product?.id
                           LineItemObj?.admin_graphql_api_id = ""
                           LineItemObj?.grams = self.product?.variants![0].inventory_quantity! ?? 0
-                          LineItemObj?.quantity = 3
+                          LineItemObj?.quantity = 1
                           LineItemToBe?.append(LineItemObj!)
                           shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
                           let draftOrder  : ShoppingCartResponse = ShoppingCartResponse(draft_order: shopingCardObj)
@@ -335,7 +335,7 @@ extension ProductDetailsViewController {
                        //"vendor":  self.product?.images[0].src ?? "" ,
                       "vendor":  "" ,
                       //MARIAM
-                          "quantity": 2,
+                          "quantity": 1,
                           "requires_shipping": true,
                           "taxable": true,
                           "gift_card": false,

@@ -32,6 +32,8 @@ class CategoryViewController: UIViewController {
 //        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
 //        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         self.CategoryCollectionView.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +52,6 @@ class CategoryViewController: UIViewController {
         CategoryProductsURL = getURL(endPoint: "products.json")
         modelling(newUrl: chooseMainCategory (index : 0))
         self.CategoryCollectionView.reloadData()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func selectedSegment(_ sender: Any) {
