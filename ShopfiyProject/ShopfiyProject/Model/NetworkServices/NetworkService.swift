@@ -122,9 +122,9 @@ class NetworkService : Service{
 
 
     }
-    func putorder(order : Order,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
+    func putorders(order :Orderrs,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
 
-        let url = getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")
+        let url = getURL(endPoint: "orders.json")
         guard let baseURL = URL(string : url ?? "") else { return }
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
@@ -183,9 +183,12 @@ class NetworkService : Service{
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             do{
                 let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
+                print("RESPONSEE")
                 print(dataJson)
             }catch{
+                print("ERRRRR")
                 print(error.localizedDescription)
+                print(String(describing: error))
             }
         }.resume()
     }

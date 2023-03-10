@@ -30,10 +30,10 @@ class orderViewModel{
         NetworkService.shared.postDataToApi(url:getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")!, newOrder: order)
         
     }
-    func putOrder(newOrder : Order){
-        NetworkService.shared.putorder(order : newOrder) { data
+    func putOrder(newOrder : Orderrs){
+        NetworkService.shared.putorders(order : newOrder) { data
             , response, error in
-            print (response)
+            print (response!)
         }
     }
 }
