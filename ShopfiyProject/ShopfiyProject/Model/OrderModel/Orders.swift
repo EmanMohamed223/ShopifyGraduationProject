@@ -9,9 +9,12 @@ import Foundation
 struct Orders : Codable{
     var orders : [Order]
 }
+struct Orderrs : Codable {
+    var order : [Order]
+}
 struct Order : Codable {
    var id :Int?
-
+    var admin_graphql_api_id : String?
    var confirmed: Bool?
    var contact_email:String?
     var email : String?
@@ -26,5 +29,5 @@ struct Order : Codable {
 
    var order_status_url: String?
     var line_items : [LineItem]?
-    var  customer : Customer_address?
+
 }

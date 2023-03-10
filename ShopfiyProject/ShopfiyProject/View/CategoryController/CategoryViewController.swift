@@ -31,6 +31,7 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 //        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
 //        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
+        self.tabBarController?.tabBar.isHidden = false
         self.CategoryCollectionView.reloadData()
     }
     override func viewDidLoad() {
@@ -51,10 +52,7 @@ class CategoryViewController: UIViewController {
         modelling(newUrl: chooseMainCategory (index : 0))
         self.CategoryCollectionView.reloadData()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
+   
     @IBAction func selectedSegment(_ sender: Any) {
        
         switch categorySegmented.selectedSegmentIndex {
