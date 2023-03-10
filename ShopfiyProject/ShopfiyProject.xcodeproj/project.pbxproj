@@ -76,6 +76,7 @@
 		8C93DFD429A41709002665D4 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFD329A41709002665D4 /* CategoryViewController.swift */; };
 		8C93DFD729A423E3002665D4 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93DFD529A423E3002665D4 /* CategoryCollectionViewCell.swift */; };
 		8C93DFD829A423E3002665D4 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C93DFD629A423E3002665D4 /* CategoryCollectionViewCell.xib */; };
+		8C9E9DF529BBA9CB002A91AC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E9DF429BBA9CB002A91AC /* Currency.swift */; };
 		8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEEF29A3E9B000519879 /* AppDelegate.swift */; };
 		8CE5EEF229A3E9B000519879 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEF129A3E9B000519879 /* SceneDelegate.swift */; };
 		8CE5EEF429A3E9B000519879 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5EEF329A3E9B000519879 /* ViewController.swift */; };
@@ -225,6 +226,7 @@
 		8C93DFD329A41709002665D4 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8C93DFD529A423E3002665D4 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C93DFD629A423E3002665D4 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		8C9E9DF429BBA9CB002A91AC /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		8CE5EEEC29A3E9B000519879 /* ShopfiyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopfiyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE5EEEF29A3E9B000519879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE5EEF129A3E9B000519879 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				C94B307229A9691E00777CAA /* UserRelatedStruct.swift */,
 				C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */,
 				C9846E0229B6A40B00668909 /* UIHelperFunctions.swift */,
+				8C9E9DF429BBA9CB002A91AC /* Currency.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1328,6 +1331,7 @@
 				037838F029B3162B0004902E /* FavoritesViewModel.swift in Sources */,
 				C94B306229A929E100777CAA /* AdsDetials.swift in Sources */,
 				8C55131829A4DF920066B62E /* NavigationBarProtocol.swift in Sources */,
+				8C9E9DF529BBA9CB002A91AC /* Currency.swift in Sources */,
 				036AF3D429B69ADA00062E31 /* EditDraftOrderProtocol.swift in Sources */,
 				0325664B29AEC81300D62063 /* DraftOrderViewModel.swift in Sources */,
 				C9E85E8629A6B26800BAC6A3 /* AddressTableViewCell.swift in Sources */,
