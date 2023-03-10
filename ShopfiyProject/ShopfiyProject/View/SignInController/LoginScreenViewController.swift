@@ -33,6 +33,11 @@ class LoginScreenViewController: UIViewController {
 
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        loginViewModel = LoginViewModel()
+                // Do any additional setup after loading the view.
+                modiling()
+    }
     func modiling() {
             viewModel.getcustomers(url: getURL(endPoint: "customers.json"))
             viewModel.bindResultToViewController = { () in
