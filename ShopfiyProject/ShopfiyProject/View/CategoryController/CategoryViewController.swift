@@ -52,7 +52,7 @@ class CategoryViewController: UIViewController {
         modelling(newUrl: chooseMainCategory (index : 0))
         self.CategoryCollectionView.reloadData()
     }
-   
+
     @IBAction func selectedSegment(_ sender: Any) {
        
         switch categorySegmented.selectedSegmentIndex {

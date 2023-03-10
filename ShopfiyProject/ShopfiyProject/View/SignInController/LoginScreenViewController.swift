@@ -51,7 +51,7 @@ class LoginScreenViewController: UIViewController {
             self.ResultArray = self.viewModel.Users
             self.customers = self.ResultArray!.customers
             
-            
+            print ("render is done ")
             
         }
     

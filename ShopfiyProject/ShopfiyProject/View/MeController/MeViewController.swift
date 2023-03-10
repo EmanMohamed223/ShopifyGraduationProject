@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MeViewController: UIViewController ,Navigationdelegate {
+   
+    
    
     
     
@@ -53,6 +56,11 @@ class MeViewController: UIViewController ,Navigationdelegate {
         let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
         self.navigationController?.pushViewController(view, animated: true)
     }
+    func TapproductDetails(){
+        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+        self.navigationController?.pushViewController(view, animated: true)
+    }
     func navigateToSignIn() {
         let loginview :LoginScreenViewController = self.storyboard?.instantiateViewController(withIdentifier:"login") as! LoginScreenViewController
               self.navigationController?.pushViewController(loginview, animated: true)
@@ -63,6 +71,10 @@ class MeViewController: UIViewController ,Navigationdelegate {
        
            self.present(seemoreOrders, animated: true)
     }
+    func present(alert: UIAlertController) {
+        
+       self.present(alert, animated: true, completion: nil)
+    }
     
     func updateView ()
     {
@@ -71,7 +83,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
             cardBtm.isHidden = false
             let IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
              IfLogedView.delegate = self
-            IfLogedView.welcomMsg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
+            IfLogedView.welcomMssg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
             thisView.addSubview(IfLogedView)
         }
         else {
