@@ -17,18 +17,28 @@ class PaymentOperationViewController: UIViewController {
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
+
+    var braintreeClient: BTAPIClient!
+    var arrayOrders : [Order] = []
+
     
  var braintreeClient: BTAPIClient!
     var arrayOrders : Orders?
+
     var orderVm : orderViewModel?
+
     var lineItems : [LineItem]?
     
+
+    static var lineItems : [LineItem]?
+
     var prices : Price?
     var address : Customer_address?
    
      override func viewDidLoad() {
         super.viewDidLoad()
-        lineItems = PaymentViewController.lineItems
+        // PaymentOperationViewController.lineItems = PaymentViewController.lineItems
+          lineItems = PaymentViewController.lineItems
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
@@ -59,8 +69,8 @@ class PaymentOperationViewController: UIViewController {
     
     
     @IBAction func payBtn(_ sender: UIButton) {
-        postOrder()
-       // startCheckout()
+          postOrder()
+       startCheckout()
         
     }
     
@@ -69,8 +79,10 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func postOrder(){
-   
+   print("/////////////")
+
       orderVm = orderViewModel()
+
         var newOrder : [String : Any] = [
      "order" : [
             "confirmed" : true ,
@@ -87,6 +99,7 @@ class PaymentOperationViewController: UIViewController {
                 ]
                         ]
          NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder)
+
 
             }
 }

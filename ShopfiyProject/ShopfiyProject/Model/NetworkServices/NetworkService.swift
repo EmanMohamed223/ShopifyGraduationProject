@@ -122,7 +122,7 @@ class NetworkService : Service{
 
 
     }
-   
+
      func postDataToApi(url : String ,newOrder: [String:Any]) {
       
         guard let url = URL(string: url) else { return }
@@ -144,9 +144,12 @@ class NetworkService : Service{
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             do{
                 let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
+                print("RESPONSEE")
                 print(dataJson)
             }catch{
+                print("ERRRRR")
                 print(error.localizedDescription)
+                print(String(describing: error))
             }
         }.resume()
     }

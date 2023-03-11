@@ -44,7 +44,13 @@ class SettingsViewController: UIViewController {
     @IBAction func logoutBtn(_ sender: Any) {
 
         UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
+        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
+        UserDefaultsManager.shared.setUserID(customerID: nil)
+        UserDefaultsManager.shared.setUserName(userName: nil)
+        UserDefaultsManager.shared.setUserEmail(userEmail: nil)
+        UserDefaultsManager.shared.setCurrency(currency: nil)
         self.navigationController?.popViewController(animated: true)
+        
     }
     
 }
