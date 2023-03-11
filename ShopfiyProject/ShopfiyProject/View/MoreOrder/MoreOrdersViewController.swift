@@ -19,8 +19,8 @@ class MoreOrdersViewController: UIViewController {
         ordersTable.dataSource = self
        
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
-        orderURL = getURL(endPoint: "orders.json")
-        modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
+     //   orderURL = getURL(endPoint: "orders.json")
+       // modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
         self.ordersTable.reloadData()
     }
 

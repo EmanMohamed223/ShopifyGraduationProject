@@ -121,15 +121,18 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+        cell.cornerRadius = CGFloat(20)
         cell.productDelegate = self
         var productToPass  = self.productArray?.products[indexPath.row]
         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
-        cell.cornerRadius = CGFloat(20)
+     //   cell.currency.text = UserDefaultsManager.shared.getCurrency()
         cell.categoryLabel.text = productArray?.products[indexPath.row].title
         cell.categoryLabel.adjustsFontSizeToFitWidth = true
         cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-        cell.categoryPrice.text = productArray?.products[indexPath.row].variants![0].price
-        cell.checkFavourite(isFav: self.isFav!, product: productToPass!)
+
+        cell.categoryPrice.text = calcCurrency(price: productArray?.products[indexPath.row].variants![0].price)
+        cell.checkFavourite(isFav: self.isFav!, product: (productArray?.products[indexPath.row])!)
+
         return cell
     }
     
