@@ -35,14 +35,30 @@ class WishListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        favoritesViewModel?.bindingData = { favourites, error in
+            if let favourites = favourites {
+                self.favoritesArray = favourites
+                DispatchQueue.main.async {
+                    self.wishlistcollection.reloadData()
+                    
+                }
+            }
+            
+            if let error = error {
+                print(error.localizedDescription)
+                
+            }
+        }
+        favoritesViewModel?.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
+    
+      
         wishlistcollection.delegate = self
         wishlistcollection.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
         
         
-       
+        self.wishlistcollection.reloadData()
         
         
     }

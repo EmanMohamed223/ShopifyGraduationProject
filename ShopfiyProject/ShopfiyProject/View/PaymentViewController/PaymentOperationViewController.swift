@@ -7,8 +7,8 @@
 
 import UIKit
 import PassKit
-import Braintree
-import BraintreeDropIn
+//import Braintree
+//import BraintreeDropIn
 
 class PaymentOperationViewController: UIViewController {
     
@@ -17,13 +17,13 @@ class PaymentOperationViewController: UIViewController {
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
-
-    var braintreeClient: BTAPIClient!
+//eman
+   // var braintreeClient: BTAPIClient!
     var arrayOrders : [Order] = []
 
-    
- var braintreeClient: BTAPIClient!
-    var arrayOrders : Orders?
+//eman
+// var braintreeClient: BTAPIClient!
+ //   var arrayOrders : Orders?
 
     var orderVm : orderViewModel?
     static var lineItems : [LineItem]?
@@ -44,7 +44,8 @@ class PaymentOperationViewController: UIViewController {
             })
             self.present(alert, animated: true)
         }
-        else{
+      else{
+            //eman
             braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
             let request = BTPayPalCheckoutRequest(amount: "2.32")
@@ -69,7 +70,8 @@ class PaymentOperationViewController: UIViewController {
     }
     
     func renderPaymentRequest(request : PKPaymentRequest?){
-        self.paymentRequest = request ?? PKPaymentRequest()
+        //eman
+      self.paymentRequest = request ?? PKPaymentRequest()
     }
     
     func postOrder(){

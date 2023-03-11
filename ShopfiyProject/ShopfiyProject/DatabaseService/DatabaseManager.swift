@@ -16,7 +16,7 @@ class DatabaseManager : DatabaseProtocol
             
         let coreDataProduct = NSManagedObject(entity: entity!, insertInto: managedContext)
         coreDataProduct.setValue(product.id , forKey: "id")
-        coreDataProduct.setValue(product.variants![0].id , forKey: "userID")
+        coreDataProduct.setValue(product.userId , forKey: "userID")
         coreDataProduct.setValue(product.variants?[0].price ?? "0.0", forKey: "price")
         coreDataProduct.setValue(product.title, forKey: "title")
         coreDataProduct.setValue(product.images[0].src, forKey: "imgUrl")
@@ -43,8 +43,8 @@ class DatabaseManager : DatabaseProtocol
                 let title = product.value(forKey: "title") as! String
                 let imgUrl = product.value(forKey: "imgUrl") as! String
            
-
-                let product = Products(id: id, title: title, variants: [variant(id: userID, option2: price)], images: [Image( src: imgUrl)])
+      
+                let product = Products(id: id, title: title, variants: [variant(option2: price)], images: [Image( src: imgUrl)],userId: userID)
                     favouriteList.append(product)
             }
             complition(favouriteList, nil)
@@ -58,7 +58,7 @@ class DatabaseManager : DatabaseProtocol
         var favouriteList = [Products]()
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favourite")
-        fetchRequest.predicate = NSPredicate(format: "userID = \(product.variants![0].id ?? 0) AND id = \(product.id)")
+        fetchRequest.predicate = NSPredicate(format: "userID = \(product.userId ?? 0) AND id = \(product.id)")
         do{
             let productArray = try managedContext.fetch(fetchRequest)
       
@@ -70,7 +70,7 @@ class DatabaseManager : DatabaseProtocol
                 let imgUrl = product.value(forKey: "imgUrl") as! String
                 
                
-                let product = Products(id: id, title: title, variants: [variant(id: userID, option2: price)], images: [Image( src: imgUrl)])
+                let product = Products(id: id, title: title, variants: [variant(option2: price)], images: [Image( src: imgUrl)],userId: userID)
                    
                     favouriteList.append(product)
             }
@@ -84,7 +84,7 @@ class DatabaseManager : DatabaseProtocol
    func deleteFavourite(appDelegate: AppDelegate, product: Products) {
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favourite")
-       fetchRequest.predicate = NSPredicate(format: "id = \(product.id) AND userID = \(product.variants![0].id ?? 1)")
+       fetchRequest.predicate = NSPredicate(format: "id = \(product.id) AND userID = \(product.userId ?? 1)")
       do{
            let productsArray = try managedContext.fetch(fetchRequest)
            for product in productsArray {
