@@ -60,5 +60,11 @@ class UserDefaultsManager{
     func getUserStatus()-> Bool{
         return UserDefaults.standard.bool(forKey: "User_Status")
     }
+    func setDraftFlage(posted: Bool){
+        UserDefaults.standard.set(posted, forKey: "draftOrderFlage")
+    }
     
+    func getDraftFlage()-> Bool{
+        return UserDefaults.standard.bool(forKey: "draftOrderFlage")
+    }
 }

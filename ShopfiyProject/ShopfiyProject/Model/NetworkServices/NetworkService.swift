@@ -19,6 +19,7 @@ protocol Service{
 
 class NetworkService : Service{
     
+    let productDet = ProductDetailsViewController()
     static let shared = NetworkService()
     private init(){}
     
@@ -146,6 +147,7 @@ class NetworkService : Service{
                 let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
                 print("RESPONSEE")
                 print(dataJson)
+                self.productDet.setdraftIdForPost()
             }catch{
                 print("ERRRRR")
                 print(error.localizedDescription)
