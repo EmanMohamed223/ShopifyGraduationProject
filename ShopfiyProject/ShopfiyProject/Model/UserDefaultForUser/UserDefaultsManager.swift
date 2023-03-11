@@ -14,6 +14,14 @@ class UserDefaultsManager{
         
     }
     
+    func setCouponStatus(coupon : Bool){
+        UserDefaults.standard.set(coupon, forKey: "couponStatus")
+    }
+    
+    func getCouponStatus()->Bool{
+        return UserDefaults.standard.bool(forKey: "couponStatus")
+    }
+    
     func setCurrency(currency : String?){
         UserDefaults.standard.set(currency, forKey: "currency")
     }
@@ -64,7 +72,9 @@ class UserDefaultsManager{
         UserDefaults.standard.set(posted, forKey: "draftOrderFlage")
     }
     
+
     func getDraftFlage()-> Bool{
         return UserDefaults.standard.bool(forKey: "draftOrderFlage")
     }
+
 }
