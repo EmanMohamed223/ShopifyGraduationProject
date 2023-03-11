@@ -32,7 +32,7 @@ class CategoryViewController: UIViewController {
 //        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
 //        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         self.tabBarController?.tabBar.isHidden = false
-        self.CategoryCollectionView.reloadData()
+       self.CategoryCollectionView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
 
     }
@@ -125,12 +125,18 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
         cell.productDelegate = self
         var productToPass  = self.productArray?.products[indexPath.row]
         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
+
       cell.Currency.text = UserDefaultsManager.shared.getCurrency()
+
+        cell.checkFavourite(isFav: self.isFav!, product: productToPass!)
+    
         cell.categoryLabel.text = productArray?.products[indexPath.row].title
         cell.categoryLabel.adjustsFontSizeToFitWidth = true
         cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+
         cell.categoryPrice.text = calcCurrency(price: productArray?.products[indexPath.row].variants![0].price)
-        cell.checkFavourite(isFav: self.isFav!, product: (productArray?.products[indexPath.row])!)
+        
+
         return cell
     }
     

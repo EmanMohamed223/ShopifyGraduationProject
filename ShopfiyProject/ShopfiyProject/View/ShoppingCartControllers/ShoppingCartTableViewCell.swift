@@ -15,6 +15,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var numOfItems: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
     
     var delegate : ShoppingCartDelegate?
     var viewModelProduct = ViewModelProduct()

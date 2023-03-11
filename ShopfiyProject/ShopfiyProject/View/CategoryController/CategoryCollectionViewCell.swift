@@ -56,15 +56,16 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         }
         
         if isFav! {
-            productDelegate!.showAlertdelet(title: "deleting !!" , message: "do you want to delete this from favorite ?"){
+      productDelegate!.showAlertdelet(title: "deleting !!" , message: "do you want to delete this from favorite ?"){
                 self.productDelegate!.deleteFavourite(appDelegate: self.appDelegate, product: self.product!)
                 self.categoryButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            }
-        } else {
-            product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
+        }
+       }
+        else {
+            product?.userId = UserDefaultsManager.shared.getUserID()!
             productDelegate!.addFavourite(appDelegate: appDelegate, product: product!)
             categoryButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        }
+     }
         isFav = !isFav!
     }
     

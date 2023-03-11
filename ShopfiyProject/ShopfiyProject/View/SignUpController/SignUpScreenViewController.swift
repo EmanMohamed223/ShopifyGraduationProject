@@ -126,8 +126,9 @@ extension SignUpScreenViewController {
             print("registered successfully")
 
             DispatchQueue.main.async {
-                let login = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginScreenViewController
-                
+
+                let login = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+
                 self.navigationController?.pushViewController(login, animated: true)
             }
         }
