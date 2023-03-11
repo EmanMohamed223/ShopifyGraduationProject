@@ -33,6 +33,8 @@ class CategoryViewController: UIViewController {
 //        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         self.tabBarController?.tabBar.isHidden = false
         self.CategoryCollectionView.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
