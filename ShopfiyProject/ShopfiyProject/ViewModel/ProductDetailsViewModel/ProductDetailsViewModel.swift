@@ -17,7 +17,7 @@ class ProductDetailsViewModel {
             return isFavourite
         }
         
-        product.variants![0].id = UserDefaultsManager.shared.getUserID()!
+        product.userId = UserDefaultsManager.shared.getUserID()!
         var productsArray = [Products]()
         databaseManager.getItemFromFavourites(appDelegate: appDelegate, product: product) { (products, error) in
             if let products = products {

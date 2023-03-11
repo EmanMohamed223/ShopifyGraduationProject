@@ -22,6 +22,7 @@ struct Products : Decodable{
     var tags :String?
     var variants:[variant]?
     var images :[Image]
+    var userId : Int?
     
     init (){
         id=0
@@ -33,9 +34,10 @@ struct Products : Decodable{
         tags=""
         variants = [variant()]
         images = [Image()]
+        userId = 0
     }
     
-    init(id : Int?,title : String?, body_html : String?, vendor : String?, created_at : String?, status : String?, tags : String?, variants : [variant]?, images : [Image]? ) {
+    init(id : Int?,title : String?, body_html : String?, vendor : String?, created_at : String?, status : String?, tags : String?, variants : [variant]?, images : [Image]? , userId : Int? ) {
         self.id = id ?? 0
         self.title = title ?? ""
         self.body_html = body_html ?? ""
@@ -44,8 +46,15 @@ struct Products : Decodable{
         self.tags = tags ?? ""
         self.variants = variants ?? []
         self.images = images ?? []
+        self.userId = userId ?? 0
     }
-    
+    init(id : Int?,title : String?, variants : [variant]?, images : [Image]? , userId : Int? ) {
+        self.id = id ?? 0
+        self.title = title ?? ""
+        self.variants = variants ?? []
+        self.images = images ?? []
+        self.userId = userId ?? 0
+    }
     
     
     init(id: Int, title: String, variants: [variant], images: [Image]){
@@ -76,6 +85,9 @@ struct variant :Decodable{
     
     init(id : Int? ,option2 : String?){
         self.id = id
+        self.option2 = option2
+    }
+    init(option2 : String?){
         self.option2 = option2
     }
 }

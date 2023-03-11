@@ -34,7 +34,7 @@ class SearchViewController: UIViewController {
 //        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
 //        self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
 //        subView.isHidden = true
-        self.brandDetailsCollectionView.reloadData()
+       self.brandDetailsCollectionView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +112,7 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryItem", for: indexPath) as! CategoryCollectionViewCell
+
         cell.categoryLabel.text = productPriceArray?[indexPath.row].title
         //   cell.currency.text = UserDefaultsManager.shared.getCurrency()
         cell.CategoryImage.kf.setImage(with: URL(string: productPriceArray?[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
@@ -120,6 +121,7 @@ extension SearchViewController : UICollectionViewDataSource , UICollectionViewDe
         var productToPass  = self.productPriceArray?[indexPath.row]
         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
         cell.checkFavourite(isFav: self.isFav!, product: (productPriceArray?[indexPath.row])!)
+
 
         return cell
     }
