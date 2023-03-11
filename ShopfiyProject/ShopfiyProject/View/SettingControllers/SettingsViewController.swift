@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    
+   
     @IBOutlet weak var currencyLabel: UILabel!
     
     override func viewDidLoad() {

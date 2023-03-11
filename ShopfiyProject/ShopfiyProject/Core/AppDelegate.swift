@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-   
-     BTAppContextSwitcher.setReturnURLScheme("fri.ShopfiyProject.payments")
+ 
+   BTAppContextSwitcher.setReturnURLScheme("fri.ShopfiyProject.payments")
         
      
         return true
@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.scheme?.localizedCaseInsensitiveCompare("fri.ShopfiyProject.payments") == .orderedSame {
-      
-           return BTAppContextSwitcher.handleOpenURL(url)
+
+         return BTAppContextSwitcher.handleOpenURL(url)
             }
             return false
     }

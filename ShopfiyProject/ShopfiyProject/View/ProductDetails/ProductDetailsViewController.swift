@@ -46,7 +46,9 @@ class ProductDetailsViewController: UIViewController {
     var isFav: Bool?
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    override func viewWillAppear(_ animated: Bool) {
+         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(self.product!))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +132,8 @@ class ProductDetailsViewController: UIViewController {
         } else {
             loveoutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             print( UserDefaultsManager.shared.getUserID()!)
-            product?.variants![0].id = UserDefaultsManager.shared.getUserID()!
-            print(  product?.variants![0].id! ?? 20)
+            product?.userId = UserDefaultsManager.shared.getUserID()!
+        //    print(  product?.variants![0].id! ?? 20)
             
             productDetailsViewModel!.addProductToFavourites(appDelegate: appDelegate, product: product!)
         }

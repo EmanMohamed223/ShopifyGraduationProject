@@ -32,7 +32,7 @@ class RegisterViewModel {
         
     }
     func isValidAddress(address add: String) -> Bool{
-        let addRegEx = "[A-Za-z]+,[A-Za-z]+,[A-Za-z]"
+        let addRegEx = "[A-Za-z]+,[A-Za-z]+,[A-Za-z]+"
         let addPred = NSPredicate(format:"SELF MATCHES %@", addRegEx)
         return addPred.evaluate(with: add)
         
