@@ -33,6 +33,8 @@ class CategoryViewController: UIViewController {
 //        self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         self.tabBarController?.tabBar.isHidden = false
         self.CategoryCollectionView.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +54,7 @@ class CategoryViewController: UIViewController {
         modelling(newUrl: chooseMainCategory (index : 0))
         self.CategoryCollectionView.reloadData()
     }
-    
-    
+
     @IBAction func selectedSegment(_ sender: Any) {
        
         switch categorySegmented.selectedSegmentIndex {

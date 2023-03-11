@@ -99,6 +99,8 @@ class PaymentViewController: UIViewController {
         vc?.prices = Price()
         vc?.prices = getPrices()
         vc?.address = getCustomerAddress()
+        PaymentOperationViewController.lineItems = PaymentViewController.lineItems
+       
     }
 
 }
