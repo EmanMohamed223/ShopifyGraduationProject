@@ -31,21 +31,21 @@ class ShoppingCartViewController: UIViewController {
         tableView.dataSource = self
         network = Reachability.forInternetConnection()
         viewModel = CoreDataViewModel()
-        self.navigationItem.hidesBackButton = true
-        let customBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
-        self.navigationItem.leftBarButtonItem = customBackButton
+//        self.navigationItem.hidesBackButton = true
+//        let customBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
+//        self.navigationItem.leftBarButtonItem = customBackButton
     }
     
-    @objc func back(sender: UIBarButtonItem){
-        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
-            self.navigationController?.popViewController(animated: true)
-        })
-        alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
-            self.navigationController?.popViewController(animated: true)
-        })
-        self.present(alert, animated: true)
-    }
+//    @objc func back(sender: UIBarButtonItem){
+//        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
+//            self.navigationController?.popViewController(animated: true)
+//        })
+//        alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
+//            self.navigationController?.popViewController(animated: true)
+//        })
+//        self.present(alert, animated: true)
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
