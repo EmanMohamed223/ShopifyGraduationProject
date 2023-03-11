@@ -122,46 +122,7 @@ class NetworkService : Service{
 
 
     }
-    func putorder(order : Order,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
-
-        let url = getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json")
-        guard let baseURL = URL(string : url ?? "") else { return }
-        var request = URLRequest(url: baseURL)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        request.httpShouldHandleCookies = false
-
-        do{
-            let data = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
-            
-            URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-                if let error = error {
-                        print("Error making PUT request: \(error.localizedDescription)")
-                        return
-                    }
-
-                if let responseCode = (response as? HTTPURLResponse)?.statusCode, let data = data {
-                    guard responseCode == 200 else {
-                        print("Invalid response code: \(responseCode)")
-                        return
-                    }
-
-                    if let responseJSONData = try? JSONSerialization.jsonObject(with: data , options: .allowFragments) {
-                        print("Response JSON data = \(responseJSONData)")
-                    }
-                }
-                completion(data, response as? HTTPURLResponse, error)
-            }.resume()
-            print(try! order.asDictionary())
-        } catch let error {
-            print(error.localizedDescription)
-        }
-
-
-    }
+   
      func postDataToApi(url : String ,newOrder: [String:Any]) {
       
         guard let url = URL(string: url) else { return }

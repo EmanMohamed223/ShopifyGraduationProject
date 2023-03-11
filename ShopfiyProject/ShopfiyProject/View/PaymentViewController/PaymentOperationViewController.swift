@@ -22,9 +22,10 @@ class PaymentOperationViewController: UIViewController {
     var arrayOrders : Orders?
     var orderVm : orderViewModel?
     var lineItems : [LineItem]?
+    
     var prices : Price?
     var address : Customer_address?
-    var newOrder : [String : Any]?
+   
      override func viewDidLoad() {
         super.viewDidLoad()
         lineItems = PaymentViewController.lineItems
@@ -70,40 +71,23 @@ class PaymentOperationViewController: UIViewController {
     func postOrder(){
    
       orderVm = orderViewModel()
-        newOrder = [
+        var newOrder : [String : Any] = [
      "order" : [
             "confirmed" : true ,
             "contact_email" :  UserDefaultsManager.shared.getUserEmail() ?? "",
-            "currency": "EGP",
-            "number" : 2 ,
-            "order_number" : 123 ,
-            "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
-            "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
-            "current_total_price": prices?.current_total_price ?? "0.0",
             "email" : UserDefaultsManager.shared.getUserEmail() ?? "" ,
-            "line_items" : [[
-            "fulfillable_quantity" : 5,
-            "name": "NAME",
-            "price": "0.10",
-            "quantity" : 3,
-            "sku" :  "SKU",
-            "title" :  "TITLE"
-                ]],
+            "currency": UserDefaultsManager.shared.getCurrency() ?? "EGP",
+            "number" : 2 ,
+            "order_status_url" : "asss",
+            "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
+           "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
+            "current_total_price": prices?.current_total_price ?? "0.0",
+       
+            "line_items" : convertter(lineItems: lineItems ?? [])
                 ]
                         ]
+         NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder)
 
-                orderVm?.postOrder(order: newOrder!)
-//        for item in lineItems ?? []{
-//            print(item.id ?? 0)
-//        }
-        var order  : Order = Order( confirmed: true, contact_email:  UserDefaultsManager.shared.getUserEmail(),
-                                    email: UserDefaultsManager.shared.getUserEmail(), created_at: "",
-                                    currency: UserDefaultsManager.shared.getCurrency() ?? "EGP",
-                                    current_subtotal_price: prices?.current_subtotal_price ?? "0.0",
-                                    current_total_discounts: prices?.current_total_discounts ?? "0.0" ,
-                                    current_total_price: prices?.current_total_price ?? "0.0",  line_items : lineItems ?? [] )
-
-        orderVm?.putOrder(newOrder: order)
             }
 }
 
