@@ -25,7 +25,7 @@ struct LineItem : Codable{
     var fulfillment_service : String?
     var grams : Int?
     //var tax_lines": [],
-    
+    var fullfillabel_quantity : String?
     //var properties : [],
     var custom : Bool?
     var admin_graphql_api_id : String?

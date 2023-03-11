@@ -69,7 +69,7 @@
                 <constraint firstItem="8PC-vi-vHr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="3Mf-UG-aAG"/>
                 <constraint firstAttribute="bottom" secondItem="tpP-Y2-2e9" secondAttribute="bottom" constant="6" id="7lw-eK-WpZ"/>
                 <constraint firstItem="8PC-vi-vHr" firstAttribute="top" secondItem="wn5-vZ-8Ir" secondAttribute="bottom" constant="6" id="CDQ-rU-a3I"/>
-                <constraint firstItem="ksW-ht-9XL" firstAttribute="top" secondItem="8PC-vi-vHr" secondAttribute="bottom" constant="4" id="Kaz-mI-qNa"/>
+
                 <constraint firstItem="wn5-vZ-8Ir" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Owv-57-Q70"/>
                 <constraint firstAttribute="bottom" secondItem="CYI-Sw-481" secondAttribute="bottom" constant="6" id="ViF-En-9dU"/>
                 <constraint firstAttribute="bottom" secondItem="CYI-Sw-481" secondAttribute="bottom" constant="6" id="ZYy-0m-Rvd"/>
@@ -77,8 +77,9 @@
                 <constraint firstItem="CYI-Sw-481" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="cia-YC-S9U"/>
                 <constraint firstItem="tpP-Y2-2e9" firstAttribute="top" secondItem="8PC-vi-vHr" secondAttribute="bottom" constant="5" id="dTn-fL-gSj"/>
                 <constraint firstItem="wn5-vZ-8Ir" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ev7-6x-MrH"/>
-                <constraint firstAttribute="bottom" secondItem="ksW-ht-9XL" secondAttribute="bottom" constant="6" id="fOD-oz-i30"/>
+
                 <constraint firstItem="tpP-Y2-2e9" firstAttribute="leading" secondItem="ksW-ht-9XL" secondAttribute="trailing" constant="31" id="gfL-Os-kqZ"/>
+
                 <constraint firstAttribute="trailing" secondItem="tpP-Y2-2e9" secondAttribute="trailing" constant="6" id="udK-m6-P4a"/>
             </constraints>
             <userDefinedRuntimeAttributes>
