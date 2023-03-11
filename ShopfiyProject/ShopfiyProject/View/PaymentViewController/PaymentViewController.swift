@@ -41,6 +41,7 @@ class PaymentViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         grandTotal = 0
+        discountLabel.text = ""
         currency = UserDefaultsManager.shared.getCurrency() ?? "EGP"
         couponTxtField.text = UIPasteboard.general.string
         countryLabel.text = address?.country
@@ -60,12 +61,13 @@ class PaymentViewController: UIViewController {
         self.discountCodeViewModel.bindResultToViewController = {
             self.renderPriceRules(discountCodes: self.discountCodeViewModel.discountCodeResponse.discount_codes)
         }
+        //UserDefaultsManager.shared.setCouponStatus(coupon: false)
     }
     
     @IBAction func validateBtn(_ sender: Any) {
         
-        if couponTxtField.text != nil && !UserDefaults.standard.bool(forKey: "coupon"){
-            for index in 0...(discountCodes?.count ?? 0){
+        if couponTxtField.text != nil && !UserDefaultsManager.shared.getCouponStatus(){
+            for index in 0...(discountCodes?.count ?? 0)-1{
                 if couponTxtField.text == discountCodes?[index].code{
                     let indicator = UIActivityIndicatorView(style: .large)
                     indicator.center = view.center
@@ -74,7 +76,7 @@ class PaymentViewController: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         indicator.stopAnimating()
                     }
-                    UserDefaults.standard.set(true, forKey: "coupon")
+                    UserDefaultsManager.shared.setCouponStatus(coupon: true)
                     validate.backgroundColor = UIColor(named: "gray")
                     validate.setTitle("validated", for: .selected)
                     validationLabel.text = ""
@@ -83,6 +85,7 @@ class PaymentViewController: UIViewController {
                     discountLabel.text = String("-30 \(currency)")
                     grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
                 }
+                break
             }
         }
         else if couponTxtField.text == ""{
@@ -152,7 +155,14 @@ extension PaymentViewController{
     
     func calcGrandTotal() -> Float{
         let subTotal = PaymentViewController.subTotal ?? 0.0
-        grandTotal += shippingFees + subTotal
+        grandTotal = 0
+        if discountLabel.text == ""{
+            grandTotal += shippingFees + subTotal
+        }
+        else{
+            discountLabel.text = "-30"
+            grandTotal += (shippingFees + subTotal) - 30
+        }
         return grandTotal
     }
 }

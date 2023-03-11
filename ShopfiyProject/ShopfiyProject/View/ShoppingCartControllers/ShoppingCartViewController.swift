@@ -24,19 +24,31 @@ class ShoppingCartViewController: UIViewController {
     var subTotal : Float!
     var price : String!
     var counter = 0
-    //var quantityArr : Int = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        self.tabBarController?.tabBar.isHidden = false
         network = Reachability.forInternetConnection()
         viewModel = CoreDataViewModel()
+        self.navigationItem.hidesBackButton = true
+        let customBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
+        self.navigationItem.leftBarButtonItem = customBackButton
+    }
+    
+    @objc func back(sender: UIBarButtonItem){
+        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        self.present(alert, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         subTotal = 0
         price = "0"
         if !network.isReachable(){
@@ -192,10 +204,18 @@ extension ShoppingCartViewController{
             }
     }
     
-    func calcSubTotalAgain(price : String, quantity : String?){
-        let price1 = Float(price) ?? 0.0
-        subTotal += price1
-        subTotalLabel.text = String(format: "%.2f", subTotal)
+    func putToDraftOrders(){
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
+        let endPoint = "draft_orders/\(draftOrder ?? 0).json"
+        shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
+        shoppingCartViewModel.bindResultToViewController = {
+            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
+            indicator.stopAnimating()
+        }
     }
 }
 
