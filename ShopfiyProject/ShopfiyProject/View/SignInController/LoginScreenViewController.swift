@@ -33,11 +33,7 @@ class LoginScreenViewController: UIViewController {
 
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        loginViewModel = LoginViewModel()
-                // Do any additional setup after loading the view.
-                modiling()
-    }
+
     func modiling() {
             viewModel.getcustomers(url: getURL(endPoint: "customers.json"))
             viewModel.bindResultToViewController = { () in
@@ -50,7 +46,7 @@ class LoginScreenViewController: UIViewController {
             
             self.ResultArray = self.viewModel.Users
             self.customers = self.ResultArray!.customers
-            
+       
             print ("render is done ")
             
         }
@@ -86,7 +82,7 @@ class LoginScreenViewController: UIViewController {
                     UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
                     
                     print("customersaved")
-                    var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+                   var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
                     self.navigationController?.pushViewController(me, animated: true)
                 }
                 else {
@@ -124,7 +120,7 @@ class LoginScreenViewController: UIViewController {
                 UserDefaultsManager.shared.setUserEmail(userEmail: userEmail)
             }
                 
-            
+
         
         
         
