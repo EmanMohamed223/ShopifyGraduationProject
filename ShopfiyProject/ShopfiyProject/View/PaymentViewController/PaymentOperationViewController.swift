@@ -17,13 +17,15 @@ class PaymentOperationViewController: UIViewController {
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
-//eman
-   // var braintreeClient: BTAPIClient!
+
+    var braintreeClient: BTAPIClient!
     var arrayOrders : [Order] = []
 
-//eman
-// var braintreeClient: BTAPIClient!
- //   var arrayOrders : Orders?
+
+    
+
+
+
 
     var orderVm : orderViewModel?
 
@@ -54,7 +56,7 @@ class PaymentOperationViewController: UIViewController {
             //eman
             braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-            let request = BTPayPalCheckoutRequest(amount: "2.32")
+            let request = BTPayPalCheckoutRequest(amount: "\(prices?.current_total_price ?? "")")
             request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
             payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
                 if responseNonce != nil {
