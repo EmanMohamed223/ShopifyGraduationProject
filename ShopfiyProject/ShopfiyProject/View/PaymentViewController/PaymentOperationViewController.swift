@@ -22,8 +22,8 @@ class PaymentOperationViewController: UIViewController {
     var arrayOrders : [Order] = []
 
     
- var braintreeClient: BTAPIClient!
-    var arrayOrders : Orders?
+ //var braintreeClient: BTAPIClient!
+  //  var arrayOrders : Orders?
 
     var orderVm : orderViewModel?
     static var lineItems : [LineItem]?

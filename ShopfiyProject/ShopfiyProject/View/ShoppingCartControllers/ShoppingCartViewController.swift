@@ -66,8 +66,14 @@ class ShoppingCartViewController: UIViewController {
         self.lineItems = shoppingCart.draft_order?.line_items
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            if !checkIfUSD(){
+                for index in 0...(self.lineItems?.count ?? 0) - 1{
+                    let price = self.lineItems?[index].price ?? ""
+                    self.lineItems?[index].price = calcEGPCurrency(price : price)
+                }
+            }
             self.calcSubTotalInc()
-            //self.subTotalLabel.text = String(format: "%.2f", self.subTotal)
+            
         }
         
     }
@@ -107,7 +113,12 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
             cell.productImg.kf.setImage(with: URL(string: products?[indexPath.row].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
-            
+            if checkIfUSD(){
+                cell.currencyLabel.text = "USD"
+            }
+            else{
+                cell.currencyLabel.text = "EGP"
+            }
             cell.productTitle.text = lineItems?[indexPath.row].title
             cell.productPrice.text = lineItems?[indexPath.row].price
             cell.numOfItems.text = String(1)

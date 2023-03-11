@@ -20,3 +20,19 @@ func chooseSubCategory (index : Int) -> String{
     let subCategory = ["&product_type=T-SHIRTS" ,"&product_type=ACCESSORIES", "&product_type=shoes" ]
     return subCategory[index]
 }
+
+
+func calcEGPCurrency(price : String) -> (String){
+    var result = Float(price) ?? 0
+    result *= result * 30.75
+    return String(format: "%.2f", result)
+}
+
+func checkIfUSD() -> Bool{
+    if UserDefaultsManager.shared.getCurrency() == "USD"{
+        return true
+    }
+    else{
+        return false
+    }
+}
