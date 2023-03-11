@@ -52,7 +52,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     //   print(UserDefaultsManager.shared.getDraftOrderID())
         productDetailsViewModel = ProductDetailsViewModel()
         
         
@@ -85,8 +85,7 @@ class ProductDetailsViewController: UIViewController {
         checkIsFavourite()
         
         
-        
-        
+        print(UserDefaultsManager.shared.getDraftOrderID()!)
         
         
         
@@ -164,48 +163,69 @@ class ProductDetailsViewController: UIViewController {
             self.showAlertError(title: "Alert", message: "You must login")
             return
         }
-                else {
-                    addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
-                    for draftorder in self.shoppingCartResponseArray.draft_orders!
-                    {
-                      if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
-                        {
-                          existDraftOrder = draftorder
-                         LineItemToBe  = draftorder.line_items
-                          UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
-                          LineItemObj = LineItem()
-                          LineItemObj?.name = self.product?.title
-                          LineItemObj?.price = self.product?.variants![0].price
-                          LineItemObj?.sku = self.product?.images[0].src
-                 //         LineItemObj?.admin_graphql_api_id = ""
-                          LineItemObj?.title = self.product?.title
-                       //   LineItemObj?.product_id = product?.id
-                          LineItemObj?.admin_graphql_api_id = ""
-                          LineItemObj?.grams = self.product?.variants![0].inventory_quantity! ?? 0
-                          LineItemObj?.quantity = 1
-                          LineItemToBe?.append(LineItemObj!)
-                          shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
-                          let draftOrder  : ShoppingCartResponse = ShoppingCartResponse(draft_order: shopingCardObj)
-                          viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
-                              if response.statusCode >= 200 && response.statusCode <= 299{
-        print ("Done")
-                              }
-                          }
-                      }
-        
-                      }
-        if existDraftOrder  == nil
-                    {
-            postOrder()
-            print("Post")
-        }
-        
+        else {
+            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
+            for draftorder in self.shoppingCartResponseArray.draft_orders!
+            {
+                if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
+                {
+                    existDraftOrder = draftorder
+                    LineItemToBe  = draftorder.line_items
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
+                    LineItemObj = LineItem()
+                    LineItemObj?.name = self.product?.title
+                    LineItemObj?.price = self.product?.variants![0].price
+                    LineItemObj?.sku = self.product?.images[0].src
+                    //         LineItemObj?.admin_graphql_api_id = ""
+                    LineItemObj?.title = self.product?.title
+                    //   LineItemObj?.product_id = product?.id
+                    LineItemObj?.admin_graphql_api_id = ""
+                    LineItemObj?.grams = self.product?.variants![0].inventory_quantity! ?? 0
+                    LineItemObj?.quantity = 1
+                    LineItemToBe?.append(LineItemObj!)
+                    shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
+                    let draftOrder  : ShoppingCartResponse = ShoppingCartResponse(draft_order: shopingCardObj)
+                    viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                        if response.statusCode >= 200 && response.statusCode <= 299{
+                            print ("Done")
+                        }
                     }
-        
-        
                 }
+                
+            }
+            if existDraftOrder  == nil
+            {
+                postOrder()
+                print("Posted")
+                UserDefaultsManager.shared.setDraftFlage(posted: true)
+                
+            }
+           
+            
+            }
+     
+        
+        
+        
+       
+        
         
     }
+    func setdraftIdForPost(){
+        if UserDefaultsManager.shared.getDraftFlage()
+        {
+            for draftorder in self.shoppingCartResponseArray.draft_orders!
+            {
+                if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
+                {
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
+                }
+            }
+        }
+    }
+    
+    }
+   
 
 extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
 {
@@ -357,6 +377,7 @@ extension ProductDetailsViewController {
                 ]
 
                 NetworkService.shared.postDataToApi(url: getURL(endPoint: "draft_orders.json")!, newOrder: newdraft)
+        
 
         }
     
