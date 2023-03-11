@@ -57,6 +57,8 @@ class SignUpScreenViewController: UIViewController {
         if ValdiateCustomerInfomation(firstName: name, email: emailText, password: password, confirmPassword: confirmPass ,phone: phoneNumber , address : address) {
             print("valid")
             register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass , phone: phoneNumber, address : address)
+           
+
         } else {
             showAlertError(title: "Couldnot register", message: "Please try again later.")
         }
@@ -123,15 +125,16 @@ extension SignUpScreenViewController {
             }
 
             print("registered successfully")
+           // self.showToastMessage(message: "registered successfully", color: .darkText)
+           // DispatchQueue.main.async {
 
-            DispatchQueue.main.async {
-
-                let login = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
-
-                self.navigationController?.pushViewController(login, animated: true)
-            }
+//                let me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+//
+//                self.navigationController?.pushViewController(me, animated: true)
+                
+          //  }
         }
-        
+   self.navigationController?.popViewController(animated: true)
     }
 }
 extension UIViewController{

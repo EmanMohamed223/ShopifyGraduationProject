@@ -27,6 +27,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
     @IBOutlet weak var cardBtm: UIBarButtonItem!
     override func viewWillAppear(_ animated: Bool) {
         updateView()
+        self.navigationController?.tabBarItem.isEnabled = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
