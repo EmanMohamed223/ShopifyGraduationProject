@@ -24,3 +24,7 @@ func convertter(lineItems : [LineItem]) -> [[String : Any]]{
     
     return DicLineItems
 }
+func SplitAddress(address: String?) -> [String]{
+    let components = address?.components(separatedBy: ",")
+    return components ?? []
+}

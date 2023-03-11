@@ -22,8 +22,8 @@ class PaymentOperationViewController: UIViewController {
     var arrayOrders : [Order] = []
 
     
- var braintreeClient: BTAPIClient!
-    var arrayOrders : Orders?
+ //var braintreeClient: BTAPIClient!
+//    var arrayOrders : Orders?
 
     var orderVm : orderViewModel?
 
@@ -37,7 +37,7 @@ class PaymentOperationViewController: UIViewController {
    
      override func viewDidLoad() {
         super.viewDidLoad()
-        // PaymentOperationViewController.lineItems = PaymentViewController.lineItems
+    
           lineItems = PaymentViewController.lineItems
     }
     
@@ -69,7 +69,7 @@ class PaymentOperationViewController: UIViewController {
     
     
     @IBAction func payBtn(_ sender: UIButton) {
-          postOrder()
+ 
        startCheckout()
         
     }
@@ -80,10 +80,12 @@ class PaymentOperationViewController: UIViewController {
     
     func postOrder(){
    print("/////////////")
-
+print(prices?.current_subtotal_price ?? "0.0")
+    print( prices?.current_total_discounts ?? "0.0" )
+print( prices?.current_total_price ?? "0.0")
       orderVm = orderViewModel()
 
-        var newOrder : [String : Any] = [
+        let newOrder : [String : Any] = [
      "order" : [
             "confirmed" : true ,
             "contact_email" :  UserDefaultsManager.shared.getUserEmail() ?? "",
@@ -97,7 +99,7 @@ class PaymentOperationViewController: UIViewController {
        
             "line_items" : convertter(lineItems: lineItems ?? [])
                 ]
-                        ]
+                ]
          NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder)
 
 

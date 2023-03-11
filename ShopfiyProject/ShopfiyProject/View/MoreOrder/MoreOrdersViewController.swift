@@ -19,8 +19,8 @@ class MoreOrdersViewController: UIViewController {
         ordersTable.dataSource = self
        
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
-     //   orderURL = getURL(endPoint: "orders.json")
-       // modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
+
+        orderArray = IfLogedView.orderArray
         self.ordersTable.reloadData()
     }
 
@@ -29,8 +29,7 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
   
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("**********")
-        print(orderArray?.count ?? 0)
+     
         return orderArray?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,21 +57,4 @@ extension MoreOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
 }
-extension MoreOrdersViewController {
-    func modelling(newUrl : String?){
-        orderVM  = orderViewModel()
-        orderVM?.getOrders(url: newUrl ?? "" )
-      
-        orderVM?.bindResultToOrderViewController  = { () in
-            
-            self.renderView()
-        }
-    }
-    func renderView(){
-        DispatchQueue.main.async {
-            self.orderArray  = self.orderVM?.resultOrders.orders ?? []
 
-            self.ordersTable.reloadData()
-        }
-    }
-}

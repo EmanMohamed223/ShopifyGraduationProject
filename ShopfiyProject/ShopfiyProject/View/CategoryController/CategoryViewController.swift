@@ -43,7 +43,7 @@ class CategoryViewController: UIViewController {
        
         // Do any additional setup after loading the view.
       
-        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "CategoryViewCell", bundle: nil)
         self.CategoryCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         categorySegmented.selectedSegmentIndex = 0
         selectSubCategory()
@@ -125,7 +125,7 @@ extension CategoryViewController: UICollectionViewDelegate , UICollectionViewDat
         cell.productDelegate = self
         var productToPass  = self.productArray?.products[indexPath.row]
         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(productToPass)!)
-     //   cell.currency.text = UserDefaultsManager.shared.getCurrency()
+      cell.Currency.text = UserDefaultsManager.shared.getCurrency()
         cell.categoryLabel.text = productArray?.products[indexPath.row].title
         cell.categoryLabel.adjustsFontSizeToFitWidth = true
         cell.CategoryImage.kf.setImage(with: URL(string: productArray?.products[indexPath.row].images[0].src ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)

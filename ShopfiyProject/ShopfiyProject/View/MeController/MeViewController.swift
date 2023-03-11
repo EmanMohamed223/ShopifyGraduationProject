@@ -68,7 +68,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
 
     func navigateToMoreOrders() {
         let seemoreOrders = self.storyboard?.instantiateViewController(withIdentifier: "seemoreorder") as! MoreOrdersViewController
-        seemoreOrders.orderArray = orderArr
+       
            self.present(seemoreOrders, animated: true)
     }
     func present(alert: UIAlertController) {
@@ -83,7 +83,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
             cardBtm.isHidden = false
             let IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
              IfLogedView.delegate = self
-           orderArr =  IfLogedView.orderArray 
+      
             IfLogedView.welcomMssg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
             thisView.addSubview(IfLogedView)
         }

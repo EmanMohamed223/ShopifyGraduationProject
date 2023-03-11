@@ -8,12 +8,12 @@
 import Foundation
 
 func calcCurrency(price: String?) -> String{
-    switch UserDefaultsManager.shared.getCurrency(){
+    switch UserDefaultsManager.shared.getCurrency() ?? "EGP"{
     case "EGP":
     return price ?? ""
     case "USD":
         let format = Double(price ?? "0")
-        return String((format ?? 0.0 ) * 30)
+        return String((format ?? 0.0 ) / 30)
     default:
         return ""
     }
