@@ -23,13 +23,19 @@ class LoginScreenViewController: UIViewController {
         // var viewModel : CustomerViewModel?
         var viewModel = CustomerViewModel()
         var currentCustomer : Customer?
-
+    override func viewWillAppear(_ animated: Bool) {
+        loginViewModel = LoginViewModel()
+                // Do any additional setup after loading the view.
+                modiling()
+     
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
    
         loginViewModel = LoginViewModel()
                 // Do any additional setup after loading the view.
                 modiling()
+      
 
         
     }
@@ -39,6 +45,7 @@ class LoginScreenViewController: UIViewController {
             viewModel.bindResultToViewController = { () in
                 
                 self.renderView()
+                print (self.customers.count)
             }
             
         }
@@ -82,8 +89,9 @@ class LoginScreenViewController: UIViewController {
                     UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
                     
                     print("customersaved")
-                   var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
-                    self.navigationController?.pushViewController(me, animated: true)
+//                   var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+                    self.navigationController?.popViewController(animated: true)
+                    
                 }
                 else {
                     UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
