@@ -130,12 +130,12 @@ extension SignUpScreenViewController {
             
             UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
             UserDefaultsManager.shared.setCurrency(currency: "EGP")
-            DispatchQueue.main.async {
-
-                let login = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
-
-                self.navigationController?.pushViewController(login, animated: true)
-            }
+//            DispatchQueue.main.async {
+//
+//                let login = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+//
+//                self.navigationController?.pushViewController(login, animated: true)
+//            }
 
 
 
