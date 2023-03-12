@@ -57,6 +57,8 @@ class SignUpScreenViewController: UIViewController {
         if ValdiateCustomerInfomation(firstName: name, email: emailText, password: password, confirmPassword: confirmPass ,phone: phoneNumber , address : address) {
             print("valid")
             register(firstName: name, email: emailText, password: password, confirmPassword: confirmPass , phone: phoneNumber, address : address)
+           
+
         } else {
             showAlertError(title: "Couldnot register", message: "Please try again later.")
         }
@@ -101,7 +103,8 @@ extension SignUpScreenViewController {
     }
     
     func register(firstName: String, email: String, password: String, confirmPassword: String , phone : String , address : String){
-        let defaultAddress = Address(id: nil, customer_id: nil, address1: address, address2: nil, city: nil, country: nil, phone: nil)
+        let addresses : [String] = SplitAddress(address: address)
+        let defaultAddress = Address(id: nil, customer_id: nil, address1: addresses[0], address2: nil, city: addresses[1], country: addresses[2], phone: nil)
         let customer = Customer(first_name: firstName, email: email, id: nil,phone: nil, tags: password, addresses: [defaultAddress])
        
         let newCustomer = User(customer: customer)
@@ -123,6 +126,7 @@ extension SignUpScreenViewController {
             }
 
             print("registered successfully")
+
             
             UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
             UserDefaultsManager.shared.setCurrency(currency: "EGP")
@@ -132,8 +136,11 @@ extension SignUpScreenViewController {
 
                 self.navigationController?.pushViewController(login, animated: true)
             }
+
+
+
         }
-        
+   self.navigationController?.popViewController(animated: true)
     }
 }
 extension UIViewController{

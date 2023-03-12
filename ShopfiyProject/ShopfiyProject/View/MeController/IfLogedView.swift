@@ -11,7 +11,7 @@ class IfLogedView: UIView {
     var delegate : Navigationdelegate?
     var orderVM : orderViewModel?
     var orderURL : String?
-    var orderArray : [Order]?
+    static var orderArray : [Order]?
     @IBOutlet weak var welcomMssg: UILabel!
     
     @IBOutlet weak var ordersTable: UITableView!
@@ -35,7 +35,9 @@ class IfLogedView: UIView {
         super.awakeFromNib()
         wishlistCollection.delegate = self
         wishlistCollection.dataSource = self
-        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        ordersTable.delegate = self
+        ordersTable.dataSource = self
+        let nib = UINib(nibName: "CategoryViewCell", bundle: nil)
         self.wishlistCollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
     
        
@@ -114,10 +116,10 @@ extension IfLogedView : FireActionInCategoryCellFavourite
     
 extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        if orderArray?.count ?? 0 > 2{
+        if IfLogedView.orderArray?.count ?? 0 > 2{
             return 2
         }
-        return orderArray?.count ?? 0
+        return IfLogedView.orderArray?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -135,8 +137,8 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
         cell.layer.cornerRadius = cell.frame.height/3
-        cell.pricelabel.text = orderArray?[indexPath.row].current_total_price
-        cell.dateOfOrderlabel.text =  orderArray?[indexPath.row].created_at
+        cell.pricelabel.text = IfLogedView.orderArray?[indexPath.row].current_total_price
+        cell.dateOfOrderlabel.text =  IfLogedView.orderArray?[indexPath.row].created_at
         return cell
     }
 
@@ -154,7 +156,7 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     }
     func renderView(){
         DispatchQueue.main.async {
-            self.orderArray  = self.orderVM?.resultOrders.orders ?? []
+            IfLogedView.orderArray  = self.orderVM?.resultOrders.orders ?? []
 
             self.ordersTable.reloadData()
         }
