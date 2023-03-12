@@ -28,6 +28,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
     override func viewWillAppear(_ animated: Bool) {
         updateView()
         self.navigationController?.tabBarItem.isEnabled = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()

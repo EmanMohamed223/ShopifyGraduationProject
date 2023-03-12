@@ -40,6 +40,7 @@ class IfLogedView: UIView {
         let nib = UINib(nibName: "CategoryViewCell", bundle: nil)
         self.wishlistCollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
     
+        
        
         ordersTable.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ordercell")
         
