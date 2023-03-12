@@ -48,6 +48,7 @@ class HomeViewController: UIViewController ,NavigationBarProtocol{
         
         
         loadQueueOperations()
+      
     }
     override func viewWillAppear(_ animated: Bool) {
         self.OffersCollectionView.reloadData()
