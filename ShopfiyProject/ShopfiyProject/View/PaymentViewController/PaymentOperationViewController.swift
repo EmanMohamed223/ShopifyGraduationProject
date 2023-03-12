@@ -31,7 +31,7 @@ class PaymentOperationViewController: UIViewController {
 
     static var lineItems : [LineItem]?
 
-    var prices : Price?
+    static var prices : Price?
     var address : Customer_address?
    
      override func viewDidLoad() {
@@ -53,11 +53,15 @@ class PaymentOperationViewController: UIViewController {
            
             braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-            let request = BTPayPalCheckoutRequest(amount: "\(prices?.current_total_price ?? "")")
-            request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
+          let request = BTPayPalCheckoutRequest(amount: "\(Self.prices?.current_total_price ?? "")")
+            //request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
+          request.currencyCode = "USD"
             payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
                 if responseNonce != nil {
-                    self.postOrder()
+                    DispatchQueue.main.async {
+                        self.postOrder()
+                    }
+                    
                 }
                 else if error != nil{
                     print("Error :\(error!)")
@@ -81,9 +85,9 @@ class PaymentOperationViewController: UIViewController {
     
     func postOrder(){
    print("/////////////")
-print(prices?.current_subtotal_price ?? "0.0")
-    print( prices?.current_total_discounts ?? "0.0" )
-print( prices?.current_total_price ?? "0.0")
+//        print(Self.prices?.current_subtotal_price ?? "0.0")
+//        print( Self.prices?.current_total_discounts ?? "0.0" )
+//        print( Self.prices?.current_total_price ?? "0.0")
       orderVm = orderViewModel()
 
         let newOrder : [String : Any] = [
@@ -94,9 +98,9 @@ print( prices?.current_total_price ?? "0.0")
             "currency": UserDefaultsManager.shared.getCurrency() ?? "EGP",
             "number" : 2 ,
             "order_status_url" : "asss",
-            "current_subtotal_price": prices?.current_subtotal_price ?? "0.0",
-           "current_total_discounts": prices?.current_total_discounts ?? "0.0" ,
-            "current_total_price": prices?.current_total_price ?? "0.0",
+            "current_subtotal_price": Self.prices?.current_subtotal_price ?? "0.0",
+            "current_total_discounts": Self.prices?.current_total_discounts ?? "0.0" ,
+            "current_total_price": Self.prices?.current_total_price ?? "0.0",
        
             "line_items" : convertter(lineItems: lineItems ?? [])
                 ]
