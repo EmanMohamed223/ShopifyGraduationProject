@@ -10,7 +10,7 @@ import Foundation
 class DraftOrderViewModel
 {
 
-    func createNewDraft(newDraftOrder: DraftOrder, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
+    /*func createNewDraft(newDraftOrder: DraftOrder, completion:@escaping (Data?, HTTPURLResponse? , Error?)->()){
         //obg mn l protocol
         NetworkService.shared.addToDraftOrder(newDraft: newDraftOrder) { data, response, error in
             guard error == nil else {
@@ -30,5 +30,5 @@ class DraftOrderViewModel
             completion(data, response as? HTTPURLResponse, nil)
             
         }
-    }
+    }*/
 }

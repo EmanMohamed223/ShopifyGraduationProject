@@ -110,7 +110,6 @@
 		C9846DFD29B67D4D00668909 /* FetchFromCoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9846DFC29B67D4D00668909 /* FetchFromCoreProtocol.swift */; };
 		C9846DFF29B68E1400668909 /* DeleteCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9846DFE29B68E1400668909 /* DeleteCoreData.swift */; };
 		C9846E0129B68E4400668909 /* DeleteFromCoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9846E0029B68E4400668909 /* DeleteFromCoreProtocol.swift */; };
-		C9846E0329B6A40B00668909 /* UIHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9846E0229B6A40B00668909 /* UIHelperFunctions.swift */; };
 		C98BDB2229A5679500E83716 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2129A5679500E83716 /* PaymentViewController.swift */; };
 		C98BDB2529A56C5100E83716 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98BDB2429A56C5100E83716 /* UIExtension.swift */; };
 		C98E310729A57A6B0034794C /* ShoppingCartNipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E310529A57A6B0034794C /* ShoppingCartNipTableViewCell.swift */; };
@@ -266,7 +265,6 @@
 		C9846DFC29B67D4D00668909 /* FetchFromCoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFromCoreProtocol.swift; sourceTree = "<group>"; };
 		C9846DFE29B68E1400668909 /* DeleteCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCoreData.swift; sourceTree = "<group>"; };
 		C9846E0029B68E4400668909 /* DeleteFromCoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFromCoreProtocol.swift; sourceTree = "<group>"; };
-		C9846E0229B6A40B00668909 /* UIHelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelperFunctions.swift; sourceTree = "<group>"; };
 		C98BDB2129A5679500E83716 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C98BDB2429A56C5100E83716 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		C98E310529A57A6B0034794C /* ShoppingCartNipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartNipTableViewCell.swift; sourceTree = "<group>"; };
@@ -868,12 +866,8 @@
 				C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */,
 				C94B307229A9691E00777CAA /* UserRelatedStruct.swift */,
 				C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */,
-				C9846E0229B6A40B00668909 /* UIHelperFunctions.swift */,
-
 				8C3D931029BCA7D500A2B118 /* FormatingDictionary.swift */,
-
 				8C9E9DF429BBA9CB002A91AC /* Currency.swift */,
-
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1307,7 +1301,6 @@
 				C93C942A29B3E7CE0095A03B /* EditAddressProtocol.swift in Sources */,
 				8CE5EEF029A3E9B000519879 /* AppDelegate.swift in Sources */,
 				0324771F29A6E04100DBAFC2 /* Navigationdelegate.swift in Sources */,
-				C9846E0329B6A40B00668909 /* UIHelperFunctions.swift in Sources */,
 				038173F429B0F0A600A5E3D1 /* DatabaseManager.swift in Sources */,
 				C9AA811129B2B893001BBF34 /* NetworkServiceManager.swift in Sources */,
 				0371FCA429A40FE000608875 /* LoginScreenViewController.swift in Sources */,

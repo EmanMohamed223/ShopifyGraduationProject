@@ -15,7 +15,7 @@ class ShoppingCartViewController: UIViewController {
     
     var lineItems : [LineItem]?
     var products : [Products]?
-    var shoppingCart : ShoppingCartResponse?
+    static var shoppingCart : ShoppingCartResponse?
     var shoppingCartViewModel = ShoppingCartViewModel()
     var index : Int?
     var network : Reachability!
@@ -31,27 +31,48 @@ class ShoppingCartViewController: UIViewController {
         tableView.dataSource = self
         network = Reachability.forInternetConnection()
         viewModel = CoreDataViewModel()
-//        self.navigationItem.hidesBackButton = true
-//        let customBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
-//        self.navigationItem.leftBarButtonItem = customBackButton
+        self.navigationItem.hidesBackButton = true
+        let customBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
+        self.navigationItem.leftBarButtonItem = customBackButton
     }
     
-//    @objc func back(sender: UIBarButtonItem){
-//        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
-//            self.navigationController?.popViewController(animated: true)
-//        })
-//        alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
-//            self.navigationController?.popViewController(animated: true)
-//        })
-//        self.present(alert, animated: true)
-//    }
+    @objc func back(sender: UIBarButtonItem){
+        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        self.present(alert, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         subTotal = 0
         price = "0"
-        if !network.isReachable(){
+        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817)
+        print(UserDefaultsManager.shared.getDraftOrderID())
+        //checkAccessability()
+        
+        if UserDefaultsManager.shared.getUserID() == nil || UserDefaultsManager.shared.getUserID() == 0{
+            let alert = UIAlertController(title: "Login", message: "You can't view the shopping cart if you are not logged in ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default){ _ in
+                self.navigationController?.popViewController(animated: true)
+            })
+            self.present(alert, animated: true)
+        }
+        
+        else if UserDefaultsManager.shared.getDraftOrderID() == nil || UserDefaultsManager.shared.getDraftOrderID() == 0{
+            let alert = UIAlertController(title: "No items added", message: "You didn't add any items in the shoppingCart ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default){ _ in
+                self.navigationController?.popViewController(animated: true)
+            })
+            self.present(alert, animated: true)
+        }
+        
+        
+        else if !network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
             tableView.reloadData()
@@ -70,20 +91,23 @@ class ShoppingCartViewController: UIViewController {
         PaymentViewController.lineItems = lineItems
         PaymentViewController.subTotal = 0.0
         PaymentViewController.subTotal = subTotal
+        putInDraftOrder()
     }
     
     func renderDraftOrders(shoppingCart : ShoppingCartResponse?){
-        guard let shoppingCart = shoppingCart else {return}
-        self.shoppingCart?.draft_order = shoppingCart.draft_order
-        self.lineItems = shoppingCart.draft_order?.line_items
+
         DispatchQueue.main.async {
+            guard let shoppingCart = shoppingCart else {return}
+            ShoppingCartViewController.shoppingCart = shoppingCart
+            //ShoppingCartViewController.shoppingCart?.draft_order = shoppingCart.draft_order
+            self.lineItems = shoppingCart.draft_order?.line_items
             self.tableView.reloadData()
-            if !checkIfUSD(){
-                for index in 0...(self.lineItems?.count ?? 0) - 1{
-                    let price = self.lineItems?[index].price ?? ""
-                    self.lineItems?[index].price = calcEGPCurrency(price : price)
-                }
-            }
+//            if !checkIfUSD(){
+//                for index in 0...(self.lineItems?.count ?? 0) - 1{
+//                    let price = self.lineItems?[index].price ?? ""
+//                    self.lineItems?[index].price = calcEGPCurrency(price : price)
+//                }
+//            }
             self.calcSubTotalInc()
             
         }
@@ -196,7 +220,7 @@ extension ShoppingCartViewController{
             view.addSubview(indicator)
             indicator.startAnimating()
             let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
-            let endPoint = "draft_orders/\(draftOrder ?? 0).json"
+            let endPoint = "draft_orders/1111195713817.json"
             shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
             shoppingCartViewModel.bindResultToViewController = {
                 self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
@@ -204,19 +228,54 @@ extension ShoppingCartViewController{
             }
     }
     
-    func putToDraftOrders(){
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.center = view.center
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
-        let endPoint = "draft_orders/\(draftOrder ?? 0).json"
-        shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
-        shoppingCartViewModel.bindResultToViewController = {
-            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
-            indicator.stopAnimating()
+    func putInDraftOrder(){
+        var newDraftOrder = ShoppingCartViewController.shoppingCart?.draft_order
+        let updatedLineItems = self.lineItems
+        newDraftOrder?.line_items = updatedLineItems
+        let updateCartVM = ViewModelProduct()
+        let draftOrderResponse = ShoppingCartResponse(draft_order: newDraftOrder)
+        updateCartVM.callNetworkServiceManagerToPut(draftOrder: draftOrderResponse) { response in
+            if response.statusCode >= 200 && response.statusCode <= 299{
+                print ("Cart Put done Succefully")
+            }
         }
     }
+    
+//    func putToDraftOrders(){
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.center = view.center
+//        view.addSubview(indicator)
+//        indicator.startAnimating()
+//        let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
+//        let endPoint = "draft_orders/\(draftOrder ?? 0).json"
+//        shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
+//        shoppingCartViewModel.bindResultToViewController = {
+//            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
+//            indicator.stopAnimating()
+//        }
+//    }
+    
+    func checkAccessability(){
+        if UserDefaultsManager.shared.getUserID() == nil || UserDefaultsManager.shared.getUserID() == 0{
+            let alert = UIAlertController(title: "Login", message: "You can't view the shopping cart if you are not logged in ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default){ _ in
+                self.navigationController?.popViewController(animated: true)
+            })
+            self.present(alert, animated: true)
+        }
+        
+        else if UserDefaultsManager.shared.getDraftOrderID() == nil || UserDefaultsManager.shared.getDraftOrderID() == 0{
+            let alert = UIAlertController(title: "No items added", message: "You didn't add any items in the shoppingCart ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default){ _ in
+                self.navigationController?.popViewController(animated: true)
+            })
+            self.present(alert, animated: true)
+        }
+        else{
+            return
+        }
+    }
+    
 }
 
 extension ShoppingCartViewController : ShoppingCartDelegate{
@@ -239,8 +298,6 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
         self.lineItems?[index].quantity = lineItem.quantity
     }
     
-    func editInDraftOrder(){
-        
-    }
+    
     
 }
