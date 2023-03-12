@@ -91,10 +91,10 @@
                     <color key="value" red="0.52579599619999995" green="0.3439732492" blue="0.43450939659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                    <real key="value" value="1"/>
+                    <real key="value" value="2"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                    <real key="value" value="12"/>
+                    <real key="value" value="20"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>

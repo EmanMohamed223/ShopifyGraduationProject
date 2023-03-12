@@ -57,11 +57,11 @@ class IfLogedView: UIView {
         }
         favoritesViewModel!.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
         self.wishlistCollection.reloadData()
-        
+        self.ordersTable.reloadData()
         if IfLogedView.orderArray?.count == 0 {
             
             ordersTable.isHidden = true
-           createLabel(message: "You Have No Orders Yet!",Y: 400)
+           createLabel(message: "You Have No Orders Yet!",Y: 450)
         }
         if favoritesArray.count == 0 {
             
@@ -71,7 +71,7 @@ class IfLogedView: UIView {
         orderURL = getURL(endPoint: "orders.json")
         modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
 
-        self.ordersTable.reloadData()
+        
     }
     
     }
@@ -135,8 +135,11 @@ extension IfLogedView : FireActionInCategoryCellFavourite
 extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         if IfLogedView.orderArray?.count ?? 0 > 2{
+            print("/////////")
+            print (IfLogedView.orderArray?.count ?? 0)
             return 2
         }
+        print (IfLogedView.orderArray?.count ?? 0)
         return IfLogedView.orderArray?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -180,14 +183,15 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
             if IfLogedView.orderArray?.count == 0 {
                 
                 self.ordersTable.isHidden = true
-                self.createLabel(message: "You Have No Orders Yet!",Y: 400)
+                self.createLabel(message: "You Have No Orders Yet!",Y: 450)
             }
+            self.ordersTable.reloadData()
         }
     }
     func  createLabel(message : String, Y : Int){
-        let toast = UILabel(frame: CGRect(x: self.bounds.size.width/2-300 , y: self.bounds.size.height - CGFloat(Y), width: self.bounds.size.width, height: 50))
+        let toast = UILabel(frame: CGRect(x: self.bounds.size.width/2-250 , y: self.bounds.size.height - CGFloat(Y), width: self.bounds.size.width, height: 50))
         toast.backgroundColor = UIColor.white.withAlphaComponent(0.6)
-        toast.textColor = UIColor.systemPurple
+        toast.textColor = UIColor.systemPink
         toast.font = .boldSystemFont(ofSize: 14)
         toast.textAlignment = .center
         toast.alpha = 1.0
