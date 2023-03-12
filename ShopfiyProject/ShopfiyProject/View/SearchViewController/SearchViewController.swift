@@ -198,14 +198,14 @@ extension SearchViewController : FireActionInCategoryCellProtocol
 
     }
     
-    func showAlert(title: String, message: String) {
+    
         func showAlert(title: String, message: String) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let Action = UIAlertAction(title: "OK", style: .destructive, handler: nil)
             alert.addAction(Action)
             self.present(alert, animated: true, completion: nil)
         }
-    }
+   
     func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
