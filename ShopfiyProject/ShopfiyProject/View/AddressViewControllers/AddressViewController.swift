@@ -85,8 +85,8 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
             self.navigationController?.pushViewController(vc, animated: true)
             completionHandler(true)
       }
-        delete.backgroundColor = UIColor(named: "delete")
-        edit.backgroundColor = UIColor(named: "edit")
+        delete.backgroundColor = UIColor(named: "red")
+        edit.backgroundColor = UIColor(named: "clay")
         let configuration = UISwipeActionsConfiguration(actions: [delete,edit])
         return configuration
     }
