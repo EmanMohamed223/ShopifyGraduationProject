@@ -19,7 +19,7 @@ protocol Service{
 
 class NetworkService : Service{
     
-    let productDet = ProductDetailsViewController()
+    //let productDet = ProductDetailsViewController()
     static let shared = NetworkService()
     private init(){}
     
@@ -147,7 +147,7 @@ class NetworkService : Service{
                 let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
                 print("RESPONSEE")
                 print(dataJson)
-                self.productDet.setdraftIdForPost()
+                //self.productDet.setdraftIdForPost()
             }catch{
                 print("ERRRRR")
                 print(error.localizedDescription)
@@ -155,6 +155,38 @@ class NetworkService : Service{
             }
         }.resume()
     }
+    
+    
+    func postDraftOrder(url : String ,newOrder: [String:Any],completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()) {
+     
+       guard let url = URL(string: url) else { return }
+       var request = URLRequest(url: url)
+       request.httpMethod = "POST"
+       request.httpShouldHandleCookies = false
+       
+       do {
+           request.httpBody = try JSONSerialization.data(withJSONObject: newOrder, options: .prettyPrinted)
+           print(newOrder)
+       } catch let error {
+           print(error.localizedDescription)
+       }
+       
+       
+       request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+       request.addValue("application/json", forHTTPHeaderField: "Accept")
+       
+       URLSession.shared.dataTask(with: request) { (data, response, error) in
+           do{
+               let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
+               print(dataJson)
+               completion(data,response as? HTTPURLResponse,error)
+           }catch{
+               print(error.localizedDescription)
+               print(String(describing: error))
+           }
+       }.resume()
+   }
+    
 
     func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ()){
         let userId = UserDefaultsManager.shared.getUserID()
@@ -294,27 +326,27 @@ class NetworkService : Service{
 //    }
     
     
-    func addToDraftOrder(newDraft: DraftOrder, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json"
-        guard let url = URL(string: urlStr) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpShouldHandleCookies = false
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: newDraft.asDictionary(), options: .prettyPrinted)
-            print(try! newDraft.asDictionary())
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            completion(data, response, error)
-        }.resume()
-    }
+//    func addToDraftOrder(newDraft: DraftOrder, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        let urlStr =  "https://55d695e8a36c98166e0ffaaa143489f9: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@ios-q2-new-capital-2022-2023.myshopify.com/admin/api/2023-01/draft_orders.json"
+//        guard let url = URL(string: urlStr) else { return }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.httpShouldHandleCookies = false
+//        
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: newDraft.asDictionary(), options: .prettyPrinted)
+//            print(try! newDraft.asDictionary())
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//        
+//        
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            completion(data, response, error)
+//        }.resume()
+//    }
     
 }

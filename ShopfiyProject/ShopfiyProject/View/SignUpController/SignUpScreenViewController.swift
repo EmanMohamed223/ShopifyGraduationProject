@@ -126,14 +126,19 @@ extension SignUpScreenViewController {
             }
 
             print("registered successfully")
-           // self.showToastMessage(message: "registered successfully", color: .darkText)
-           // DispatchQueue.main.async {
 
-//                let me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
-//
-//                self.navigationController?.pushViewController(me, animated: true)
-                
-          //  }
+            
+            UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+            UserDefaultsManager.shared.setCurrency(currency: "EGP")
+            DispatchQueue.main.async {
+
+                let login = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+
+                self.navigationController?.pushViewController(login, animated: true)
+            }
+
+
+
         }
    self.navigationController?.popViewController(animated: true)
     }

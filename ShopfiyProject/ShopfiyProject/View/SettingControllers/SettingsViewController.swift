@@ -8,8 +8,8 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
-   
+    
+    
     @IBOutlet weak var currencyLabel: UILabel!
     
     override func viewDidLoad() {
@@ -18,6 +18,12 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        if UserDefaultsManager.shared.getCurrency() != nil || UserDefaultsManager.shared.getCurrency() == ""{
+            currencyLabel.text = UserDefaultsManager.shared.getCurrency()
+        }
+        else{
+            currencyLabel.text = "EGP"
+        }
     }
     
     @IBAction func addressBtn(_ sender: Any) {
@@ -36,18 +42,10 @@ class SettingsViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    
-    @IBAction func contactBtn(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func aboutBtn(_ sender: Any) {
-    }
-    
     @IBAction func logoutBtn(_ sender: Any) {
 
         UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
+        UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
         UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
         UserDefaultsManager.shared.setUserID(customerID: nil)
         UserDefaultsManager.shared.setUserName(userName: nil)

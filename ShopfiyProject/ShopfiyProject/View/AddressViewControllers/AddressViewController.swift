@@ -95,7 +95,7 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //if flag{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
-            vc.address = addressArr.addresses?[indexPath.row]
+        vc.address = addressArr.addresses?[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         //}
         //flag = false

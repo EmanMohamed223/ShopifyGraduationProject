@@ -15,4 +15,5 @@ protocol ShoppingCartDelegate{
     func calcSubTotalInc()
     func calcSubTotalDec(price : String)
     func setLineItems(lineItem : LineItem, index : Int)
+    func deleteFromCart(indexPath : IndexPath)
 }

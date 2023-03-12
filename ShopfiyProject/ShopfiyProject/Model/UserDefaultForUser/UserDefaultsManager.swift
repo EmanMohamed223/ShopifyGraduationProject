@@ -22,6 +22,14 @@ class UserDefaultsManager{
         return UserDefaults.standard.bool(forKey: "couponStatus")
     }
     
+    func setCurrencyFlag(currency : String?){
+        UserDefaults.standard.set(currency, forKey: "currencyFlag")
+    }
+    
+    func getCurrencyFlag() -> String?{
+        return UserDefaults.standard.string(forKey: "currencyFlag")
+    }
+    
     func setCurrency(currency : String?){
         UserDefaults.standard.set(currency, forKey: "currency")
     }
@@ -68,13 +76,14 @@ class UserDefaultsManager{
     func getUserStatus()-> Bool{
         return UserDefaults.standard.bool(forKey: "User_Status")
     }
-    func setDraftFlage(posted: Bool){
-        UserDefaults.standard.set(posted, forKey: "draftOrderFlage")
+    
+    func setDraftFlag(draftFlag: Bool){
+        UserDefaults.standard.set(draftFlag, forKey: "draftOrderFlag")
     }
     
 
-    func getDraftFlage()-> Bool{
-        return UserDefaults.standard.bool(forKey: "draftOrderFlage")
+    func getDraftFlag()-> Bool{
+        return UserDefaults.standard.bool(forKey: "draftOrderFlag")
     }
 
 }
