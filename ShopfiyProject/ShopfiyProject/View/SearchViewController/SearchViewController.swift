@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
         productDetailsViewModel = ProductDetailsViewModel()
 
         self.title = brandName ?? ""
-        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "CategoryViewCell", bundle: nil)
         self.brandDetailsCollectionView.register(nib, forCellWithReuseIdentifier: "categoryItem")
         subView.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
