@@ -66,33 +66,43 @@ class PaymentViewController: UIViewController {
     
     @IBAction func validateBtn(_ sender: Any) {
         
-        if couponTxtField.text != nil && !UserDefaultsManager.shared.getCouponStatus(){
-            for index in 0...(discountCodes?.count ?? 0)-1{
-                if couponTxtField.text == discountCodes?[index].code{
-                    let indicator = UIActivityIndicatorView(style: .large)
-                    indicator.center = view.center
-                    view.addSubview(indicator)
-                    indicator.startAnimating()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        indicator.stopAnimating()
+        if couponTxtField.text != ""{
+                for index in 0...(discountCodes?.count ?? 0)-1{
+                    if couponTxtField.text == discountCodes?[index].code{
+                        if UserDefaultsManager.shared.getCouponStatus(){
+                            validationLabel.text = "Coupon is already used"
+                            break
+                        }
+                        else{
+                            let indicator = UIActivityIndicatorView(style: .large)
+                            indicator.center = view.center
+                            view.addSubview(indicator)
+                            indicator.startAnimating()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                indicator.stopAnimating()
+                            }
+                            UserDefaultsManager.shared.setCouponStatus(coupon: true)
+                            validate.backgroundColor = UIColor(named: "gray")
+                            validate.setTitle("validated", for: .selected)
+                            validationLabel.text = ""
+                            discountLabel.text = String("30 \(currency)")
+                            SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
+                            discountLabel.text = String("-30 \(currency)")
+                            grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
+                            break
+                        }
                     }
-                    UserDefaultsManager.shared.setCouponStatus(coupon: true)
-                    validate.backgroundColor = UIColor(named: "gray")
-                    validate.setTitle("validated", for: .selected)
-                    validationLabel.text = ""
-                    discountLabel.text = String("30 \(currency)")
-                    SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
-                    discountLabel.text = String("-30 \(currency)")
-                    grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
+                    else{
+                        validationLabel.text = "Invalid coupon code"
+                    }
                 }
-                break
-            }
+            
         }
         else if couponTxtField.text == ""{
             validationLabel.text = "Enter the coupon code"
         }
         else{
-            validationLabel.text = "Coupon is already used"
+            validationLabel.text = "Enter the coupon code"
         }
     }
     
