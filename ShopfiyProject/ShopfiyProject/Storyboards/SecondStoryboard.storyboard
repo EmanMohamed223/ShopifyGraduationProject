@@ -268,7 +268,7 @@
                                 <color key="backgroundColor" red="0.67567294840000003" green="0.49093860389999999" blue="0.5332637429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="Cash"/>
-                                    <segment title="Apple Pay"/>
+                                    <segment title="Paypal"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="0.87058823529999996" green="0.71372549019999998" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>

@@ -28,11 +28,4 @@ func calcEGPCurrency(price : String) -> (String){
     return String(format: "%.2f", result)
 }
 
-func checkIfUSD() -> Bool{
-    if UserDefaultsManager.shared.getCurrency() == "USD"{
-        return true
-    }
-    else{
-        return false
-    }
-}
+

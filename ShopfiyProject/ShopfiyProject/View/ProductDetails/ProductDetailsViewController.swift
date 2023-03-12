@@ -201,19 +201,6 @@ class ProductDetailsViewController: UIViewController {
         }
     }
     
-//    func setdraftIdForPost(){
-//        if UserDefaultsManager.shared.getDraftFlag()
-//        {
-//            for draftorder in self.shoppingCartResponseArray.draft_orders!
-//            {
-//                if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
-//                {
-//                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
-//                }
-//            }
-//        }
-//    }
-    
     }
    
 
@@ -318,14 +305,13 @@ extension ProductDetailsViewController {
                     self.existDraftOrder = draftorder
                     UserDefaultsManager.shared.setDraftFlag(draftFlag: true)
                     UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
+                    print(UserDefaultsManager.shared.getDraftOrderID()!)
                 }
             }
-            //self.shoppingCartResponseArray = (self.viewModel?.shoppingCartResponseArray)!
             
             
         }
-//       self.LineItemtobe = (self.shopingCardArray?.shoppingCart?.line_items)!
- //     print (LineItemtobe!.count)
+
 
 
     }

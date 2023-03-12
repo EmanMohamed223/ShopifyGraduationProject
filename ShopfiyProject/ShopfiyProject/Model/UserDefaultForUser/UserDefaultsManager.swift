@@ -22,6 +22,14 @@ class UserDefaultsManager{
         return UserDefaults.standard.bool(forKey: "couponStatus")
     }
     
+    func setCurrencyFlag(currency : String?){
+        UserDefaults.standard.set(currency, forKey: "currencyFlag")
+    }
+    
+    func getCurrencyFlag() -> String?{
+        return UserDefaults.standard.string(forKey: "currencyFlag")
+    }
+    
     func setCurrency(currency : String?){
         UserDefaults.standard.set(currency, forKey: "currency")
     }

@@ -74,24 +74,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     
     @IBAction func trashBtn(_ sender: Any) {
-        let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
-            self.lineItems.remove(at: self.indexPath.row)
-            let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
-            let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
-            self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
-                if response.statusCode >= 200 && response.statusCode <= 299{
-                    DispatchQueue.main.async {
-                        
-                        self.tableVC.deleteRows(at: [self.indexPath], with: UITableView.RowAnimation.automatic)
-                        self.delegate?.calcSubTotalInc()
-                    }
-                }
-            }
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
-        })
-        self.viewVC.present(alert, animated: true)
+        self.delegate?.deleteFromCart(indexPath: indexPath)
     }
     
     func setNum(){

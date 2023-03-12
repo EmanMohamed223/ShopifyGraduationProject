@@ -52,9 +52,10 @@ class ShoppingCartViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         subTotal = 0
         price = "0"
-        UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817)
+        //UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817)
         //print(UserDefaultsManager.shared.getDraftOrderID())
         //checkAccessability()
+        //UserDefaultsManager.shared.setCurrency(currency: "EGP")
         
         if UserDefaultsManager.shared.getUserID() == nil || UserDefaultsManager.shared.getUserID() == 0{
             let alert = UIAlertController(title: "Login", message: "You can't view the shopping cart if you are not logged in ", preferredStyle: .alert)
@@ -63,7 +64,7 @@ class ShoppingCartViewController: UIViewController {
             })
             self.present(alert, animated: true)
         }
-        
+
         else if UserDefaultsManager.shared.getDraftOrderID() == nil || UserDefaultsManager.shared.getDraftOrderID() == 0{
             let alert = UIAlertController(title: "No items added", message: "You didn't add any items in the shoppingCart ", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default){ _ in
@@ -102,13 +103,13 @@ class ShoppingCartViewController: UIViewController {
             ShoppingCartViewController.shoppingCart = shoppingCart
             //ShoppingCartViewController.shoppingCart?.draft_order = shoppingCart.draft_order
             self.lineItems = shoppingCart.draft_order?.line_items
-            self.tableView.reloadData()
-//            if !checkIfUSD(){
-//                for index in 0...(self.lineItems?.count ?? 0) - 1{
-//                    let price = self.lineItems?[index].price ?? ""
-//                    self.lineItems?[index].price = calcEGPCurrency(price : price)
-//                }
+            
+            
+//            for index in 0...(self.lineItems?.count ?? 0) - 1{
+//                let price = self.lineItems?[index].price ?? ""
+//                self.lineItems?[index].price = calcCurrency(price: price)
 //            }
+            self.tableView.reloadData()
             self.calcSubTotalInc()
             
         }
@@ -151,12 +152,11 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
             cell.productImg.kf.setImage(with: URL(string: products?[indexPath.row].images[0].src ?? "load"),placeholder: UIImage(named: "load"))
         }
         else{
-            if checkIfUSD(){
-                cell.currencyLabel.text = "USD"
-            }
-            else{
-                cell.currencyLabel.text = "EGP"
-            }
+            
+            //cell.currencyLabel.text = setCurrencyLabel()
+            //cell.productPrice.text = calcCurrency(price: lineItems?[indexPath.row].price ?? "")
+            //let price = lineItems?[indexPath.row].price
+            //lineItems?[indexPath.row].price = calcCurrency(price : price)
             cell.productTitle.text = lineItems?[indexPath.row].title
             cell.productPrice.text = lineItems?[indexPath.row].price
             cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
@@ -173,30 +173,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
-                if !self.network.isReachable(){
-                    self.deleteItem(indexPath: indexPath)
-                }
-                else{
-                    self.lineItems?.remove(at: indexPath.row)
-                    let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
-                    let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
-                    self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
-                        if response.statusCode >= 200 && response.statusCode <= 299{
-                            DispatchQueue.main.async {
-                                
-                                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-                                self.calcSubTotalInc()
-                            }
-                        }
-                    }
-                }
-            })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
-            })
-            self.present(alert, animated: true)
-            
+            deleteFromAPi(indexPath: indexPath)
         }
     }
     
@@ -222,7 +199,7 @@ extension ShoppingCartViewController{
             view.addSubview(indicator)
             indicator.startAnimating()
             let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
-            let endPoint = "draft_orders/1111195713817.json"
+            let endPoint = "draft_orders/\(draftOrder!).json"
             shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
             shoppingCartViewModel.bindResultToViewController = {
                 self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
@@ -242,20 +219,7 @@ extension ShoppingCartViewController{
             }
         }
     }
-    
-//    func putToDraftOrders(){
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.center = view.center
-//        view.addSubview(indicator)
-//        indicator.startAnimating()
-//        let draftOrder = UserDefaultsManager.shared.getDraftOrderID()
-//        let endPoint = "draft_orders/\(draftOrder ?? 0).json"
-//        shoppingCartViewModel.getOneDraftOrder(url: getURL(endPoint: endPoint))
-//        shoppingCartViewModel.bindResultToViewController = {
-//            self.renderDraftOrders(shoppingCart: self.shoppingCartViewModel.shoppingCartResponse)
-//            indicator.stopAnimating()
-//        }
-//    }
+
     
     func checkAccessability(){
         if UserDefaultsManager.shared.getUserID() == nil || UserDefaultsManager.shared.getUserID() == 0{
@@ -278,6 +242,32 @@ extension ShoppingCartViewController{
         }
     }
     
+    func deleteFromAPi(indexPath : IndexPath){
+        let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
+            if !self.network.isReachable(){
+                self.deleteItem(indexPath: indexPath)
+            }
+            else{
+                self.lineItems?.remove(at: indexPath.row)
+                let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
+                let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
+                self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                    if response.statusCode >= 200 && response.statusCode <= 299{
+                        DispatchQueue.main.async {
+                            
+                            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                            self.calcSubTotalInc()
+                        }
+                    }
+                }
+            }
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
+        })
+        self.present(alert, animated: true)
+    }
+    
 }
 
 extension ShoppingCartViewController : ShoppingCartDelegate{
@@ -287,6 +277,8 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
             let price1 = (Float(lineItems?[index].price ?? "") ?? 0.0) * (Float(lineItems?[index].quantity ?? 0))
             subTotal += price1
         }
+        //let totalInCurrency = calcCurrency(price: String(format: "%.2f", subTotal))
+        //subTotalLabel.text = String(format: "%.2f", totalInCurrency)
         subTotalLabel.text = String(format: "%.2f", subTotal)
     }
     
@@ -294,12 +286,17 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
         let price1 = Float(price) ?? 0.0
         subTotal -= price1
         subTotalLabel.text = String(format: "%.2f", subTotal)
+        //let totalInCurrency = calcCurrency(price: String(format: "%.2f", subTotal))
+        //subTotalLabel.text = String(format: "%.2f", totalInCurrency)
+        subTotalLabel.text = String(format: "%.2f", subTotal)
     }
     
     func setLineItems(lineItem : LineItem, index : Int){
         self.lineItems?[index].quantity = lineItem.quantity
     }
     
-    
+    func deleteFromCart(indexPath : IndexPath){
+        deleteFromAPi(indexPath: indexPath)
+    }
     
 }

@@ -12,8 +12,8 @@ func calcCurrency(price: String?) -> String{
     case "EGP":
     return price ?? ""
     case "USD":
-        let format = Double(price ?? "0")
-        return String((format ?? 0.0 ) * 30)
+        let format = Float(price ?? "0")
+        return String(format: "%.2f", (format ?? 0.0 ) / 30)
     default:
         return ""
     }
