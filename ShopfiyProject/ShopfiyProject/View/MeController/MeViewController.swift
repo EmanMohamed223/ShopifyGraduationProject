@@ -85,7 +85,7 @@ class MeViewController: UIViewController ,Navigationdelegate {
             cardBtm.isHidden = false
             let IfLogedView = Bundle.main.loadNibNamed("IfLogedView", owner: self, options: nil)?.first as! IfLogedView
              IfLogedView.delegate = self
-      
+            IfLogedView.ordersTable.reloadData()
             IfLogedView.welcomMssg.text = "Welcom \(UserDefaultsManager.shared.getUserName()!)"
             thisView.addSubview(IfLogedView)
         }

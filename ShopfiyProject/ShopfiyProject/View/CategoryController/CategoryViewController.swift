@@ -216,17 +216,31 @@ extension CategoryViewController {
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func Tapfavourite(){
-        let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
-        let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
-
-        self.navigationController?.pushViewController(view, animated: true)
-    }
-    @objc func TapCart(){
-        let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
-        let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
-        self.navigationController?.pushViewController(view, animated: true)
-    }
-}
+        if UserDefaultsManager.shared.getUserID() != 0   {
+            let ThirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+            let view = ThirdStoryBoard.instantiateViewController(withIdentifier: "favorite") as! WishListViewController
+            
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+        else {
+            let alert = UIAlertController(title: "You Should Log In First", message: "Please Log In To Could add To Your Favourites", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        }
+        @objc func TapCart(){
+            if UserDefaultsManager.shared.getUserID() != 0   {
+                let SecondStoryBoard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+                let view = SecondStoryBoard.instantiateViewController(withIdentifier: "secondStoryboard1") as! ShoppingCartViewController
+                self.navigationController?.pushViewController(view, animated: true)
+            }
+            
+            else {
+                let alert = UIAlertController(title: "You Should Log In First", message: "Please Log In To Could add To Your Cart", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }}
 extension CategoryViewController : FireActionInCategoryCellProtocol
 {
     func showAlertdelet(title:String, message:String, complition:@escaping ()->Void) {

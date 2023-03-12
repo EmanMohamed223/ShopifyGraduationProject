@@ -189,7 +189,7 @@ class ProductDetailsViewController: UIViewController {
         LineItemObj?.title = self.product?.title
         //   LineItemObj?.product_id = product?.id
         LineItemObj?.admin_graphql_api_id = ""
-        LineItemObj?.grams = self.product?.variants![0].inventory_quantity! ?? 0
+        LineItemObj?.grams = self.product?.variants![0].inventory_quantity ?? 0
         LineItemObj?.quantity = 1
         LineItemToBe?.append(LineItemObj!)
         shopingCardObj = ShoppingCartClass(  line_items: LineItemToBe )
