@@ -9,6 +9,7 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var productNameLabel: UILabel!
     
     @IBOutlet weak var productPriceLabel: UILabel!

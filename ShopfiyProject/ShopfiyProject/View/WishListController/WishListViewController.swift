@@ -54,7 +54,7 @@ class WishListViewController: UIViewController {
       
         wishlistcollection.delegate = self
         wishlistcollection.dataSource = self
-        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "CategoryViewCell", bundle: nil)
         self.wishlistcollection.register(nib, forCellWithReuseIdentifier: "categoryItem")
         
         

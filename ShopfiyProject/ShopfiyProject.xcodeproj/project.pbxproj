@@ -868,14 +868,9 @@
 				C94B306529A9631B00777CAA /* ConvertToUserRelated.swift */,
 				C94B307229A9691E00777CAA /* UserRelatedStruct.swift */,
 				C90A4BC429AD291600BD0EF2 /* HelperFunctions.swift */,
-
-
 				8C9E9DF429BBA9CB002A91AC /* Currency.swift */,
 				C95F16C329BD859900142836 /* CurrencyLabel.swift */,
-
-				C9846E0229B6A40B00668909 /* UIHelperFunctions.swift */,
 				8C3D931029BCA7D500A2B118 /* FormatingDictionary.swift */,
-
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -950,6 +945,7 @@
 		C9C261D829A3ED920012D4C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0335683329A60BD9001DB97E /* WishListController */,
 				8C0B8F1729A6BB8C0059AF9E /* SearchViewController */,
 				C982067429A69BDA000DAD5A /* PaymentViewController */,
 				0335682D29A60A08001DB97E /* SignUpController */,
@@ -970,7 +966,6 @@
 		C9C261DB29A407D30012D4C5 /* AddressViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0335683329A60BD9001DB97E /* WishListController */,
 				C9C261D929A407CF0012D4C5 /* AddressViewController.swift */,
 				C992FBA829A4E84100DBD419 /* AddressConfigurationViewController.swift */,
 				C9E85E8529A6B26800BAC6A3 /* AddressTableViewCell.swift */,

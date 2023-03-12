@@ -53,11 +53,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noh-If-eDW">
+                        <rect key="frame" x="64" y="41" width="33" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Qkj-Iw-KPK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.493151" id="3sd-6p-MvC"/>
+                    <constraint firstItem="noh-If-eDW" firstAttribute="leading" secondItem="AXz-LW-iWJ" secondAttribute="trailing" constant="7.6666666666666643" id="5LQ-55-gmj"/>
                     <constraint firstItem="vOM-Sv-tfS" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.0811594" id="6aL-TD-CXW"/>
                     <constraint firstItem="Mpb-1t-FFq" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.219178" id="B2E-Mz-l6f"/>
+                    <constraint firstItem="noh-If-eDW" firstAttribute="top" secondItem="Qkj-Iw-KPK" secondAttribute="bottom" id="Da1-nW-ats"/>
+                    <constraint firstItem="ozX-uo-njz" firstAttribute="leading" secondItem="noh-If-eDW" secondAttribute="trailing" constant="11" id="FRp-8w-ACD"/>
                     <constraint firstItem="ozX-uo-njz" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.219178" id="GwI-Wr-4zI"/>
                     <constraint firstItem="Qkj-Iw-KPK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HWq-cg-eId"/>
                     <constraint firstItem="wBw-Kl-JaA" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.0695652" id="I9s-PU-Rqy"/>
@@ -68,6 +77,7 @@
                     <constraint firstItem="AXz-LW-iWJ" firstAttribute="leading" secondItem="Qkj-Iw-KPK" secondAttribute="leading" id="SRe-jA-wEU"/>
                     <constraint firstItem="Mpb-1t-FFq" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.136232" id="Uma-Wk-Oth"/>
                     <constraint firstItem="vOM-Sv-tfS" firstAttribute="top" secondItem="Qkj-Iw-KPK" secondAttribute="bottom" constant="3" id="XZe-8p-UXB"/>
+                    <constraint firstAttribute="bottom" secondItem="noh-If-eDW" secondAttribute="bottom" constant="8" id="Xqe-Xg-1rl"/>
                     <constraint firstItem="AXz-LW-iWJ" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.273973" id="Yg1-6K-AVw"/>
                     <constraint firstItem="AXz-LW-iWJ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.142995" id="bTg-BQ-wub"/>
                     <constraint firstItem="vOM-Sv-tfS" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.287671" id="i5p-Sq-F3z"/>
@@ -82,7 +92,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.97374838590000001" green="0.92845404149999999" blue="0.81809145210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                     <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,6 +105,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="currencyLabel" destination="noh-If-eDW" id="tse-1B-IeT"/>
                 <outlet property="productColor" destination="ozX-uo-njz" id="0nL-tg-cLC"/>
                 <outlet property="productNameLabel" destination="Qkj-Iw-KPK" id="PXs-yu-9cQ"/>
                 <outlet property="productPriceLabel" destination="AXz-LW-iWJ" id="icr-eB-yId"/>

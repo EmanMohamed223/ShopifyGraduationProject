@@ -56,10 +56,21 @@ class IfLogedView: UIView {
         }
         favoritesViewModel!.fetchfavorites(appDelegate: appDelegate, userId: UserDefaultsManager.shared.getUserID() ?? 1)
         self.wishlistCollection.reloadData()
- 
+        
+        if IfLogedView.orderArray?.count == 0 {
+            
+            ordersTable.isHidden = true
+           createLabel(message: "You Have No Orders Yet!",Y: 400)
+        }
+        if favoritesArray.count == 0 {
+            
+            wishlistCollection.isHidden = true
+            createLabel(message: "You Have No Favourites Yet!" ,Y: 200)
+        }
         orderURL = getURL(endPoint: "orders.json")
         modelling(newUrl : getURL(endPoint: "customers/\( UserDefaultsManager.shared.getUserID() ?? 0)/orders.json"))
-        
+
+        self.ordersTable.reloadData()
     }
     
     }
@@ -109,7 +120,13 @@ extension IfLogedView : FireActionInCategoryCellFavourite
         func deleteFavourite(appDelegate: AppDelegate, product: Products) {
             favoritesViewModel?.deleteFavourite(appDelegate: appDelegate, product: product)
             favoritesArray = favoritesArray.filter { $0.id != product.id }
+          
             wishlistCollection.reloadData()
+            if favoritesArray.count == 0 {
+                
+                wishlistCollection.isHidden = true
+                createLabel(message: "You Have No Favourites Yet!" ,Y: 200)
+            }
         }
     }
     
@@ -137,8 +154,8 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTable.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
         cell.layer.cornerRadius = cell.frame.height/3
-        cell.pricelabel.text = IfLogedView.orderArray?[indexPath.row].current_total_price
-        cell.dateOfOrderlabel.text =  IfLogedView.orderArray?[indexPath.row].created_at
+        cell.pricelabel.text = calcCurrency(price:IfLogedView.orderArray?[indexPath.section].current_total_price) + (UserDefaultsManager.shared.getCurrency() ?? "EGP")
+        cell.dateOfOrderlabel.text =  IfLogedView.orderArray?[indexPath.section].created_at
         return cell
     }
 
@@ -157,8 +174,26 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
     func renderView(){
         DispatchQueue.main.async {
             IfLogedView.orderArray  = self.orderVM?.resultOrders.orders ?? []
-
+       
             self.ordersTable.reloadData()
+            if IfLogedView.orderArray?.count == 0 {
+                
+                self.ordersTable.isHidden = true
+                self.createLabel(message: "You Have No Orders Yet!",Y: 400)
+            }
         }
+    }
+    func  createLabel(message : String, Y : Int){
+        let toast = UILabel(frame: CGRect(x: self.bounds.size.width/2-300 , y: self.bounds.size.height - CGFloat(Y), width: self.bounds.size.width, height: 50))
+        toast.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        toast.textColor = UIColor.systemPurple
+        toast.font = .boldSystemFont(ofSize: 14)
+        toast.textAlignment = .center
+        toast.alpha = 1.0
+        toast.layer.cornerRadius = 10
+        toast.clipsToBounds = true
+        toast.text = message
+        self.addSubview(toast)
+   
     }
 }
