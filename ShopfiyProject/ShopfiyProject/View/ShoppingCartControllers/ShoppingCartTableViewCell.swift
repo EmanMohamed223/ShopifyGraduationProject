@@ -32,7 +32,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         productTitle.adjustsFontSizeToFitWidth = true
-        //num = Int(numOfItems.text ?? "") ?? 0
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -92,6 +92,11 @@ class ShoppingCartTableViewCell: UITableViewCell {
         alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
         })
         self.viewVC.present(alert, animated: true)
+    }
+    
+    func setNum(){
+        print(indexPath.row)
+        num = lineItems[indexPath.row].quantity ?? 1
     }
     
 }

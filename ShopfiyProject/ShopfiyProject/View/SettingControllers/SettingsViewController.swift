@@ -42,15 +42,6 @@ class SettingsViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    
-    @IBAction func contactBtn(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func aboutBtn(_ sender: Any) {
-    }
-    
     @IBAction func logoutBtn(_ sender: Any) {
 
         UserDefaultsManager.shared.setUserStatus(userIsLogged: false)

@@ -39,6 +39,7 @@ class ShoppingCartViewController: UIViewController {
     @objc func back(sender: UIBarButtonItem){
         let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
+            self.putInDraftOrder()
             self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(UIAlertAction(title: "No", style: .default){ _ in
@@ -52,7 +53,7 @@ class ShoppingCartViewController: UIViewController {
         subTotal = 0
         price = "0"
         UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817)
-        print(UserDefaultsManager.shared.getDraftOrderID())
+        //print(UserDefaultsManager.shared.getDraftOrderID())
         //checkAccessability()
         
         if UserDefaultsManager.shared.getUserID() == nil || UserDefaultsManager.shared.getUserID() == 0{
@@ -140,6 +141,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         cell.indexPath = indexPath
         cell.lineItems = []
         cell.lineItems = lineItems ?? []
+        cell.setNum()
         
         if !network.isReachable(){      //get from coreData
             cell.productTitle.text = products?[indexPath.row].title
@@ -157,7 +159,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
             }
             cell.productTitle.text = lineItems?[indexPath.row].title
             cell.productPrice.text = lineItems?[indexPath.row].price
-            cell.numOfItems.text = String(1)
+            cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
             cell.productImg.kf.setImage(with: URL(string: lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
             cell.priceQ = [indexPath.row : lineItems?[indexPath.row].quantity ?? 1]
         }
