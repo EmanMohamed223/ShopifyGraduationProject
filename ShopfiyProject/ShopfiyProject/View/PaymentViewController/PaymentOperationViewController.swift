@@ -7,8 +7,8 @@
 
 import UIKit
 import PassKit
-//import Braintree
-//import BraintreeDropIn
+import Braintree
+import BraintreeDropIn
 
 class PaymentOperationViewController: UIViewController {
     
@@ -18,7 +18,7 @@ class PaymentOperationViewController: UIViewController {
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
 //e
- //   var braintreeClient: BTAPIClient!
+    var braintreeClient: BTAPIClient!
     var arrayOrders : [Order] = []
 
 
@@ -49,26 +49,26 @@ class PaymentOperationViewController: UIViewController {
             })
             self.present(alert, animated: true)
         }
-//      else{
-//
-//            braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
-//            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-//          let request = BTPayPalCheckoutRequest(amount: "\(Self.prices?.current_total_price ?? "")")
-//            //request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
-//          request.currencyCode = "USD"
-//            payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
-//                if responseNonce != nil {
-//                    DispatchQueue.main.async {
-//                        self.postOrder()
-//                    }
-//
-//                }
-//                else if error != nil{
-//                    print("Error :\(error!)")
-//                }
-//
-//            }
-//        }
+      else{
+
+            braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+          let request = BTPayPalCheckoutRequest(amount: "\(Self.prices?.current_total_price ?? "")")
+            //request.currencyCode = UserDefaultsManager.shared.getCurrency() ?? "USD"
+          request.currencyCode = "USD"
+            payPalDriver.tokenizePayPalAccount(with: request) { responseNonce, error in
+                if responseNonce != nil {
+                    DispatchQueue.main.async {
+                        self.postOrder()
+                    }
+
+                }
+                else if error != nil{
+                    print("Error :\(error!)")
+                }
+
+            }
+        }
     }
     
     
@@ -80,7 +80,7 @@ class PaymentOperationViewController: UIViewController {
     
     func renderPaymentRequest(request : PKPaymentRequest?){
         //eman
-      //self.paymentRequest = request ?? PKPaymentRequest()
+      self.paymentRequest = request ?? PKPaymentRequest()
     }
     
     func postOrder(){
@@ -112,24 +112,24 @@ class PaymentOperationViewController: UIViewController {
 }
 
 
-//extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerDelegate{
-//    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-//        controller.dismiss(animated: true,completion: nil)
-//    }
-//
-//    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-//        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-//    }
-//
-//}
-//
-//extension PaymentOperationViewController : BTViewControllerPresentingDelegate{
-//    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
-//        present(viewController, animated: true, completion: nil)
-//    }
-//
-//    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
-//        viewController.dismiss(animated: true, completion: nil)
-//    }
-//
-//}
+extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerDelegate{
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true,completion: nil)
+    }
+
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+    }
+
+}
+
+extension PaymentOperationViewController : BTViewControllerPresentingDelegate{
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+}
