@@ -13,6 +13,8 @@ import BraintreeDropIn
 class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
+    var shoppingCartViewModel = ShoppingCartViewModel()
+    
     
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
@@ -46,6 +48,10 @@ class PaymentOperationViewController: UIViewController {
             postOrder()
             let alert = UIAlertController(title: "Ordered Successfully", message: "The order will be arrived soon!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default){_ in
+                let firstStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                let homeVC = firstStoryBoard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+                self.navigationController?.pushViewController(homeVC, animated: true)
+                
             })
             self.present(alert, animated: true)
         }
@@ -60,6 +66,9 @@ class PaymentOperationViewController: UIViewController {
                 if responseNonce != nil {
                     DispatchQueue.main.async {
                         self.postOrder()
+                        let firstStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                        let homeVC = firstStoryBoard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+                        self.navigationController?.pushViewController(homeVC, animated: true)
                     }
 
                 }
@@ -77,6 +86,12 @@ class PaymentOperationViewController: UIViewController {
        startCheckout()
         
     }
+    
+    func deleteDraftOrder(){
+        let endpoint = UserDefaultsManager.shared.getDraftOrderID() ?? 0
+        shoppingCartViewModel.deleteDraftOrder(url: getURL(endPoint: "\(endpoint)"))
+    }
+    
     
     func renderPaymentRequest(request : PKPaymentRequest?){
         //eman
@@ -105,10 +120,20 @@ class PaymentOperationViewController: UIViewController {
             "line_items" : convertter(lineItems: lineItems ?? [])
                 ]
                 ]
-         NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder)
-
-
+        
+        NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder) { response in
+            guard let response = response else {return}
+            if response.statusCode >= 200 && response.statusCode <= 299{
+                DispatchQueue.main.async {
+                    self.deleteDraftOrder()
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
+                    UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+                }
             }
+        }
+
+
+    }
 }
 
 

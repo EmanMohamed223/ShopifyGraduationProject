@@ -77,6 +77,7 @@ class ShoppingCartViewController: UIViewController {
         else if !network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
+            print(UserDefaultsManager.shared.getUserID()!)
             tableView.reloadData()
         }
         else{

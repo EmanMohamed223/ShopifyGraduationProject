@@ -35,4 +35,13 @@ class ShoppingCartViewModel{
         }
     }
     
+    func deleteDraftOrder(url : String?){
+        NetworkService.shared.deleteDraftOrder(url: url ?? "") { error in
+            if error != nil{
+                print(error)
+            }
+        }
+    }
+    
+    
 }

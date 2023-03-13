@@ -55,7 +55,7 @@ class ProductDetailsViewController: UIViewController {
      //   print(UserDefaultsManager.shared.getDraftOrderID())
         productDetailsViewModel = ProductDetailsViewModel()
         
-        //UserDefaultsManager.shared.setDraftFlag(draftFlag: true)
+      //  UserDefaultsManager.shared.setDraftFlag(draftFlag: true)
         //UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817) //<<<<<<
         
         self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(self.product!))
@@ -384,6 +384,7 @@ extension ProductDetailsViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let saveToCoreViewModel = CoreDataViewModel()
         saveToCoreViewModel.callManagerToSave(product : product, userID : userID, appDelegate : appDelegate)
+        print(userID)
         self.showToastMessage(message: "Item added to shopping cart", color: .darkText)
     }
     

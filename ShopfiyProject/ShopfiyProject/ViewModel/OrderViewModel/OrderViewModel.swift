@@ -25,7 +25,9 @@ class orderViewModel{
     }
     func postOrder( order: [String : Any]){
    
-          NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: order)
+        NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: order) { response in
+            print(response)
+        }
       
         
     }
