@@ -23,6 +23,10 @@ class LoginScreenViewController: UIViewController {
         // var viewModel : CustomerViewModel?
         var viewModel = CustomerViewModel()
         var currentCustomer : Customer?
+    
+    var viewModelCart = ShoppingCartViewModel()
+    var shoppingCartResponseArray = ShoppingCartResponseArray()
+    
     override func viewWillAppear(_ animated: Bool) {
         loginViewModel = LoginViewModel()
                 // Do any additional setup after loading the view.
@@ -75,30 +79,83 @@ class LoginScreenViewController: UIViewController {
     }
     @IBAction func LoginBtm(_ sender: UIButton) {
         guard let email = emailTxtfield.text, !email.isEmpty
-                        , let password = passtextField.text, !password.isEmpty else {
-                    self.showAlertError(title: "Missing Information", message: "to login you must fill all the information below.")
+                , let password = passtextField.text, !password.isEmpty else {
+            self.showAlertError(title: "Missing Information", message: "to login you must fill all the information below.")
+            return
+        }
+        for customer in customers {
+            if customer.email == email && customer.tags == password {
+                currentCustomer = customer
+            }
+        }
+        if currentCustomer != nil{
+            self.saveCustomerDataToUserDefaults(customer: currentCustomer!)
+            UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
+            
+            print("customersaved")
+            //                   var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
+            
+            searchForDraftOrder(id: UserDefaultsManager.shared.getUserID() ?? 0 )
+            
+            
+            //self.navigationController?.popViewController(animated: true)
+            
+        }
+        else {
+            UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
+            self.showAlertError(title: "failed to login", message: "please check your email or password")
+            print("failed to login")
+        }
+        
+        
+        
+    }
+            
+
+    func searchForDraftOrder(id : Int?){
+        viewModelCart.getDraftOrder(url: getURL(endPoint: "draft_orders.json"))
+        viewModelCart.bindResultToViewController = { () in
+            //DispatchQueue.main.async{
+                self.renderVieww(shoppingCartResponseArr: self.viewModelCart.shoppingCartResponseArray)
+                
+            //}
+            
+        }
+        
+        //getDraftOrders
+        //for draftorder in arrayof draftorders {
+        //draftorder.cudtomer.id == id
+    }
+            
+    
+    func renderVieww(shoppingCartResponseArr : ShoppingCartResponseArray?){
+
+        //self.shopingCardResponseResult = self.viewModel?.shoppingCartResponse
+        DispatchQueue.main.async {
+            guard let response = shoppingCartResponseArr else {return}
+            self.shoppingCartResponseArray = response
+            for draftorder in self.shoppingCartResponseArray.draft_orders ?? []
+            {
+                if  draftorder.email == UserDefaultsManager.shared.getUserEmail()
+                {
+                    UserDefaultsManager.shared.setDraftFlag(draftFlag: true)
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: draftorder.id)
+                    print(UserDefaultsManager.shared.getDraftOrderID()!)
+                    self.navigationController?.popViewController(animated: true)
                     return
                 }
-                for customer in customers {
-                    if customer.email == email && customer.tags == password {
-                        currentCustomer = customer
-                    }
-                }
-                if currentCustomer != nil{
-                    self.saveCustomerDataToUserDefaults(customer: currentCustomer!)
-                    UserDefaultsManager.shared.setUserStatus(userIsLogged: true)
-                    
-                    print("customersaved")
-//                   var me = self.storyboard?.instantiateViewController(withIdentifier: "Me2") as! MeViewController
-                    self.navigationController?.popViewController(animated: true)
-                    
-                }
-                else {
-                    UserDefaultsManager.shared.setUserStatus(userIsLogged: false)
-                    self.showAlertError(title: "failed to login", message: "please check your email or password")
-                    print("failed to login")
-                }
             }
+            
+            UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+            UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+
+    }
+    
+    
+    
 
         //        loginViewModel?.Login(email: email, password: password) { customerLogged in
         //
