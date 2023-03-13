@@ -14,7 +14,7 @@ protocol Service{
     func register(newCustomer: User, completion:@escaping (Data?, URLResponse?, Error?)->())
     func postAddress(customerAddressModel : CustomerAddressModel,completion: @escaping (Data?, HTTPURLResponse?, Error?) -> ())
     
-     func postDataToApi(url : String ,newOrder: [String : Any])
+     func postDataToApi(url : String ,newOrder: [String : Any],completion: @escaping (HTTPURLResponse?) -> ())
 }
 
 class NetworkService : Service{
@@ -124,7 +124,7 @@ class NetworkService : Service{
 
     }
 
-     func postDataToApi(url : String ,newOrder: [String:Any]) {
+     func postDataToApi(url : String ,newOrder: [String:Any], completion: @escaping (HTTPURLResponse?) -> ()) {
       
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
@@ -147,6 +147,7 @@ class NetworkService : Service{
                 let dataJson = try JSONSerialization.jsonObject(with: data! , options: .allowFragments)
                 print("RESPONSEE")
                 print(dataJson)
+                completion(response as? HTTPURLResponse)
                 //self.productDet.setdraftIdForPost()
             }catch{
                 print("ERRRRR")
@@ -253,6 +254,61 @@ class NetworkService : Service{
                                 return
                             }
                             
+                            print(prettyPrintedJson)
+                        } catch {
+                            print("Error: Trying to convert JSON data to string")
+                            return
+                        }
+                    }.resume()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    
+    func deleteDraftOrder(url : String,completion: @escaping ( Error?) -> ()){
+        let draftOrderID = UserDefaultsManager.shared.getDraftOrderID()
+        let url = getURL(endPoint: "draft_orders/\(draftOrderID ?? 0).json")
+        guard let baseURL = URL(string : url ?? "") else { return }
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "DELETE"
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        request.httpShouldHandleCookies = false
+
+        do{
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard error == nil else {
+                            print("Error: error calling DELETE")
+                            print(error!)
+                            return
+                        }
+                        guard let data = data else {
+                            print("Error: Did not receive data")
+                            return
+                        }
+                        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                            print(response)
+                            print("Error: HTTP request failed")
+                            return
+                        }
+                        do {
+                            guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                                print("Error: Cannot convert data to JSON")
+                                return
+                            }
+                            guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                                print("Error: Cannot convert JSON object to Pretty JSON data")
+                                return
+                            }
+                            guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                                print("Error: Could print JSON in String")
+                                return
+                            }
+                            print("Draft order successfully deleted")
                             print(prettyPrintedJson)
                         } catch {
                             print("Error: Trying to convert JSON data to string")

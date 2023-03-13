@@ -384,6 +384,7 @@ extension ProductDetailsViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let saveToCoreViewModel = CoreDataViewModel()
         saveToCoreViewModel.callManagerToSave(product : product, userID : userID, appDelegate : appDelegate)
+        print(userID)
         self.showToastMessage(message: "Item added to shopping cart", color: .darkText)
     }
     

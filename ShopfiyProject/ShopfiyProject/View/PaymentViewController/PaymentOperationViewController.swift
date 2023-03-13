@@ -13,6 +13,8 @@ import BraintreeDropIn
 class PaymentOperationViewController: UIViewController {
     
     @IBOutlet weak var paymentSegment: UISegmentedControl!
+    var shoppingCartViewModel = ShoppingCartViewModel()
+    
     
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
@@ -78,6 +80,12 @@ class PaymentOperationViewController: UIViewController {
         
     }
     
+    func deleteDraftOrder(){
+        let endpoint = UserDefaultsManager.shared.getDraftOrderID() ?? 0
+        shoppingCartViewModel.deleteDraftOrder(url: getURL(endPoint: "\(endpoint)"))
+    }
+    
+    
     func renderPaymentRequest(request : PKPaymentRequest?){
         //eman
       self.paymentRequest = request ?? PKPaymentRequest()
@@ -105,10 +113,20 @@ class PaymentOperationViewController: UIViewController {
             "line_items" : convertter(lineItems: lineItems ?? [])
                 ]
                 ]
-         NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder)
-
-
+        
+        NetworkService.shared.postDataToApi(url: getURL(endPoint: "orders.json")!, newOrder: newOrder) { response in
+            guard let response = response else {return}
+            if response.statusCode >= 200 && response.statusCode <= 299{
+                DispatchQueue.main.async {
+                    self.deleteDraftOrder()
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
+                    UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+                }
             }
+        }
+
+
+    }
 }
 
 
