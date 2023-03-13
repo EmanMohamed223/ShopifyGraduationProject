@@ -218,3 +218,10 @@ extension SearchViewController : FireActionInCategoryCellProtocol
     }
     
 }
+extension SearchViewController : UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //.endEditing(true)
+        
+        return true
+    }
+}
