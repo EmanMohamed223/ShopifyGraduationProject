@@ -31,6 +31,12 @@ class SignUpScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     registerViewModel = RegisterViewModel()
+        PassTextField.delegate = self
+        usernameTxtfield.delegate = self
+        addressTxtfield.delegate = self
+        emailTxtfield.delegate = self
+        conformPassTextField.delegate = self
+        phoneNumbTxt.delegate = self
     }
     
     @IBAction func agreecircleBtm(_ sender: UIButton) {
@@ -163,4 +169,17 @@ extension UIViewController{
     }
     
     
+}
+extension SignUpScreenViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      
+        PassTextField.endEditing(true)
+        usernameTxtfield.endEditing(true)
+        addressTxtfield.endEditing(true)
+        emailTxtfield.endEditing(true)
+        conformPassTextField.endEditing(true)
+        phoneNumbTxt.endEditing(true)
+        return true
+    }
+   
 }

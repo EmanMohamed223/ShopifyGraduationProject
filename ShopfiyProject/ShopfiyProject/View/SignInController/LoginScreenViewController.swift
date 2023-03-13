@@ -27,6 +27,8 @@ class LoginScreenViewController: UIViewController {
         loginViewModel = LoginViewModel()
                 // Do any additional setup after loading the view.
                 modiling()
+        emailTxtfield.delegate = self
+                passtextField.delegate = self
      
     }
     override func viewDidLoad() {
@@ -142,4 +144,12 @@ class LoginScreenViewController: UIViewController {
     
   
 
+}
+extension LoginScreenViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        passtextField.endEditing(true)
+        emailTxtfield.endEditing(true)
+        return true
+    }
+   
 }
