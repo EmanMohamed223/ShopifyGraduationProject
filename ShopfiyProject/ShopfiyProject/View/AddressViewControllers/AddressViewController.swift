@@ -15,7 +15,7 @@ class AddressViewController: UIViewController {
     var addressArr = CustomerAddressGetModel()
     let addressViewModel = AddressViewModel()
     var addressModelToBeDeleted : CustomerAddressModel?
-    var flag = false
+    static var flag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,11 +72,18 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
-            self.addressModelToBeDeleted = CustomerAddressModel(customer_address: self.addressArr.addresses?[indexPath.row])
-            self.addressViewModel.callNetworkServiceManagerToDelete(customerAddressModel: self.addressModelToBeDeleted ?? CustomerAddressModel())
-            self.addressArr.addresses?.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-            completionHandler(true)
+            if indexPath.row == 0{
+                let alert = UIAlertController(title: "Alert", message: "Default address can not be deleted, you can just edit it!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default){_ in })
+                self.present(alert, animated: true)
+            }
+            else{
+                self.addressModelToBeDeleted = CustomerAddressModel(customer_address: self.addressArr.addresses?[indexPath.row])
+                self.addressViewModel.callNetworkServiceManagerToDelete(customerAddressModel: self.addressModelToBeDeleted ?? CustomerAddressModel())
+                self.addressArr.addresses?.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                completionHandler(true)
+            }
       }
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressConfig") as! AddressConfigurationViewController
@@ -93,13 +100,11 @@ extension AddressViewController : UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //if flag{
+        if !Self.flag{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
         vc.address = addressArr.addresses?[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
-        //}
-        //flag = false
-        //self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 

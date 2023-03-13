@@ -113,6 +113,7 @@ class PaymentViewController: UIViewController {
         PaymentOperationViewController.prices = getPrices()
         vc?.address = getCustomerAddress()
         PaymentOperationViewController.lineItems = PaymentViewController.lineItems
+        PaymentOperationViewController.grandTotal = grandTotalLabel.text
        
     }
 

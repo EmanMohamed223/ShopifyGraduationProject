@@ -16,6 +16,9 @@ class PaymentOperationViewController: UIViewController {
     var shoppingCartViewModel = ShoppingCartViewModel()
     
     
+    @IBOutlet weak var grandTotalLabel: UILabel!
+    
+    
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
@@ -30,7 +33,7 @@ class PaymentOperationViewController: UIViewController {
 
     var lineItems : [LineItem]?
     
-
+    static var grandTotal : String?
     static var lineItems : [LineItem]?
 
     static var prices : Price?
@@ -40,6 +43,7 @@ class PaymentOperationViewController: UIViewController {
         super.viewDidLoad()
     
           lineItems = PaymentViewController.lineItems
+         grandTotalLabel.text = Self.grandTotal
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt

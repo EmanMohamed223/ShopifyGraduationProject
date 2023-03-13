@@ -37,7 +37,7 @@ class ShoppingCartViewController: UIViewController {
     }
     
     @objc func back(sender: UIBarButtonItem){
-        let alert = UIAlertController(title: "Focus", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Alert", message: "Do you want to save the changes before proceeding with this action?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default){ _ in
             self.putInDraftOrder()
             self.navigationController?.popViewController(animated: true)
@@ -89,7 +89,7 @@ class ShoppingCartViewController: UIViewController {
     
     @IBAction func checkoutBtn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressViewController
-        vc.flag = true
+        AddressViewController.flag = false
         PaymentViewController.lineItems = []
         PaymentViewController.lineItems = lineItems
         PaymentViewController.subTotal = 0.0
@@ -178,6 +178,13 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let thirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+//        let pdVC = thirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+//        pdVC.product?[indexPath.row].id = lineItems?[indexPath.row]
+//        pdVC.lin
+//        self.navigationController?.pushViewController(pdVC, animated: true)
+    }
     
 }
 
