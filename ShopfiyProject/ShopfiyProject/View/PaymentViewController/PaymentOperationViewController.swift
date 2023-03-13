@@ -60,7 +60,7 @@ class PaymentOperationViewController: UIViewController {
             self.present(alert, animated: true)
         }
       else{
-           
+
             braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")//<<<mk
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
           let request = BTPayPalCheckoutRequest(amount: "\(Self.prices?.current_total_price ?? "")")
@@ -74,7 +74,7 @@ class PaymentOperationViewController: UIViewController {
                         let homeVC = firstStoryBoard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
                         self.navigationController?.pushViewController(homeVC, animated: true)
                     }
-                    
+
                 }
                 else if error != nil{
                     print("Error :\(error!)")
@@ -145,11 +145,11 @@ extension PaymentOperationViewController : PKPaymentAuthorizationViewControllerD
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true,completion: nil)
     }
-    
+
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
-    
+
 }
 
 extension PaymentOperationViewController : BTViewControllerPresentingDelegate{
