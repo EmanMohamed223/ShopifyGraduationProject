@@ -48,6 +48,10 @@ class PaymentOperationViewController: UIViewController {
             postOrder()
             let alert = UIAlertController(title: "Ordered Successfully", message: "The order will be arrived soon!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default){_ in
+                let firstStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                let homeVC = firstStoryBoard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+                self.navigationController?.pushViewController(homeVC, animated: true)
+                
             })
             self.present(alert, animated: true)
         }
@@ -62,6 +66,9 @@ class PaymentOperationViewController: UIViewController {
                 if responseNonce != nil {
                     DispatchQueue.main.async {
                         self.postOrder()
+                        let firstStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                        let homeVC = firstStoryBoard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+                        self.navigationController?.pushViewController(homeVC, animated: true)
                     }
                     
                 }
