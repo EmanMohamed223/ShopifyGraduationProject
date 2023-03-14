@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0go-uc-8RV">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0go-uc-8RV">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0go-uc-8RV" secondAttribute="height" multiplier="131:284" id="iqX-gJ-hu9"/>
@@ -466,6 +466,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="brandDetailsCollectionView" destination="Xgx-BM-o5f" id="NS1-id-8hf"/>
+                        <outlet property="searchbar" destination="6pO-dl-EEU" id="vSm-co-c6f"/>
                         <outlet property="subView" destination="HUj-u7-9NY" id="MfZ-b1-ywN"/>
                     </connections>
                 </viewController>

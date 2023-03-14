@@ -12,6 +12,7 @@ import SnackBar_swift
 class SearchViewController: UIViewController {
 
    
+    @IBOutlet weak var searchbar: UISearchBar!
     
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var brandDetailsCollectionView: UICollectionView!
@@ -47,7 +48,7 @@ class SearchViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
    
         self.brandDetailsCollectionView.reloadData()
-     
+        searchbar.delegate = self
     }
    
     @IBAction func cancelbtn(_ sender: Any) {
@@ -149,6 +150,10 @@ extension SearchViewController : UISearchBarDelegate{
         }
         self.brandDetailsCollectionView.reloadData()
     }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchbar.endEditing(true)
+    }
+   
 }
 extension SearchViewController {
     func data(flag : Int){
@@ -218,10 +223,4 @@ extension SearchViewController : FireActionInCategoryCellProtocol
     }
     
 }
-extension SearchViewController : UITextViewDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //.endEditing(true)
-        
-        return true
-    }
-}
+

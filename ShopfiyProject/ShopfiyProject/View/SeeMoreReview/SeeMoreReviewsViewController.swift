@@ -41,6 +41,7 @@ extension SeeMoreReviewsViewController: UITableViewDelegate, UITableViewDataSour
         let cell = moreReviewsTable.dequeueReusableCell(withIdentifier: "reviewtablecell", for: indexPath) as! ReviewTableViewCell
         cell.reviewLabel.text = reviewrcomment![indexPath.row]
         cell.reviewerImg.image = UIImage(named: reviwerImg![indexPath.row])
+
         cell.reviwerLabel.text = reviewrName![indexPath.row]
         return cell
     }

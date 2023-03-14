@@ -132,8 +132,19 @@ extension SignUpScreenViewController {
             }
 
             print("registered successfully")
-
+            let JSON = try? JSONSerialization.jsonObject(with: data!, options: [])
             
+        //    print( String(data: data!, encoding: .utf8) ?? "data")
+            if let dictionary = JSON as? [String: Any],
+                 let Customers = dictionary["Customer"] as? [[String: Any]]
+            {
+                Customers.forEach { customers in
+                    if customers["first_name"] as? String == self.usernameTxtfield.text{
+                        print("Found User")
+                        print(customers["first_name"] as? String ?? "")
+                        print(customers["id"] as? Int ?? 2023)
+                        print(customers["email"] as? String ?? "email")
+                    }}}
             UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
             UserDefaultsManager.shared.setCurrency(currency: "EGP")
 //            DispatchQueue.main.async {
