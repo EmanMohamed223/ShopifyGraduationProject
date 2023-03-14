@@ -189,9 +189,9 @@ extension IfLogedView : UITableViewDelegate, UITableViewDataSource{
         }
     }
     func  createLabel(message : String, Y : Int){
-        let toast = UILabel(frame: CGRect(x: self.bounds.size.width/2-250 , y: self.bounds.size.height - CGFloat(Y), width: self.bounds.size.width, height: 50))
-        toast.backgroundColor = UIColor.white.withAlphaComponent(0.6)
-        toast.textColor = UIColor.systemPink
+        let toast = UILabel(frame: CGRect(x: self.bounds.size.width/2-250 , y: self.bounds.size.height - CGFloat(Y), width: self.bounds.size.width+50, height: 50))
+        toast.backgroundColor = UIColor.systemPink.withAlphaComponent(0.1)
+        toast.textColor = UIColor.purple
         toast.font = .boldSystemFont(ofSize: 14)
         toast.textAlignment = .center
         toast.alpha = 1.0

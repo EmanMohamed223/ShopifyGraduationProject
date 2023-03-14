@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eman Mohamed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-YA-Gfv">
-                        <rect key="frame" x="30" y="13" width="224" height="33"/>
+                        <rect key="frame" x="30" y="13" width="236" height="23"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it was awesome , i realy love it " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqk-44-jP5">
-                        <rect key="frame" x="30" y="54" width="255" height="29"/>
+                        <rect key="frame" x="30" y="44" width="268.66666666666669" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="highlightedColor" red="0.45529580120000002" green="0.18519541619999999" blue="0.21098342540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -33,9 +33,15 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qvg-Xn-oOn">
-                        <rect key="frame" x="293" y="6" width="100" height="100"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Qvg-Xn-oOn">
+                        <rect key="frame" x="305" y="8" width="100" height="100"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="9qq-oe-ctg"/>
+                            <constraint firstAttribute="height" constant="100" id="URv-l9-Te4"/>
+                            <constraint firstAttribute="width" secondItem="Qvg-Xn-oOn" secondAttribute="height" multiplier="1:1" id="ofV-19-A6j"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="0.51690781119999996" green="0.35622763629999998" blue="0.44214919209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,20 +49,21 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.8690543771" green="0.71348446610000005" blue="0.67135649919999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="leading" secondItem="eqk-44-jP5" secondAttribute="trailing" constant="6" id="8tO-KS-OsI"/>
                     <constraint firstItem="eqk-44-jP5" firstAttribute="leading" secondItem="zq6-YA-Gfv" secondAttribute="leading" id="GSI-XE-rsy"/>
-                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="leading" secondItem="eqk-44-jP5" secondAttribute="trailing" constant="8" symbolic="YES" id="Ixo-2S-qze"/>
+                    <constraint firstAttribute="bottom" secondItem="Qvg-Xn-oOn" secondAttribute="bottom" constant="8" id="HXd-Eo-HLv"/>
                     <constraint firstItem="zq6-YA-Gfv" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.292035" id="OjH-5V-Bf1"/>
+                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="SIs-RP-7tn"/>
+                    <constraint firstAttribute="bottom" secondItem="Qvg-Xn-oOn" secondAttribute="bottom" constant="10" id="UuL-FB-zP0"/>
                     <constraint firstItem="zq6-YA-Gfv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Vci-bn-Cpt"/>
                     <constraint firstItem="zq6-YA-Gfv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Yfs-tQ-9pk"/>
                     <constraint firstItem="eqk-44-jP5" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.256637" id="Ygt-X9-CFI"/>
                     <constraint firstItem="eqk-44-jP5" firstAttribute="top" secondItem="zq6-YA-Gfv" secondAttribute="bottom" constant="8" symbolic="YES" id="Zny-tF-l4A"/>
-                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.884956" id="aSa-UH-EAP"/>
-                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.208768" id="b8l-a4-bqR"/>
                     <constraint firstItem="zq6-YA-Gfv" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.467641" id="gTO-UB-swr"/>
                     <constraint firstItem="eqk-44-jP5" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.532359" id="jmH-b9-24P"/>
-                    <constraint firstItem="Qvg-Xn-oOn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="v11-zp-wCt"/>
+                    <constraint firstAttribute="trailing" secondItem="Qvg-Xn-oOn" secondAttribute="trailing" constant="100" id="nye-Zm-owk"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -83,7 +90,7 @@
                 <outlet property="reviewerImg" destination="Qvg-Xn-oOn" id="yca-ll-f9N"/>
                 <outlet property="reviwerLabel" destination="zq6-YA-Gfv" id="DsK-9X-Pgb"/>
             </connections>
-            <point key="canvasLocation" x="96.946564885496173" y="20.774647887323944"/>
+            <point key="canvasLocation" x="217.55725190839695" y="-15.140845070422536"/>
         </tableViewCell>
     </objects>
 </document>
