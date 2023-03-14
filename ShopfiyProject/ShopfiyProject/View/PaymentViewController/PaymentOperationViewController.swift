@@ -17,6 +17,7 @@ class PaymentOperationViewController: UIViewController {
     
     
     @IBOutlet weak var grandTotalLabel: UILabel!
+    @IBOutlet weak var currency: UILabel!
     
     
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
@@ -44,6 +45,7 @@ class PaymentOperationViewController: UIViewController {
     
           lineItems = PaymentViewController.lineItems
          grandTotalLabel.text = Self.grandTotal
+         currency.text = UserDefaultsManager.shared.getCurrency()
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt

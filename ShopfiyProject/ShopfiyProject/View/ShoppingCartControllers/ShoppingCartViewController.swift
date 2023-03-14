@@ -176,7 +176,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteFromAPi(indexPath: indexPath)
+                deleteFromAPi(indexPath: indexPath)
         }
     }
     
@@ -253,29 +253,54 @@ extension ShoppingCartViewController{
     }
     
     func deleteFromAPi(indexPath : IndexPath){
-        let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
-            if !self.network.isReachable(){
-                self.deleteItem(indexPath: indexPath)
-            }
-            else{
+        
+        if lineItems?.count == 1{
+            let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
                 self.lineItems?.remove(at: indexPath.row)
-                let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
-                let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
-                self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
-                    if response.statusCode >= 200 && response.statusCode <= 299{
-                        DispatchQueue.main.async {
-                            
-                            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-                            self.calcSubTotalInc()
+                let draftOrderId = UserDefaultsManager.shared.getDraftOrderID() ?? 0
+                let endpoint = "draft_orders/\(draftOrderId).json"
+                self.shoppingCartViewModel.deleteDraftOrder(url: endpoint)
+                DispatchQueue.main.async {
+                    UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+                    UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
+                    self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                    self.tableView.reloadData()
+                    self.subTotalLabel.text = ""
+                }
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
+            })
+            self.present(alert, animated: true)
+            
+        }
+        
+        else{
+            let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
+                if !self.network.isReachable(){
+                    self.deleteItem(indexPath: indexPath)
+                }
+                else{
+                    self.lineItems?.remove(at: indexPath.row)
+                    let updatedLineItems = ShoppingCartClass(line_items: self.lineItems)
+                    let draftOrder = ShoppingCartResponse(draft_order: updatedLineItems)
+                    self.viewModelProduct.callNetworkServiceManagerToPut(draftOrder: draftOrder) { response in
+                        if response.statusCode >= 200 && response.statusCode <= 299{
+                            DispatchQueue.main.async {
+                                
+                                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                                self.calcSubTotalInc()
+                            }
                         }
                     }
                 }
-            }
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
-        })
-        self.present(alert, animated: true)
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default){_ in
+            })
+            self.present(alert, animated: true)
+        }
+        
     }
     
 }

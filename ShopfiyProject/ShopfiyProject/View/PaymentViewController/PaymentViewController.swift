@@ -93,7 +93,8 @@ class PaymentViewController: UIViewController {
                             validationLabel.text = ""
                             discountLabel.text = String("30 \(currency)")
                             SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
-                            discountLabel.text = String("-30 \(currency)")
+                            //discountLabel.text = String("-30 \(currency)")
+                            discountLabel.text = calcCurrency(price: "30")
                             grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
                             break
                         }
