@@ -13,6 +13,9 @@ class ShoppingCartViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subTotalLabel: UILabel!
     
+    
+    @IBOutlet weak var proceedToCheckout: UIButton!
+    
     var lineItems : [LineItem]?
     var products : [Products]?
     static var shoppingCart : ShoppingCartResponse?
@@ -86,9 +89,11 @@ class ShoppingCartViewController: UIViewController {
             
             if !network.isReachable(){
                 networkFlag = true
+                proceedToCheckout.isEnabled = false
             }
             else{
                 networkFlag = false
+                proceedToCheckout.isEnabled = true
             }
             tableView.reloadData()
         }
@@ -351,6 +356,8 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
     }
     
     func deleteFromCart(indexPath : IndexPath){
+        tempIndexPath = indexPath
+        deleteItemFromCoreData(indexPath : tempIndexPath)
         deleteFromAPi(indexPath: indexPath)
     }
     

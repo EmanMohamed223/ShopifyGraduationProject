@@ -14,7 +14,10 @@ class DeleteCoreData : DeleteFromCoreProtocol{
         //3
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ShoppingCart")
         //4
-        let myPredicate = NSPredicate(format: "userID == %@", "\(userID)", " && productID == %@",  "\(productID)")
+        //let myPredicate = NSPredicate(format: "userID == %@", "\(userID)", " && productID == %@",  "\(productID)")
+        
+        let myPredicate = NSPredicate(format: "userID == %@ && productID == %@", "\(userID)",  "\(productID)")
+        
         fetchRequest.predicate = myPredicate
         do{
             let productToBeRemoved = try managedContext.fetch(fetchRequest)

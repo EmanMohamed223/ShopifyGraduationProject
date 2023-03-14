@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SnackBar_swift
+import Reachability
 
 class ShoppingCartTableViewCell: UITableViewCell {
 
@@ -16,6 +17,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var numOfItems: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
+    
+    
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var subBtn: UIButton!
     
     var delegate : ShoppingCartDelegate?
     var viewModelProduct = ViewModelProduct()
@@ -28,11 +33,20 @@ class ShoppingCartTableViewCell: UITableViewCell {
     var num = 1
     var indexPath : IndexPath  = IndexPath(row: 0, section: 0)
     var priceQ : [Int : Int] = [:]
+    var network : Reachability!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         productTitle.adjustsFontSizeToFitWidth = true
-        
+        network = Reachability.forInternetConnection()
+        if !network.isReachable(){
+            addBtn.isEnabled = false
+            subBtn.isEnabled = false
+        }
+        else{
+            addBtn.isEnabled = true
+            subBtn.isEnabled = true
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +56,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
     
     @IBAction func increaseBtn(_ sender: Any) {
-        if num < 5{ //Replace the static with lineItem?.grams  <<<<<<<<<<<<<<<<
+        if num < lineItems[indexPath.row].grams ?? 1{ //Replace the static with lineItem?.grams  <<<<<<<<<<<<<<<<
             num += 1
             numOfItems.text = String(num)
             lineItems[indexPath.row].quantity = num

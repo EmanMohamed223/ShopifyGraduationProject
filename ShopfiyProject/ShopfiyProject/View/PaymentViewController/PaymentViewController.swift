@@ -190,3 +190,12 @@ extension PaymentViewController{
         return grandTotal
     }
 }
+
+extension PaymentViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      
+        couponTxtField.endEditing(true)
+        return true
+    }
+   
+}

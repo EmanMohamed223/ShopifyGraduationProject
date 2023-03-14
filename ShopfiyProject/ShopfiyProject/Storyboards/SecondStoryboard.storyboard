@@ -295,21 +295,21 @@
                                 <rect key="frame" x="163" y="134" width="109" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.51360636950000005" green="0.33898368480000002" blue="0.42663329840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iil-0a-LNv">
                                 <rect key="frame" x="276" y="134" width="97" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.51360636950000005" green="0.33898368480000002" blue="0.42663329840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grand Total:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ja3-81-dwA">
                                 <rect key="frame" x="2" y="134" width="153" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.51360636950000005" green="0.33898368480000002" blue="0.42663329840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -971,11 +971,13 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <outlet property="addBtn" destination="PO6-nf-0Uz" id="FqH-kx-BI8"/>
                                             <outlet property="currencyLabel" destination="pyF-HC-MMg" id="Ird-Uc-ceZ"/>
                                             <outlet property="numOfItems" destination="5yC-hE-CMo" id="Mne-7Z-PyF"/>
                                             <outlet property="productImg" destination="ZIu-5r-Ui1" id="3eO-fx-XiO"/>
                                             <outlet property="productPrice" destination="3Kz-Q0-OMf" id="sl1-Rr-y5g"/>
                                             <outlet property="productTitle" destination="ZaL-Rl-6EB" id="lAb-oZ-jK2"/>
+                                            <outlet property="subBtn" destination="7lh-R6-YBc" id="mOJ-55-E5k"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1069,6 +1071,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Shopping Cart" id="oUi-IT-qXR"/>
                     <connections>
+                        <outlet property="proceedToCheckout" destination="DTf-fA-u6A" id="rzJ-Zx-7JR"/>
                         <outlet property="subTotalLabel" destination="rPI-a9-gWQ" id="RN7-t7-fnB"/>
                         <outlet property="tableView" destination="kNs-41-9le" id="hJL-ah-juc"/>
                     </connections>
@@ -1181,14 +1184,14 @@
                                                                 <constraint firstItem="ah6-92-vjt" firstAttribute="top" secondItem="8ud-5K-AbS" secondAttribute="top" id="wi1-DW-NdE"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                    <color key="value" red="0.87058823529999996" green="0.71316105129999996" blue="0.66810476780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                     <real key="value" value="5"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.67567294840000003" green="0.49093860389999999" blue="0.5332637429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </collectionViewCellContentView>
@@ -1399,7 +1402,7 @@
                                                 <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.87058823529411766" green="0.71372549019607845" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.67567294840000003" green="0.49093860389999999" blue="0.5332637429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="default">

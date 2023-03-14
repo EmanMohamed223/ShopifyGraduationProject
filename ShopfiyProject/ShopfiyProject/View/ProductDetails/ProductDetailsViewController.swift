@@ -45,6 +45,8 @@ class ProductDetailsViewController: UIViewController {
     var productDetailsViewModel : ProductDetailsViewModel?
     var isFav: Bool?
     
+    var flag = false
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewWillAppear(_ animated: Bool) {
          self.isFav = self.productDetailsViewModel?.getProductsInFavourites(appDelegate: self.appDelegate, product: &(self.product!))
@@ -165,14 +167,30 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         else {
-            addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
             
-            if !UserDefaultsManager.shared.getDraftFlag(){ // if false then post
-                postDraftOrder()
+            let newProducts = fetchFromCoreData()
+            if (newProducts.count != 0 ){
+                for index in 0...(newProducts.count)-1{
+                    if newProducts[index].id == product?.id{
+                        self.showToastMessage(message: "This item is already added to the shopping cart", color: .darkText)
+                        flag = true
+                        break
+                    }
+                }
             }
-            else{   //if true then put on it
-                putToDraftOrder()
+            
+            
+            if !flag{
+                addToCoreData(product : product!,userID: UserDefaultsManager.shared.getUserID()!)
+                
+                if !UserDefaultsManager.shared.getDraftFlag(){ // if false then post
+                    postDraftOrder()
+                }
+                else{   //if true then put on it
+                    putToDraftOrder()
+                }
             }
+            
             
         }
         
@@ -380,13 +398,23 @@ extension ProductDetailsViewController {
 
         }
     
-    func addToCoreData(product : Products,userID : Int){
+    func addToCoreData(product : Products, userID : Int){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let saveToCoreViewModel = CoreDataViewModel()
         saveToCoreViewModel.callManagerToSave(product : product, userID : userID, appDelegate : appDelegate)
         print(userID)
         self.showToastMessage(message: "Item added to shopping cart", color: .darkText)
     }
+    
+    
+    func fetchFromCoreData() -> [Products]{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let fetchViewModel = CoreDataViewModel()
+        let userID = UserDefaultsManager.shared.getUserID() ?? 0
+        let products = fetchViewModel.callManagerToFetch(appDelegate : appDelegate, userID : userID)
+        return products ?? []
+    }
+    
     
     func showToastMessage(message: String, color: UIColor) {
             let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
