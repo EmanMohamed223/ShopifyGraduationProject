@@ -15,7 +15,7 @@ class SplashViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         do {
-            let gif = try UIImage(gifName: "splashShop.gif")
+            let gif = try UIImage(gifName: "spShop.gif")
             self.GIF.setGifImage(gif, loopCount: -1) // Will loop forever
         } catch {
             print(error)
