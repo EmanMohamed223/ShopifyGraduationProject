@@ -19,7 +19,8 @@ class SaveCoreData{
         
         lineItemsArray.setValue(product.id, forKey: "productID")
         print("product ID: ", product.id)
-        lineItemsArray.setValue(product.variants?[0].id, forKey: "userID")
+        let userId = UserDefaultsManager.shared.getUserID()
+        lineItemsArray.setValue(userId, forKey: "userID")
         lineItemsArray.setValue(product.title, forKey: "title")
         lineItemsArray.setValue(product.variants?[0].price, forKey: "price")
         lineItemsArray.setValue(product.variants?[0].inventory_quantity, forKey: "quantity")

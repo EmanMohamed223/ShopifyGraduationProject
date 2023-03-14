@@ -42,7 +42,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
     
     @IBAction func increaseBtn(_ sender: Any) {
-        if num < lineItems[indexPath.row].grams ?? 1{ //Replace the static with lineItem?.grams  <<<<<<<<<<<<<<<<
+        if num < 5{ //Replace the static with lineItem?.grams  <<<<<<<<<<<<<<<<
             num += 1
             numOfItems.text = String(num)
             lineItems[indexPath.row].quantity = num
@@ -79,6 +79,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     func setNum(){
         print(indexPath.row)
+        
         num = lineItems[indexPath.row].quantity ?? 1
     }
     

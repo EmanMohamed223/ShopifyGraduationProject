@@ -24,6 +24,8 @@ class ShoppingCartViewController: UIViewController {
     var subTotal : Float!
     var price : String!
     var counter = 0
+    var networkFlag = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,7 @@ class ShoppingCartViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         subTotal = 0
         price = "0"
+        
         //UserDefaultsManager.shared.setDraftOrderID(draftOrderID: 1111195713817)
         //print(UserDefaultsManager.shared.getDraftOrderID())
         //checkAccessability()
@@ -77,10 +80,12 @@ class ShoppingCartViewController: UIViewController {
         else if !network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
+            networkFlag = true
             print(UserDefaultsManager.shared.getUserID()!)
             tableView.reloadData()
         }
         else{
+            networkFlag = false
             getDraftOrders()
         }
         tableView.reloadData()
@@ -143,7 +148,11 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         cell.indexPath = indexPath
         cell.lineItems = []
         cell.lineItems = lineItems ?? []
-        cell.setNum()
+        
+        if !networkFlag{
+            cell.setNum()
+        }
+        
         
         if !network.isReachable(){      //get from coreData
             cell.productTitle.text = products?[indexPath.row].title
@@ -176,6 +185,7 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+                deleteItemFromCoreData(indexPath : indexPath)
                 deleteFromAPi(indexPath: indexPath)
         }
     }
@@ -193,14 +203,14 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
 
 extension ShoppingCartViewController{
     
-    func deleteItem(indexPath : IndexPath){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        viewModel.callManagerToDelete(appDelegate: appDelegate,productID: (products?[indexPath.section].id)!, userID: UserDefaultsManager.shared.getUserID()!)
-            products?.remove(at: indexPath.section)
-            let indexSet = NSMutableIndexSet()
-            indexSet.add(indexPath.section)
-            tableView.deleteSections(indexSet as IndexSet, with: .automatic)
-            tableView.reloadData()
+    func deleteItemFromCoreData(indexPath : IndexPath){
+        if !network.isReachable(){
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            viewModel.callManagerToDelete(appDelegate: appDelegate,productID: products?[indexPath.row].id ?? 0, userID: UserDefaultsManager.shared.getUserID()!)
+                products?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                tableView.reloadData()
+        }
     }
     
     func getDraftOrders(){
@@ -279,7 +289,7 @@ extension ShoppingCartViewController{
             let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
                 if !self.network.isReachable(){
-                    self.deleteItem(indexPath: indexPath)
+                    //self.deleteItem(indexPath: indexPath)
                 }
                 else{
                     self.lineItems?.remove(at: indexPath.row)

@@ -18,8 +18,10 @@ class FetchCoreData{
         //3
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:"ShoppingCart")
         //4
-        let myPredicate = NSPredicate(format: "userID == %@", "\(userID)")
+        let userId = UserDefaultsManager.shared.getUserID() ?? 0 //"\(league.league_key ?? 0)"
+        let myPredicate = NSPredicate(format: "userID == %@", "\(userId)")
         fetchRequest.predicate = myPredicate
+        
         do{
             productsNSManagedObject = try managedContext.fetch(fetchRequest)
         }catch let error as NSError{
