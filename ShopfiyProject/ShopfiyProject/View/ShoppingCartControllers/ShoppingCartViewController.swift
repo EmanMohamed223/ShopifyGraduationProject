@@ -88,11 +88,11 @@ class ShoppingCartViewController: UIViewController {
     
     
     @IBAction func checkoutBtn(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressViewController
         AddressViewController.flag = false
         PaymentViewController.lineItems = []
         PaymentViewController.lineItems = lineItems
         PaymentViewController.subTotal = 0.0
+        subTotal = Float(subTotalLabel.text ?? "")
         PaymentViewController.subTotal = subTotal
         putInDraftOrder()
     }
@@ -154,12 +154,14 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         }
         else{
             
-            //cell.currencyLabel.text = setCurrencyLabel()
+            cell.currencyLabel.text = setCurrencyLabel()
             //cell.productPrice.text = calcCurrency(price: lineItems?[indexPath.row].price ?? "")
-            //let price = lineItems?[indexPath.row].price
+            let price = lineItems?[indexPath.row].price
+            cell.productPrice.text = calcCurrency(price: price ?? "")
             //lineItems?[indexPath.row].price = calcCurrency(price : price)
+            
             cell.productTitle.text = lineItems?[indexPath.row].title
-            cell.productPrice.text = lineItems?[indexPath.row].price
+            //cell.productPrice.text = lineItems?[indexPath.row].price
             cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
             cell.productImg.kf.setImage(with: URL(string: lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
             cell.priceQ = [indexPath.row : lineItems?[indexPath.row].quantity ?? 1]
@@ -285,18 +287,19 @@ extension ShoppingCartViewController : ShoppingCartDelegate{
             let price1 = (Float(lineItems?[index].price ?? "") ?? 0.0) * (Float(lineItems?[index].quantity ?? 0))
             subTotal += price1
         }
-        //let totalInCurrency = calcCurrency(price: String(format: "%.2f", subTotal))
-        //subTotalLabel.text = String(format: "%.2f", totalInCurrency)
-        subTotalLabel.text = String(format: "%.2f", subTotal)
+        let totalInCurrency = calcCurrency(price: String(subTotal))
+        subTotalLabel.text = totalInCurrency
+       // subTotalLabel.text = String(format: "%.2f", subTotal)
     }
     
     func calcSubTotalDec(price: String) {
         let price1 = Float(price) ?? 0.0
         subTotal -= price1
-        subTotalLabel.text = String(format: "%.2f", subTotal)
-        //let totalInCurrency = calcCurrency(price: String(format: "%.2f", subTotal))
+        //subTotalLabel.text = String(format: "%.2f", subTotal)
+        let totalInCurrency = calcCurrency(price: String(subTotal))
+        subTotalLabel.text = totalInCurrency
         //subTotalLabel.text = String(format: "%.2f", totalInCurrency)
-        subTotalLabel.text = String(format: "%.2f", subTotal)
+        //subTotalLabel.text = String(format: "%.2f", subTotal)
     }
     
     func setLineItems(lineItem : LineItem, index : Int){

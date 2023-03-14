@@ -51,6 +51,12 @@ class PaymentViewController: UIViewController {
         subTotalLabel.text = String(format: "%.2f \(currency!)", PaymentViewController.subTotal ?? 0)
         grandTotalLabel.text = String(format: "%.2f \(currency!)", calcGrandTotal())
         
+        
+        //let subTotal = calcCurrency(price: currency)
+//        shippingFeesLabel.text = String("15 \(currency!)")
+//        subTotalLabel.text = String(format: "%.2f \(currency!)", PaymentViewController.subTotal ?? 0)
+//        grandTotalLabel.text = String(format: "%.2f \(currency!)", calcGrandTotal())
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,9 +143,13 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PaymentCollectionViewCell
         cell.itemName.adjustsFontSizeToFitWidth = true
-        cell.itemName.text = PaymentViewController.lineItems?[indexPath.row].title
-        cell.itemPrice.text = PaymentViewController.lineItems?[indexPath.row].price
-        cell.itemImage.kf.setImage(with: URL(string: PaymentViewController.lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
+        cell.itemName.text = Self.lineItems?[indexPath.row].title
+        //cell.itemPrice.text = PaymentViewController.lineItems?[indexPath.row].price
+        
+        let priceByCurrency = Self.lineItems?[indexPath.row].price
+        cell.itemPrice.text = calcCurrency(price: priceByCurrency ?? "")
+        
+        cell.itemImage.kf.setImage(with: URL(string: Self.lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
         price = Int(cell.itemPrice.text ?? "") ?? 0
         subTotal += price
         //subTotalLabel.text = (subTotal).formatted()
