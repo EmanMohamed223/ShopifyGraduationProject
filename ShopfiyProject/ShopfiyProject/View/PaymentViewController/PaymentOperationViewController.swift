@@ -28,7 +28,7 @@ class PaymentOperationViewController: UIViewController {
     var arrayOrders : [Order] = []
 
 
-
+    var viewModel = CoreDataViewModel()
 
     var orderVm : orderViewModel?
 
@@ -131,7 +131,9 @@ class PaymentOperationViewController: UIViewController {
             guard let response = response else {return}
             if response.statusCode >= 200 && response.statusCode <= 299{
                 DispatchQueue.main.async {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     self.deleteDraftOrder()
+                    self.viewModel.callManagerToDeleteAll(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
                     UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
                     UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
                     UserDefaultsManager.shared.setCouponStatus(coupon: true)

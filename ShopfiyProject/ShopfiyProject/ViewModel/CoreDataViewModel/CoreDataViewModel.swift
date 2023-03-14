@@ -19,4 +19,8 @@ class CoreDataViewModel{
     func callManagerToDelete(appDelegate : AppDelegate,productID : Int, userID : Int){
         CoreDataManager.getCoreObj().deleteFromCoreData(appDelegate: appDelegate, productID: productID, userID: userID)
     }
+    
+    func callManagerToDeleteAll(appDelegate : AppDelegate, userID : Int){
+        CoreDataManager.getCoreObj().deleteAll(appDelegate: appDelegate, userID: userID)
+    }
 }

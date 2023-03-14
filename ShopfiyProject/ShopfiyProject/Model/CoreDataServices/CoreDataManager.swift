@@ -34,4 +34,9 @@ class CoreDataManager : SavetoCoreProtocol, FetchFromCoreProtocol, DeleteFromCor
         let deleteCoreData = DeleteCoreData()
         deleteCoreData.deleteFromCoreData(appDelegate: appDelegate, productID : productID, userID: userID)
     }
+    
+    func deleteAll(appDelegate: AppDelegate ,userID : Int){
+        let deleteCoreData = DeleteCoreData()
+        deleteCoreData.deleteAllCoreData(appDelegate: appDelegate, userID: userID)
+    }
 }

@@ -25,7 +25,7 @@ class ShoppingCartViewController: UIViewController {
     var price : String!
     var counter = 0
     var networkFlag = false
-    
+    var tempIndexPath : IndexPath  = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,19 +76,24 @@ class ShoppingCartViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        
-        else if !network.isReachable(){
+        else{
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             products = viewModel.callManagerToFetch(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
-            networkFlag = true
-            print(UserDefaultsManager.shared.getUserID()!)
+            if network.isReachable(){
+                getDraftOrders()
+            }
+            
+            
+            if !network.isReachable(){
+                networkFlag = true
+            }
+            else{
+                networkFlag = false
+            }
             tableView.reloadData()
         }
-        else{
-            networkFlag = false
-            getDraftOrders()
-        }
-        tableView.reloadData()
+        
+        
     }
     
     
@@ -185,8 +190,9 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-                deleteItemFromCoreData(indexPath : indexPath)
-                deleteFromAPi(indexPath: indexPath)
+            tempIndexPath = indexPath
+            deleteItemFromCoreData(indexPath : tempIndexPath)
+            deleteFromAPi(indexPath: tempIndexPath)
         }
     }
     
@@ -207,12 +213,12 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
 extension ShoppingCartViewController{
     
     func deleteItemFromCoreData(indexPath : IndexPath){
-        if !network.isReachable(){
+        if network.isReachable(){
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             viewModel.callManagerToDelete(appDelegate: appDelegate,productID: products?[indexPath.row].id ?? 0, userID: UserDefaultsManager.shared.getUserID()!)
                 products?.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-                tableView.reloadData()
+                //tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                //tableView.reloadData()
         }
     }
     
