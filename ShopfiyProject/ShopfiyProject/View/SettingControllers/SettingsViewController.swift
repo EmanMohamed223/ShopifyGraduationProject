@@ -27,6 +27,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func addressBtn(_ sender: Any) {
+        AddressViewController.flag = true
     }
     
     @IBAction func currencyBtn(_ sender: Any) {

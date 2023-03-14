@@ -292,7 +292,6 @@
 		C9E9767E29A7EFE6001481C6 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		C9E9768229A7F229001481C6 /* CreditCardDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardDetails.swift; sourceTree = "<group>"; };
 		C9E9768729A82B9C001481C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		C9F2BA8529ABAD87002DCC63 /* SaveToCoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCoreViewModel.swift; sourceTree = "<group>"; };
 		DCBE50A2D9D2F1FB0FDBA1AC /* Pods_ShopfiyProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopfiyProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AAFA5FFC1CC1A66E5FA6B4 /* Pods_ShopfiyProject_ShopfiyProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopfiyProject_ShopfiyProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EA04484EF8F87AFCA54F82 /* Pods-ShopfiyProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopfiyProject.debug.xcconfig"; path = "Target Support Files/Pods-ShopfiyProject/Pods-ShopfiyProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -789,7 +788,6 @@
 		C97397E229AAB9A200051F6F /* CoreDataViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C9F2BA8529ABAD87002DCC63 /* SaveToCoreViewModel.swift */,
 				C9A1D19729B5F58E002193C4 /* CoreDataViewModel.swift */,
 			);
 			path = CoreDataViewModel;

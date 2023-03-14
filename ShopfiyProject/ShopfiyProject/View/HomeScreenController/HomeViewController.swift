@@ -98,10 +98,10 @@ extension HomeViewController :UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offer", for: indexPath) as! OffersCollectionViewCell
         cell.cornerRadius = CGFloat(20)
         if indexPath.row == 0{
-            cell.offerImage.image = UIImage(named: "offer")
+            cell.offerImage.image = UIImage(named: "ad1")
         }
         else{
-            cell.offerImage.image = UIImage(named: "ads1")
+            cell.offerImage.image = UIImage(named: "ad4")
         }
         return cell
     }

@@ -16,6 +16,10 @@ class PaymentOperationViewController: UIViewController {
     var shoppingCartViewModel = ShoppingCartViewModel()
     
     
+    @IBOutlet weak var grandTotalLabel: UILabel!
+    @IBOutlet weak var currency: UILabel!
+    
+    
    let authorization = "sandbox_8h5229nh_jpbyz2k4fnvh6fvt"
     var paymentViewModel = PaymentViewModel()
     var paymentRequest = PKPaymentRequest()
@@ -24,13 +28,13 @@ class PaymentOperationViewController: UIViewController {
     var arrayOrders : [Order] = []
 
 
-
+    var viewModel = CoreDataViewModel()
 
     var orderVm : orderViewModel?
 
     var lineItems : [LineItem]?
     
-
+    static var grandTotal : String?
     static var lineItems : [LineItem]?
 
     static var prices : Price?
@@ -40,6 +44,8 @@ class PaymentOperationViewController: UIViewController {
         super.viewDidLoad()
     
           lineItems = PaymentViewController.lineItems
+         grandTotalLabel.text = Self.grandTotal
+         currency.text = UserDefaultsManager.shared.getCurrency()
     }
     
     func startCheckout(){//sandbox_zjkyng8w_jpbyz2k4fnvh6fvt
@@ -125,9 +131,12 @@ class PaymentOperationViewController: UIViewController {
             guard let response = response else {return}
             if response.statusCode >= 200 && response.statusCode <= 299{
                 DispatchQueue.main.async {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     self.deleteDraftOrder()
+                    self.viewModel.callManagerToDeleteAll(appDelegate: appDelegate, userID: UserDefaultsManager.shared.getUserID()!)
                     UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
                     UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+                    UserDefaultsManager.shared.setCouponStatus(coupon: true)
                 }
             }
         }

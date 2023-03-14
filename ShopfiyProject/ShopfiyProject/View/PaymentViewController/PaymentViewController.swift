@@ -51,6 +51,12 @@ class PaymentViewController: UIViewController {
         subTotalLabel.text = String(format: "%.2f \(currency!)", PaymentViewController.subTotal ?? 0)
         grandTotalLabel.text = String(format: "%.2f \(currency!)", calcGrandTotal())
         
+        
+        //let subTotal = calcCurrency(price: currency)
+//        shippingFeesLabel.text = String("15 \(currency!)")
+//        subTotalLabel.text = String(format: "%.2f \(currency!)", PaymentViewController.subTotal ?? 0)
+//        grandTotalLabel.text = String(format: "%.2f \(currency!)", calcGrandTotal())
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,13 +87,19 @@ class PaymentViewController: UIViewController {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 indicator.stopAnimating()
                             }
-                            UserDefaultsManager.shared.setCouponStatus(coupon: true)
+                            //UserDefaultsManager.shared.setCouponStatus(coupon: true)
                             validate.backgroundColor = UIColor(named: "gray")
                             validate.setTitle("validated", for: .selected)
                             validationLabel.text = ""
                             discountLabel.text = String("30 \(currency)")
                             SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
-                            discountLabel.text = String("-30 \(currency)")
+                            //discountLabel.text = String("-30 \(currency)")
+                            if UserDefaultsManager.shared.getCurrency() == "USD"{
+                                discountLabel.text = calcCurrency(price: "4")
+                            }
+                            else{
+                                discountLabel.text = calcCurrency(price: "30")
+                            }
                             grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
                             break
                         }
@@ -97,9 +109,6 @@ class PaymentViewController: UIViewController {
                     }
                 }
             
-        }
-        else if couponTxtField.text == ""{
-            validationLabel.text = "Enter the coupon code"
         }
         else{
             validationLabel.text = "Enter the coupon code"
@@ -113,6 +122,7 @@ class PaymentViewController: UIViewController {
         PaymentOperationViewController.prices = getPrices()
         vc?.address = getCustomerAddress()
         PaymentOperationViewController.lineItems = PaymentViewController.lineItems
+        PaymentOperationViewController.grandTotal = grandTotalLabel.text
        
     }
 
@@ -136,9 +146,13 @@ extension PaymentViewController : UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PaymentCollectionViewCell
         cell.itemName.adjustsFontSizeToFitWidth = true
-        cell.itemName.text = PaymentViewController.lineItems?[indexPath.row].title
-        cell.itemPrice.text = PaymentViewController.lineItems?[indexPath.row].price
-        cell.itemImage.kf.setImage(with: URL(string: PaymentViewController.lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
+        cell.itemName.text = Self.lineItems?[indexPath.row].title
+        //cell.itemPrice.text = PaymentViewController.lineItems?[indexPath.row].price
+        
+        let priceByCurrency = Self.lineItems?[indexPath.row].price
+        cell.itemPrice.text = calcCurrency(price: priceByCurrency ?? "")
+        
+        cell.itemImage.kf.setImage(with: URL(string: Self.lineItems?[indexPath.row].sku ?? "load"),placeholder: UIImage(named: "load"))
         price = Int(cell.itemPrice.text ?? "") ?? 0
         subTotal += price
         //subTotalLabel.text = (subTotal).formatted()
@@ -175,4 +189,13 @@ extension PaymentViewController{
         }
         return grandTotal
     }
+}
+
+extension PaymentViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      
+        couponTxtField.endEditing(true)
+        return true
+    }
+   
 }

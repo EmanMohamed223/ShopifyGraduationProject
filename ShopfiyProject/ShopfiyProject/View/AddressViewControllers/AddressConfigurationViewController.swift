@@ -29,6 +29,10 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
         mapViewModel = MapViewModel()
         addressViewModel = AddressViewModel()
         
+        countryTxtField.delegate = self
+        cityTxtField.delegate = self
+        streetTxtField.delegate = self
+        
         if(address != nil){
             countryTxtField.text = address?.country
             cityTxtField.text = address?.city
@@ -117,4 +121,14 @@ class AddressConfigurationViewController: UIViewController,MKMapViewDelegate {
 
 }
 
+extension AddressConfigurationViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      
+        countryTxtField.endEditing(true)
+        cityTxtField.endEditing(true)
+        streetTxtField.endEditing(true)
+        return true
+    }
+   
+}
 
