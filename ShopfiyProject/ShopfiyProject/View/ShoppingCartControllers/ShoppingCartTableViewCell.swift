@@ -61,7 +61,8 @@ class ShoppingCartTableViewCell: UITableViewCell {
             numOfItems.text = String(num)
             lineItems[indexPath.row].quantity = num
             delegate?.setLineItems(lineItem: lineItems[indexPath.row], index : indexPath.row)
-            delegate?.calcSubTotalDec(price: productPrice.text ?? "")
+            //delegate?.calcSubTotalDec(price: productPrice.text ?? "")
+            delegate?.calcSubTotalDec(price: lineItems[indexPath.row].price ?? "")
         }
         else{
             let alert = UIAlertController(title: "Remove Product", message: "If you want to delete this item click on the trash icon or just swipe it!", preferredStyle: .alert)

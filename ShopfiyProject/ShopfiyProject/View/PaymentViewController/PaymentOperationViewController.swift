@@ -134,6 +134,7 @@ class PaymentOperationViewController: UIViewController {
                     self.deleteDraftOrder()
                     UserDefaultsManager.shared.setDraftOrderID(draftOrderID: nil)
                     UserDefaultsManager.shared.setDraftFlag(draftFlag: false)
+                    UserDefaultsManager.shared.setCouponStatus(coupon: true)
                 }
             }
         }

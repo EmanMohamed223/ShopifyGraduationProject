@@ -163,12 +163,12 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
         }
         else{
             
-            cell.currencyLabel.text = setCurrencyLabel()
+            //cell.currencyLabel.text = setCurrencyLabel()
             //cell.productPrice.text = calcCurrency(price: lineItems?[indexPath.row].price ?? "")
             let price = lineItems?[indexPath.row].price
             cell.productPrice.text = calcCurrency(price: price ?? "")
             //lineItems?[indexPath.row].price = calcCurrency(price : price)
-            
+            cell.productPrice.text?.append(contentsOf: " \(setCurrencyLabel()) /item")
             cell.productTitle.text = lineItems?[indexPath.row].title
             //cell.productPrice.text = lineItems?[indexPath.row].price
             cell.numOfItems.text = String(lineItems?[indexPath.row].quantity ?? 0)
@@ -191,11 +191,14 @@ extension ShoppingCartViewController : UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let thirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
-//        let pdVC = thirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
-//        pdVC.product?[indexPath.row].id = lineItems?[indexPath.row]
-//        pdVC.lin
-//        self.navigationController?.pushViewController(pdVC, animated: true)
+        let thirdStoryBoard = UIStoryboard(name: "ThirdStoryBoard", bundle: nil)
+        let pdVC = thirdStoryBoard.instantiateViewController(withIdentifier: "productDetails") as! ProductDetailsViewController
+        pdVC.product = Products()
+        pdVC.product?.id = lineItems?[indexPath.row].id ?? 0
+        pdVC.product?.title = lineItems?[indexPath.row].title ?? ""
+        pdVC.product?.variants?[0].price = lineItems?[indexPath.row].price
+        pdVC.product?.images[0].src = lineItems?[indexPath.row].sku
+        self.navigationController?.pushViewController(pdVC, animated: true)
     }
     
 }
@@ -265,7 +268,7 @@ extension ShoppingCartViewController{
     func deleteFromAPi(indexPath : IndexPath){
         
         if lineItems?.count == 1{
-            let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want ot delete this product?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Remove Product", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default){_ in
                 self.lineItems?.remove(at: indexPath.row)
                 let draftOrderId = UserDefaultsManager.shared.getDraftOrderID() ?? 0

@@ -87,14 +87,19 @@ class PaymentViewController: UIViewController {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 indicator.stopAnimating()
                             }
-                            UserDefaultsManager.shared.setCouponStatus(coupon: true)
+                            //UserDefaultsManager.shared.setCouponStatus(coupon: true)
                             validate.backgroundColor = UIColor(named: "gray")
                             validate.setTitle("validated", for: .selected)
                             validationLabel.text = ""
                             discountLabel.text = String("30 \(currency)")
                             SnackBar.make(in: self.view, message: "Congratulations, coupon succesuflly validated!", duration: .lengthLong).show()
                             //discountLabel.text = String("-30 \(currency)")
-                            discountLabel.text = calcCurrency(price: "30")
+                            if UserDefaultsManager.shared.getCurrency() == "USD"{
+                                discountLabel.text = calcCurrency(price: "4")
+                            }
+                            else{
+                                discountLabel.text = calcCurrency(price: "30")
+                            }
                             grandTotalLabel.text = String(format: "%.2f", calcGrandTotal())
                             break
                         }
@@ -104,9 +109,6 @@ class PaymentViewController: UIViewController {
                     }
                 }
             
-        }
-        else if couponTxtField.text == ""{
-            validationLabel.text = "Enter the coupon code"
         }
         else{
             validationLabel.text = "Enter the coupon code"
